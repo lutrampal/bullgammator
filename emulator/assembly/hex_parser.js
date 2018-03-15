@@ -1,3 +1,25 @@
+import {AMD} from "./AMD";
+import {AN} from "./AN";
+import {BD} from "./BD";
+import {BO} from "./BO";
+import {CB} from "./CB";
+import {CD} from "./CD";
+import {CN} from "./CN";
+import {CO} from "./CO";
+import {CSz} from "./CSz";
+import {DC} from "./DC";
+import {DR} from "./DR";
+import {GG} from "./GG";
+import {IL} from "./IL";
+import {VCS} from "./VCS"
+import {VRS} from "./VRS"
+import {ZB} from "./ZB"
+import {KB} from "./KB"
+import {OB} from "./OB"
+import {SN} from "./SN"
+import {MR} from "./MR"
+import {MC} from "./MC"
+
 function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   if (instruction.length !== 4) {
     throw "incorrect instruction length: got " + instruction.length + ", expected 4.";
@@ -117,7 +139,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
  * @param bullGamma the machine to which the returned instructions should be attached
  * @returns {Array} the array of parsed instructions
  */
-function parse_hex_str_to_instructions(hex_str, bullGamma) {
+export function parse_hex_str_to_instructions(hex_str, bullGamma) {
   let instructions = [];
   hex_str = hex_str.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
   hex_str = hex_str.replace(/[\s\n\r]/g, ''); // remove white space and line breaks

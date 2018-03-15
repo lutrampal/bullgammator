@@ -1,4 +1,6 @@
-class CSz extends Instruction {
+import {Instruction} from "./instruction"
+
+export class CSz extends Instruction {
   constructor(OD, OF, bullGamma) {
     super(1, 13, OD, OF, bullGamma)
   }

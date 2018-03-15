@@ -1,4 +1,4 @@
-class Instruction {
+export class Instruction {
   constructor(TO, AD, OD, OF, bullGamma) {
     this.TO = TO;
     this.AD = AD;
