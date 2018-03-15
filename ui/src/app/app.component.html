@@ -13,6 +13,7 @@
     <div>
       <div class="wraper">
         <mat-accordion>
+
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -25,8 +26,8 @@
 
             <app-hex-editor></app-hex-editor>
           </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
+
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Debug
@@ -36,8 +37,10 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             A venir...
+            <app-mb></app-mb>
             <div class="test"></div>
           </mat-expansion-panel>
+
         </mat-accordion>
       </div>
     </div>

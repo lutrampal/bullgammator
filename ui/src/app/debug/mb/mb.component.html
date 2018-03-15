@@ -1,0 +1,9 @@
+<div>
+  <form>
+    <div *ngFor="let mb of getBanalMemories()">
+      <mat-form-field>
+        <input matInput placeholder="{{ mb.id}}" [formControl]="controls[mb.id]">
+      </mat-form-field>
+    </div>
+  </form>
+</div>

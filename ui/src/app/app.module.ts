@@ -11,12 +11,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
+import { MbComponent } from './debug/mb/mb.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HexEditorComponent
+    HexEditorComponent,
+    MbComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
