@@ -1,0 +1,276 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam nodesep 110
+
+package Model {
+  package Machine {
+    class BullGamma {
+      selectOctad(id)
+    }
+
+    abstract class Serie {
+      id
+    }
+
+    class Octad {
+      id
+      getMemory(id)
+    }
+
+    class Memory {
+      id
+      value
+      maxValue
+      Memory(id, maxValue)
+      getValue()
+      setValue()
+    }
+
+    class CmpMemory {
+      greater: boolean
+      equal: boolean
+      isLower()
+      isLowerOrEqual()
+      isEqual()
+      isNotEqual()
+      isGreaterOrEqual()
+      isGreater()
+      setToGreater()
+      setToEqual()
+      setToLower()
+    }
+
+
+
+    class MagneticDrum {
+
+    }
+
+    class WireArray {
+
+    }
+
+    class GeneralSerie {
+
+    }
+
+    class IOSerie {
+
+    }
+
+    abstract class ArrayConnection {
+
+    }
+
+    class Constant {
+      value
+      getValue()
+    }
+
+    class InstructionConnection {
+
+    }
+
+    ArrayConnection <|-- Constant
+    ArrayConnection <|-- InstructionConnection
+
+    class InstrConnectionTuple {
+      value
+      getValue()
+      setValue()
+    }
+
+    class ArrayInstruction {
+
+    }
+
+    class Wire {
+
+    }
+
+    ArrayConnection "ends 2" --o "wire" Wire
+    Wire "wires 0..*" <--* WireArray
+
+    InstructionConnection "connections 2" <--* InstrConnectionTuple
+    InstrConnectionTuple "4 operands" <-* ArrayInstruction
+    Serie <|-- WireArray
+    Serie <|-- IOSerie
+    Serie <|-- GeneralSerie
+    Octad *--> "8 memories" Memory
+    GeneralSerie --> "2 octads" Octad
+    BullGamma *--> "generalMemories 7\ncp, md, rnl1, rnl2" Memory
+    BullGamma --> "magneticDrum" MagneticDrum
+    BullGamma --> "mc" CmpMemory
+    BullGamma -> "selectedOctad" Octad
+    WireArray "wireArray" <-- BullGamma
+    Constant "constants 16" <--* WireArray
+    ArrayInstruction "instructions 64" <--* WireArray
+    IOSerie "ioSerie" <-- BullGamma
+    GeneralSerie "generalSeries 3" <-- BullGamma
+
+  }
+
+  package Assembly {
+    abstract class Instruction {
+       TO
+       AD
+       OD
+       OF
+       executionTime
+       Instruction(bg: BullGamma)
+       toLineString(): String
+      {abstract} execute()
+      {abstract} computeExeTime()
+    }
+
+    BullGamma "bullGamma" <-- Instruction
+
+    class VCS {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class VRS {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class CD {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class CO {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class CSz {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class CB {
+      TO = 1
+      execute()
+      computeExeTime()
+    }
+
+    class ZB {
+      TO = 3
+      execute()
+      computeExeTime()
+    }
+
+    class KB {
+      TO = 4
+      execute()
+      computeExeTime()
+    }
+
+    class GG {
+      TO = 5
+      execute()
+      computeExeTime()
+    }
+
+    class BO {
+      TO = 6
+      execute()
+      computeExeTime()
+    }
+
+    class AMD {
+      TO = 7
+      execute()
+      computeExeTime()
+    }
+
+    class BD {
+      TO = 7
+      execute()
+      computeExeTime()
+    }
+
+    class IL {
+      TO = 7
+      execute()
+      computeExeTime()
+    }
+
+    class OB {
+      TO = 8
+      execute()
+      computeExeTime()
+    }
+
+    class CN {
+      TO = 9
+      execute()
+      computeExeTime()
+    }
+
+    class AN {
+      TO = 10
+      execute()
+      computeExeTime()
+    }
+
+    class SN {
+      TO = 11
+      execute()
+      computeExeTime()
+    }
+
+    class MR {
+      TO = 12
+      execute()
+      computeExeTime()
+    }
+
+    class DR {
+      TO = 13
+      execute()
+      computeExeTime()
+    }
+
+    class MC {
+      TO = 14
+      execute()
+      computeExeTime()
+    }
+
+    class DC {
+      TO = 15
+      execute()
+      computeExeTime()
+    }
+
+    VCS --|> Instruction
+    VRS --|> Instruction
+    SN --|> Instruction
+    ZB --|> Instruction
+    KB --|> Instruction
+    BD --|> Instruction
+    IL --|> Instruction
+    MR -|> Instruction
+    DR -|> Instruction
+    MC -|> Instruction
+    Instruction <|-- AMD
+    Instruction <|-- CSz
+    Instruction <|-- OB
+    Instruction <|-- CD
+    Instruction <|-- CO
+    Instruction <|-- CB
+    Instruction <|-- GG
+    Instruction <|-- BO
+    Instruction <|- CN
+    Instruction <|- AN
+    Instruction <|- DC
+@endDC

@@ -1,0 +1,45 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor utilisateur
+
+rectangle IU {
+    utilisateur -- (ecriture de code Deca)
+    utilisateur -- (ecriture de code assembleur)
+    utilisateur -- (ecriture cartes perforées)
+    utilisateur -- (debug)
+
+    (ecriture de code Deca) --> (ecriture de code hexa): decac
+    (ecriture de code assembleur) --> (ecriture de code hexa)
+
+    rectangle tableau_de_fils {
+        utilisateur -- (branchement des fils)
+        (ecriture de code hexa) -left-> (branchement des fils)
+    }
+}
+
+rectangle :(Lecteur):{
+    (ecriture cartes perforées) --> (lecture de cartes)
+    (lecture de cartes) -left-> (ecriture tambour)
+}
+
+rectangle BullGammaTor {
+    (ecriture de code hexa) --> (chargement code serie3)
+    (chargement code serie3) -left-> (execution)
+    (execution) -left-> (lecture/ecriture du tambour)
+}
+
+rectangle Tambour {
+    (ecriture de code Deca) --> (écriture)
+    (ecriture tambour) --> (écriture)
+    (lecture/ecriture du tambour) -up-> (écriture)
+    (lecture/ecriture du tambour) -up-> (lecture)
+}
+
+rectangle :(Imprimante): {
+    (execution) --> (imprimer dans un fichier)
+}
+
+@enduml

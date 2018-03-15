@@ -1,0 +1,53 @@
+<div class="container">
+  <div>
+    <mat-card>
+      <div>
+        <h1>BullGammaTor</h1>
+        <small>Emulateur du Bull Gamma</small>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="columns">
+
+    <div>
+      <div class="wraper">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Editeur
+              </mat-panel-title>
+              <mat-panel-description>
+                Ecrire du code pour le Bull Gamma
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <app-hex-editor></app-hex-editor>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Debug
+              </mat-panel-title>
+              <mat-panel-description>
+                Controler l'éxecution du programme
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            A venir...
+            <div class="test"></div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
+    <div>
+      <mat-card class="pannel wraper">
+        Tableau de fils
+      </mat-card>
+    </div>
+
+  </div>
+
+</div>

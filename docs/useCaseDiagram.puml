@@ -1,0 +1,26 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor utilisateur
+
+rectangle editeur {
+    utilisateur -- (ecriture de code Deca)
+    utilisateur -- (ecriture de code assembleur)
+    utilisateur -- (ecriture cartes perforées)
+
+    (ecriture de code Deca) --> (ecriture de code hexa): decac
+    (ecriture de code assembleur) --> (ecriture de code hexa)
+}
+
+rectangle tableau_de_fils {
+    utilisateur -- (branchement des fils)
+    (ecriture de code hexa) -left-> (branchement des fils)
+}
+
+rectangle deboggeur {
+    utilisateur -- (debug)
+}
+
+@enduml

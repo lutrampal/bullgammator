@@ -1,0 +1,10 @@
+<div>
+  <form [formGroup]="control">
+    <div class="container">
+      <mat-form-field>
+        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
+      </mat-form-field>
+    </div>
+    <button (click)="validate()" [disabled]="control.invalid" color="primary" mat-raised-button>Charger le code en série 3</button>
+  </form>
+</div>
