@@ -1,6 +1,6 @@
-Instruction = require("./instruction").Instruction
+Operation = require("./operation").Operation
 
-class CD extends Instruction {
+class CD extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     super(1, AD, OD, OF, bullGamma)
   }
