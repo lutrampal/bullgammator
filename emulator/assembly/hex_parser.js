@@ -1,24 +1,24 @@
-import {AMD} from "./AMD";
-import {AN} from "./AN";
-import {BD} from "./BD";
-import {BO} from "./BO";
-import {CB} from "./CB";
-import {CD} from "./CD";
-import {CN} from "./CN";
-import {CO} from "./CO";
-import {CSz} from "./CSz";
-import {DC} from "./DC";
-import {DR} from "./DR";
-import {GG} from "./GG";
-import {IL} from "./IL";
-import {VCS} from "./VCS"
-import {VRS} from "./VRS"
-import {ZB} from "./ZB"
-import {KB} from "./KB"
-import {OB} from "./OB"
-import {SN} from "./SN"
-import {MR} from "./MR"
-import {MC} from "./MC"
+AMD = require("./AMD").AMD;
+AN = require("./AN").AN;
+BD = require("./BD").BD;
+BO = require("./BO").BO;
+CB = require("./CB").CB;
+CD = require("./CD").CD;
+CN = require("./CN").CN;
+CO = require("./CO").CO;
+CSz = require("./CSz").CSz;
+DC = require("./DC").DC;
+DR = require("./DR").DR;
+GG = require("./GG").GG;
+IL = require("./IL").IL;
+VCS = require("./VCS").VCS;
+VRS = require("./VRS").VRS;
+ZB = require("./ZB").ZB;
+KB = require("./KB").KB;
+OB = require("./OB").OB;
+SN = require("./SN").SN;
+MR = require("./MR").MR;
+MC = require("./MC").MC;
 
 function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   if (instruction.length !== 4) {
@@ -139,7 +139,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
  * @param bullGamma the machine to which the returned instructions should be attached
  * @returns {Array} the array of parsed instructions
  */
-export function parse_hex_str_to_instructions(hex_str, bullGamma) {
+function parse_hex_str_to_instructions(hex_str, bullGamma) {
   let instructions = [];
   hex_str = hex_str.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
   hex_str = hex_str.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
@@ -154,3 +154,5 @@ export function parse_hex_str_to_instructions(hex_str, bullGamma) {
   });
   return instructions;
 }
+
+module.exports.parse_hex_str_to_instructions = parse_hex_str_to_instructions;

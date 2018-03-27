@@ -1,10 +1,22 @@
-export class Instruction {
+class Instruction {
   constructor(TO, AD, OD, OF, bullGamma) {
+    if (OD >= OF) {
+      OF = 12;
+    }
     this.TO = TO;
     this.AD = AD;
     this.OD = OD;
     this.OF = OF;
     this.bullGamma = bullGamma;
+  }
+
+
+  execute() {
+    throw new Error('You have to implement the method execute.');
+  }
+
+  computeExeTime() {
+    throw new Error('You have to implement the method computeExeTime.');
   }
 
   toString() {
@@ -18,3 +30,5 @@ export class Instruction {
       + " -- " + this.constructor.name + "\n";
   }
 }
+
+module.exports.Instruction = Instruction;

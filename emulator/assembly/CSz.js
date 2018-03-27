@@ -1,7 +1,9 @@
-import {Instruction} from "./instruction"
+Instruction = require("./instruction").Instruction
 
-export class CSz extends Instruction {
+class CSz extends Instruction {
   constructor(OD, OF, bullGamma) {
     super(1, 13, OD, OF, bullGamma)
   }
 }
+
+module.exports.CSz = CSz;
