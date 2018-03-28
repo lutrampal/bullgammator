@@ -1,7 +1,9 @@
-import {Instruction} from "./instruction"
+Operation = require("./operation").Operation
 
-export class AMD extends Instruction {
+class AMD extends Operation {
   constructor(OD, OF, bullGamma) {
     super(7, 0, OD, OF, bullGamma)
   }
 }
+
+module.exports.AMD = AMD;

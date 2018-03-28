@@ -1,30 +1,30 @@
-import {AMD} from "./AMD";
-import {AN} from "./AN";
-import {BD} from "./BD";
-import {BO} from "./BO";
-import {CB} from "./CB";
-import {CD} from "./CD";
-import {CN} from "./CN";
-import {CO} from "./CO";
-import {CSz} from "./CSz";
-import {DC} from "./DC";
-import {DR} from "./DR";
-import {GG} from "./GG";
-import {IL} from "./IL";
-import {VCS} from "./VCS"
-import {VRS} from "./VRS"
-import {ZB} from "./ZB"
-import {KB} from "./KB"
-import {OB} from "./OB"
-import {SN} from "./SN"
-import {MR} from "./MR"
-import {MC} from "./MC"
+AMD = require("./AMD").AMD;
+AN = require("./AN").AN;
+BD = require("./BD").BD;
+BO = require("./BO").BO;
+CB = require("./CB").CB;
+CD = require("./CD").CD;
+CN = require("./CN").CN;
+CO = require("./CO").CO;
+CSz = require("./CSz").CSz;
+DC = require("./DC").DC;
+DR = require("./DR").DR;
+GG = require("./GG").GG;
+IL = require("./IL").IL;
+VCS = require("./VCS").VCS;
+VRS = require("./VRS").VRS;
+ZB = require("./ZB").ZB;
+KB = require("./KB").KB;
+OB = require("./OB").OB;
+SN = require("./SN").SN;
+MR = require("./MR").MR;
+MC = require("./MC").MC;
 
-function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
-  if (instruction.length !== 4) {
-    throw "incorrect instruction length: got " + instruction.length + ", expected 4.";
+function _parse_four_hex_chunk_to_instr(Operation, bullGamma) {
+  if (Operation.length !== 4) {
+    throw "incorrect Operation length: got " + Operation.length + ", expected 4.";
   }
-  let operands = instruction.toLowerCase().split('');
+  let operands = Operation.toLowerCase().split('');
 
   operands.forEach(function (operand) {
     if (!['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'].includes(operand)) {
@@ -67,20 +67,20 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 15:
           return new CB(OD, OF, bullGamma);
         default:
-          throw "incorrect instruction for TO = 1: got AD = " + AD;
+          throw "incorrect Operation for TO = 1: got AD = " + AD;
       }
     case 2:
       throw "not supported yet: TO = 2";
     case 3:
       if (AD === 0) {
-        throw "incorrect instruction for TO = 2: got AD = 0";
+        throw "incorrect Operation for TO = 2: got AD = 0";
       }
       return new ZB(AD, OD, OF, bullGamma);
     case 4:
       return new KB(AD, OD, OF, bullGamma);
     case 5:
       if (AD !== 0) {
-        throw "incorrect instruction for TO = 5: got AD = " + AD;
+        throw "incorrect Operation for TO = 5: got AD = " + AD;
       }
       return new GG(OD, OF, bullGamma);
     case 6:
@@ -95,11 +95,11 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 12:
           return new IL(AD, OD, OF, bullGamma);
         default:
-          throw "incorrect instruction for TO = 7: got AD = " + AD;
+          throw "incorrect Operation for TO = 7: got AD = " + AD;
       }
     case 8:
       if (AD === 0) {
-        throw "incorrect instruction for TO = 8: got AD = 0";
+        throw "incorrect Operation for TO = 8: got AD = 0";
       }
       return new OB(AD, OD, OF, bullGamma);
     case 9:
@@ -110,22 +110,22 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       return new SN(AD, OD, OF, bullGamma);
     case 12:
       if (AD === 1) {
-        throw "incorrect instruction for TO = 12: got AD = 1";
+        throw "incorrect Operation for TO = 12: got AD = 1";
       }
       return new MR(AD, OD, OF, bullGamma);
     case 13:
       if (AD === 1) {
-        throw "incorrect instruction for TO = 13: got AD = 1";
+        throw "incorrect Operation for TO = 13: got AD = 1";
       }
       return new DR(AD, OD, OF, bullGamma);
     case 14:
       if (AD === 1 || AD === 2) {
-        throw "incorrect instruction for TO = 14: got AD = " + AD;
+        throw "incorrect Operation for TO = 14: got AD = " + AD;
       }
       return new MC(AD, OD, OF, bullGamma);
     case 15:
       if (AD === 1 || AD === 2) {
-        throw "incorrect instruction for TO = 15: got AD = " + AD;
+        throw "incorrect Operation for TO = 15: got AD = " + AD;
       }
       return new DC(AD, OD, OF, bullGamma);
     default:
@@ -134,23 +134,25 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 }
 
 /**
- * Given hexadecimal code for Bull Gamma 3, returns a set of instructions for the machine.
+ * Given hexadecimal code for Bull Gamma 3, returns a set of Operations for the machine.
  * @param hex_str the string representing the code to be parsed. code may include single line comments starting with --.
- * @param bullGamma the machine to which the returned instructions should be attached
- * @returns {Array} the array of parsed instructions
+ * @param bullGamma the machine to which the returned Operations should be attached
+ * @returns {Array} the array of parsed Operations
  */
-export function parse_hex_str_to_instructions(hex_str, bullGamma) {
-  let instructions = [];
+function parse_hex_str_to_Operations(hex_str, bullGamma) {
+  let Operations = [];
   hex_str = hex_str.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
   hex_str = hex_str.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
   let i = 1;
   hex_str.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
-      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma))
+      Operations.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma))
       i++;
     } catch (error) {
-      throw "parsing error at instruction #" + i + ": " + error;
+      throw "parsing error at Operation #" + i + ": " + error;
     }
   });
-  return instructions;
+  return Operations;
 }
+
+module.exports.parse_hex_str_to_Operations = parse_hex_str_to_Operations;

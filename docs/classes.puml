@@ -7,15 +7,17 @@ package Model {
   package Machine {
     class BullGamma {
       selectOctad(id)
+      getMemory(id)
     }
 
     abstract class Serie {
       id
+      getOctad(idx)
     }
 
     class Octad {
       id
-      getMemory(id)
+      getMemory(idx)
     }
 
     class Memory {
@@ -23,8 +25,9 @@ package Model {
       value
       maxValue
       Memory(id, maxValue)
-      getValue()
-      setValue()
+      getMode()
+      setToZero(from, to)
+      setBlock(idx)
     }
 
     class CmpMemory {

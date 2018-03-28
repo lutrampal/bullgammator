@@ -36,3 +36,5 @@ class CmpMemory {
   }
 
 }
+
+module.exports.CmpMemory = CmpMemory;
