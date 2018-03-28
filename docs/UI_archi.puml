@@ -1,0 +1,28 @@
+@startuml
+class mainVue {
+}
+
+class wirePannel {
+}
+mainVue *-- wirePannel
+
+class editors {
+}
+mainVue *-- editors
+
+class hexEditior {
+}
+editors *-- hexEditor
+
+class debug {
+}
+mainVue *-- debug
+
+class operatorMems {
+}
+debug *-- operatorMems
+
+class banalMemories {
+}
+debug *-- banalMemories
+@enduml

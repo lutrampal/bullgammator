@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
 import { MbComponent } from './debug/mb/mb.component';
 
+import { MemoriesService } from './debug/providers/memories.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { MbComponent } from './debug/mb/mb.component';
     FormsModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule
   ],
-  providers: [],
+  providers: [MemoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,26 @@
 <div>
   <form>
-    <div *ngFor="let mb of getBanalMemories()">
-      <mat-form-field>
-        <input matInput placeholder="{{ mb.id}}" [formControl]="controls[mb.id]">
-      </mat-form-field>
+    <input *ngIf="!edit" matInput placeholder="MS1" [value]="getMS1()" disabled>
+    <input *ngIf="edit" matInput placeholder="MS1" [formControl]="ms1Ctrl">
+    <input *ngIf="!edit" matInput placeholder="MSB" [value]="getMSB()" disabled>
+    <input *ngIf="edit" matInput placeholder="MSB" [formControl]="msbCtrl">
+    <input *ngIf="!edit" matInput placeholder="MCMP" [value]="getMCMP()" disabled>
+    <input *ngIf="edit" matInput placeholder="MCMP" [formControl]="mcmpCtrl">
+    <input *ngIf="!edit" matInput placeholder="RNL1" [value]="getRNL1()" disabled>
+    <input *ngIf="edit" matInput placeholder="RNL1" [formControl]="rnl1Ctrl">
+    <input *ngIf="!edit" matInput placeholder="RNL2" [value]="getRNL2()" disabled>
+    <input *ngIf="edit" matInput placeholder="RNL2" [formControl]="rnl2Ctrl">
+    <input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
+    <input *ngIf="edit" matInput placeholder="NL" [formControl]="rnl2Ctrl">
+
+    <input *ngIf="!edit" matInput placeholder="M0/M1" [value]="getM0()" disabled>
+    <input *ngIf="edit" matInput placeholder="M0/M1" [formControl]="m0Ctrl">
+
+    <div *ngFor="let mb of memories">
+      <input *ngIf="!edit" matInput placeholder="{{ mb.label }}" [value]="getMemory(mb.id)" disabled>
+      <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[mb.id]">
     </div>
+    <button (click)="edit=true;" *ngIf="!edit" mat-raised-button>Editer</button>
+    <button (click)="setMemories(); edit=false;" [disabled]="!valid()" *ngIf="edit" mat-raised-button>Ok</button>
   </form>
 </div>
