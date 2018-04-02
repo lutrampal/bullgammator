@@ -6,28 +6,35 @@ skinparam nodesep 110
 package Model {
   package Machine {
     class BullGamma {
+      _memoryMode
+      BullGamma()
       selectOctad(id)
       getMemory(id)
+      getOctad(id)
+      getMemoryMode()
+      setMemoryMode(newMode)
     }
 
     abstract class Serie {
       id
+      Serie(id, bullGamma)
       getOctad(idx)
     }
 
     class Octad {
       id
+      Octad(id, bullGamma)
       getMemory(idx)
     }
 
     class Memory {
       id
-      value
-      maxValue
+      blocks
+      Memory(id, bullGamma)
       Memory(id, maxValue)
       getMode()
       setToZero(from, to)
-      setBlock(idx)
+      setBlockValue(idx, value)
     }
 
     class CmpMemory {
@@ -102,15 +109,15 @@ package Model {
     Serie <|-- GeneralSerie
     Octad *--> "8 memories" Memory
     GeneralSerie --> "2 octads" Octad
-    BullGamma *--> "generalMemories 7\ncp, md, rnl1, rnl2" Memory
-    BullGamma --> "magneticDrum" MagneticDrum
-    BullGamma --> "mc" CmpMemory
-    BullGamma -> "selectedOctad" Octad
-    WireArray "wireArray" <-- BullGamma
+    BullGamma *-- "generalMemories 7\ncp, md, rnl1, rnl2" Memory
+    BullGamma -- "magneticDrum" MagneticDrum
+    BullGamma -- "mc" CmpMemory
+    BullGamma - "selectedOctad" Octad
+    WireArray "wireArray" -- BullGamma
     Constant "constants 16" <--* WireArray
     ArrayInstruction "instructions 64" <--* WireArray
-    IOSerie "ioSerie" <-- BullGamma
-    GeneralSerie "generalSeries 3" <-- BullGamma
+    IOSerie "ioSerie" -- BullGamma
+    GeneralSerie "generalSeries 3" -- BullGamma
 
   }
 
@@ -121,11 +128,17 @@ package Model {
        OD
        OF
        executionTime
-       Instruction(bg: BullGamma)
+       Instruction(TO, AD, OD, OF, bullGamma)
        toLineString(): String
       {abstract} execute()
       {abstract} computeExeTime()
     }
+
+    abstract class Operation {
+      Operation(TO, AD, OD, OF, bullGamma)
+    }
+
+    Instruction <|-- Operation
 
     BullGamma "bullGamma" <-- Instruction
 
@@ -255,25 +268,25 @@ package Model {
       computeExeTime()
     }
 
-    VCS --|> Instruction
-    VRS --|> Instruction
-    SN --|> Instruction
-    ZB --|> Instruction
+    VCS --|> Operation
+    VRS --|> Operation
+    SN --|> Operation
+    ZB --|> Operation
     KB --|> Instruction
-    BD --|> Instruction
-    IL --|> Instruction
-    MR -|> Instruction
-    DR -|> Instruction
-    MC -|> Instruction
-    Instruction <|-- AMD
-    Instruction <|-- CSz
-    Instruction <|-- OB
-    Instruction <|-- CD
-    Instruction <|-- CO
-    Instruction <|-- CB
-    Instruction <|-- GG
-    Instruction <|-- BO
-    Instruction <|- CN
-    Instruction <|- AN
-    Instruction <|- DC
+    BD --|> Operation
+    IL --|> Operation
+    MR -|> Operation
+    DR -|> Operation
+    MC -|> Operation
+    Operation <|-- AMD
+    Operation <|-- CSz
+    Operation <|-- OB
+    Operation <|-- CD
+    Operation <|-- CO
+    Operation <|-- CB
+    Operation <|-- GG
+    Operation <|-- BO
+    Operation <|- CN
+    Operation <|- AN
+    Operation <|- DC
 @endDC

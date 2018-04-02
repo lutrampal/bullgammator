@@ -2,6 +2,7 @@ Memory = require("./memory").Memory;
 Serie = require("./serie").Serie;
 assert = require('assert');
 
+const NB_OCTADS_PER_SERIE = require("./serie").NB_OCTADS;
 const NB_GENERAL_MEMORIES = 7;
 const NB_GENERAL_SERIES = 3;
 
@@ -23,6 +24,7 @@ class BullGamma {
     for (let i = 0; i < NB_GENERAL_SERIES; ++i) {
       this._generalSeries[i] = new Serie(i, this);
     }
+    this._ioSerie = new Serie(NB_GENERAL_SERIES, this);
     this._memoryMode = MEMORY_MODE.BINARY;
   }
 
@@ -38,6 +40,29 @@ class BullGamma {
       return this._generalMemories[id - 1];
     }
     return this._generalSeries[0].getOctad(0).get(id - NB_GENERAL_MEMORIES - 1);
+  }
+
+  /**
+   * Given an ID, return the corresponding octad
+   * @param id the octad to return, should be between 0 and 7 included
+   */
+  getOtad(id) {
+    assert.equal(id >= 0, true, "id should be positive");
+    assert.equal(id < (NB_GENERAL_SERIES + 1)*2, true, "id should be inferior to " + (NB_GENERAL_SERIES + 1)*2);
+    return this.getSerie(id / NB_OCTADS_PER_SERIE).getOctad(id % 2)
+  }
+
+  /**
+   * Given an ID, return the corresponding serie
+   * @param id the serie to return, should be between 0 and 2 included
+   */
+  getSerie(id) {
+    assert.equal(id >= 0, true, "id should be positive");
+    assert.equal(id < NB_GENERAL_SERIES + 1, true, "id should be inferior to " + NB_GENERAL_SERIES + 1);
+    if (id < NB_GENERAL_SERIES) {
+      return this._generalSeries[id];
+    }
+    return this._ioSerie;
   }
 
   /**
