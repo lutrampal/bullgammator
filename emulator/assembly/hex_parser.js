@@ -78,7 +78,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       throw "not supported yet: TO = 2";
     case 3:
       if (AD === 0) {
-        throw "incorrect instruction for TO = 2: got AD = 0";
+        throw "incorrect instruction for TO = 3: got AD = 0";
       }
       return new ZB(AD, OD, OF, bullGamma);
     case 4:

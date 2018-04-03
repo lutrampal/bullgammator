@@ -126,10 +126,9 @@ class Memory {
    * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
    */
   compareTo(other, from, to) {
-    assert.equal(other, "other should not be null or undefined")
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
     let nbDigitsThis = NB_BLOCKS_PER_MEMORY;
     while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
       --nbDigitsThis
@@ -159,17 +158,17 @@ class Memory {
    * @param to index of the block to which the addition should end (excluded)
    */
   add(other, from, to) {
-    assert.equal(other, "other should not be null or undefined")
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
-    let carry
+    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    let carry = 0
     for (let i = from; i < to; ++i) {
-      carry = 0
       let res = this.blocks[i] + other.blocks[i] + carry
       if (res > 9) {
         carry = 1
         res -= 10
+      } else {
+        carry = 0
       }
       this.blocks[i] = res
     }
@@ -185,7 +184,6 @@ class Memory {
    * @param to index of the block to which the subtraction should end (excluded)
    */
   subtract(other, from, to) {
-    assert.equal(other, "other should not be null or undefined")
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
     assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
