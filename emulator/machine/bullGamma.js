@@ -26,7 +26,7 @@ class BullGamma {
     }
     this._ioSerie = new Serie(NB_GENERAL_SERIES, this);
     this._memoryMode = MEMORY_MODE.BINARY;
-    this.ms1 = false;
+    this.ms1 = 0;
     this.md = 0;
   }
 
