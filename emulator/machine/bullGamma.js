@@ -26,10 +26,11 @@ class BullGamma {
       this._generalSeries[i] = new Serie(i, this);
     }
     this._ioSerie = new Serie(NB_GENERAL_SERIES, this);
-    this._memoryMode = MEMORY_MODE.BINARY;
+    this._memoryMode = MEMORY_MODE.DECIMAL;
     this.ms1 = 0;
     this.md = 0;
     this.mc = new CmpMemory();
+    this.cp = 0
   }
 
   /**
