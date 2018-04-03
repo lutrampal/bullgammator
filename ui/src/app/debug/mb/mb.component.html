@@ -1,0 +1,57 @@
+<div class="main">
+  <form>
+    <h4>Controle</h4>
+    <div class="columns">
+      <div class="control">
+        <span>
+          <label>MS1</label>
+          <input *ngIf="!edit" matInput placeholder="MS1" [value]="getMS1()" disabled>
+          <input *ngIf="edit" matInput placeholder="MS1" [formControl]="ms1Ctrl">
+        </span>
+        <span>
+          <label>MSB</label>
+          <input *ngIf="!edit" matInput placeholder="MSB" [value]="getMSB()" disabled>
+          <input *ngIf="edit" matInput placeholder="MSB" [formControl]="msbCtrl">
+        </span>
+        <span>
+          <label>MCMP</label>
+          <input *ngIf="!edit" matInput placeholder="MCMP" [value]="getMCMP()" disabled>
+          <input *ngIf="edit" matInput placeholder="MCMP" [formControl]="mcmpCtrl">
+        </span>
+        <span>
+          <label>RNL1</label>
+          <input *ngIf="!edit" matInput placeholder="RNL1" [value]="getRNL1()" disabled>
+          <input *ngIf="edit" matInput placeholder="RNL1" [formControl]="rnl1Ctrl">
+        </span>
+        <span>
+          <label>RNL2</label>
+          <input *ngIf="!edit" matInput placeholder="RNL2" [value]="getRNL2()" disabled>
+          <input *ngIf="edit" matInput placeholder="RNL2" [formControl]="rnl2Ctrl">
+        </span>
+        <span>
+          <label>NL</label>
+          <input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
+          <input *ngIf="edit" matInput placeholder="NL" [formControl]="rnl2Ctrl">
+        </span>
+
+      </div>
+      <div class="memories">
+        <span>
+          <label>M0/M1</label>
+          <input *ngIf="!edit" matInput placeholder="M0/M1" [value]="getM0()" disabled>
+          <input *ngIf="edit" matInput placeholder="M0/M1" [formControl]="m0Ctrl">
+        </span>
+
+        <div *ngFor="let mb of memories">
+          <span>
+            <label>{{ mb.label }}</label>
+            <input *ngIf="!edit" matInput placeholder="{{ mb.label }}" [value]="getMemory(mb.id)" disabled>
+            <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[mb.id]">
+          </span>
+        </div>
+      </div>
+    </div>
+    <button (click)="editMemories();" *ngIf="!edit" mat-raised-button>Editer</button>
+    <button (click)="setMemories(); edit=false;" [disabled]="!valid()" *ngIf="edit" mat-raised-button>Ok</button>
+  </form>
+</div>

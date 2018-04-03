@@ -1,0 +1,31 @@
+.main {
+  width: 400px;
+  background: #E2E4E6;
+  padding: 12px;
+  margin: 8px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.arrow {
+  margin: auto;
+  margin-top: 100px;
+}
+
+span {
+  display: block;
+  text-align: left;
+}
+
+input {
+  max-width: 200px;
+  position: absolute;
+  left: 230px;
+}
+
+button {
+  margin: 8px;
+}

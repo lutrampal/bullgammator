@@ -1,0 +1,32 @@
+.main {
+  width: 400px;
+  background: #E2E4E6;
+  padding: 12px;
+  margin: 8px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+
+span {
+  display: block;
+  text-align: left;
+}
+
+.control input {
+  max-width: 200px;
+  position: absolute;
+  left: 120px;
+}
+
+.memories input {
+  max-width: 200px;
+  position: absolute;
+  left: 320px;
+}
+
+button {
+  margin: 8px;
+}
