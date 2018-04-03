@@ -31,25 +31,26 @@ export class MbComponent implements OnInit {
     public m: MemoriesService
   ) {
     for (let mb of [ 2, 3, 4, 5, 6, 7 ]) {
-      this.memories.push({ id: mb, label: mb.toString() });
+      this.memories.push({ id: mb, label: 'M' + mb.toString() });
     }
+    this.edit = false;
   }
 
   ngOnInit() {
     for (let mb of this.memories) {
-      this.controls[mb.id] = new FormControl(this.pad(0, 12, null), [this.banalMemoryValidator]);
+      this.controls[mb.id] = new FormControl('', [this.m.banalMemoryValidator]);
     }
-    this.m0Ctrl = new FormControl(this.pad(0, 12, null), [this.banalMemoryValidator]);
-    this.mcmpCtrl = new FormControl(0, []);
-    this.ms1Ctrl = new FormControl(0, []);
-    this.msbCtrl = new FormControl(0, []);
-    this.rnl1Ctrl = new FormControl(0, []);
-    this.rnl2Ctrl = new FormControl(0, []);
-    this.nlCtrl = new FormControl(0, []);
+    this.m0Ctrl = new FormControl('', [this.m.banalMemoryValidator]);
+    this.mcmpCtrl = new FormControl('', []);
+    this.ms1Ctrl = new FormControl('', []);
+    this.msbCtrl = new FormControl('', []);
+    this.rnl1Ctrl = new FormControl('', []);
+    this.rnl2Ctrl = new FormControl('', []);
+    this.nlCtrl = new FormControl('', []);
   }
 
   getMemory(id: number, octad: number) {
-    let value = this.pad(this.m.getMemory(id, octad), 12, null);
+    let value = this.m.pad(this.m.getMemory(id, octad), 12, null);
     this.controls[id].setValue(value);
     return value;
   }
@@ -71,7 +72,7 @@ export class MbComponent implements OnInit {
   }
 
   getM0() {
-    let value = this.pad(this.m.getMemory(0, 0), 12, null);
+    let value = this.m.pad(this.m.getMemory(0, 0), 12, null);
     this.m0Ctrl.setValue(value);
     return value;
   }
@@ -100,19 +101,6 @@ export class MbComponent implements OnInit {
     return this.m.getRNL2();
   }
 
-  pad(n, width, z) {
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-  }
-
-  banalMemoryValidator(control: FormControl) {
-    if (!control.value.match(/^[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]$/)) {
-      return { error: true };
-    }
-    return null;
-  }
-
   valid() {
     for (let mb of this.memories) {
       if (this.controls[mb.id].invalid) {
@@ -120,6 +108,20 @@ export class MbComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  editMemories() {
+    this.edit = true;
+    for (let mb of this.memories) {
+      this.controls[mb.id].setValue(this.getMemory(mb.id, 0));
+    }
+    this.m0Ctrl.setValue(this.getM0());
+    this.mcmpCtrl.setValue(this.getMCMP());
+    this.ms1Ctrl.setValue(this.getMS1());
+    this.msbCtrl.setValue(this.getMSB());
+    this.rnl1Ctrl.setValue(this.getRNL1());
+    this.rnl2Ctrl.setValue(this.getRNL2());
+    this.nlCtrl.setValue(this.getNL());
   }
 
 }

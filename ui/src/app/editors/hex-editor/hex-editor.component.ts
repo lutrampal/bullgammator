@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import * as bullgammator from 'bullgammator';
 
+import { BullgammatorService } from '../../providers/bullgammator.service';
 
 @Component({
   selector: 'app-hex-editor',
@@ -13,7 +13,8 @@ export class HexEditorComponent implements OnInit {
   control: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private bull: BullgammatorService
   ) {
 
   }
@@ -29,7 +30,7 @@ export class HexEditorComponent implements OnInit {
   }
 
   validate() {
-    console.log(bullgammator.parse_hex_str_to_instructions(this.control.get("hex_entry").value, null));
+    console.log(this.bull.parse_hex_str_to_instructions(this.control.get("hex_entry").value));
   }
 
 }

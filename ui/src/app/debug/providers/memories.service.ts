@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Injectable()
 export class MemoriesService {
@@ -7,7 +8,7 @@ export class MemoriesService {
 
   getMemory(id: number, octad: number) {
     octad = octad || 0;
-    return 12;
+    return octad * 8 + id;
   }
   setMemory(value: string, id: number, octad: number) {
     octad = octad || 0;
@@ -54,6 +55,19 @@ export class MemoriesService {
   }
   setRNL2(value: string) {
     console.log(value);
+  }
+
+  banalMemoryValidator(control: FormControl) {
+    if (!control.value.match(/^[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]$/)) {
+      return { error: true };
+    }
+    return null;
+  }
+
+  pad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
   }
 
 }

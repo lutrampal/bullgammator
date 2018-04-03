@@ -1,0 +1,24 @@
+<div class="main">
+  <div class="container">
+    <div>
+      <button mat-icon-button class="arrow" (click)="minus()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    </div>
+    <div>
+      <form>
+        <h4>Octade {{ octad }}</h4>
+        <div *ngFor="let mb of getOctad()">
+          <span>
+            <label>{{ mb.label }}</label>
+            <input *ngIf="!edit" matInput placeholder="{{ mb.label }}" [value]="getMemory(mb.id, octad)" disabled>
+            <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[octadsIds.length * octad + mb.id]">
+          </span>
+        </div>
+        <button (click)="editMemories();" *ngIf="!edit" mat-raised-button>Editer</button>
+        <button (click)="setMemories(); edit=false;" [disabled]="!valid()" *ngIf="edit" mat-raised-button>Ok</button>
+      </form>
+    </div>
+    <div>
+      <button mat-icon-button class="arrow" (click)="plus()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
+  </div>
+</div>
