@@ -15,6 +15,7 @@ class Instruction {
     this.OD = OD;
     this.OF = OF;
     this.bullGamma = bullGamma;
+    this.hexString = TO.toString(16) + AD.toString(16) + OD.toString(16) + OF.toString(16);
   }
 
   execute() {
@@ -26,14 +27,11 @@ class Instruction {
   }
 
   toString() {
-    return this.TO.toString(16) + this.AD.toString(16)
-      + this.OD.toString(16) + this.OF.toString(16);
+    return this.hexString
   }
 
   toLineString() {
-    return this.TO.toString(16) + this.AD.toString(16)
-      + this.OD.toString(16) + this.OF.toString(16)
-      + " -- " + this.constructor.name + "\n";
+    return this.hexString + " -- " + this.constructor.name + "\n";
   }
 }
 
