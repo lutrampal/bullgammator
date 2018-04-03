@@ -1,0 +1,42 @@
+.main {
+  width: 400px;
+  background: #E2E4E6;
+  padding: 12px;
+  margin: 8px;
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.lines {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  text-align: left;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.column {
+  position: relative;
+}
+
+input {
+  width: 40px;
+}
+
+.label {
+  position: absolute;
+}
+
+.hex {
+  position: absolute;
+  left: 90px;
+}
+
+.arrow {
+  margin: auto;
+  margin-top: 10px;
+}

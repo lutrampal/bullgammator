@@ -1,32 +1,73 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { BullgammatorService } from '../../providers/bullgammator.service';
+
 @Injectable()
 export class MemoriesService {
 
-  constructor() { }
+  constructor(
+    private bull: BullgammatorService
+  ) { }
+
+  hex(val: number): string {
+    return val.toString(16).toUpperCase();
+  }
+  reverseHex(letter: string): number {
+    return parseInt(letter, 16);
+  }
 
   getMemory(id: number, octad: number) {
     octad = octad || 0;
-    return octad * 8 + id;
+    let mem;
+    if (id < 8) {
+      mem = this.bull.bullgamma.getMemory(id);
+    } else {
+      mem = this.bull.bullgamma.getOctad(octad).getMemory(id - 8);
+    }
+    let value = "";
+    mem.blocks.forEach((val) => {
+      value = this.hex(val) + value;
+    });
+    return value;
   }
   setMemory(value: string, id: number, octad: number) {
     octad = octad || 0;
-    console.log(value);
+    let mem;
+    if (id < 8) {
+      mem = this.bull.bullgamma.getMemory(id);
+    } else {
+      mem = this.bull.bullgamma.getOctad(octad).getMemory(id - 8);
+    }
+    for (var i = 0; i < 12; i++) {
+      mem.blocks[11 - i] = this.reverseHex(value.charAt(i));
+    }
   }
 
   getNL() {
-    return 12;
+    return this.hex(this.bull.bullgamma.cp);
   }
   setNL(value: string) {
-    console.log(value);
+    this.bull.bullgamma.cp = this.reverseHex(value);
+  }
+  nlValidator(control: FormControl) {
+    if (!control.value.match(/^[0-9A-F][0-9A-F]$/)) {
+      return { error : true };
+    }
+    return null;
   }
 
   getMS1() {
-    return 12;
+    return this.hex(this.bull.bullgamma.ms1);
   }
   setMS1(value: string) {
-    console.log(value);
+    this.bull.bullgamma.ms1 = this.reverseHex(value);
+  }
+  ms1Validator(control: FormControl) {
+    if (!control.value.match(/^[0-9A-F]$/)){
+      return { error: true };
+    }
+    return null;
   }
 
   getMSB() {
@@ -37,10 +78,36 @@ export class MemoriesService {
   }
 
   getMCMP() {
-    return 12;
+    let mc = this.bull.bullgamma.mc;
+    let value = "";
+    if (mc.equal) {
+      return "=";
+    } else {
+      if (mc.greater) {
+        return ">";
+      } else {
+        return "<";
+      }
+    }
   }
   setMCMP(value: string) {
-    console.log(value);
+    let mc = this.bull.bullgamma.mc;
+    if (value == "=") {
+      mc.equal = true;
+    } else {
+      mc.equal = false;
+      if (value == ">") {
+        mc.greater = true;
+      } else {
+        mc.greater = false;
+      }
+    }
+  }
+  mcmpValidator(control: FormControl) {
+    if (!control.value.match(/^(=|<|>)$/)) {
+      return { error : true };
+    }
+    return null;
   }
 
   getRNL1() {

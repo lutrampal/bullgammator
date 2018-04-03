@@ -41,12 +41,12 @@ export class MbComponent implements OnInit {
       this.controls[mb.id] = new FormControl('', [this.m.banalMemoryValidator]);
     }
     this.m0Ctrl = new FormControl('', [this.m.banalMemoryValidator]);
-    this.mcmpCtrl = new FormControl('', []);
-    this.ms1Ctrl = new FormControl('', []);
+    this.mcmpCtrl = new FormControl('', [this.m.mcmpValidator]);
+    this.ms1Ctrl = new FormControl('', [this.m.ms1Validator]);
     this.msbCtrl = new FormControl('', []);
     this.rnl1Ctrl = new FormControl('', []);
     this.rnl2Ctrl = new FormControl('', []);
-    this.nlCtrl = new FormControl('', []);
+    this.nlCtrl = new FormControl('', [this.m.nlValidator]);
   }
 
   getMemory(id: number, octad: number) {
@@ -62,7 +62,7 @@ export class MbComponent implements OnInit {
 
   setMemories() {
     this.setBanalMemories();
-    this.m.setMemory(this.m0Ctrl.value, 0, 0);
+    this.m.setMemory(this.m0Ctrl.value, 1, 0);
     this.m.setNL(this.nlCtrl.value);
     this.m.setMS1(this.ms1Ctrl.value);
     this.m.setMSB(this.msbCtrl.value);
@@ -72,7 +72,7 @@ export class MbComponent implements OnInit {
   }
 
   getM0() {
-    let value = this.m.pad(this.m.getMemory(0, 0), 12, null);
+    let value = this.m.pad(this.m.getMemory(1, 0), 12, null);
     this.m0Ctrl.setValue(value);
     return value;
   }
@@ -106,6 +106,11 @@ export class MbComponent implements OnInit {
       if (this.controls[mb.id].invalid) {
         return false;
       }
+    }
+    if (this.m0Ctrl.invalid || this.mcmpCtrl.invalid || this.ms1Ctrl.invalid || this.msbCtrl.invalid ||
+      this.nlCtrl.invalid || this.rnl1Ctrl.invalid || this.rnl2Ctrl.invalid
+    ) {
+      return false;
     }
     return true;
   }

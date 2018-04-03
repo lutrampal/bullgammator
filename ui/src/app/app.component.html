@@ -8,48 +8,49 @@
     </mat-card>
   </div>
 
-  <div class="columns">
+  <mat-accordion>
 
-    <div>
-      <div class="wraper">
-        <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Editeur
+        </mat-panel-title>
+        <mat-panel-description>
+          Ecrire du code pour le Bull Gamma
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Editeur
-              </mat-panel-title>
-              <mat-panel-description>
-                Ecrire du code pour le Bull Gamma
-              </mat-panel-description>
-            </mat-expansion-panel-header>
+      <app-hex-editor></app-hex-editor>
+    </mat-expansion-panel>
 
-            <app-hex-editor></app-hex-editor>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Debug
-              </mat-panel-title>
-              <mat-panel-description>
-                Controler l'éxecution du programme
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <app-mb></app-mb>
-            <app-octads></app-octads>
-          </mat-expansion-panel>
-
-        </mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Debug
+        </mat-panel-title>
+        <mat-panel-description>
+          Controler l'execution du programme
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="debug">
+        <span class="item1"><app-mb></app-mb></span>
+        <span class="item2"><app-octads></app-octads></span>
+        <span class="item3"><app-series></app-series></span>
       </div>
-    </div>
+    </mat-expansion-panel>
 
-    <div>
-      <mat-card class="pannel wraper">
-        Tableau de fils
-      </mat-card>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Tableau de fils
+        </mat-panel-title>
+        <mat-panel-description>
+          Branchement des fils
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-  </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
 
 </div>

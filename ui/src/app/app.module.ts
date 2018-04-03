@@ -15,8 +15,10 @@ import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
 
 import { MbComponent } from './debug/mb/mb.component';
 import { OctadsComponent } from './debug/octads/octads.component';
+import { SeriesComponent } from './debug/series/series.component';
 
 import { MemoriesService } from './debug/providers/memories.service';
+import { SeriesService } from './debug/providers/series.service';
 import { BullgammatorService } from './providers/bullgammator.service';
 
 @NgModule({
@@ -24,14 +26,15 @@ import { BullgammatorService } from './providers/bullgammator.service';
     AppComponent,
     HexEditorComponent,
     MbComponent,
-    OctadsComponent
+    OctadsComponent,
+    SeriesComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule
   ],
-  providers: [MemoriesService, BullgammatorService],
+  providers: [MemoriesService, SeriesService, BullgammatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
