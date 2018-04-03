@@ -3,6 +3,7 @@
   background: #E2E4E6;
   padding: 12px;
   margin: 8px;
+  position: relative;
 }
 
 .columns {
@@ -18,13 +19,13 @@ span {
 .control input {
   max-width: 200px;
   position: absolute;
-  left: 120px;
+  left: 90px;
 }
 
 .memories input {
   max-width: 200px;
   position: absolute;
-  left: 320px;
+  left: 290px;
 }
 
 button {

@@ -1,0 +1,33 @@
+<div class="main">
+
+    <div class="container">
+      <div>
+        <button mat-icon-button class="arrow" (click)="minus()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      </div>
+      <div>
+        <h4>Série {{ serie }}</h4>
+      </div>
+      <div>
+        <button mat-icon-button class="arrow" (click)="plus()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      </div>
+    </div>
+
+    <div class="lines">
+      <div class="column">
+        <div *ngFor="let inst of getInstructions() | slice:0:32; index as i">
+          <input *ngIf="i != s.getLine(serie)"type="checkbox">
+          <input *ngIf="i == s.getLine(serie)" matInput value="-->" disabled>
+          <label class="label">{{ i }} : </label>
+          <label class="hex">{{ inst.toString().toUpperCase() }}</label>
+        </div>
+      </div>
+      <div class="column">
+        <div *ngFor="let inst of getInstructions() | slice:32:64; index as i">
+          <input *ngIf="i + 32 != s.getLine(serie)" type="checkbox">
+          <input *ngIf="i + 32 == s.getLine(serie)" matInput value="-->" disabled>
+          <label class="label">{{ i + 32 }} : </label>
+          <label class="hex">{{ inst.toString().toUpperCase() }}</label>
+        </div>
+      </div>
+    </div>
+</div>

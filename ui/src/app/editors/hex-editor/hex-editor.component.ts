@@ -30,7 +30,8 @@ export class HexEditorComponent implements OnInit {
   }
 
   validate() {
-    console.log(this.bull.parse_hex_str_to_instructions(this.control.get("hex_entry").value));
+    let insts = this.bull.parse_hex(this.control.get("hex_entry").value);
+    this.bull.instructions = insts;
   }
 
 }
