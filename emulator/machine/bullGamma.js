@@ -48,7 +48,7 @@ class BullGamma {
    * Given an ID, return the corresponding octad
    * @param id the octad to return, should be between 0 and 7 included
    */
-  getOtad(id) {
+  getOctad(id) {
     assert.equal(id >= 0, true, "id should be positive");
     assert.equal(id < (NB_GENERAL_SERIES + 1)*2, true, "id should be inferior to " + (NB_GENERAL_SERIES + 1)*2);
     return this.getSerie(id / NB_OCTADS_PER_SERIE).getOctad(id % 2)
