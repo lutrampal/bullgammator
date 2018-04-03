@@ -7,6 +7,9 @@ package Model {
   package Machine {
     class BullGamma {
       _memoryMode
+      ms1
+      msb
+      md : hexa
       BullGamma()
       selectOctad(id)
       getMemory(id)
@@ -29,7 +32,7 @@ package Model {
 
     class Memory {
       id
-      blocks
+      blocks : Array<hexa>
       Memory(id, bullGamma)
       Memory(id, maxValue)
       getMode()
@@ -109,7 +112,7 @@ package Model {
     Serie <|-- GeneralSerie
     Octad *--> "8 memories" Memory
     GeneralSerie --> "2 octads" Octad
-    BullGamma *-- "generalMemories 7\ncp, md, rnl1, rnl2" Memory
+    BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
     BullGamma -- "magneticDrum" MagneticDrum
     BullGamma -- "mc" CmpMemory
     BullGamma - "selectedOctad" Octad

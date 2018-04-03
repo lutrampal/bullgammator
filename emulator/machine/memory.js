@@ -88,7 +88,7 @@ class Memory {
   setBlockValue(idx, value) {
     assert.equal(idx < NB_BLOCKS_PER_MEMORY, true, "idx should be inferior to " + NB_BLOCKS_PER_MEMORY);
     assert.equal(idx >= 0, true, "idx should be not be negative");
-    assert.equal(value >= 0, true, "value should not be negative" );
+    assert.equal(value >= 0, true, "value should not be negative");
     assert.equal(value < 16, true, "value should be inferior to 16");
 
     switch (this.getMode()) {
@@ -100,6 +100,25 @@ class Memory {
         break;
       default:
         throw "unknown memory mode: " + this.getMode();
+    }
+  }
+
+  /**
+   * Copy the selected values from an other memory
+   * If the calculator is in decimal mode, only ten's complement values will be copied
+   * @param other the other memory from which values will be copied
+   * @param from which block index should the copy start from, should be positive and inferior to 12
+   * @param to where should the copy end (excluded), should be inferior or equal to 12
+   */
+  copyBlockValues(other, from, to) {
+    assert.equal(from >= 0, true, "from should be positive")
+    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior or equal to " + NB_BLOCKS_PER_MEMORY)
+    for (i = from; i < to; i++) {
+      if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
+        this.blocks[i] = other.blocks[i] - 10
+      } else {
+        this.blocks[i] = other.blocks[i]
+      }
     }
   }
 

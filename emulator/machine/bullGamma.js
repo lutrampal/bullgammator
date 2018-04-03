@@ -26,6 +26,8 @@ class BullGamma {
     }
     this._ioSerie = new Serie(NB_GENERAL_SERIES, this);
     this._memoryMode = MEMORY_MODE.BINARY;
+    this.ms1 = false;
+    this.md = 0;
   }
 
   /**
@@ -33,8 +35,8 @@ class BullGamma {
    * @returns {*} the memory with the desired id
    */
   getMemory(id) {
-    assert.equal(id >= 0, true, "id should not be negative");
-    assert.equal(id < NB_GENERAL_MEMORIES, true, "id should be inferior to " + NB_GENERAL_MEMORIES);
+    assert.equal(id > 0, true, "id should not be negative or zero");
+    assert.equal(id <= NB_GENERAL_MEMORIES + 8, true, "id should be inferior to " + NB_GENERAL_MEMORIES + 9);
 
     if (id <= NB_GENERAL_MEMORIES) {
       return this._generalMemories[id - 1];
