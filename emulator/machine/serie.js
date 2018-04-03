@@ -6,7 +6,7 @@ class Serie {
   constructor(id, bullGamma) {
     this._id = id;
     this._octads = new Array(2);
-    this._bullGamma;
+    this._bullGamma = bullGamma;
     for (let i = 0; i < NB_OCTADS; ++i) {
       this._octads[i] = new Octad(2*this._id + i, bullGamma);
     }

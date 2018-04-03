@@ -1,6 +1,7 @@
 Memory = require("./memory").Memory;
 Serie = require("./serie").Serie;
 assert = require('assert');
+CmpMemory = require("./cmpMemory").CmpMemory;
 
 const NB_OCTADS_PER_SERIE = require("./serie").NB_OCTADS;
 const NB_GENERAL_MEMORIES = 7;
@@ -28,6 +29,7 @@ class BullGamma {
     this._memoryMode = MEMORY_MODE.BINARY;
     this.ms1 = 0;
     this.md = 0;
+    this.mc = new CmpMemory();
   }
 
   /**
@@ -50,7 +52,7 @@ class BullGamma {
   getOctad(id) {
     assert.equal(id >= 0, true, "id should be positive");
     assert.equal(id < (NB_GENERAL_SERIES + 1)*2, true, "id should be inferior to " + (NB_GENERAL_SERIES + 1)*2);
-    return this.getSerie(id / NB_OCTADS_PER_SERIE).getOctad(id % 2)
+    return this.getSerie(Math.floor(id / NB_OCTADS_PER_SERIE)).getOctad(id % 2)
   }
 
   /**

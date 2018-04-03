@@ -132,7 +132,7 @@ class Memory {
       return;
     }
     this.blocks[idx] = value % 10;
-    this.blocks[(idx + 1) % NB_BLOCKS_PER_MEMORY] = value / 10;
+    this.blocks[(idx + 1) % NB_BLOCKS_PER_MEMORY] = 1;
   }
 
   /**
@@ -155,6 +155,17 @@ class Memory {
       this.blocks[i] = this.blocks[i + 1]
     }
     this.blocks[NB_BLOCKS_PER_MEMORY - 1] = buff
+
+  }
+
+  /**
+   * compare the memory to another one between the selected blocks
+   * @param other the other memory to which it should be compared
+   * @param from the starting block from which the comparison should start
+   * @param to the end block of the comparison (excluded)
+   * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
+   */
+  compareTo(other, from, to) {
 
   }
 }
