@@ -159,14 +159,33 @@ class Memory {
   }
 
   /**
-   * compare the memory to another one between the selected blocks
+   * compare the whole memory to another one between selected blocks
    * @param other the other memory to which it should be compared
    * @param from the starting block from which the comparison should start
    * @param to the end block of the comparison (excluded)
    * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
    */
   compareTo(other, from, to) {
-
+    let nbDigitsThis = NB_BLOCKS_PER_MEMORY;
+    while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
+      --nbDigitsThis
+    }
+    let nbDigitsOther = to - from;
+    if (nbDigitsThis > nbDigitsOther) {
+      return [true, false]
+    }
+    if (nbDigitsThis < nbDigitsOther) {
+      return [false, false]
+    }
+    for (let i = 0; i < nbDigitsThis; ++i) {
+      if (this.blocks[nbDigitsThis - i - 1] > other.blocks[to - i - 1]) {
+        return [true, false]
+      }
+      if (this.blocks[nbDigitsThis - i - 1] < other.blocks[to - i - 1]) {
+        return [false, false]
+      }
+    }
+    return [false, true]
   }
 }
 

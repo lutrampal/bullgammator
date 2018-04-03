@@ -20,19 +20,12 @@ class CmpMemory {
     return this.greater;
   }
 
-  setToLower() {
-    this.greater = false;
-    this.equal = false;
+  isGreaterOrEqual() {
+    return this.isGreater() || this.isEqual();
   }
 
-  setToEqual() {
-    this.greater = false;
-    this.equal = true;
-  }
-
-  setToGreater() {
-    this.greater = true;
-    this.equal = false;
+  isNotEqual() {
+    return !this.isEqual();
   }
 
 }

@@ -11,6 +11,7 @@ describe('AMD', function() {
       let amd = new AMD(0, 15, bullGamma);
       amd.execute();
       assert.equal(bullGamma.md, 15);
+      let octad = bullGamma.getOctad(1)
     });
   });
 });

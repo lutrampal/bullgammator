@@ -41,6 +41,7 @@ package Model {
       setBlockValue(idx, value)
       shiftLeft()
       shiftRight()
+      compareTo(other, from, to)
     }
 
     class CmpMemory {
@@ -52,9 +53,6 @@ package Model {
       isNotEqual()
       isGreaterOrEqual()
       isGreater()
-      setToGreater()
-      setToEqual()
-      setToLower()
     }
 
     class MagneticDrum {
