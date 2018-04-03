@@ -15,52 +15,12 @@ class Memory {
     return this._bullGamma.getMemoryMode();
   }
 
-  add(other) {
-    if (this.getMode() === 2) {
-      this._binaryAdd(other);
-    }
-    if (this.getMode() === 10) {
-      this._decimalAdd(other);
-    }
-  }
-
-  sub(other) {
-
-  }
-
   toString() {
     let str = "";
     this.blocks.forEach(function (block) {
       str = block.toString(16) + str;
     })
     return str;
-  }
-
-  _binaryAdd(other) {
-    let carry = 0;
-    let i = 0;
-    for (; i < 12; ++i) {
-      this.blocks[i] += other.blocks[i] + carry;
-      if (this.blocks[i] > 15) {
-        carry = 1;
-        this.blocks[i] = this.blocks[i] % 16;
-      } else {
-        carry = 0;
-      }
-    }
-    while (carry !== 0) {
-      this.blocks[i] += carry;
-      if (this.blocks[i] > 15) {
-        carry = 1;
-        this.blocks[i] = this.blocks[i] % 16;
-      } else {
-        carry = 0;
-      }
-    }
-  }
-
-  _decimalAdd(other) {
-
   }
 
   /**
@@ -113,7 +73,7 @@ class Memory {
   copyBlockValues(other, from, to) {
     assert.equal(from >= 0, true, "from should be positive")
     assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior or equal to " + NB_BLOCKS_PER_MEMORY)
-    for (i = from; i < to; i++) {
+    for (let i = from; i < to; i++) {
       if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
         this.blocks[i] = other.blocks[i] - 10
       } else {
@@ -166,6 +126,10 @@ class Memory {
    * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
    */
   compareTo(other, from, to) {
+    assert.equal(other, "other should not be null or undefined")
+    assert.equal(from >= 0, true, "from should not be negative")
+    assert.equal(from < to, true, "from should be inferior to to")
+    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
     let nbDigitsThis = NB_BLOCKS_PER_MEMORY;
     while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
       --nbDigitsThis
@@ -186,6 +150,46 @@ class Memory {
       }
     }
     return [false, true]
+  }
+
+  /**
+   * add the given memory to this one
+   * @param other the memory that should be added
+   * @param from index of the block from which the addition should start
+   * @param to index of the block to which the addition should end (excluded)
+   */
+  add(other, from, to) {
+    assert.equal(other, "other should not be null or undefined")
+    assert.equal(from >= 0, true, "from should not be negative")
+    assert.equal(from < to, true, "from should be inferior to to")
+    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    let carry
+    for (let i = from; i < to; ++i) {
+      carry = 0
+      let res = this.blocks[i] + other.blocks[i] + carry
+      if (res > 9) {
+        carry = 1
+        res -= 10
+      }
+      this.blocks[i] = res
+    }
+    if (carry) {
+      this.blocks[to%12] = carry
+    }
+  }
+
+  /**
+   * subtract the given memory to this one
+   * @param other the memory that should be subtracted
+   * @param from index of the block from which the subtraction should start
+   * @param to index of the block to which the subtraction should end (excluded)
+   */
+  subtract(other, from, to) {
+    assert.equal(other, "other should not be null or undefined")
+    assert.equal(from >= 0, true, "from should not be negative")
+    assert.equal(from < to, true, "from should be inferior to to")
+    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    throw new Error("Not implemented yet")
   }
 }
 
