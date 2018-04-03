@@ -31,17 +31,16 @@ class BullGamma {
   }
 
   /**
-   * @param id the memory to be returned, if superior to 7, then the memory is selected from the current octad
-   * @returns {*} the memory with the desired id
+   * Given an ID, return the corresponding serie
+   * @param id the serie to return, should be between 0 and 2 included
    */
-  getMemory(id) {
-    assert.equal(id > 0, true, "id should not be negative or zero");
-    assert.equal(id <= NB_GENERAL_MEMORIES + 8, true, "id should be inferior to " + NB_GENERAL_MEMORIES + 9);
-
-    if (id <= NB_GENERAL_MEMORIES) {
-      return this._generalMemories[id - 1];
+  getSerie(id) {
+    assert.equal(id >= 0, true, "id should be positive");
+    assert.equal(id < NB_GENERAL_SERIES + 1, true, "id should be inferior to " + NB_GENERAL_SERIES + 1);
+    if (id < NB_GENERAL_SERIES) {
+      return this._generalSeries[id];
     }
-    return this._generalSeries[0].getOctad(0).get(id - NB_GENERAL_MEMORIES - 1);
+    return this._ioSerie;
   }
 
   /**
@@ -55,16 +54,17 @@ class BullGamma {
   }
 
   /**
-   * Given an ID, return the corresponding serie
-   * @param id the serie to return, should be between 0 and 2 included
+   * @param id the memory to be returned, if superior to 7, then the memory is selected from the current octad
+   * @returns {*} the memory with the desired id
    */
-  getSerie(id) {
-    assert.equal(id >= 0, true, "id should be positive");
-    assert.equal(id < NB_GENERAL_SERIES + 1, true, "id should be inferior to " + NB_GENERAL_SERIES + 1);
-    if (id < NB_GENERAL_SERIES) {
-      return this._generalSeries[id];
+  getMemory(id) {
+    assert.equal(id > 0, true, "id should not be negative or zero");
+    assert.equal(id <= NB_GENERAL_MEMORIES + 8, true, "id should be inferior to " + NB_GENERAL_MEMORIES + 9);
+
+    if (id <= NB_GENERAL_MEMORIES) {
+      return this._generalMemories[id - 1];
     }
-    return this._ioSerie;
+    return this._generalSeries[0].getOctad(0).get(id - NB_GENERAL_MEMORIES - 1);
   }
 
   /**
