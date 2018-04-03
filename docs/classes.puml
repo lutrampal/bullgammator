@@ -37,7 +37,10 @@ package Model {
       Memory(id, maxValue)
       getMode()
       setToZero(from, to)
+      copyBlockValues(other, from, to)
       setBlockValue(idx, value)
+      shiftLeft()
+      shiftRight()
     }
 
     class CmpMemory {
@@ -53,8 +56,6 @@ package Model {
       setToEqual()
       setToLower()
     }
-
-
 
     class MagneticDrum {
 
@@ -141,7 +142,14 @@ package Model {
       Operation(TO, AD, OD, OF, bullGamma)
     }
 
+    abstract class OperationWithPreShift {
+        OperationWithPreShift(TO, AD, OD, OF, bullGamma)
+        execute()
+        {abstract} exeInstructionLogic()
+    }
+
     Instruction <|-- Operation
+    Operation <|-- OperationWithPreShift
 
     BullGamma "bullGamma" <-- Instruction
 
@@ -225,71 +233,71 @@ package Model {
 
     class OB {
       TO = 8
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class CN {
       TO = 9
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class AN {
       TO = 10
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class SN {
       TO = 11
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class MR {
       TO = 12
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class DR {
       TO = 13
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class MC {
       TO = 14
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     class DC {
       TO = 15
-      execute()
       computeExeTime()
+      exeInstructionLogic()
     }
 
     VCS --|> Operation
     VRS --|> Operation
-    SN --|> Operation
+    SN --|> OperationWithPreShift
     ZB --|> Operation
     KB --|> Instruction
-    BD --|> Operation
+    BD --|> Instruction
     IL --|> Operation
-    MR -|> Operation
-    DR -|> Operation
-    MC -|> Operation
-    Operation <|-- AMD
+    MR --|> OperationWithPreShift
+    DR --|> OperationWithPreShift
+    MC -|> OperationWithPreShift
+    AMD --|> Instruction
     Operation <|-- CSz
-    Operation <|-- OB
+    OperationWithPreShift <|-- OB
     Operation <|-- CD
     Operation <|-- CO
     Operation <|-- CB
-    Operation <|-- GG
-    Operation <|-- BO
-    Operation <|- CN
-    Operation <|- AN
-    Operation <|- DC
+    Operation <|- GG
+    Operation <|- BO
+    OperationWithPreShift <|-- CN
+    OperationWithPreShift <|-- AN
+    OperationWithPreShift <|-- DC
 @endDC

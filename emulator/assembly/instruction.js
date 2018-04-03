@@ -17,7 +17,6 @@ class Instruction {
     this.bullGamma = bullGamma;
   }
 
-
   execute() {
     throw new Error('You have to implement the method execute.');
   }

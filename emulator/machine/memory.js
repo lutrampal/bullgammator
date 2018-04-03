@@ -134,6 +134,29 @@ class Memory {
     this.blocks[idx] = value % 10;
     this.blocks[(idx + 1) % NB_BLOCKS_PER_MEMORY] = value / 10;
   }
+
+  /**
+   * Every block in the memory gets the value of its right neighbour (index 0 gets value of index 11)
+   */
+  shiftLeft() {
+    let buff = this.blocks[NB_BLOCKS_PER_MEMORY - 1]
+    for (let i = NB_BLOCKS_PER_MEMORY - 1; i > 0; --i) {
+      this.blocks[i] = this.blocks[i - 1]
+    }
+    this.blocks[0] = buff
+  }
+
+  /**
+   * Every block in the memory gets the value of its left neighbour (index 11 gets value of index 0)
+   */
+  shiftRight() {
+    let buff = this.blocks[0]
+    for (let i = 0 ; i < NB_BLOCKS_PER_MEMORY - 1; ++i) {
+      this.blocks[i] = this.blocks[i + 1]
+    }
+    this.blocks[NB_BLOCKS_PER_MEMORY - 1] = buff
+
+  }
 }
 
 module.exports.NB_BLOCKS_PER_MEMORY = NB_BLOCKS_PER_MEMORY;

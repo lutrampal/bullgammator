@@ -1,6 +1,6 @@
-Operation = require("./operation").Operation
+OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
 
-class DR extends Operation {
+class DR extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
     super(13, AD, OD, OF, bullGamma)
   }
