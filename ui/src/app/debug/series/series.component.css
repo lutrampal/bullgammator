@@ -15,8 +15,6 @@
   display: grid;
   grid-template-columns: 50% 50%;
   text-align: left;
-  margin-left: 24px;
-  margin-right: 24px;
 }
 
 .column {

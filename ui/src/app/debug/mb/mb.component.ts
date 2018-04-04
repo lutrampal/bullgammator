@@ -78,7 +78,7 @@ export class MbComponent implements OnInit {
   }
 
   getNL() {
-    return this.m.getNL();
+    return this.m.pad(this.m.getNL(), 2, null);
   }
 
   getMS1() {

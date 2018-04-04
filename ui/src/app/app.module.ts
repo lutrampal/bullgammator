@@ -20,6 +20,7 @@ import { SeriesComponent } from './debug/series/series.component';
 import { MemoriesService } from './debug/providers/memories.service';
 import { SeriesService } from './debug/providers/series.service';
 import { BullgammatorService } from './providers/bullgammator.service';
+import { ExecComponent } from './debug/exec/exec.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BullgammatorService } from './providers/bullgammator.service';
     HexEditorComponent,
     MbComponent,
     OctadsComponent,
-    SeriesComponent
+    SeriesComponent,
+    ExecComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,

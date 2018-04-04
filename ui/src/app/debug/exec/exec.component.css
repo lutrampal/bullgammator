@@ -1,0 +1,11 @@
+.main {
+  width: 400px;
+  background: #E2E4E6;
+  padding: 12px;
+  margin: 8px;
+  position: relative;
+}
+
+button {
+  margin: 8px;
+}
