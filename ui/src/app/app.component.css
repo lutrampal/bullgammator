@@ -11,13 +11,14 @@ span {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px;
   grid-template-areas:
-    "a c"
-    "b c"
-    ". c";
+    "a d"
+    "b d"
+    "c d"
+    ". d";
 }
 
 .item1 {
-  grid-area: a;
+  grid-area: ;
   justify-self: end;
 }
 
@@ -28,5 +29,10 @@ span {
 
 .item3 {
   grid-area: c;
+  justify-self: end;
+}
+
+.item4 {
+  grid-area: d;
   justify-self: start;
 }

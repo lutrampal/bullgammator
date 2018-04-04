@@ -18,7 +18,7 @@
           <input *ngIf="i != s.getLine(serie)"type="checkbox">
           <input *ngIf="i == s.getLine(serie)" matInput value="-->" disabled>
           <label class="label">{{ i }} : </label>
-          <label class="hex">{{ inst.toString().toUpperCase() }}</label>
+          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
         </div>
       </div>
       <div class="column">
@@ -26,7 +26,7 @@
           <input *ngIf="i + 32 != s.getLine(serie)" type="checkbox">
           <input *ngIf="i + 32 == s.getLine(serie)" matInput value="-->" disabled>
           <label class="label">{{ i + 32 }} : </label>
-          <label class="hex">{{ inst.toString().toUpperCase() }}</label>
+          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
         </div>
       </div>
     </div>

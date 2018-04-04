@@ -16,12 +16,18 @@ span {
   text-align: left;
 }
 
+.control label {
+  margin-left: 10px;
+}
 .control input {
   max-width: 200px;
   position: absolute;
-  left: 90px;
+  left: 100px;
 }
 
+.memories label {
+  margin-left: 10px;
+}
 .memories input {
   max-width: 200px;
   position: absolute;

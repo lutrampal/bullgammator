@@ -1,5 +1,8 @@
 <div>
   <form [formGroup]="control">
+
+    <span *ngIf="error" class="error">{{ error }}</span>
+
     <div class="container">
       <mat-form-field>
         <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
