@@ -134,6 +134,9 @@ class Memory {
       --nbDigitsThis
     }
     let nbDigitsOther = to - from;
+    while (this.blocks[from + nbDigitsOther - 1] === 0 && nbDigitsOther > 0) {
+      --nbDigitsOther
+    }
     if (nbDigitsThis > nbDigitsOther) {
       return [true, false]
     }

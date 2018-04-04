@@ -139,5 +139,20 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.isLower(), true)
       assert.equal(bullGamma.mc.isNotEqual(), true)
     });
+    it('should work with le test de José', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1)
+      let m3 = bullGamma.getMemory(3)
+      for (let i = 0; i < 6; ++i) {
+        m1.blocks[i] = 2
+      }
+      for (let i = 0; i < 5; ++i) {
+        m3.blocks[i] = 1
+      }
+      let cn = new CN(3, 0, 0, bullGamma);
+      cn.execute();
+      assert.equal(bullGamma.mc.equal, false)
+      assert.equal(bullGamma.mc.greater, true)
+    });
   });
 });

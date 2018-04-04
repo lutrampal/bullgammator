@@ -67,7 +67,7 @@ class BullGamma {
     if (id <= NB_GENERAL_MEMORIES) {
       return this._generalMemories[id - 1];
     }
-    return this._generalSeries[0].getOctad(0).get(id - NB_GENERAL_MEMORIES - 1);
+    return this._generalSeries[0].getOctad(0).getMemory(id - NB_GENERAL_MEMORIES - 1);
   }
 
   /**
