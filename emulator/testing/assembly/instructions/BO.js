@@ -51,7 +51,6 @@ describe('BO', function() {
     });
     it('[decimal] should transfer the sign of MB to MS1 if it is negative but not copy it to M1', function() {
       let bullGamma =  new BullGamma();
-      bullGamma.setMemoryMode(MEMORY_MODE.DECIMAL);
       let mem4 = bullGamma.getMemory(4);
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);
@@ -65,7 +64,6 @@ describe('BO', function() {
     });
     it("[decimal] should only transfer ten's complement value if some MB's values are superior to 9", function() {
       let bullGamma =  new BullGamma();
-      bullGamma.setMemoryMode(MEMORY_MODE.DECIMAL);
       let mem4 = bullGamma.getMemory(4);
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);

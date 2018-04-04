@@ -42,6 +42,8 @@ package Model {
       shiftLeft()
       shiftRight()
       compareTo(other, from, to)
+      add(other, from, to)
+      subtract(other, from, to)
     }
 
     class CmpMemory {
