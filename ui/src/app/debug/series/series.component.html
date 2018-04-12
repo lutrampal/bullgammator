@@ -5,7 +5,7 @@
         <button mat-icon-button class="arrow" (click)="minus()"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </div>
       <div>
-        <h4>Série {{ serie }}</h4>
+        <h4>Série {{ series.id }}</h4>
       </div>
       <div>
         <button mat-icon-button class="arrow" (click)="plus()"><mat-icon>keyboard_arrow_right</mat-icon></button>
@@ -14,18 +14,18 @@
 
     <div class="lines">
       <div class="column">
-        <div *ngFor="let inst of getInstructions() | slice:0:32; index as i">
-          <input *ngIf="i != s.getLine(serie)"type="checkbox">
-          <input *ngIf="i == s.getLine(serie)" matInput value="-->" disabled>
+        <div *ngFor="let inst of getInstructions() | slice:0:getHalfNbInst(series); index as i">
+          <input *ngIf="i != s.getLine(series)"type="checkbox" (change)="emit()" [formControl]="getControl(i, series)">
+          <input *ngIf="i == s.getLine(series)" matInput value="-->" disabled>
           <label class="label">{{ i }} : </label>
           <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
         </div>
       </div>
       <div class="column">
-        <div *ngFor="let inst of getInstructions() | slice:32:64; index as i">
-          <input *ngIf="i + 32 != s.getLine(serie)" type="checkbox">
-          <input *ngIf="i + 32 == s.getLine(serie)" matInput value="-->" disabled>
-          <label class="label">{{ i + 32 }} : </label>
+        <div *ngFor="let inst of getInstructions() | slice:getHalfNbInst(series):series.nbInst; index as i">
+          <input *ngIf="i + getHalfNbInst(series) != s.getLine(series)" type="checkbox" (change)="emit()" [formControl]="getControl(i + getHalfNbInst(series), series)">
+          <input *ngIf="i + getHalfNbInst(series) == s.getLine(series)" matInput value="-->" disabled>
+          <label class="label">{{ i + getHalfNbInst(series) }} : </label>
           <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
         </div>
       </div>

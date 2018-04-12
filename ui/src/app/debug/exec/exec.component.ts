@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { SeriesService } from '../providers/series.service';
 import { BullgammatorService } from '../../providers/bullgammator.service';
@@ -10,6 +11,9 @@ import { BullgammatorService } from '../../providers/bullgammator.service';
 })
 export class ExecComponent implements OnInit {
 
+  @Input()
+  breakpoints: FormControl[] = [];
+
   constructor(
     private bull: BullgammatorService,
     private s: SeriesService
@@ -18,10 +22,29 @@ export class ExecComponent implements OnInit {
   ngOnInit() {
   }
 
-  nextInst() {
-    let insts = this.s.getInstructions(3);
-    insts[this.s.getLine(3)].execute();
+  /*
+   *  Executes one instruction and prepare the next
+   */
+  execNextInstruction() {
+    let insts = this.s.getInstructions(this.s.seriesList[3]);
+    insts[this.s.getLine(this.s.seriesList[3])].execute();
     this.bull.bullgamma.cp = (this.bull.bullgamma.cp + 1) % (insts.length > 64 ? 64: insts.length);
+  }
+
+  /*
+   *  Executes instructions until the next breakpoint
+   */
+  execUntilBreakPoint() {
+    do {
+      this.execNextInstruction();
+    } while (!this.breakpointAtCurrentLine() && this.bull.bullgamma.cp != 0);
+  }
+
+  /*
+   *  Returns wether the is a breakpoint at the next line to bez executed
+   */
+  breakpointAtCurrentLine() {
+    return this.breakpoints[this.bull.bullgamma.cp].value;
   }
 
 }

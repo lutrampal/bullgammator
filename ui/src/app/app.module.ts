@@ -13,23 +13,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
 
+import { DebugComponent } from './debug/debug.component';
 import { MbComponent } from './debug/mb/mb.component';
 import { OctadsComponent } from './debug/octads/octads.component';
 import { SeriesComponent } from './debug/series/series.component';
+import { ExecComponent } from './debug/exec/exec.component';
 
 import { MemoriesService } from './debug/providers/memories.service';
 import { SeriesService } from './debug/providers/series.service';
 import { BullgammatorService } from './providers/bullgammator.service';
-import { ExecComponent } from './debug/exec/exec.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HexEditorComponent,
-    MbComponent,
-    OctadsComponent,
-    SeriesComponent,
-    ExecComponent
+    DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,

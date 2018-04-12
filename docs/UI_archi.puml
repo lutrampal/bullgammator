@@ -10,19 +10,38 @@ class editors {
 }
 mainVue *-- editors
 
-class hexEditior {
+class hexEditor {
 }
 editors *-- hexEditor
 
 class debug {
+  breakpoints
+  setBreakPoints()
 }
 mainVue *-- debug
 
-class operatorMems {
+class memories {
+  edit()
 }
-debug *-- operatorMems
+debug *--- memories
 
-class banalMemories {
+class octads {
+  edit()
+  selectOctad()
 }
-debug *-- banalMemories
+debug *--- octads
+
+class series {
+  @Output breakpts_emit
+  setBreakPoint()
+  selectSeries()
+}
+debug *--- series
+
+class execution {
+  @Input breakpoints
+  execNextInstruction()
+  execUntilBreakPoint()
+}
+debug *-- execution
 @enduml

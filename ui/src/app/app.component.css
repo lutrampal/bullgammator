@@ -5,34 +5,3 @@ mat-card {
 span {
   display: inline-block;
 }
-
-.debug {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0px;
-  grid-template-areas:
-    "a d"
-    "b d"
-    "c d"
-    ". d";
-}
-
-.item1 {
-  grid-area: ;
-  justify-self: end;
-}
-
-.item2 {
-  grid-area: b;
-  justify-self: end;
-}
-
-.item3 {
-  grid-area: c;
-  justify-self: end;
-}
-
-.item4 {
-  grid-area: d;
-  justify-self: start;
-}
