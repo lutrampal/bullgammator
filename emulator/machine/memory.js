@@ -182,14 +182,14 @@ class Memory {
 
   /**
    * Add a value to any block of the memory, carrying out the result if in decimal mode.
-   * @param value the value to add, must be between 0 and 16
+   * @param value the value to add, must be between -16 and 16
    * @param at the block index to which the value should be added
    */
   addValue(value, at) {
-    assert.equal(value >= 0, true, "value should not be negative")
-    assert.equal(value < 15, true, "value should be inferior to 16")
+    assert.equal(value > -16, true, "value should be superior to -16")
+    assert.equal(value < 16, true, "value should be inferior to 16")
     assert.equal(at < NB_BLOCKS_PER_MEMORY, true, "at should be inferior to the number of blocks per memory")
-    this.blocks[at] = this.blocks[at] + value;
+    this.blocks[at] = Math.abs(this.blocks[at] + value);
     if (this.blocks[at] > 9) {
       this.blocks[(at + 1)%NB_BLOCKS_PER_MEMORY] = 1
       this.blocks[at] -= 10
