@@ -181,6 +181,64 @@ class Memory {
   }
 
   /**
+   * Add a value to any block of the memory, carrying out the result if in decimal mode.
+   * @param value the value to add, must be between 0 and 16
+   * @param at the block index to which the value should be added
+   */
+  addValue(value, at) {
+    assert.equal(value >= 0, true, "value should not be negative")
+    assert.equal(value < 15, true, "value should be inferior to 16")
+    assert.equal(at < NB_BLOCKS_PER_MEMORY, true, "at should be inferior to the number of blocks per memory")
+    this.blocks[at] = this.blocks[at] + value;
+    if (this.blocks[at] > 9) {
+      this.blocks[(at + 1)%NB_BLOCKS_PER_MEMORY] = 1
+      this.blocks[at] -= 10
+    }
+  }
+
+  /**
+   * return the unsigned decimal value of this memory between the selected blocks (decimal mode only)
+   * @param from the starting block from which the value should be computed
+   * @param to the ending block (excluded)
+   * @return {number} the computed value
+   */
+  getDecimalValue(from, to) {
+    assert.equal(from >= 0, true, "from should not be negative")
+    assert.equal(from < to, true, "from should be smaller than to")
+    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should not be greater than the number of blocks per memory")
+    assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
+    let val = 0;
+    let mult = 1;
+    for (let i = from; i < to; ++i) {
+      val += this.blocks[i]*mult
+      mult *= 10
+    }
+    return val
+  }
+
+  /**
+   * set the value of the memory between the selected blocks
+   * @param value
+   * @param from
+   * @param to
+   */
+  setDecimalValue(value, from, to) {
+    assert.equal(from >= 0, true, "from should not be negative")
+    assert.equal(from < to, true, "from should be smaller than to")
+    assert.equal(value >= 0, true, "value should be an absolute value")
+    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should not be greater than the number of blocks per memory")
+    assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
+    let digits = (value).toString(10).split("").map(Number).reverse()
+    let i = 0
+    for (; i + from < to && i < digits.length; ++i) {
+      this.blocks[from + i] = digits[i];
+    }
+    for (; i + from < to ; ++i) {
+      this.blocks[from + i] = 0
+    }
+  }
+
+  /**
    * subtract the given memory to this one
    * @param other the memory that should be subtracted
    * @param from index of the block from which the subtraction should start
@@ -190,7 +248,11 @@ class Memory {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
     assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
-    throw new Error("Not implemented yet")
+    let valM1 = this.getDecimalValue(from, to) - other.getDecimalValue(from, to)
+    this.setDecimalValue(Math.abs(valM1), from, to)
+    if (valM1 < 0) {
+      this._bullGamma.ms1 = 10;
+    }
   }
 }
 

@@ -43,6 +43,7 @@ package Model {
       shiftRight()
       compareTo(other, from, to)
       add(other, from, to)
+      addValue(value, at)
       subtract(other, from, to)
     }
 
