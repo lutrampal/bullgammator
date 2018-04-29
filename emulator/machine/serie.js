@@ -3,7 +3,6 @@ class Serie {
   constructor(id, bullGamma) {
     this._id = id;
     this._bullGamma = bullGamma;
-    this.instructions = [];
   }
 
   /**
@@ -11,7 +10,14 @@ class Serie {
    * @param line programm line of the desired instruction
    */
   getInstruction(line) {
-    return null
+    return null;
+  }
+
+  /**
+   * Return the instructions list of the series
+   */
+  getInstructions() {
+    return [];
   }
 }
 

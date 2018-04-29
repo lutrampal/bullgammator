@@ -23,6 +23,10 @@ class IOSerie extends Serie {
     let index = line - this.lineOffset;
     return this.instructions[index];
   }
+
+  getInstructions() {
+    return this.instructions;
+  }
 }
 
 module.exports.IOSerie = IOSerie;

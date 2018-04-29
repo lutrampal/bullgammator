@@ -24,7 +24,7 @@ export class SeriesComponent implements OnInit {
 
   ngOnInit() {
     for (let s of [3, 0, 1, 2]) {
-      for (var i=0; i<this.s.getNbInsts(s); i++) {
+      for (var i=0; i<this.s.getMaxNbInsts(s); i++) {
         this.breakpoints.push(new FormControl(false, []));
       }
     }
