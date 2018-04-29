@@ -62,69 +62,97 @@ package Model {
 
     }
 
-    class WireArray {
-
-    }
-
     class GeneralSerie {
 
     }
 
     class IOSerie {
-
-    }
-
-    abstract class ArrayConnection {
-
-    }
-
-    class Constant {
-      value
-      getValue()
-    }
-
-    class InstructionConnection {
-
-    }
-
-    ArrayConnection <|-- Constant
-    ArrayConnection <|-- InstructionConnection
-
-    class InstrConnectionTuple {
-      value
-      getValue()
-      setValue()
+        instructions
+        setInstructions(hexCode)
     }
 
     class ArrayInstruction {
 
     }
 
-    class Wire {
-
+    class Parser {
+        parseInstructions(hexCode)
+        parseInstruction(TO, AD, OD, OF)
     }
+    BullGamma - Parser
+    BullGamma -- "magneticDrum" MagneticDrum
 
-    ArrayConnection "ends 2" --o "wire" Wire
-    Wire "wires 0..*" <--* WireArray
-
-    InstructionConnection "connections 2" <--* InstrConnectionTuple
-    InstrConnectionTuple "4 operands" <-* ArrayInstruction
-    Serie <|-- WireArray
     Serie <|-- IOSerie
     Serie <|-- GeneralSerie
-    Octad *--> "8 memories" Memory
-    GeneralSerie --> "2 octads" Octad
+    Octad o---> "8 memories" Memory
+    GeneralSerie o---> "16 memories" Memory
     BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
-    BullGamma -- "magneticDrum" MagneticDrum
     BullGamma -- "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    WireArray "wireArray" -- BullGamma
-    Constant "constants 16" <--* WireArray
-    ArrayInstruction "instructions 64" <--* WireArray
     IOSerie "ioSerie" -- BullGamma
     GeneralSerie "generalSeries 3" -- BullGamma
+    ArrayInstruction "instructions" <---* IOSerie
 
   }
+
+  package WireArray {
+
+      class WireArray {
+          editIoSerie()
+          generateWires(instructions)
+      }
+
+
+      abstract class ArrayConnection {
+
+      }
+
+      class Constant {
+        value
+        getValue()
+      }
+
+      class InstructionConnection {
+
+      }
+
+      ArrayConnection <|-- Constant
+      ArrayConnection <|-- InstructionConnection
+
+      class InstrConnectionTuple {
+        value
+        getValue()
+        setValue()
+      }
+
+      class Wire {
+
+      }
+
+      ArrayConnection "ends 2" --o "wire" Wire
+      Wire "wires 0..*" <--* WireArray
+
+      InstructionConnection "connections 2" <--* InstrConnectionTuple
+      InstrConnectionTuple <-* WireArray
+
+      Constant "constants 16" <--* WireArray
+      IOSerie "edit" <--down--o WireArray
+
+  }
+
+  package "Control" {
+      class Editor {
+          editIoSerie(hexCode)
+      }
+      IOSerie "edit" <--down--o Editor
+
+      class Execution {
+          executeAll()
+          executeNextInstruction()
+      }
+      BullGamma "execution" <--down--o Execution
+  }
+
 
   package Assembly {
     abstract class Instruction {
@@ -152,7 +180,7 @@ package Model {
     Instruction <|-- Operation
     Operation <|-- OperationWithPreShift
 
-    BullGamma "bullGamma" <-- Instruction
+    ArrayInstruction "64 instructions" *-- Instruction
 
     class VCS {
       TO = 1
