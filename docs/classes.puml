@@ -45,6 +45,8 @@ package Model {
       add(other, from, to)
       addValue(value, at)
       subtract(other, from, to)
+      getDecimalValue(from, to) : int
+      setDecimalValue(value, from, to)
     }
 
     class CmpMemory {
@@ -282,23 +284,23 @@ package Model {
 
     VCS --|> Operation
     VRS --|> Operation
-    SN --|> OperationWithPreShift
+    SN -|> OperationWithPreShift
     ZB --|> Operation
     KB --|> Instruction
     BD --|> Instruction
     IL --|> Operation
-    MR --|> OperationWithPreShift
-    DR --|> OperationWithPreShift
-    MC -|> OperationWithPreShift
+    MR --|> Operation
+    DR --|> Operation
+    MC -|> Operation
     AMD --|> Instruction
     Operation <|-- CSz
     OperationWithPreShift <|-- OB
-    Operation <|-- CD
+    CD -|> Operation
     Operation <|-- CO
     Operation <|-- CB
     Operation <|- GG
     Operation <|- BO
     OperationWithPreShift <|-- CN
     OperationWithPreShift <|-- AN
-    OperationWithPreShift <|-- DC
+    Operation <|-- DC
 @endDC
