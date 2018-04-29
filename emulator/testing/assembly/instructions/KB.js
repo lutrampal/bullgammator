@@ -1,6 +1,6 @@
 const NB_BLOCKS_PER_MEMORY = require("../../../machine/memory").NB_BLOCKS_PER_MEMORY;
 BullGamma = require("../../../machine/bullGamma").BullGamma;
-MEMORY_MODE = require("../../../machine/bullGamma").MEMORY_MODE;
+MEMORY_MODE = require("../../../machine/memory").MEMORY_MODE;
 assert = require('assert');
 KB = require("../../../assembly/KB").KB;
 Memory = require("../../../machine/memory").Memory;
