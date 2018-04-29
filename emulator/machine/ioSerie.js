@@ -1,6 +1,6 @@
 Serie = require("./serie").Serie;
 
-const NB_INST_IOSERIES = 64;
+const NB_INST_IOSERIES = require("./constants").NB_INST_IOSERIES;
 
 class IOSerie extends Serie {
   constructor(id) {
@@ -11,4 +11,3 @@ class IOSerie extends Serie {
 }
 
 module.exports.IOSerie = IOSerie;
-module.exports.NB_INST_IOSERIES = NB_INST_IOSERIES;

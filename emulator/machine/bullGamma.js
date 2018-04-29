@@ -6,14 +6,14 @@ IOSerie = require("./ioSerie").IOSerie;
 Octad = require("./octad").Octad;
 CmpMemory = require("./cmpMemory").CmpMemory;
 
-const MEMORY_MODE = require("./memory").MEMORY_MODE;
+const MEMORY_MODE = require("./constants").MEMORY_MODE;
 
-const NB_MEMORIES_PER_SERIES = require("./generalSerie").NB_MEMORIES_PER_SERIES;
-const NB_MEMORIES_PER_OCTAD = require("./octad").NB_MEMORIES_PER_OCTAD;
-const NB_GENERAL_MEMORIES = 8;
-const NB_GENERAL_SERIES = 3;
-const NB_COMMUTED_OCTADS = 8;
-const NB_OTHER_MEMORIES = NB_MEMORIES_PER_OCTAD * NB_COMMUTED_OCTADS;
+const NB_MEMORIES_PER_SERIES = require("./constants").NB_MEMORIES_PER_SERIES;
+const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
+const NB_GENERAL_MEMORIES = require("./constants").NB_GENERAL_MEMORIES;
+const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
+const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
+const NB_OTHER_MEMORIES = require("./constants").NB_OTHER_MEMORIES;
 
 class BullGamma {
 
@@ -114,6 +114,3 @@ class BullGamma {
 }
 
 module.exports.BullGamma = BullGamma;
-module.exports.NB_GENERAL_MEMORIES = NB_GENERAL_MEMORIES;
-module.exports.NB_GENERAL_SERIES = NB_GENERAL_SERIES;
-module.exports.NB_OTHER_MEMORIES = NB_OTHER_MEMORIES;

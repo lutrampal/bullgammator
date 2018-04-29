@@ -1,4 +1,4 @@
-const NB_BLOCKS_PER_MEMORY = require("../../../machine/memory").NB_BLOCKS_PER_MEMORY;
+const NB_BLOCKS_PER_MEMORY = require("../../../machine/constants").NB_BLOCKS_PER_MEMORY;
 BullGamma = require("../../../machine/bullGamma").BullGamma;
 assert = require('assert');
 ZB = require("../../../assembly/ZB").ZB;

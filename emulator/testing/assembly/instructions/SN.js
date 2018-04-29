@@ -1,5 +1,5 @@
 BullGamma = require("../../../machine/bullGamma").BullGamma;
-MEMORY_MODE = require("../../../machine/memory").MEMORY_MODE;
+MEMORY_MODE = require("../../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 SN = require("../../../assembly/SN").SN;
 Memory = require("../../../machine/memory").Memory;
