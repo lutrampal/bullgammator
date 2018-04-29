@@ -21,7 +21,7 @@ package Model {
     abstract class Serie {
       id
       Serie(id, bullGamma)
-      getOctad(idx)
+      {abstract} getInstruction(index)
     }
 
     class Octad {
@@ -59,19 +59,21 @@ package Model {
     }
 
     class MagneticDrum {
-
+        setContent(hexCode)
     }
 
     class GeneralSerie {
-
+        getInstruction(index)
     }
 
     class IOSerie {
         instructions
+        max_nb_inst = 64
         setInstructions(hexCode)
+        getInstruction(index)
     }
 
-    class ArrayInstruction {
+    class InstructionsArray {
 
     }
 
@@ -91,7 +93,7 @@ package Model {
     BullGamma - "selectedOctad" Octad
     IOSerie "ioSerie" -- BullGamma
     GeneralSerie "generalSeries 3" -- BullGamma
-    ArrayInstruction "instructions" <---* IOSerie
+    InstructionsArray "instructions" <---* IOSerie
 
   }
 
@@ -143,14 +145,33 @@ package Model {
   package "Control" {
       class Editor {
           editIoSerie(hexCode)
+          editDrum(hexCode)
       }
       IOSerie "edit" <--down--o Editor
+      MagneticDrum "edit" <--down--o Editor
 
       class Execution {
           executeAll()
           executeNextInstruction()
       }
       BullGamma "execution" <--down--o Execution
+
+      class Debug {
+          getInstructions(serieId)
+          getMemory(id, octad)
+          setMemory(value, id, octad)
+          getNL()
+          setNL(value)
+          getMS1()
+          setMS1(value)
+          getMCMP()
+          setMCMP(value)
+          getRNL1()
+          setRNL1(value)
+          getRNL2()
+          setRNL2(value)
+      }
+      BullGamma "debug" <--down--o Debug
   }
 
 
@@ -180,7 +201,7 @@ package Model {
     Instruction <|-- Operation
     Operation <|-- OperationWithPreShift
 
-    ArrayInstruction "64 instructions" *-- Instruction
+    InstructionsArray "64 instructions" *-- Instruction
 
     class VCS {
       TO = 1
