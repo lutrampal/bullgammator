@@ -1,5 +1,6 @@
 assert = require('assert');
 
+InstructionsParser = require("../assembly/hexParser").InstructionsParser;
 Memory = require("./memory").Memory;
 GeneralSerie = require("./generalSerie").GeneralSerie;
 IOSerie = require("./ioSerie").IOSerie;
@@ -32,9 +33,9 @@ class BullGamma {
       this._generalSeries[i] = new GeneralSerie(i, this._generalMemories.slice(
         NB_GENERAL_MEMORIES + i * NB_MEMORIES_PER_SERIES,
         NB_GENERAL_MEMORIES + (i + 1) * NB_MEMORIES_PER_SERIES
-      ));
+      ), this);
     }
-    this._ioSerie = new IOSerie(NB_GENERAL_SERIES);
+    this._ioSerie = new IOSerie(NB_GENERAL_SERIES, this);
 
     // Octads
     this._commuted_octads = new Array(NB_COMMUTED_OCTADS);
@@ -52,6 +53,7 @@ class BullGamma {
     this.md = 0;
     this.mc = new CmpMemory();
     this.cp = 0
+    this.parser = new InstructionsParser(this);
   }
 
   /**
@@ -59,8 +61,8 @@ class BullGamma {
    * @param id the serie to return, should be between 0 and 2 included
    */
   getSerie(id) {
-    assert.equal(id >= 0, true, "id should be positive");
-    assert.equal(id < NB_GENERAL_SERIES + 1, true, "id should be inferior to " + NB_GENERAL_SERIES + 1);
+    assert.equal(id >= 0, true, "series id should be positive");
+    assert.equal(id < NB_GENERAL_SERIES + 1, true, "series id should be inferior to " + NB_GENERAL_SERIES + 1);
     if (id < NB_GENERAL_SERIES) {
       return this._generalSeries[id];
     }
@@ -72,8 +74,8 @@ class BullGamma {
    * @param id the octad to return, should be between 0 and 7 included
    */
   getOctad(id) {
-    assert.equal(id >= 0, true, "id should be positive");
-    assert.equal(id < NB_COMMUTED_OCTADS, true, "id should be inferior to " + NB_COMMUTED_OCTADS);
+    assert.equal(id >= 0, true, "octad id should be positive");
+    assert.equal(id < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
     return this._commuted_octads[id];
   }
 
@@ -83,11 +85,11 @@ class BullGamma {
    * @returns {*} the memory with the desired id
    */
   getMemory(id, octad) {
-    assert.equal(id >= 0, true, "id should not be negative");
-    assert.equal(id < NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD, true, "id should be inferior to " + NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD);
+    assert.equal(id >= 0, true, "memory id should not be negative");
+    assert.equal(id < NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD, true, "memory id should be inferior to " + NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD);
     octad = octad || this.currentOctad;
-    assert.equal(octad >= 0, true, "octad should not be negative");
-    assert.equal(octad < NB_COMMUTED_OCTADS, true, "octad should be inferior to " + NB_COMMUTED_OCTADS);
+    assert.equal(octad >= 0, true, "octad id should not be negative");
+    assert.equal(octad < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
 
     if (id <= NB_GENERAL_MEMORIES) {
       return this._generalMemories[id];

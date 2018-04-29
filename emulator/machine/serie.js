@@ -1,6 +1,9 @@
 class Serie {
 
-  constructor() {
+  constructor(id, bullGamma) {
+    this._id = id;
+    this._bullGamma = bullGamma;
+    this.instructions = [];
   }
 
   /**

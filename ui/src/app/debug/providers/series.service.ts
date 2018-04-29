@@ -24,28 +24,31 @@ export class SeriesService {
   /*
    *  Returns the instructions list for a given series
    */
-  getInstructions(series: Series) {
-    // TODO: update with all series
-    if (series.id == 3) {
-      return this.bull.instructions;
-    } else {
-      return [];
-    }
+  getInstructions(seriesId: number) {
+      return this.bull.bullgamma.getSerie(seriesId).instructions;
   }
 
   /*
    *  Gets the current instruction line
    */
-  getLine(series: Series) {
-    return this.bull.bullgamma.cp - series.offset;
+  getLine(seriesId: number) {
+    return this.bull.bullgamma.cp - this.getSeriesLineOffset(seriesId);
   }
 
-  getSeriesLineOffset(series: Series) {
-    return this.seriesList[series.id].offset;
+  getSeriesLineOffset(seriesId: number) {
+    return this.bull.bullgamma.getSerie(seriesId).lineOffset;
   }
 
   getSeriesNumber() {
-    return Object.getOwnPropertyNames(this.seriesList).length;
+    return this.bull.constants.NB_GENERAL_SERIES + 1;
+  }
+
+  getNbInsts(seriesId: number) {
+    return this.bull.bullgamma.getSerie(seriesId).nbInst;
+  }
+
+  getMaxNbInsts(seriesId: number) {
+    return this.bull.bullgamma.getSerie(seriesId).maxNbInst;
   }
 
 }
