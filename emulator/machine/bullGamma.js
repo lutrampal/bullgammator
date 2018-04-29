@@ -6,7 +6,6 @@ IOSerie = require("./ioSerie").IOSerie;
 Octad = require("./octad").Octad;
 CmpMemory = require("./cmpMemory").CmpMemory;
 
-let obj = require("./memory")
 const MEMORY_MODE = require("./memory").MEMORY_MODE;
 
 const NB_MEMORIES_PER_SERIES = require("./generalSerie").NB_MEMORIES_PER_SERIES;

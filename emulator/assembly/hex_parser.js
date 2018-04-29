@@ -66,7 +66,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 10:
           return new CD(AD, OD, OF, bullGamma);
         case 12:
-          return new CO(AD, OD, OF, bullGamma);
+          return new CO(OF, bullGamma);
         case 13:
           return new CSz(OD, OF, bullGamma);
         case 15:
