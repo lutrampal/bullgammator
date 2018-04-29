@@ -21,7 +21,7 @@ package Model {
     abstract class Serie {
       id
       Serie(id, bullGamma)
-      getOctad(idx)
+      {abstract} getInstruction(index)
     }
 
     class Octad {
@@ -61,72 +61,121 @@ package Model {
     }
 
     class MagneticDrum {
-
-    }
-
-    class WireArray {
-
+        setContent(hexCode)
     }
 
     class GeneralSerie {
-
+        getInstruction(index)
     }
 
     class IOSerie {
+        instructions
+        max_nb_inst = 64
+        setInstructions(hexCode)
+        getInstruction(index)
+    }
+
+    class InstructionsArray {
 
     }
 
-    abstract class ArrayConnection {
-
+    class Parser {
+        parseInstructions(hexCode)
+        parseInstruction(TO, AD, OD, OF)
     }
+    BullGamma - Parser
+    BullGamma -- "magneticDrum" MagneticDrum
 
-    class Constant {
-      value
-      getValue()
-    }
-
-    class InstructionConnection {
-
-    }
-
-    ArrayConnection <|-- Constant
-    ArrayConnection <|-- InstructionConnection
-
-    class InstrConnectionTuple {
-      value
-      getValue()
-      setValue()
-    }
-
-    class ArrayInstruction {
-
-    }
-
-    class Wire {
-
-    }
-
-    ArrayConnection "ends 2" --o "wire" Wire
-    Wire "wires 0..*" <--* WireArray
-
-    InstructionConnection "connections 2" <--* InstrConnectionTuple
-    InstrConnectionTuple "4 operands" <-* ArrayInstruction
-    Serie <|-- WireArray
     Serie <|-- IOSerie
     Serie <|-- GeneralSerie
-    Octad *--> "8 memories" Memory
-    GeneralSerie --> "2 octads" Octad
+    Octad o---> "8 memories" Memory
+    GeneralSerie o---> "16 memories" Memory
     BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
-    BullGamma -- "magneticDrum" MagneticDrum
     BullGamma -- "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    WireArray "wireArray" -- BullGamma
-    Constant "constants 16" <--* WireArray
-    ArrayInstruction "instructions 64" <--* WireArray
     IOSerie "ioSerie" -- BullGamma
     GeneralSerie "generalSeries 3" -- BullGamma
+    InstructionsArray "instructions" <---* IOSerie
 
   }
+
+  package WireArray {
+
+      class WireArray {
+          editIoSerie()
+          generateWires(instructions)
+      }
+
+
+      abstract class ArrayConnection {
+
+      }
+
+      class Constant {
+        value
+        getValue()
+      }
+
+      class InstructionConnection {
+
+      }
+
+      ArrayConnection <|-- Constant
+      ArrayConnection <|-- InstructionConnection
+
+      class InstrConnectionTuple {
+        value
+        getValue()
+        setValue()
+      }
+
+      class Wire {
+
+      }
+
+      ArrayConnection "ends 2" --o "wire" Wire
+      Wire "wires 0..*" <--* WireArray
+
+      InstructionConnection "connections 2" <--* InstrConnectionTuple
+      InstrConnectionTuple <-* WireArray
+
+      Constant "constants 16" <--* WireArray
+      IOSerie "edit" <--down--o WireArray
+
+  }
+
+  package "Control" {
+      class Editor {
+          editIoSerie(hexCode)
+          editDrum(hexCode)
+      }
+      IOSerie "edit" <--down--o Editor
+      MagneticDrum "edit" <--down--o Editor
+
+      class Execution {
+          executeAll()
+          executeNextInstruction()
+      }
+      BullGamma "execution" <--down--o Execution
+
+      class Debug {
+          getInstructions(serieId)
+          getMemory(id, octad)
+          setMemory(value, id, octad)
+          getNL()
+          setNL(value)
+          getMS1()
+          setMS1(value)
+          getMCMP()
+          setMCMP(value)
+          getRNL1()
+          setRNL1(value)
+          getRNL2()
+          setRNL2(value)
+      }
+      BullGamma "debug" <--down--o Debug
+  }
+
 
   package Assembly {
     abstract class Instruction {
@@ -154,7 +203,7 @@ package Model {
     Instruction <|-- Operation
     Operation <|-- OperationWithPreShift
 
-    BullGamma "bullGamma" <-- Instruction
+    InstructionsArray "64 instructions" *-- Instruction
 
     class VCS {
       TO = 1
