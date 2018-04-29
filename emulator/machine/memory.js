@@ -1,7 +1,12 @@
 const NB_BLOCKS_PER_MEMORY = 12;
 
 assert = require('assert');
-MEMORY_MODE = require("./bullGamma").MEMORY_MODE;
+
+MEMORY_MODE = {
+  BINARY: {value: 0, name: "binary", code: "b"},
+  DECIMAL: {value: 1, name: "decimal", code: "d"}
+};
+Object.freeze(MEMORY_MODE);
 
 class Memory {
   constructor(id, bullGamma) {
@@ -257,4 +262,5 @@ class Memory {
 }
 
 module.exports.NB_BLOCKS_PER_MEMORY = NB_BLOCKS_PER_MEMORY;
+module.exports.MEMORY_MODE = MEMORY_MODE;
 module.exports.Memory = Memory;

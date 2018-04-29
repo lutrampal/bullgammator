@@ -1,13 +1,10 @@
-const NB_GENERAL_MEMORIES = require("./bullGamma").NB_GENERAL_MEMORIES;
+const NB_COMMUTED_OCTADS = 8;
+const NB_MEMORIES_PER_OCTAD = 8;
 
 class Octad {
-  constructor(id, bullGamma) {
+  constructor(id, memories) {
     this._id = id;
-    this._memories = new Array(8);
-    this._bullGamma = bullGamma;
-    for (let i = 0; i < 8; i++) {
-      this._memories[i] = new Memory(i + 1 + NB_GENERAL_MEMORIES, bullGamma);
-    }
+    this._memories = memories;
   }
 
   getMemory(idx) {
@@ -16,3 +13,5 @@ class Octad {
 }
 
 module.exports.Octad = Octad;
+module.exports.NB_COMMUTED_OCTADS = NB_COMMUTED_OCTADS;
+module.exports.NB_MEMORIES_PER_OCTAD = NB_MEMORIES_PER_OCTAD;
