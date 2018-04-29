@@ -159,14 +159,17 @@ class Memory {
    * @param other the memory that should be added
    * @param from index of the block from which the addition should start
    * @param to index of the block to which the addition should end (excluded)
+   * @param overriding_carry if true, at the end of the addition, the resulting carry out will override the next
+   * memory block if it is not null. Otherwise it will be added to the next memory block.
    */
-  add(other, from, to) {
+  add(other, from, to, overriding_carry = true) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
     assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
     let carry = 0
-    for (let i = from; i < to; ++i) {
-      let res = this.blocks[i] + other.blocks[i] + carry
+    for (let i = from; i < to || carry === 1 && !overriding_carry; i++) {
+      let other_val = i < to ? other.blocks[i] : 0
+      let res = this.blocks[i] + other_val + carry
       if (res > 9) {
         carry = 1
         res -= 10
@@ -175,7 +178,7 @@ class Memory {
       }
       this.blocks[i] = res
     }
-    if (carry) {
+    if (overriding_carry && carry) {
       this.blocks[to%12] = carry
     }
   }
