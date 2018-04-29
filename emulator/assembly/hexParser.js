@@ -168,12 +168,27 @@ class InstructionsParser {
     this.bullGamma = bullGamma;
   }
 
+  /**
+   * function that returns a list of instructions from the given code
+   * @param hexCode code with comments, spaces, returns allowed
+   */
   parseInstructions(hexCode) {
     return parse_hex_str_to_instructions(hexCode, this.bullGamma);
   }
 
+  /**
+   * function that returns the instruction corresponding to the params
+   * @param TO string or number
+   * @param AD string or number
+   * @param OD string or number
+   * @param OF string or number
+   */
   parseInstruction(TO, AD, OD, OF) {
-    return _parse_four_hex_chunk_to_instr("" + TO + AD + OD + OF, this.bullGamma);
+    TO = TO.toString(16);
+    AD = AD.toString(16);
+    OD = OD.toString(16);
+    OF = OF.toString(16);
+    return _parse_four_hex_chunk_to_instr(TO + AD + OD + OF, this.bullGamma);
   }
 }
 
