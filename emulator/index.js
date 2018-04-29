@@ -1,2 +1,3 @@
 exports.InstructionsParser = require("./assembly/hexParser").InstructionsParser;
-exports.bullGamma = require("./machine/bullGamma");
+exports.BullGamma = require("./machine/bullGamma").BullGamma;
+exports.constants = require("./machine/constants");

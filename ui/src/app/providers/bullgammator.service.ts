@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 
-import * as bullgammator from 'bullgammator';
+import { BullGamma } from 'bullgammator';
+import { InstructionsParser} from 'bullgammator';
 
 @Injectable()
 export class BullgammatorService {
 
-  bullgamma: bullgammator.bullGamma.BullGamma;
-  parser: bullgammator.InstructionsParser;
+  bullgamma: BullGamma;
+  parser: InstructionsParser;
 
   //TODO: remove this
   instructions: any[] = [];
 
   constructor() {
-    this.bullgamma = new bullgammator.bullGamma.BullGamma();
-    this.parser = new bullgammator.InstructionsParser(this.bullgamma);
+    this.bullgamma = new BullGamma();
+    this.parser = new InstructionsParser(this.bullgamma);
   }
 
   parse_hex(code: string) {
