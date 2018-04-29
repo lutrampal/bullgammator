@@ -151,7 +151,7 @@ function parse_hex_str_to_instructions(hex_str, bullGamma) {
   let i = 1;
   hex_str.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
-      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma))
+      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma));
       i++;
     } catch (error) {
       throw "parsing error at instruction #" + i + ": " + error;
@@ -160,4 +160,21 @@ function parse_hex_str_to_instructions(hex_str, bullGamma) {
   return instructions;
 }
 
-module.exports.parse_hex_str_to_instructions = parse_hex_str_to_instructions;
+/**
+ * Parser generating instruction for the given bullGamma
+ */
+class InstructionsParser {
+  constructor(bullGamma) {
+    this.bullGamma = bullGamma;
+  }
+
+  parseInstructions(hexCode) {
+    return parse_hex_str_to_instructions(hexCode, this.bullGamma);
+  }
+
+  parseInstruction(TO, AD, OD, OF) {
+    return _parse_four_hex_chunk_to_instr("" + TO + AD + OD + OF, this.bullGamma);
+  }
+}
+
+module.exports.InstructionsParser = InstructionsParser;

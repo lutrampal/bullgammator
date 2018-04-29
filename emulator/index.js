@@ -1,2 +1,2 @@
-exports.parse_hex_str_to_instructions = require("./assembly/hex_parser").parse_hex_str_to_instructions;
+exports.InstructionsParser = require("./assembly/hexParser").InstructionsParser;
 exports.bullGamma = require("./machine/bullGamma");
