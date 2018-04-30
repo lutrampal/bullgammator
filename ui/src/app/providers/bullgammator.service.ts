@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import * as bullgammator from 'bullgammator';
+import { BullGamma } from 'bullgammator';
+import { constants } from 'bullgammator';
 
 @Injectable()
 export class BullgammatorService {
 
-  bullgamma: any;
-
-  //TODO: remove this
-  instructions: any[] = [];
+  bullgamma: BullGamma;
+  constants: any = {};
 
   constructor() {
-    this.bullgamma = new bullgammator.bullGamma.BullGamma();
-  }
-
-  parse_hex(code: string) {
-    return bullgammator.parse_hex_str_to_instructions(code, this.bullgamma);
+    this.bullgamma = new BullGamma();
+    this.constants = constants;
   }
 
 }

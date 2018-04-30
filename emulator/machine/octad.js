@@ -1,5 +1,5 @@
-const NB_COMMUTED_OCTADS = 8;
-const NB_MEMORIES_PER_OCTAD = 8;
+const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
+const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
 
 class Octad {
   constructor(id, memories) {
@@ -13,5 +13,3 @@ class Octad {
 }
 
 module.exports.Octad = Octad;
-module.exports.NB_COMMUTED_OCTADS = NB_COMMUTED_OCTADS;
-module.exports.NB_MEMORIES_PER_OCTAD = NB_MEMORIES_PER_OCTAD;

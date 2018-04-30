@@ -26,9 +26,9 @@ export class ExecComponent implements OnInit {
    *  Executes one instruction and prepare the next
    */
   execNextInstruction() {
-    let insts = this.s.getInstructions(this.s.seriesList[3]);
-    insts[this.s.getLine(this.s.seriesList[3])].execute();
-    this.bull.bullgamma.cp = (this.bull.bullgamma.cp + 1) % (insts.length > 64 ? 64: insts.length);
+    let ioSerie = this.bull.bullgamma.getSerie(3);
+    ioSerie.getInstruction(this.bull.bullgamma.cp).execute();;
+    this.bull.bullgamma.cp = (this.bull.bullgamma.cp + 1) % (ioSerie.nbInst > 64 ? 64: ioSerie.nbInst);
   }
 
   /*

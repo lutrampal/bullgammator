@@ -1,5 +1,5 @@
 OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
-const MEMORY_MODE = require("../machine/memory").MEMORY_MODE;
+const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
 
 class OB extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {

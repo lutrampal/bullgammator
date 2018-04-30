@@ -66,7 +66,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 10:
           return new CD(AD, OD, OF, bullGamma);
         case 12:
-          return new CO(AD, OD, OF, bullGamma);
+          return new CO(OF, bullGamma);
         case 13:
           return new CSz(OD, OF, bullGamma);
         case 15:
@@ -151,7 +151,7 @@ function parse_hex_str_to_instructions(hex_str, bullGamma) {
   let i = 1;
   hex_str.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
-      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma))
+      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma));
       i++;
     } catch (error) {
       throw "parsing error at instruction #" + i + ": " + error;
@@ -160,4 +160,36 @@ function parse_hex_str_to_instructions(hex_str, bullGamma) {
   return instructions;
 }
 
-module.exports.parse_hex_str_to_instructions = parse_hex_str_to_instructions;
+/**
+ * Parser generating instruction for the given bullGamma
+ */
+class InstructionsParser {
+  constructor(bullGamma) {
+    this.bullGamma = bullGamma;
+  }
+
+  /**
+   * function that returns a list of instructions from the given code
+   * @param hexCode code with comments, spaces, returns allowed
+   */
+  parseInstructions(hexCode) {
+    return parse_hex_str_to_instructions(hexCode, this.bullGamma);
+  }
+
+  /**
+   * function that returns the instruction corresponding to the params
+   * @param TO string or number
+   * @param AD string or number
+   * @param OD string or number
+   * @param OF string or number
+   */
+  parseInstruction(TO, AD, OD, OF) {
+    TO = TO.toString(16);
+    AD = AD.toString(16);
+    OD = OD.toString(16);
+    OF = OF.toString(16);
+    return _parse_four_hex_chunk_to_instr(TO + AD + OD + OF, this.bullGamma);
+  }
+}
+
+module.exports.InstructionsParser = InstructionsParser;

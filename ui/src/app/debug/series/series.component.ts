@@ -13,47 +13,49 @@ export class SeriesComponent implements OnInit {
   @Output()
   breakpts_emit = new EventEmitter<FormControl[]>();
 
-  series: Series;
+  seriesId: number;
   breakpoints: FormControl[] = [];
 
   constructor(
     private s: SeriesService
   ) {
-    this.series = this.s.seriesList[3];
+    this.seriesId = 3;
   }
 
   ngOnInit() {
-    let indices = Object.getOwnPropertyNames(this.s.seriesList)
-      .sort((s1, s2) => this.s.seriesList[s1].offset - this.s.seriesList[s2].offset)
-    for (let s of indices) {
-      for (var i=0; i<this.s.seriesList[s].nbInst; i++) {
+    for (let s of [3, 0, 1, 2]) {
+      for (var i=0; i<this.s.getMaxNbInsts(s); i++) {
         this.breakpoints.push(new FormControl(false, []));
       }
     }
   }
 
   getInstructions() {
-    return this.s.getInstructions(this.series);
+    return this.s.getInstructions(this.seriesId);
   }
 
   plus() {
-    this.series = this.s.seriesList[(this.series.id + 1) % this.s.getSeriesNumber()];
+    this.seriesId = (this.seriesId + 1) % this.s.getSeriesNumber();
   }
 
   minus() {
-    this.series = this.s.seriesList[(this.series.id +  this.s.getSeriesNumber() - 1) % this.s.getSeriesNumber()];
+    this.seriesId = (this.seriesId + this.s.getSeriesNumber() - 1) % this.s.getSeriesNumber();
   }
 
-  breakpointAt(line: number, series: Series) {
-    return this.getControl(line, series).value;
+  breakpointAt(line: number, seriesId: number) {
+    try {
+      return this.getControl(line, seriesId).value;
+    } catch(error) {
+      return false;
+    }
   }
 
-  getHalfNbInst(series: Series) {
-    return  Math.floor(series.nbInst/2);
+  getHalfNbInst(seriesId: number) {
+    return  Math.floor(this.s.getMaxNbInsts(seriesId)/2);
   }
 
-  getControl(line: number, series: Series) {
-    return this.breakpoints[series.offset + line];
+  getControl(line: number, seriesId: number) {
+    return this.breakpoints[this.s.getSeriesLineOffset(seriesId) + line];
   }
 
   emit() {

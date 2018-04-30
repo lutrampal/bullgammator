@@ -42,8 +42,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   validate() {
     try {
-      let insts = this.bull.parse_hex(this.control.get("hex_entry").value);
-      this.bull.instructions = insts;
+      this.bull.bullgamma.getSerie(3).setInstructions(this.control.get("hex_entry").value);
     }
     catch(error) {
       console.error(error);

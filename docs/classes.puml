@@ -65,14 +65,16 @@ package Model {
     }
 
     class GeneralSerie {
-        getInstruction(index)
+        getInstruction(line)
+        getInstructions()
     }
 
     class IOSerie {
         instructions
         max_nb_inst = 64
         setInstructions(hexCode)
-        getInstruction(index)
+        getInstruction(line)
+        getInstructions()
     }
 
     class InstructionsArray {
