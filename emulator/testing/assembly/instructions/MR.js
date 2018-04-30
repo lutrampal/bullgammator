@@ -43,7 +43,7 @@ describe('MR', function() {
       assert.equal(m2.blocks[11], 10, "MB's sign was erased");
       assert.equal(bullGamma.ms1, 10, "wrong sign");
     });
-    it('when AD = 0, should multiply M1 with OF set in M1[OD]', function () {
+    it('when AD = 0, should multiply M1 with OF', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
       m1.blocks[0] = 1

@@ -9,11 +9,11 @@ MEMORY_MODE = {
 Object.freeze(MEMORY_MODE);
 
 class Memory {
-  constructor(id, bullGamma) {
+  constructor(id, bullGamma, nb_blocks = NB_BLOCKS_PER_MEMORY) {
     this._id = id;
-    this.blocks = new Array(NB_BLOCKS_PER_MEMORY);
+    this.blocks = new Array(nb_blocks);
     this._bullGamma = bullGamma;
-    this.setToZero(0, 12)
+    this.setToZero(0, nb_blocks)
   }
 
   getMode() {
@@ -35,7 +35,7 @@ class Memory {
    */
   setToZero(from, to) {
     assert.equal(from >= 0, true, "from parameter should be superior to 0");
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to parameter should be inferior to " + NB_BLOCKS_PER_MEMORY);
+    assert.equal(to <= this.blocks.length, true, "to parameter should be inferior to " + this.blocks.length);
 
     for (let i = from; i < to; i++) {
       this.blocks[i] = 0;
@@ -51,7 +51,7 @@ class Memory {
    * @param value the value to which the block should be set, must be positive or zero and inferior to 16.
    */
   setBlockValue(idx, value) {
-    assert.equal(idx < NB_BLOCKS_PER_MEMORY, true, "idx should be inferior to " + NB_BLOCKS_PER_MEMORY);
+    assert.equal(idx < this.blocks.length, true, "idx should be inferior to " + this.blocks.length);
     assert.equal(idx >= 0, true, "idx should be not be negative");
     assert.equal(value >= 0, true, "value should not be negative");
     assert.equal(value < 16, true, "value should be inferior to 16");
@@ -77,7 +77,7 @@ class Memory {
    */
   copyBlockValues(other, from, to) {
     assert.equal(from >= 0, true, "from should be positive")
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior or equal to " + NB_BLOCKS_PER_MEMORY)
+    assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length)
     for (let i = from; i < to; i++) {
       if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
         this.blocks[i] = other.blocks[i] - 10
@@ -97,15 +97,15 @@ class Memory {
       return;
     }
     this.blocks[idx] = value % 10;
-    this.blocks[(idx + 1) % NB_BLOCKS_PER_MEMORY] = 1;
+    this.blocks[(idx + 1) % this.blocks.length] = 1;
   }
 
   /**
    * Every block in the memory gets the value of its right neighbour (index 0 gets value of index 11)
    */
   shiftLeft() {
-    let buff = this.blocks[NB_BLOCKS_PER_MEMORY - 1]
-    for (let i = NB_BLOCKS_PER_MEMORY - 1; i > 0; --i) {
+    let buff = this.blocks[this.blocks.length - 1]
+    for (let i = this.blocks.length - 1; i > 0; --i) {
       this.blocks[i] = this.blocks[i - 1]
     }
     this.blocks[0] = buff
@@ -116,10 +116,10 @@ class Memory {
    */
   shiftRight() {
     let buff = this.blocks[0]
-    for (let i = 0 ; i < NB_BLOCKS_PER_MEMORY - 1; ++i) {
+    for (let i = 0 ; i < this.blocks.length - 1; ++i) {
       this.blocks[i] = this.blocks[i + 1]
     }
-    this.blocks[NB_BLOCKS_PER_MEMORY - 1] = buff
+    this.blocks[this.blocks.length- 1] = buff
 
   }
 
@@ -133,8 +133,8 @@ class Memory {
   compareTo(other, from, to) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
-    let nbDigitsThis = NB_BLOCKS_PER_MEMORY;
+    assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory")
+    let nbDigitsThis = this.blocks.length;
     while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
       --nbDigitsThis
     }
@@ -170,21 +170,21 @@ class Memory {
   add(other, from, to, overriding_carry = true) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory")
     let carry = 0
     for (let i = from; i < to || carry === 1 && !overriding_carry; i++) {
       let other_val = i < to ? other.blocks[i] : 0
-      let res = this.blocks[i] + other_val + carry
+      let res = this.blocks[i%this.blocks.length + this.blocks.length - NB_BLOCKS_PER_MEMORY] + other_val + carry
       if (res > 9) {
         carry = 1
         res -= 10
       } else {
         carry = 0
       }
-      this.blocks[i] = res
+      this.blocks[i%this.blocks.length + this.blocks.length - NB_BLOCKS_PER_MEMORY] = res
     }
     if (overriding_carry && carry) {
-      this.blocks[to%12] = carry
+      this.blocks[to%this.blocks.length] = carry
     }
   }
 
@@ -196,10 +196,10 @@ class Memory {
   addValue(value, at) {
     assert.equal(value > -16, true, "value should be superior to -16")
     assert.equal(value < 16, true, "value should be inferior to 16")
-    assert.equal(at < NB_BLOCKS_PER_MEMORY, true, "at should be inferior to the number of blocks per memory")
+    assert.equal(at < this.blocks.length, true, "at should be inferior to the number of blocks per memory")
     this.blocks[at] = Math.abs(this.blocks[at] + value);
     if (this.blocks[at] > 9) {
-      this.blocks[(at + 1)%NB_BLOCKS_PER_MEMORY] = 1
+      this.blocks[(at + 1)%this.blocks.length] = 1
       this.blocks[at] -= 10
     }
   }
@@ -213,7 +213,7 @@ class Memory {
   getDecimalValue(from, to) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be smaller than to")
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should not be greater than the number of blocks per memory")
+    assert.equal(to <= this.blocks.length, true, "to should not be greater than the number of blocks per memory")
     assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
     let val = 0;
     let mult = 1;
@@ -234,7 +234,7 @@ class Memory {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be smaller than to")
     assert.equal(value >= 0, true, "value should be an absolute value")
-    assert.equal(to <= NB_BLOCKS_PER_MEMORY, true, "to should not be greater than the number of blocks per memory")
+    assert.equal(to <= this.blocks.length, true, "to should not be greater than the number of blocks per memory")
     assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
     let digits = (value).toString(10).split("").map(Number).reverse()
     let i = 0
@@ -255,13 +255,38 @@ class Memory {
   subtract(other, from, to) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to < NB_BLOCKS_PER_MEMORY, true, "to should be inferior to the number of blocks per memory")
+    assert.equal(to < this.blocks.length, true, "to should be inferior to the number of blocks per memory")
     let valM1 = this.getDecimalValue(from, to) - other.getDecimalValue(from, to)
     this.setDecimalValue(Math.abs(valM1), from, to)
     if (valM1 < 0) {
       this._bullGamma.ms1 = 10;
     }
   }
+
+  multiply(other, from, to) {
+    while (this._bullGamma.md !== 0) {
+      if (this.blocks[0] === 0) {
+        this.shiftRight()
+        this._bullGamma.md--
+      } else {
+        this.blocks[0]--
+        this.add(other, from, to, false)
+      }
+    }
+  }
+
+  multiplyValue(value, at) {
+    while (this._bullGamma.md !== 0) {
+      if (this.blocks[0] === 0) {
+        this.shiftRight()
+        this._bullGamma.md--
+      } else {
+        this.blocks[0]--
+        this.addValue(value, at)
+      }
+    }
+  }
+
 }
 
 module.exports.NB_BLOCKS_PER_MEMORY = NB_BLOCKS_PER_MEMORY;

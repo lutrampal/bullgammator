@@ -80,7 +80,7 @@ class BullGamma {
 
   /**
    * @param id the memory to be returned, if superior to 7, then the memory is selected from the octad
-   * @param octad if given, the memory will be selected form this octad, else from the current octad
+   * @param octad if given, the memory will be selected from this octad, else from the current octad
    * @returns {*} the memory with the desired id
    */
   getMemory(id, octad) {

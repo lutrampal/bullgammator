@@ -8,41 +8,30 @@ class MR extends Operation {
   execute() {
     let m1 = this.bullGamma.getMemory(1)
     this.bullGamma.md = this.OD;
-    let mb;
-    let nb_neg_signs = 0;
+    let nb_neg_signs = 0
     if (this.bullGamma.ms1 === 10) {
       nb_neg_signs++;
     }
     if (this.AD > 0) {
-      mb = this.bullGamma.getMemory(this.AD)
-      this.bullGamma.msb = mb.blocks[this.OF - 1]
-      if (this.bullGamma.msb === 10) {
+      let mb = this.bullGamma.getMemory(this.AD)
+      if (mb.blocks[this.OF - 1] === 10) {
         mb.blocks[this.OF - 1] = 0
-        nb_neg_signs++;
-      }
-    }
-    while (this.bullGamma.md !== 0) {
-      if (m1.blocks[0] === 0) {
-        m1.shiftRight()
-        this.bullGamma.md--
+        m1.multiply(mb, this.OD, this.OF)
+        mb.blocks[this.OF - 1] = 10
+        nb_neg_signs++
       } else {
-        m1.blocks[0]--
-        if (this.AD > 0) {
-          m1.add(mb, this.OD, this.OF, false)
-        } else {
-          m1.addValue(this.OF, this.OD)
-        }
+        m1.multiply(mb, this.OD, this.OF)
       }
-    }
-    if (mb) {
-      mb.blocks[this.OF - 1] = this.bullGamma.msb
+    } else {
+        m1.multiplyValue(this.OF, this.OD)
     }
     if (nb_neg_signs % 2 === 0) {
-      this.bullGamma.ms1 = 0;
+      this.bullGamma.ms1 = 0
     } else {
-      this.bullGamma.ms1 = 10;
+      this.bullGamma.ms1 = 10
     }
   }
+
 }
 
 module.exports.MR = MR
