@@ -202,8 +202,24 @@ package Model {
         {abstract} exeInstructionLogic()
     }
 
+    abstract class SmallDivOrMult {
+      SmallDivOrMult(TO, AD, OD, OF, bullGamma)
+      execute()
+      {abstract} compute(mb: Memory)
+      {abstract} computeValue()
+    }
+
+    abstract class BigDivOrMult {
+      BigDivOrMult(TO, AD, OD, OF, bullGamma)
+      execute()
+      {abstract} compute(mb: Memory)
+      {abstract} computeValue()
+    }
+
     Instruction <|-- Operation
     Operation <|-- OperationWithPreShift
+    Operation <|-- SmallDivOrMult
+    Operation <|-- BigDivOrMult
 
     InstructionsArray "64 instructions" *-- Instruction
 
@@ -340,18 +356,18 @@ package Model {
     KB --|> Instruction
     BD --|> Instruction
     IL --|> Operation
-    MR --|> Operation
-    DR --|> Operation
-    MC -|> Operation
+    SmallDivOrMult <|-- MR
+    SmallDivOrMult <|-- DR
+    BigDivOrMult <|-- MC
+    BigDivOrMult <|-- DC
     AMD --|> Instruction
-    Operation <|-- CSz
     OperationWithPreShift <|-- OB
     CD -|> Operation
     Operation <|-- CO
-    Operation <|-- CB
+    CB --|> Operation
+    CSz -|> Operation
     Operation <|- GG
     Operation <|- BO
     OperationWithPreShift <|-- CN
     OperationWithPreShift <|-- AN
-    Operation <|-- DC
 @endDC

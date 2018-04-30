@@ -247,12 +247,12 @@ class Memory {
    * @param from index of the block from which the subtraction should start
    * @param to index of the block to which the subtraction should end (excluded)
    */
-  subtract(other, from, to) {
+  subtract(other, from, to, this_from = from, this_to = to) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
-    assert.equal(to < this.blocks.length, true, "to should be inferior to the number of blocks per memory")
-    let valM1 = this.getDecimalValue(from, to) - other.getDecimalValue(from, to)
-    this.setDecimalValue(Math.abs(valM1), from, to)
+    assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory")
+    let valM1 = this.getDecimalValue(this_from, this_to) - other.getDecimalValue(from, to)
+    this.setDecimalValue(Math.abs(valM1), this_from, this_to)
     if (valM1 < 0) {
       this._bullGamma.ms1 = 10;
     }
@@ -280,6 +280,29 @@ class Memory {
         this.addValue(value, at)
       }
     }
+  }
+
+  divide(other, from, to) {
+    if (other.getDecimalValue(from, to) === 0) {
+      throw new Error("Divide by 0")
+    }
+    let vmb = other.getDecimalValue(from, to)
+    this.shiftLeft()
+    this._bullGamma.md--
+    while (this.getDecimalValue(from, this.blocks.length) >= vmb) {
+      this.blocks[0]++
+      this.subtract(other, from, to, from, this.blocks.length)
+      while (this.getDecimalValue(from, this.blocks.length) < vmb && this._bullGamma.md > 0) {
+        this.shiftLeft()
+        this._bullGamma.md--
+      }
+    }
+  }
+
+  divideValue(value, at) {
+    let mb = new Memory(0, this._bullGamma, this.blocks.length)
+    mb.blocks[at] = value
+    this.divide(mb, at, this.blocks.length)
   }
 
 }
