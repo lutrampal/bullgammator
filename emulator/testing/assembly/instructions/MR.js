@@ -50,7 +50,7 @@ describe('MR', function() {
       m1.blocks[1] = 3
       m1.blocks[2] = 4
       new MR(0, 8, 4, bullGamma).execute();
-      assert.equal(bullGamma.getMemory(1).getDecimalValue(0, 12), 431*4*10**8, "wrong result")
+      assert.equal(bullGamma.getMemory(1).getDecimalValue(0, 12), 431*4, "wrong result")
     });
     it('when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers', function () {
       let bullGamma = new BullGamma();
