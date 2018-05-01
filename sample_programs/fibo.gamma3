@@ -1,6 +1,10 @@
 -- * * * Calcul de la suite de Fibonacci * * *
+-- A chaque itération M6 vaut n et M7 fn
+
 6001 -- B0, M1 <- 1, M1 = F1
 8200 -- OB, M2 <- M1
+8600 -- OB, M6 <- M1
+8700 -- OB, M7 <- M1
 A300 -- AN, M1 <- M1 + M3
 8400 -- OB, M4 <- M1
 6200 -- BO, M1 <- M2
@@ -8,5 +12,9 @@ A300 -- AN, M1 <- M1 + M3
 6400 -- BO, M1 <- M4
 8200 -- OB, M2 <- M1
 8700 -- OB, M7 <- M1
-0009 -- V, jump l2
+6600 -- BO, M1 <- M6
+A001 -- AN, M1 <- M1 + 1
+8600 -- OB, M6 <- M1
+6200 -- BO, M1 <- M2
+0011 -- V, jump l4
 
