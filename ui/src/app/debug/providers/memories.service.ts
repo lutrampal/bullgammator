@@ -70,11 +70,11 @@ export class MemoriesService {
     return null;
   }
 
-  getMSB() {
-    return 12;
+  getMD() {
+    return this.hex(this.bull.bullgamma.md);
   }
-  setMSB(value: string) {
-    console.log(value);
+  setMD(value: string) {
+    this.bull.bullgamma.md = this.reverseHex(value);
   }
 
   getMCMP() {

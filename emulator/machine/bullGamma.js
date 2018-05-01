@@ -93,7 +93,7 @@ class BullGamma {
     assert.equal(octad >= 0, true, "octad id should not be negative");
     assert.equal(octad < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
 
-    if (id <= NB_GENERAL_MEMORIES) {
+    if (id < NB_GENERAL_MEMORIES) {
       return this._generalMemories[id];
     }
     return this._commuted_octads[octad].getMemory(id - NB_GENERAL_MEMORIES);

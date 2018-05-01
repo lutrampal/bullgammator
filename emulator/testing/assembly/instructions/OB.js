@@ -51,7 +51,7 @@ describe('BO', function() {
       let od = 0, of = 4;
       let ob = new OB(1, od, of, bullGamma);
       let val = 9;
-      for (let i = 1; i < NB_BLOCKS_PER_MEMORY; i+=2) {
+      for (let i = 0; i < NB_BLOCKS_PER_MEMORY; i+=2) {
         m1.blocks[i] = val;
       }
       bullGamma.md = 3;

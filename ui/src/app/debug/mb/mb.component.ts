@@ -22,7 +22,7 @@ export class MbComponent implements OnInit {
   m0Ctrl: FormControl;
   mcmpCtrl: FormControl;
   ms1Ctrl: FormControl;
-  msbCtrl: FormControl;
+  mdCtrl: FormControl;
   rnl1Ctrl: FormControl;
   rnl2Ctrl: FormControl;
   nlCtrl: FormControl;
@@ -43,7 +43,7 @@ export class MbComponent implements OnInit {
     this.m0Ctrl = new FormControl('', [this.m.banalMemoryValidator]);
     this.mcmpCtrl = new FormControl('', [this.m.mcmpValidator]);
     this.ms1Ctrl = new FormControl('', [this.m.ms1Validator]);
-    this.msbCtrl = new FormControl('', []);
+    this.mdCtrl = new FormControl('', []);
     this.rnl1Ctrl = new FormControl('', []);
     this.rnl2Ctrl = new FormControl('', []);
     this.nlCtrl = new FormControl('', [this.m.nlValidator]);
@@ -65,7 +65,7 @@ export class MbComponent implements OnInit {
     this.m.setMemory(this.m0Ctrl.value, 1, 0);
     this.m.setNL(this.nlCtrl.value);
     this.m.setMS1(this.ms1Ctrl.value);
-    this.m.setMSB(this.msbCtrl.value);
+    this.m.setMD(this.mdCtrl.value);
     this.m.setMCMP(this.mcmpCtrl.value);
     this.m.setRNL1(this.rnl1Ctrl.value);
     this.m.setRNL2(this.rnl2Ctrl.value);
@@ -85,8 +85,8 @@ export class MbComponent implements OnInit {
     return this.m.getMS1();
   }
 
-  getMSB() {
-    return this.m.getMSB();
+  getMD() {
+    return this.m.getMD();
   }
 
   getMCMP() {
@@ -107,7 +107,7 @@ export class MbComponent implements OnInit {
         return false;
       }
     }
-    if (this.m0Ctrl.invalid || this.mcmpCtrl.invalid || this.ms1Ctrl.invalid || this.msbCtrl.invalid ||
+    if (this.m0Ctrl.invalid || this.mcmpCtrl.invalid || this.ms1Ctrl.invalid || this.mdCtrl.invalid ||
       this.nlCtrl.invalid || this.rnl1Ctrl.invalid || this.rnl2Ctrl.invalid
     ) {
       return false;
@@ -123,7 +123,7 @@ export class MbComponent implements OnInit {
     this.m0Ctrl.setValue(this.getM0());
     this.mcmpCtrl.setValue(this.getMCMP());
     this.ms1Ctrl.setValue(this.getMS1());
-    this.msbCtrl.setValue(this.getMSB());
+    this.mdCtrl.setValue(this.getMD());
     this.rnl1Ctrl.setValue(this.getRNL1());
     this.rnl2Ctrl.setValue(this.getRNL2());
     this.nlCtrl.setValue(this.getNL());

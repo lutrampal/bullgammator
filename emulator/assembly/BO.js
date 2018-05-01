@@ -1,4 +1,5 @@
 Operation = require("./operation").Operation
+NB_BLOCKS_PER_MEMORY = require("../machine/constants").NB_BLOCKS_PER_MEMORY
 
 class BO extends Operation {
   constructor(AD, OD, OF, bullGamma) {
@@ -7,21 +8,42 @@ class BO extends Operation {
 
   execute() {
     let m1 = this.bullGamma.getMemory(1);
+
+    // save memory value
+    let cp_block = new Array(NB_BLOCKS_PER_MEMORY);
+    for (let i = this.OD; i < this.OF; i++) {
+      cp_block[i] = m1.blocks[i];
+    }
+
+    // common
     m1.setToZero(0, 12);
     if (this.AD !== 1) {
       this.bullGamma.ms1 = 0
     }
     this.bullGamma.md = this.OD;
 
-    if (this.AD !== 0) {
-      let mb = this.bullGamma.getMemory(this.AD);
-      m1.copyBlockValues(mb, this.OD, this.OF);
-      if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
-        this.bullGamma.ms1 = 10
-        m1.blocks[this.OF - 1] = 0;
-      }
-    } else {
-      new KB(1, this.OD, this.OF, this.bullGamma).execute();
+    // cases on AD
+    switch (this.AD) {
+      case 1:
+        m1.setToZero(0, 12);
+        for (let i = this.OD; i < this.OF; i++) {
+          m1.blocks[i] = cp_block[i];
+        }
+        break;
+
+      case 0:
+        m1.blocks[this.OD] = this.OF;
+        break;
+
+      default:
+        let mb = this.bullGamma.getMemory(this.AD);
+        m1.copyBlockValues(mb, this.OD, this.OF);
+        if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
+          this.bullGamma.ms1 = 10;
+          m1.blocks[this.OF - 1] = 0;
+        }
+        break;
+
     }
   }
 }
