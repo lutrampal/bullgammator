@@ -4,20 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assembly/V.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/assembly/instructions/V.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CD.js" afterPath="$PROJECT_DIR$/assembly/CD.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CN.js" afterPath="$PROJECT_DIR$/assembly/CN.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/hexParser.js" afterPath="$PROJECT_DIR$/assembly/hexParser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/operation.js" afterPath="$PROJECT_DIR$/assembly/operation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/bullGamma.js" afterPath="$PROJECT_DIR$/machine/bullGamma.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/memory.js" afterPath="$PROJECT_DIR$/machine/memory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/instructions/CN.js" afterPath="$PROJECT_DIR$/testing/assembly/instructions/CN.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/instructions/MR.js" afterPath="$PROJECT_DIR$/testing/assembly/instructions/MR.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ui/src/app/debug/exec/exec.component.ts" afterPath="$PROJECT_DIR$/../ui/src/app/debug/exec/exec.component.ts" />
-    </list>
+    <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
