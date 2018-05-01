@@ -4,7 +4,11 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="" />
+    <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/memory.js" afterPath="$PROJECT_DIR$/machine/memory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/instructions/MR.js" afterPath="$PROJECT_DIR$/testing/assembly/instructions/MR.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -47,21 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="memory.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="memory.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine/memory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="273" column="91" lean-forward="false" selection-start-line="273" selection-start-column="91" selection-end-line="273" selection-end-column="91" />
+            <state relative-caret-position="221">
+              <caret line="269" column="7" lean-forward="true" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MR.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MR.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/MR.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="52" column="77" lean-forward="false" selection-start-line="52" selection-start-column="77" selection-end-line="52" selection-end-column="77" />
+            <state relative-caret-position="198">
+              <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -411,7 +415,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.MR.#execute().when AD = 0, should multiply M1 with OF">
+  <component name="RunManager" selected="Mocha.test">
     <configuration name="MR.#execute().when AD = 0, should multiply M1 with OF" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -551,7 +555,7 @@
       <workItem from="1525113943462" duration="1065000" />
       <workItem from="1525115023502" duration="9566000" />
       <workItem from="1525172347306" duration="4750000" />
-      <workItem from="1525191558124" duration="10215000" />
+      <workItem from="1525191558124" duration="10995000" />
     </task>
     <servers />
   </component>
@@ -561,9 +565,6 @@
     </history-entry>
     <history-entry file="MR_#execute()_when_AD_=_0,_should_multiply_M1_with_OF - 2018.05.01 at 22h 08m 56s.xml">
       <configuration name="MR.#execute().when AD = 0, should multiply M1 with OF" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="V_#execute()_jump_if_equal - 2018.05.01 at 21h 34m 25s.xml">
-      <configuration name="V.#execute().jump if equal" configurationId="mocha-javascript-test-runner" />
     </history-entry>
     <history-entry file="V_#execute()_jump_if_greater_or_equal - 2018.05.01 at 21h 35m 45s.xml">
       <configuration name="V.#execute().jump if greater or equal" configurationId="mocha-javascript-test-runner" />
@@ -586,19 +587,21 @@
     <history-entry file="test - 2018.05.01 at 22h 05m 15s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="test - 2018.05.01 at 23h 16m 03s.xml">
+      <configuration name="test" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143137000" />
+    <option name="totallyTimeSpent" value="143917000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1082" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18854167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923076" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -625,12 +628,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
-          <line>282</line>
+          <line>291</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
-          <line>287</line>
+          <line>296</line>
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -1009,18 +1012,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/MR.js">
+    <entry file="file://$PROJECT_DIR$/machine/memory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="52" column="77" lean-forward="false" selection-start-line="52" selection-start-column="77" selection-end-line="52" selection-end-column="77" />
+        <state relative-caret-position="221">
+          <caret line="269" column="7" lean-forward="true" selection-start-line="269" selection-start-column="7" selection-end-line="269" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine/memory.js">
+    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/MR.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="273" column="91" lean-forward="false" selection-start-line="273" selection-start-column="91" selection-end-line="273" selection-end-column="91" />
+        <state relative-caret-position="198">
+          <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
           <folding />
         </state>
       </provider>

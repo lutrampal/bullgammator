@@ -194,10 +194,11 @@ class Memory {
     assert.equal(at < this.blocks.length, true, "at should be inferior to the number of blocks per memory")
     this.blocks[at] = Math.abs(this.blocks[at] + value);
     for (let i = at; this.blocks[i] > 9; i = (i + 1)%this.blocks.length) {
-      this.blocks[(i + 1)%this.blocks.length]++
+      this.blocks[(i + 1) % this.blocks.length]++
       this.blocks[i] -= 10
     }
   }
+
 
   /**
    * return the unsigned decimal value of this memory between the selected blocks (decimal mode only)
@@ -271,7 +272,15 @@ class Memory {
   }
 
   multiplyValue(value, at) {
-    this.setDecimalValue(this.getDecimalValue(0, this.blocks.length)*value*(10**at), 0, 12)
+    while (this._bullGamma.md !== 0) {
+      if (this.blocks[0] === 0) {
+        this.shiftRight()
+        this._bullGamma.md--
+      } else {
+        this.blocks[0]--
+        this.addValue(value, at)
+      }
+    }
   }
 
   divide(other, from, to) {
