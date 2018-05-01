@@ -15,6 +15,8 @@ const NB_GENERAL_MEMORIES = require("./constants").NB_GENERAL_MEMORIES;
 const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
 const NB_OTHER_MEMORIES = require("./constants").NB_OTHER_MEMORIES;
+const NB_INST_IOSERIES = require("./constants").NB_INST_IOSERIES;
+const NB_INST_PER_SERIES = require("./constants").NB_INST_PER_SERIES;
 
 class BullGamma {
 
@@ -114,10 +116,24 @@ class BullGamma {
   }
 
   execNextInstruction() {
-    let ioSerie = this.getSerie(3);
     let old_cp = this.cp;
-    this.cp = (this.cp + 1) % (ioSerie.nbInst > 64 ? 64: ioSerie.nbInst);
-    ioSerie.getInstruction(old_cp).execute();
+
+    // compute series
+    var series;
+    if (this.cp < NB_INST_IOSERIES) {
+      series = this._ioSerie;
+    } else {
+      let index = 1 + Math.floor((this.cp - NB_INST_IOSERIES) / NB_INST_PER_SERIES);
+      series = this.getSerie(index);
+    }
+
+    // compute new line
+    if (this.cp < NB_INST_IOSERIES) {
+      this.cp = (this.cp + 1 - series.lineOffset) % (series.nbInst) + series.lineOffset;
+    }
+
+    // execute instruction
+    series.getInstruction(old_cp).execute();
   }
 }
 
