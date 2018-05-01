@@ -283,26 +283,27 @@ class Memory {
   }
 
   divide(other, from, to) {
-    if (other.getDecimalValue(from, to) === 0) {
+    let vmb = other.getDecimalValue(from, to)
+    if (vmb === 0) {
       throw new Error("Divide by 0")
     }
-    let vmb = other.getDecimalValue(from, to)
-    this.shiftLeft()
-    this._bullGamma.md--
-    while (this.getDecimalValue(from, this.blocks.length) >= vmb) {
-      this.blocks[0]++
-      this.subtract(other, from, to, from, this.blocks.length)
-      while (this.getDecimalValue(from, this.blocks.length) < vmb && this._bullGamma.md > 0) {
+    while (this._bullGamma.md > 0) {
+      while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) < vmb
+                && this._bullGamma.md > 0) {
         this.shiftLeft()
         this._bullGamma.md--
+      }
+      while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) >= vmb) {
+        this.blocks[0]++
+        this.subtract(other, from, to, from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length)
       }
     }
   }
 
   divideValue(value, at) {
-    let mb = new Memory(0, this._bullGamma, this.blocks.length)
+    let mb = new Memory(0, this._bullGamma, NB_BLOCKS_PER_MEMORY)
     mb.blocks[at] = value
-    this.divide(mb, at, this.blocks.length)
+    this.divide(mb, 0, at + 1)
   }
 
 }

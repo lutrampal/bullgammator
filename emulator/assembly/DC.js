@@ -10,7 +10,7 @@ class DC extends BigDivOrMult {
   }
 
   computeValue(m1m2) {
-    m1m2.divideValue(this.OF, this.OD + NB_BLOCKS_PER_MEMORY)
+    m1m2.divideValue(this.OF, this.OD)
   }
 
 }

@@ -6,7 +6,7 @@ Memory = require("../../../machine/memory").Memory;
 
 describe('MC', function() {
   describe('#execute()', function () {
-    it('should multiply M1 and MB', function () {
+    it('should multiply M2 and MB', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
       let m2 = bullGamma.getMemory(2);

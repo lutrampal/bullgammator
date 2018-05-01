@@ -10,19 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assembly/big_div_or_mult.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assembly/small_div_or_mult.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/assembly/instructions/DR.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testing/assembly/hex_parser/all_basic_emu_instructions.js.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testing/assembly/hex_parser/illegal_char.js.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testing/assembly/hex_parser/incomplete_instruction.js.old" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../docs/classes.puml" afterPath="$PROJECT_DIR$/../docs/classes.puml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testing/assembly/instructions/DC.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/DC.js" afterPath="$PROJECT_DIR$/assembly/DC.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/DR.js" afterPath="$PROJECT_DIR$/assembly/DR.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/MC.js" afterPath="$PROJECT_DIR$/assembly/MC.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/MR.js" afterPath="$PROJECT_DIR$/assembly/MR.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/memory.js" afterPath="$PROJECT_DIR$/machine/memory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/instructions/MC.js" afterPath="$PROJECT_DIR$/testing/assembly/instructions/MC.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,22 +37,22 @@
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="DR.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/DR.js">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="DC.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assembly/DC.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+            <state relative-caret-position="204">
+              <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="small_div_or_mult.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assembly/small_div_or_mult.js">
+      <file leaf-file-name="DC.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/DC.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="711">
+              <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -69,18 +61,8 @@
       <file leaf-file-name="memory.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/machine/memory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="304" column="43" lean-forward="true" selection-start-line="304" selection-start-column="43" selection-end-line="304" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DR.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assembly/DR.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+            <state relative-caret-position="165">
+              <caret line="290" column="18" lean-forward="false" selection-start-line="290" selection-start-column="18" selection-end-line="290" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -115,6 +97,7 @@
       <find>bullGamma&quot;).MEMORY_MODE</find>
       <find>MR</find>
       <find>times</find>
+      <find>MC</find>
     </findStrings>
     <replaceStrings>
       <replace>OD, OF</replace>
@@ -134,6 +117,7 @@
       <replace>MC</replace>
       <replace>DR</replace>
       <replace>divided with</replace>
+      <replace>DC</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/assembly</dir>
@@ -146,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assembly/IL.js" />
         <option value="$PROJECT_DIR$/assembly/VRS.js" />
         <option value="$PROJECT_DIR$/machine/CmpMemory.js" />
         <option value="$PROJECT_DIR$/machine/GeneralSerie.js" />
@@ -186,17 +169,18 @@
         <option value="$PROJECT_DIR$/testing/assembly/instructions/MR.js" />
         <option value="$PROJECT_DIR$/machine/bullGamma.js" />
         <option value="$PROJECT_DIR$/assembly/SN.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/instructions/MC.js" />
         <option value="$PROJECT_DIR$/assembly/SmallDivOrMultOperation.js" />
         <option value="$PROJECT_DIR$/assembly/MR.js" />
         <option value="$PROJECT_DIR$/assembly/smallDivOrMultOperation.js" />
         <option value="$PROJECT_DIR$/assembly/small_div_or_mult.js" />
         <option value="$PROJECT_DIR$/assembly/big_div_or_mult.js" />
         <option value="$PROJECT_DIR$/assembly/MC.js" />
-        <option value="$PROJECT_DIR$/assembly/DC.js" />
         <option value="$PROJECT_DIR$/assembly/DR.js" />
-        <option value="$PROJECT_DIR$/machine/memory.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/DR.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/instructions/MC.js" />
+        <option value="$PROJECT_DIR$/assembly/DC.js" />
+        <option value="$PROJECT_DIR$/machine/memory.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/instructions/DC.js" />
       </list>
     </option>
   </component>
@@ -316,6 +300,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -355,7 +340,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -374,14 +358,14 @@
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assembly" />
-      <recent name="$PROJECT_DIR$/testing/assembly/instructions" />
-      <recent name="$PROJECT_DIR$/testing/assembly/hex_parser" />
-      <recent name="$PROJECT_DIR$/machine" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/testing" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/testing/assembly/instructions" />
+      <recent name="$PROJECT_DIR$/assembly" />
+      <recent name="$PROJECT_DIR$/testing/assembly/hex_parser" />
+      <recent name="$PROJECT_DIR$/machine" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -397,6 +381,54 @@
     </option>
   </component>
   <component name="RunManager" selected="Mocha.test">
+    <configuration name="DC.#execute().should divide M2 with MB" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/testing/assembly/instructions/DC.js</test-file>
+      <test-names>
+        <name value="DC" />
+        <name value="#execute()" />
+        <name value="should divide M2 with MB" />
+      </test-names>
+    </configuration>
+    <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/testing/assembly/instructions/DC.js</test-file>
+      <test-names>
+        <name value="DC" />
+        <name value="#execute()" />
+        <name value="when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" />
+      </test-names>
+    </configuration>
+    <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/testing/assembly/instructions/DC.js</test-file>
+      <test-names>
+        <name value="DC" />
+        <name value="#execute()" />
+        <name value="when AD = 0, should divide M2 with OF" />
+      </test-names>
+    </configuration>
     <configuration name="DR.#execute().should divide M1 with MB" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -429,22 +461,6 @@
         <name value="negative times negative is positive" />
       </test-names>
     </configuration>
-    <configuration name="MR.#execute().when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/testing/assembly/instructions/MR.js</test-file>
-      <test-names>
-        <name value="MR" />
-        <name value="#execute()" />
-        <name value="when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers" />
-      </test-names>
-    </configuration>
     <configuration name="test" type="mocha-javascript-test-runner" factoryName="Mocha">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -457,17 +473,21 @@
       <test-directory>$PROJECT_DIR$/testing</test-directory>
       <recursive>true</recursive>
     </configuration>
-    <list size="4">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Mocha.test" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.MR.#execute().when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.MR.#execute().negative times negative is positive" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.DR.#execute().should divide M1 with MB" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.MR.#execute().negative times negative is positive" />
+      <item index="2" class="java.lang.String" itemvalue="Mocha.DR.#execute().should divide M1 with MB" />
+      <item index="3" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
+      <item index="4" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
+      <item index="5" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.DR.#execute().should divide M1 with MB" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.MR.#execute().negative times negative is positive" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.MR.#execute().when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
+        <item index="3" class="java.lang.String" itemvalue="Mocha.DR.#execute().should divide M1 with MB" />
+        <item index="4" class="java.lang.String" itemvalue="Mocha.MR.#execute().negative times negative is positive" />
       </list>
     </recent_temporary>
   </component>
@@ -499,43 +519,44 @@
       <workItem from="1524920423109" duration="28332000" />
       <workItem from="1525113943462" duration="1065000" />
       <workItem from="1525115023502" duration="9566000" />
+      <workItem from="1525172347306" duration="4750000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 41m 59s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.01 at 14h 59m 53s.xml">
+      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 46m 00s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.01 at 14h 59m 59s.xml">
+      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 48m 17s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.01 at 15h 11m 09s.xml">
+      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 48m 19s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0_and_OF_=_1,_should_shift_left_M1_and_M2_of_MD_or_OD_positions,_losing_exiting_numbers - 2018.05.01 at 15h 12m 20s.xml">
+      <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 50m 08s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0_and_OF_=_1,_should_shift_left_M1_and_M2_of_MD_or_OD_positions,_losing_exiting_numbers - 2018.05.01 at 15h 12m 33s.xml">
+      <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DR_#execute()_should_divide_M1_with_MB - 2018.04.30 at 23h 50m 15s.xml">
-      <configuration name="DR.#execute().should divide M1 with MB" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DC_#execute()_when_AD_=_0_and_OF_=_1,_should_shift_left_M1_and_M2_of_MD_or_OD_positions,_losing_exiting_numbers - 2018.05.01 at 15h 13m 20s.xml">
+      <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test - 2018.04.30 at 23h 51m 46s.xml">
+    <history-entry file="DC_#execute()_when_AD_=_0_and_OF_=_1,_should_shift_left_M1_and_M2_of_MD_or_OD_positions,_losing_exiting_numbers - 2018.05.01 at 15h 15m 14s.xml">
+      <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="DC_#execute()_when_AD_=_0_and_OF_=_1,_should_shift_left_M1_and_M2_of_MD_or_OD_positions,_losing_exiting_numbers - 2018.05.01 at 15h 15m 16s.xml">
+      <configuration name="DC.#execute().when AD = 0 and OF = 1, should shift left M1 and M2 of MD or OD positions, losing exiting numbers" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test - 2018.05.01 at 15h 11m 19s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test - 2018.04.30 at 23h 53m 40s.xml">
-      <configuration name="test" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test - 2018.04.30 at 23h 55m 20s.xml">
-      <configuration name="test" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test - 2018.04.30 at 23h 58m 40s.xml">
+    <history-entry file="test - 2018.05.01 at 15h 15m 22s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128172000" />
+    <option name="totallyTimeSpent" value="132922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1082" extended-state="7" />
@@ -545,11 +566,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32923076" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5375901" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5932029" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -569,32 +590,25 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="82" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/machine/memory.js</url>
+          <line>290</line>
+          <properties />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/machine/memory.js</url>
+          <line>295</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="89" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://JavaScript-modules-diagram//media/data/git/bullgammator/emulator/assembly/AMD.js">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/assembly/AMD.js</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/assembly/AMD.js#Instruction#8;</node>
-            <node x="" y="">$PROJECT_DIR$/assembly/instruction.js#Instruction#0;</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="135.0" y="80.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/machine/MemoryMode.js" />
     <entry file="file://$PROJECT_DIR$/assembly/CB.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -660,13 +674,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/hex_parser/all_basic_emu_instructions.js.old">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/hex_parser/all_basic_emu_instructions.js.old" />
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -700,7 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-34">
           <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -739,13 +746,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/hex_parser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="130" column="12" lean-forward="false" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/hex_parser.js" />
     <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/SN.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -852,7 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,15 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/MC.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="77" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="22" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,18 +900,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/big_div_or_mult.js">
+    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/DR.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="493">
+          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/DC.js">
+    <entry file="file://$PROJECT_DIR$/assembly/small_div_or_mult.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        <state relative-caret-position="527">
+          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -936,26 +924,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/MC.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/big_div_or_mult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="2" lean-forward="false" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/DC.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/machine/memory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="304" column="43" lean-forward="true" selection-start-line="304" selection-start-column="43" selection-end-line="304" selection-end-column="43" />
+        <state relative-caret-position="165">
+          <caret line="290" column="18" lean-forward="false" selection-start-line="290" selection-start-column="18" selection-end-line="290" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/small_div_or_mult.js">
+    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/DC.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/DR.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+        <state relative-caret-position="711">
+          <caret line="66" column="17" lean-forward="false" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
           <folding />
         </state>
       </provider>
