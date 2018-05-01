@@ -19,7 +19,7 @@ OB = require("./OB").OB;
 SN = require("./SN").SN;
 MR = require("./MR").MR;
 MC = require("./MC").MC;
-NOP = require("./NOP").NOP;
+V = require("./V").V;
 
 function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   if (instruction.length !== 4) {
@@ -39,11 +39,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
   switch (TO) {
     case 0:
-      if (AD === 0 && OD === 0 && OF === 0) {
-        return new NOP(bullGamma);
-      } else {
-        throw "not supported yet: TT";
-      }
+        return new V(AD, OD, OF, bullGamma)
     case 1:
       switch (AD) {
         case 0:
@@ -75,7 +71,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
           throw "incorrect instruction for TO = 1: got AD = " + AD;
       }
     case 2:
-      throw "not supported yet: TO = 2";
+      throw "not supported yet: TO = 2 (TT)";
     case 3:
       if (AD === 0) {
         throw "incorrect instruction for TO = 3: got AD = 0";

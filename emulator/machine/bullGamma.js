@@ -113,6 +113,12 @@ class BullGamma {
     this._memoryMode = newMode;
   }
 
+  execNextInstruction() {
+    let ioSerie = this.getSerie(3);
+    let old_cp = this.cp;
+    this.cp = (this.cp + 1) % (ioSerie.nbInst > 64 ? 64: ioSerie.nbInst);
+    ioSerie.getInstruction(old_cp).execute();
+  }
 }
 
 module.exports.BullGamma = BullGamma;

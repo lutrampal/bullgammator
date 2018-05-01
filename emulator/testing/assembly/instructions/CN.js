@@ -97,12 +97,11 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.isLower(), false)
       assert.equal(bullGamma.mc.isNotEqual(), true)
     });
-    it('when AD = 0, should set MC to greater if M1[OD] is greater than OF', function () {
+    it('when AD = 0, should set MC to greater if M1 is greater than OF^OD', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1)
-      let od = 2, of = 8
-      m1.blocks[od] = 9
-      let cn = new CN(0, od, of, bullGamma);
+      m1.blocks[11] = 1
+      let cn = new CN(0, 5, 5, bullGamma);
       cn.execute();
       assert.equal(bullGamma.mc.isGreater(), true)
       assert.equal(bullGamma.mc.isGreaterOrEqual(), true)
@@ -111,12 +110,11 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.isLower(), false)
       assert.equal(bullGamma.mc.isNotEqual(), true)
     });
-    it('when AD = 0, should set MC to equal if M1[OD] is equal to OF', function () {
+    it('when AD = 0, should set MC to equal if M1 is equal to OF^OD', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1)
-      let od = 2, of = 8
-      m1.blocks[od] = 8
-      let cn = new CN(0, od, of, bullGamma);
+      m1.blocks[5] = 4
+      let cn = new CN(0, 5, 4, bullGamma);
       cn.execute();
       assert.equal(bullGamma.mc.isGreater(), false)
       assert.equal(bullGamma.mc.isGreaterOrEqual(), true)
@@ -125,12 +123,11 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.isLower(), false)
       assert.equal(bullGamma.mc.isNotEqual(), false)
     });
-    it('when AD = 0, should set MC to lower if M1[OD] is lower than OF', function () {
+    it('when AD = 0, should set MC to lower if M1 is lower than OF^OD', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1)
-      let od = 2, of = 8
-      m1.blocks[od] = 7
-      let cn = new CN(0, od, of, bullGamma);
+      m1.blocks[4] = 6
+      let cn = new CN(0, 5, 3, bullGamma);
       cn.execute();
       assert.equal(bullGamma.mc.isGreater(), false)
       assert.equal(bullGamma.mc.isGreaterOrEqual(), false)

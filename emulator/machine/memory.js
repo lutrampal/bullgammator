@@ -193,9 +193,9 @@ class Memory {
     assert.equal(value < 16, true, "value should be inferior to 16")
     assert.equal(at < this.blocks.length, true, "at should be inferior to the number of blocks per memory")
     this.blocks[at] = Math.abs(this.blocks[at] + value);
-    if (this.blocks[at] > 9) {
-      this.blocks[(at + 1)%this.blocks.length] = 1
-      this.blocks[at] -= 10
+    for (let i = at; this.blocks[i] > 9; i = (i + 1)%this.blocks.length) {
+      this.blocks[(i + 1)%this.blocks.length]++
+      this.blocks[i] -= 10
     }
   }
 
@@ -271,15 +271,7 @@ class Memory {
   }
 
   multiplyValue(value, at) {
-    while (this._bullGamma.md !== 0) {
-      if (this.blocks[0] === 0) {
-        this.shiftRight()
-        this._bullGamma.md--
-      } else {
-        this.blocks[0]--
-        this.addValue(value, at)
-      }
-    }
+    this.setDecimalValue(this.getDecimalValue(0, this.blocks.length)*value*(10**at), 0, 12)
   }
 
   divide(other, from, to) {
