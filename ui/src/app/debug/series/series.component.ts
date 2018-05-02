@@ -17,7 +17,7 @@ export class SeriesComponent implements OnInit {
   breakpoints: FormControl[] = [];
 
   constructor(
-    private s: SeriesService
+    public s: SeriesService
   ) {
     this.seriesId = 3;
   }
