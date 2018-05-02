@@ -44,6 +44,32 @@ export class MemoriesService {
     }
   }
 
+  getMode() {
+    if (this.bull.bullgamma._memoryMode == this.bull.constants.MEMORY_MODE.BINARY) {
+      return "Binaire";
+    }
+    if (this.bull.bullgamma._memoryMode == this.bull.constants.MEMORY_MODE.DECIMAL) {
+      return "Décimal";
+    }
+  }
+  setMode(value: string) {
+    if (value == "Binaire") {
+      this.bull.bullgamma._memoryMode = this.bull.constants.MEMORY_MODE.BINARY;
+    }
+    if (value == "Décimal") {
+      this.bull.bullgamma._memoryMode = this.bull.constants.MEMORY_MODE.DECIMAL;
+    }
+  }
+  modeValidator(control: FormControl) {
+    if (control.value == "Binaire") {
+      return null;
+    }
+    if (control.value == "Décimal") {
+      return null;
+    }
+    return { error : true };
+  }
+
   getNL() {
     return this.hex(this.bull.bullgamma.cp);
   }
@@ -75,6 +101,12 @@ export class MemoriesService {
   }
   setMD(value: string) {
     this.bull.bullgamma.md = this.reverseHex(value);
+  }
+  mdValidator(control: FormControl) {
+    if (!control.value.match(/^[0-9A-F]$/)){
+      return { error: true };
+    }
+    return null;
   }
 
   getMCMP() {
@@ -111,17 +143,17 @@ export class MemoriesService {
   }
 
   getRNL1() {
-    return 12;
+    return this.hex(this.bull.bullgamma.rnl1);
   }
   setRNL1(value: string) {
-    console.log(value);
+    this.bull.bullgamma.rnl1 = this.reverseHex(value);
   }
 
   getRNL2() {
-    return 12;
+    return this.hex(this.bull.bullgamma.rnl2);
   }
   setRNL2(value: string) {
-    console.log(value);
+    this.bull.bullgamma.rnl2 = this.reverseHex(value);
   }
 
   banalMemoryValidator(control: FormControl) {

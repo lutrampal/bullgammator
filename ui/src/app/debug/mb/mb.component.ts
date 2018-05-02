@@ -20,6 +20,7 @@ export class MbComponent implements OnInit {
   edit: boolean;
 
   m0Ctrl: FormControl;
+  modeCtrl: FormControl;
   mcmpCtrl: FormControl;
   ms1Ctrl: FormControl;
   mdCtrl: FormControl;
@@ -41,18 +42,17 @@ export class MbComponent implements OnInit {
       this.controls[mb.id] = new FormControl('', [this.m.banalMemoryValidator]);
     }
     this.m0Ctrl = new FormControl('', [this.m.banalMemoryValidator]);
+    this.modeCtrl = new FormControl('', [this.m.modeValidator]);
     this.mcmpCtrl = new FormControl('', [this.m.mcmpValidator]);
     this.ms1Ctrl = new FormControl('', [this.m.ms1Validator]);
-    this.mdCtrl = new FormControl('', []);
-    this.rnl1Ctrl = new FormControl('', []);
-    this.rnl2Ctrl = new FormControl('', []);
+    this.mdCtrl = new FormControl('', [this.m.mdValidator]);
+    this.rnl1Ctrl = new FormControl('', [this.m.nlValidator]);
+    this.rnl2Ctrl = new FormControl('', [this.m.nlValidator]);
     this.nlCtrl = new FormControl('', [this.m.nlValidator]);
   }
 
   getMemory(id: number, octad: number) {
-    let value = this.m.pad(this.m.getMemory(id, octad), 12, null);
-    this.controls[id].setValue(value);
-    return value;
+    return this.m.pad(this.m.getMemory(id, octad), 12, null);
   }
   setBanalMemories() {
     for (let mb of this.memories) {
@@ -63,6 +63,7 @@ export class MbComponent implements OnInit {
   setMemories() {
     this.setBanalMemories();
     this.m.setMemory(this.m0Ctrl.value, 1, 0);
+    this.m.setMode(this.modeCtrl.value);
     this.m.setNL(this.nlCtrl.value);
     this.m.setMS1(this.ms1Ctrl.value);
     this.m.setMD(this.mdCtrl.value);
@@ -72,9 +73,11 @@ export class MbComponent implements OnInit {
   }
 
   getM0() {
-    let value = this.m.pad(this.m.getMemory(1, 0), 12, null);
-    this.m0Ctrl.setValue(value);
-    return value;
+    return this.m.pad(this.m.getMemory(1, 0), 12, null);
+  }
+
+  getMode() {
+    return this.m.getMode();
   }
 
   getNL() {
@@ -94,11 +97,11 @@ export class MbComponent implements OnInit {
   }
 
   getRNL1() {
-    return this.m.getRNL1();
+    return this.m.pad(this.m.getRNL1(), 2, null);
   }
 
   getRNL2() {
-    return this.m.getRNL2();
+    return this.m.pad(this.m.getRNL2(), 2, null);
   }
 
   valid() {
@@ -107,7 +110,8 @@ export class MbComponent implements OnInit {
         return false;
       }
     }
-    if (this.m0Ctrl.invalid || this.mcmpCtrl.invalid || this.ms1Ctrl.invalid || this.mdCtrl.invalid ||
+    if (this.m0Ctrl.invalid || this.modeCtrl.invalid ||
+      this.mcmpCtrl.invalid || this.ms1Ctrl.invalid || this.mdCtrl.invalid ||
       this.nlCtrl.invalid || this.rnl1Ctrl.invalid || this.rnl2Ctrl.invalid
     ) {
       return false;
@@ -121,6 +125,7 @@ export class MbComponent implements OnInit {
       this.controls[mb.id].setValue(this.getMemory(mb.id, 0));
     }
     this.m0Ctrl.setValue(this.getM0());
+    this.modeCtrl.setValue(this.getMode());
     this.mcmpCtrl.setValue(this.getMCMP());
     this.ms1Ctrl.setValue(this.getMS1());
     this.mdCtrl.setValue(this.getMD());

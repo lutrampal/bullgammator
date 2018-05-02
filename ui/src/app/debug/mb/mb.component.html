@@ -4,6 +4,11 @@
     <div class="columns">
       <div class="control">
         <span>
+          <label>Mode</label>
+          <input *ngIf="!edit" matInput placeholder="Mode" [value]="getMode()" disabled>
+          <input *ngIf="edit" matInput placeholder="Mode" [formControl]="modeCtrl">
+        </span>
+          <span>
           <label>MS1</label>
           <input *ngIf="!edit" matInput placeholder="MS1" [value]="getMS1()" disabled>
           <input *ngIf="edit" matInput placeholder="MS1" [formControl]="ms1Ctrl">

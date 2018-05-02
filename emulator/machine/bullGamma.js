@@ -55,6 +55,8 @@ class BullGamma {
     this.md = 0;
     this.mc = new CmpMemory();
     this.cp = 0
+    this.rnl1 = 0;
+    this.rnl2 = 0;
     this.parser = new InstructionsParser(this);
   }
 
