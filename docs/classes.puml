@@ -223,6 +223,20 @@ package Model {
 
     InstructionsArray "64 instructions" *-- Instruction
 
+    class V {
+      TO = 0
+      execute()
+      computeExeTime()
+    }
+
+    class NOP {
+      TO = 0
+      AD = 0
+      OF % 4 == 0
+      execute()
+      computeExeTime()
+    }
+
     class VCS {
       TO = 1
       execute()
@@ -349,6 +363,8 @@ package Model {
       exeInstructionLogic()
     }
 
+    V --|> Operation
+    NOP --|> V
     VCS --|> Operation
     VRS --|> Operation
     SN -|> OperationWithPreShift

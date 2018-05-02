@@ -1,8 +1,8 @@
 Instruction = require("./instruction").Instruction
 
-class NOP extends Instruction {
+class NOP extends V {
   constructor(bullGamma) {
-    super(0, 0, 0, 0, bullGamma)
+    super(0, 0, 0, bullGamma)
   }
 
   execute() {

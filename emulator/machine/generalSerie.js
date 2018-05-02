@@ -1,6 +1,7 @@
 assert = require('assert');
 
 Serie = require("./serie").Serie;
+NOP = require("../assembly/NOP").NOP;
 const NB_INST_IOSERIES = require("./constants").NB_INST_IOSERIES;
 
 const NB_MEMORIES_PER_SERIES = require("./constants").NB_MEMORIES_PER_SERIES;
@@ -29,7 +30,7 @@ class GeneralSerie extends Serie {
     if (r == NB_INST_PER_MEM - 1) {
       return new NOP(this._bullGamma);
     }
-    
+
     var mem = this._memories[q];
     var TO = mem.blocks[4 * r + 3];
     var AD = mem.blocks[4 * r + 2];
