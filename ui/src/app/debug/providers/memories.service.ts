@@ -2,171 +2,110 @@ import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { BullgammatorService } from '../../providers/bullgammator.service';
+import { Debug } from 'bullgammator';
 
 @Injectable()
 export class MemoriesService {
 
+  debug: Debug;
+
   constructor(
     private bull: BullgammatorService
-  ) { }
-
-  hex(val: number): string {
-    return val.toString(16).toUpperCase();
-  }
-  reverseHex(letter: string): number {
-    return parseInt(letter, 16);
+  ) {
+    this.debug = new Debug(this.bull.bullgamma);
   }
 
   getMemory(id: number, octad: number) {
-    octad = octad || 0;
-    let mem;
-    if (id < 8) {
-      mem = this.bull.bullgamma.getMemory(id);
-    } else {
-      mem = this.bull.bullgamma.getOctad(octad).getMemory(id - 8);
-    }
-    let value = "";
-    mem.blocks.forEach((val) => {
-      value = this.hex(val) + value;
-    });
-    return value;
+    return this.debug.getMemory(id, octad);
   }
   setMemory(value: string, id: number, octad: number) {
-    octad = octad || 0;
-    let mem;
-    if (id < 8) {
-      mem = this.bull.bullgamma.getMemory(id);
-    } else {
-      mem = this.bull.bullgamma.getOctad(octad).getMemory(id - 8);
+    this.debug.setMemory(value, id, octad);
+  }
+
+  banalMemoryValidator(control: FormControl) {
+    if (!Debug.banalMemoryValidate(control.value)) {
+      return { error: true };
     }
-    for (var i = 0; i < 12; i++) {
-      mem.blocks[11 - i] = this.reverseHex(value.charAt(i));
-    }
+    return null;
   }
 
   getMode() {
-    if (this.bull.bullgamma._memoryMode == this.bull.constants.MEMORY_MODE.BINARY) {
-      return "Binaire";
-    }
-    if (this.bull.bullgamma._memoryMode == this.bull.constants.MEMORY_MODE.DECIMAL) {
-      return "Décimal";
-    }
+    return this.debug.getMode();
   }
   setMode(value: string) {
-    if (value == "Binaire") {
-      this.bull.bullgamma._memoryMode = this.bull.constants.MEMORY_MODE.BINARY;
-    }
-    if (value == "Décimal") {
-      this.bull.bullgamma._memoryMode = this.bull.constants.MEMORY_MODE.DECIMAL;
-    }
+    this.debug.setMode(value);
   }
   modeValidator(control: FormControl) {
-    if (control.value == "Binaire") {
-      return null;
+    if (!Debug.modeValidate(control.value)) {
+      return { error: true };
     }
-    if (control.value == "Décimal") {
-      return null;
-    }
-    return { error : true };
+    return null;
   }
 
   getNL() {
-    return this.hex(this.bull.bullgamma.cp);
+    return this.debug.getNL();
   }
   setNL(value: string) {
-    this.bull.bullgamma.cp = this.reverseHex(value);
+    this.debug.setNL(value);
   }
   nlValidator(control: FormControl) {
-    if (!control.value.match(/^[0-9A-F][0-9A-F]$/)) {
-      return { error : true };
+    if (!Debug.nlValidate(control.value)) {
+      return { error: true };
     }
     return null;
   }
 
   getMS1() {
-    return this.hex(this.bull.bullgamma.ms1);
+    return this.debug.getMS1();
   }
   setMS1(value: string) {
-    this.bull.bullgamma.ms1 = this.reverseHex(value);
+    this.debug.setMS1(value);
   }
   ms1Validator(control: FormControl) {
-    if (!control.value.match(/^[0-9A-F]$/)){
+    if (!Debug.ms1Validate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
   getMD() {
-    return this.hex(this.bull.bullgamma.md);
+    return this.debug.getMD();
   }
   setMD(value: string) {
-    this.bull.bullgamma.md = this.reverseHex(value);
+    this.debug.setMD(value);
   }
   mdValidator(control: FormControl) {
-    if (!control.value.match(/^[0-9A-F]$/)){
+    if (!Debug.mdValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
   getMCMP() {
-    let mc = this.bull.bullgamma.mc;
-    let value = "";
-    if (mc.equal) {
-      return "=";
-    } else {
-      if (mc.greater) {
-        return ">";
-      } else {
-        return "<";
-      }
-    }
+    return this.debug.getMCMP();
   }
   setMCMP(value: string) {
-    let mc = this.bull.bullgamma.mc;
-    if (value == "=") {
-      mc.equal = true;
-    } else {
-      mc.equal = false;
-      if (value == ">") {
-        mc.greater = true;
-      } else {
-        mc.greater = false;
-      }
-    }
+    this.debug.setMCMP(value);
   }
   mcmpValidator(control: FormControl) {
-    if (!control.value.match(/^(=|<|>)$/)) {
-      return { error : true };
-    }
-    return null;
-  }
-
-  getRNL1() {
-    return this.hex(this.bull.bullgamma.rnl1);
-  }
-  setRNL1(value: string) {
-    this.bull.bullgamma.rnl1 = this.reverseHex(value);
-  }
-
-  getRNL2() {
-    return this.hex(this.bull.bullgamma.rnl2);
-  }
-  setRNL2(value: string) {
-    this.bull.bullgamma.rnl2 = this.reverseHex(value);
-  }
-
-  banalMemoryValidator(control: FormControl) {
-    if (!control.value.match(/^[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]$/)) {
+    if (!Debug.mcmpValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  pad(n, width, z) {
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  getRNL1() {
+    return this.debug.getRNL1();
+  }
+  setRNL1(value: string) {
+    this.debug.setRNL1(value);
+  }
+
+  getRNL2() {
+    return this.debug.getRNL2();
+  }
+  setRNL2(value: string) {
+    this.debug.setRNL2(value);
   }
 
 }

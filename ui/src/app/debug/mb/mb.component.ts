@@ -52,7 +52,7 @@ export class MbComponent implements OnInit {
   }
 
   getMemory(id: number, octad: number) {
-    return this.m.pad(this.m.getMemory(id, octad), 12, null);
+    return this.m.getMemory(id, octad);
   }
   setBanalMemories() {
     for (let mb of this.memories) {
@@ -73,7 +73,7 @@ export class MbComponent implements OnInit {
   }
 
   getM0() {
-    return this.m.pad(this.m.getMemory(1, 0), 12, null);
+    return this.m.getMemory(1, 0);
   }
 
   getMode() {
@@ -81,7 +81,7 @@ export class MbComponent implements OnInit {
   }
 
   getNL() {
-    return this.m.pad(this.m.getNL(), 2, null);
+    return this.m.getNL();
   }
 
   getMS1() {
@@ -97,11 +97,11 @@ export class MbComponent implements OnInit {
   }
 
   getRNL1() {
-    return this.m.pad(this.m.getRNL1(), 2, null);
+    return this.m.getRNL1();
   }
 
   getRNL2() {
-    return this.m.pad(this.m.getRNL2(), 2, null);
+    return this.m.getRNL2();
   }
 
   valid() {

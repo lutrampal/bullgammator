@@ -73,7 +73,7 @@ export class OctadsComponent implements OnInit {
   }
 
   getMemory(id: number, octad: number) {
-    return this.m.pad(this.m.getMemory(id, octad), 12, null);
+    return this.m.getMemory(id, octad);
   }
 
   plus() {
