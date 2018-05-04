@@ -20,6 +20,7 @@ export class ExecComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.breakpoints = [new FormControl(true, [])];
   }
 
   /*
@@ -35,13 +36,22 @@ export class ExecComponent implements OnInit {
   execUntilBreakPoint() {
     do {
       this.execNextInstruction();
-    } while (!this.breakpointAtCurrentLine() && this.bull.bullgamma.cp != 0);
+    } while (!this.breakpointAtCurrentLine());
   }
 
   /*
    *  Returns wether the is a breakpoint at the next line to bez executed
    */
   breakpointAtCurrentLine() {
+    if (typeof this.breakpoints == 'undefined') {
+      return true;
+    }
+    if (this.breakpoints.length == 1 &&
+        this.breakpoints[0].value == true &&
+        this.bull.bullgamma.cp != 0
+    ) {
+      return false;
+    }
     return this.breakpoints[this.bull.bullgamma.cp].value;
   }
 

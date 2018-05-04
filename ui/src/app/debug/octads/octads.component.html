@@ -10,7 +10,7 @@
           <span>
             <label>{{ mb.label }}</label>
             <input *ngIf="!edit" matInput placeholder="{{ mb.label }}" [value]="getMemory(mb.id, octad)" disabled>
-            <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[octadsIds.length * octad + mb.id]">
+            <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[nbOctads * octad + mb.id]">
           </span>
         </div>
         <button (click)="editMemories();" *ngIf="!edit" mat-raised-button>Editer</button>

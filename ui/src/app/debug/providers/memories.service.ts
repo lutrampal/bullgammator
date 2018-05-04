@@ -8,11 +8,13 @@ import { Debug } from 'bullgammator';
 export class MemoriesService {
 
   debug: Debug;
+  constants: any;
 
   constructor(
     private bull: BullgammatorService
   ) {
     this.debug = new Debug(this.bull.bullgamma);
+    this.constants = this.bull.constants;
   }
 
   getMemory(id: number, octad: number) {

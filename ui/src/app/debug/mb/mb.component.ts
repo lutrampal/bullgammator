@@ -31,7 +31,7 @@ export class MbComponent implements OnInit {
   constructor(
     public m: MemoriesService
   ) {
-    for (let mb of [ 2, 3, 4, 5, 6, 7 ]) {
+    for (var mb=2; mb<this.m.constants.NB_GENERAL_MEMORIES; mb++) {
       this.memories.push({ id: mb, label: 'M' + mb.toString() });
     }
     this.edit = false;

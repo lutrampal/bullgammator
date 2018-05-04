@@ -12,7 +12,7 @@ export class OctadsComponent implements OnInit {
 
   octad: number;
   octads: { [id: number]: any } = {};
-  octadsIds: number[] = [ 0, 1, 2, 3, 4, 5, 6, 7 ];
+  nbOctads: number;
 
   controls: { [id: number]: FormControl } = {};
   edit: boolean;
@@ -22,10 +22,15 @@ export class OctadsComponent implements OnInit {
   ) {
     this.octad = 0;
     this.octads = {};
+    this.nbOctads = this.m.constants.NB_COMMUTED_OCTADS;
 
-    for (let octad of [0, 1, 2, 3, 4, 5, 6, 7]) {
+    for (var octad=0; octad<this.nbOctads; octad++) {
       this.octads[octad] = [];
-      for (let mb of [ 8, 9, 10, 11, 12, 13, 14, 15 ]) {
+      for (
+        var mb = this.m.constants.NB_GENERAL_MEMORIES;
+        mb<this.m.constants.NB_GENERAL_MEMORIES+this.m.constants.NB_MEMORIES_PER_OCTAD;
+        mb++
+      ) {
         this.octads[octad].push({ id: mb, label: 'M' + mb.toString() });
       }
     }
@@ -33,34 +38,38 @@ export class OctadsComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (let octad of this.octadsIds) {
+    for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
-        this.controls[octad * this.octadsIds.length + mb.id] = new FormControl('', [this.m.banalMemoryValidator]);
+        let id = octad * this.nbOctads + mb.id;
+        this.controls[id] = new FormControl('', [this.m.banalMemoryValidator]);
       }
     }
   }
 
   editMemories() {
     this.edit = true;
-    for (let octad of this.octadsIds) {
+    for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
-        this.controls[octad * this.octadsIds.length + mb.id].setValue(this.getMemory(mb.id, octad));
+        let id = octad * this.nbOctads + mb.id;
+        this.controls[id].setValue(this.getMemory(mb.id, octad));
       }
     }
   }
 
   setMemories() {
-    for (let octad of this.octadsIds) {
+    for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
-        this.m.setMemory(this.controls[octad * this.octadsIds.length + mb.id].value, mb.id, octad);
+        let id = octad * this.nbOctads + mb.id;
+        this.m.setMemory(this.controls[id].value, mb.id, octad);
       }
     }
   }
 
   valid() {
-    for (let octad of this.octadsIds) {
+    for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
-        if (this.controls[octad * this.octadsIds.length + mb.id].invalid) {
+        let id = octad * this.nbOctads + mb.id;
+        if (this.controls[id].invalid) {
           return false;
         }
       }
@@ -77,10 +86,10 @@ export class OctadsComponent implements OnInit {
   }
 
   plus() {
-    this.octad = (this.octad + 1) % this.octadsIds.length;
+    this.octad = (this.octad + 1) % this.nbOctads;
   }
 
   minus() {
-    this.octad = (this.octad + 7) % this.octadsIds.length;
+    this.octad = (this.octad + 7) % this.nbOctads;
   }
 }

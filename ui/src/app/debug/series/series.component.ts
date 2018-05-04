@@ -20,14 +20,17 @@ export class SeriesComponent implements OnInit {
     public s: SeriesService
   ) {
     this.seriesId = 3;
-  }
 
-  ngOnInit() {
     for (let s of [3, 0, 1, 2]) {
       for (var i=0; i<this.s.getMaxNbInsts(s); i++) {
         this.breakpoints.push(new FormControl(false, []));
       }
     }
+    this.breakpoints[0].setValue(true);
+    this.emit();
+  }
+
+  ngOnInit() {
   }
 
   getInstructions() {
