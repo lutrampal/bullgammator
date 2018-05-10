@@ -9,19 +9,39 @@ package Model {
       _memoryMode
       ms1
       msb
-      md : hexa
+      md
       BullGamma()
       selectOctad(id)
       getMemory(id)
       getOctad(id)
       getMemoryMode()
       setMemoryMode(newMode)
+      getSerie(id): Serie
+      getGroup(id): Group
+      getIOSerie(): Serie
+      getConnexionArray(): ConnexionArray
     }
 
     abstract class Serie {
       id
       Serie(id, bullGamma)
-      {abstract} getInstruction(index)
+      {abstract} getInstruction(line): Array<Instruction>
+      {abstract} getInstructions(): Instruction
+      {abstract} setInstructions(hexCode)
+    }
+
+    class ConnexionArray {
+      ConnexionArray(id, bullGamma)
+      getInstruction(line): Array<Instruction>
+      getInstructions(): Instruction
+      setInstructions(hexCode)
+    }
+
+    class Group {
+      Group(id, bullGamma)
+      getInstruction(line): Array<Instruction>
+      getInstructions(): Instruction
+      setInstructions(hexCode)
     }
 
     class Octad {
@@ -79,97 +99,28 @@ package Model {
       DrumTrack(id, group)
     }
 
-    DrumTrack "16 tracks" -* "trackGroup" DrumTrackGroup
+    DrumTrackGroup "trackGroup" *- "16 tracks" DrumTrack
 
     class DrumBlock {
       id
       DrumBlock(id, track)
     }
 
-    DrumBlock "8 blocks" -* "track" DrumTrack
+    Serie <|-- Group
+    Serie <|-- ConnexionArray
+
+    DrumBlock "8 blocks" --* "track" DrumTrack
     Octad "2 octads" <--* DrumBlock
 
-
-    class GeneralSerie {
-        getInstruction(line)
-        getInstructions()
-    }
-
-    class IOSerie {
-        instructions
-        max_nb_inst = 64
-        setInstructions(hexCode)
-        getInstruction(line)
-        getInstructions()
-    }
-
-    class InstructionsArray {
-
-    }
-
-    class Parser {
-        parseInstructions(hexCode)
-        parseInstruction(TO, AD, OD, OF)
-    }
-    Parser - BullGamma
     BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
-
-    Serie <|-- IOSerie
-    Serie <|-- GeneralSerie
-    Octad o---> "8 memories" Memory
-    GeneralSerie o---> "16 memories" Memory
+    Octad *--> "8 memories" Memory
     BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
-    BullGamma -- "mc" CmpMemory
+    BullGamma --> "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    IOSerie "ioSerie" -- BullGamma
-    GeneralSerie "generalSeries 3" -- BullGamma
-    InstructionsArray "instructions" <---* IOSerie
-
-  }
-
-  package WireArray {
-
-      class WireArray {
-          editIoSerie()
-          generateWires(instructions)
-      }
-
-
-      abstract class ArrayConnection {
-
-      }
-
-      class Constant {
-        value
-        getValue()
-      }
-
-      class InstructionConnection {
-
-      }
-
-      ArrayConnection <|-- Constant
-      ArrayConnection <|-- InstructionConnection
-
-      class InstrConnectionTuple {
-        value
-        getValue()
-        setValue()
-      }
-
-      class Wire {
-
-      }
-
-      ArrayConnection "ends 2" --o "wire" Wire
-      Wire "wires 0..*" <--* WireArray
-
-      InstructionConnection "connections 2" <--* InstrConnectionTuple
-      InstrConnectionTuple <-* WireArray
-
-      Constant "constants 16" <--* WireArray
-      IOSerie "edit" <--down--o WireArray
-
+    Serie "4 series" --o "bullGamma" BullGamma
+    Group "4 groups" --* "bullGamma" BullGamma
+    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
+    Group *--> "2 octads" Octad
   }
 
   package "Control" {
@@ -177,7 +128,8 @@ package Model {
           editIoSerie(hexCode)
           editDrum(hexCode)
       }
-      IOSerie "edit" <--down--o Editor
+
+      ConnexionArray "edit" <--down--o Editor
       MagneticDrum "edit" <--down--o Editor
 
       class Execution {
@@ -267,8 +219,6 @@ package Model {
       computeExeTime()
       _transfer()
     }
-
-
 
     class V {
       TO = 0
