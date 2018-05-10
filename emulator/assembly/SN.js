@@ -5,7 +5,7 @@ class SN extends OperationWithPreShift {
     super(11, AD, OD, OF, bullGamma)
   }
 
-  exeInstructionLogic() {
+  _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1)
     if (this.AD > 1) { // use of MB
       let mb = this.bullGamma.getMemory(this.AD)

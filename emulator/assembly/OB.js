@@ -6,7 +6,7 @@ class OB extends OperationWithPreShift {
     super(8, AD, OD, OF, bullGamma)
   }
 
-  exeInstructionLogic() {
+  _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1)
     if (this.AD !== 1){
       let mb = this.bullGamma.getMemory(this.AD)

@@ -20,6 +20,8 @@ SN = require("./SN").SN;
 MR = require("./MR").MR;
 MC = require("./MC").MC;
 V = require("./V").V;
+TB = require("./TB").TB;
+BT = require("./BT").BT;
 
 function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   if (instruction.length !== 4) {
@@ -39,7 +41,15 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
   switch (TO) {
     case 0:
-        return new V(AD, OD, OF, bullGamma)
+        if (OF & 0x2) { // OF and 0010 to select first bit
+          if (OF & 0x1) { // OF and 0001 to select last bit
+            return new BT(AD, OD, OF, bullGamma)
+          } else {
+            return new TB(AD, OD, OF, bullGamma)
+          }
+        } else {
+          return new V(AD, OD, OF, bullGamma)
+        }
     case 1:
       switch (AD) {
         case 0:

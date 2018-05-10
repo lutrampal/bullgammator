@@ -111,7 +111,7 @@ package Model {
         parseInstructions(hexCode)
         parseInstruction(TO, AD, OD, OF)
     }
-    BullGamma - Parser
+    Parser - BullGamma
     BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
 
     Serie <|-- IOSerie
@@ -225,29 +225,50 @@ package Model {
     abstract class OperationWithPreShift {
         OperationWithPreShift(TO, AD, OD, OF, bullGamma)
         execute()
-        {abstract} exeInstructionLogic()
+        {abstract} _exeInstructionLogic()
     }
 
     abstract class SmallDivOrMult {
       SmallDivOrMult(TO, AD, OD, OF, bullGamma)
       execute()
-      {abstract} compute(mb: Memory)
-      {abstract} computeValue()
+      {abstract} _compute(mb: Memory)
+      {abstract} _computeValue()
     }
 
     abstract class BigDivOrMult {
       BigDivOrMult(TO, AD, OD, OF, bullGamma)
       execute()
-      {abstract} compute(mb: Memory)
-      {abstract} computeValue()
+      {abstract} _compute(mb: Memory)
+      {abstract} _computeValue()
+    }
+
+    abstract class DrumTransfer {
+      DrumTransfer(TO, AD, OD, OF, bullGamma)
+      execute()
+      {abstract} _transfer()
     }
 
     Instruction <|-- Operation
+    Instruction <|-- DrumTransfer
     Operation <|-- OperationWithPreShift
     Operation <|-- SmallDivOrMult
     Operation <|-- BigDivOrMult
 
     InstructionsArray "64 instructions" *-- Instruction
+
+    class BT {
+      TO = 0
+      computeExeTime()
+      _transfer()
+    }
+
+    class TB {
+      TO = 0
+      computeExeTime()
+      _transfer()
+    }
+
+
 
     class V {
       TO = 0
@@ -344,49 +365,53 @@ package Model {
     class OB {
       TO = 8
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class CN {
       TO = 9
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class AN {
       TO = 10
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class SN {
       TO = 11
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class MR {
       TO = 12
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class DR {
       TO = 13
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class MC {
       TO = 14
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class DC {
       TO = 15
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     V --|> Instruction
@@ -406,7 +431,10 @@ package Model {
     GG -|> Operation
     Operation <|- BO
 
-    OperationWithPreShift <|-- SN 
+    DrumTransfer <|-- TB
+    DrumTransfer <|-- BT
+
+    OperationWithPreShift <|-- SN
     OperationWithPreShift <|-- OB
     OperationWithPreShift <|-- CN
     OperationWithPreShift <|-- AN

@@ -7,11 +7,11 @@ class MC extends BigDivOrMult {
     super(14, AD, OD, OF, bullGamma)
   }
 
-  compute(m1m2, mb) {
+  _compute(m1m2, mb) {
     m1m2.multiply(mb, this.OD, this.OF)
   }
 
-  computeValue(m1m2) {
+  _computeValue(m1m2) {
     m1m2.multiplyValue(this.OF, this.OD + NB_BLOCKS_PER_MEMORY)
   }
 

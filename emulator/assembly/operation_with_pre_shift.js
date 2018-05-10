@@ -18,11 +18,11 @@ class OperationWithPreShift extends Operation {
       }
       this.bullGamma.md = this.OD;
     }
-    this.exeInstructionLogic();
+    this._exeInstructionLogic();
   }
 
-  exeInstructionLogic() {
-    throw new Error('You have to implement the method exeInstructionLogic.');
+  _exeInstructionLogic() {
+    throw new Error('You have to implement the method _exeInstructionLogic().');
   }
 
 }

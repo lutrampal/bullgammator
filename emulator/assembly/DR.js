@@ -5,11 +5,11 @@ class DR extends SmallDivOrMult {
     super(12, AD, OD, OF, bullGamma)
   }
 
-  compute(mb) {
+  _compute(mb) {
     this.bullGamma.getMemory(1).divide(mb, this.OD, this.OF)
   }
 
-  computeValue() {
+  _computeValue() {
     this.bullGamma.getMemory(1).divideValue(this.OF, this.OD)
   }
 
