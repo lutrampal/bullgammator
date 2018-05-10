@@ -26,7 +26,7 @@ package Model {
 
     class Octad {
       id
-      Octad(id, bullGamma)
+      Octad(id, memories)
       getMemory(idx)
     }
 
@@ -61,8 +61,34 @@ package Model {
     }
 
     class MagneticDrum {
-        setContent(hexCode)
+      MagneticDrum(bullGamma)
+      setContent(hexCode)
+      setCommutedGroup(id)
     }
+
+    class DrumTrackGroup {
+      id
+      DrumTrackGroup(id, drum)
+    }
+
+    MagneticDrum "drum" *-- "8 trackGroups" DrumTrackGroup
+    MagneticDrum --> "commutedGroup" DrumTrackGroup
+
+    class DrumTrack {
+      id
+      DrumTrack(id, group)
+    }
+
+    DrumTrack "16 tracks" -* "trackGroup" DrumTrackGroup
+
+    class DrumBlock {
+      id
+      DrumBlock(id, track)
+    }
+
+    DrumBlock "8 blocks" -* "track" DrumTrack
+    Octad "2 octads" <--* DrumBlock
+
 
     class GeneralSerie {
         getInstruction(line)
@@ -86,7 +112,7 @@ package Model {
         parseInstruction(TO, AD, OD, OF)
     }
     BullGamma - Parser
-    BullGamma -- "magneticDrum" MagneticDrum
+    BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
 
     Serie <|-- IOSerie
     Serie <|-- GeneralSerie

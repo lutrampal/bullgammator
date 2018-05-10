@@ -5,6 +5,7 @@ Memory = require("./memory").Memory;
 GeneralSerie = require("./generalSerie").GeneralSerie;
 IOSerie = require("./ioSerie").IOSerie;
 Octad = require("./octad").Octad;
+MagneticDrum = require("./magneticDrum").MagneticDrum;
 CmpMemory = require("./cmpMemory").CmpMemory;
 
 const MEMORY_MODE = require("./constants").MEMORY_MODE;
@@ -50,6 +51,7 @@ class BullGamma {
     this.currentOctad = 0;
 
     // Other
+    this.magneticDrum = new MagneticDrum(this);
     this._memoryMode = MEMORY_MODE.DECIMAL;
     this.ms1 = 0;
     this.md = 0;
