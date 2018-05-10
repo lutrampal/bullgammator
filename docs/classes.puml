@@ -389,27 +389,31 @@ package Model {
       exeInstructionLogic()
     }
 
-    V --|> Operation
-    NOP --|> V
-    VCS --|> Operation
-    VRS --|> Operation
-    SN -|> OperationWithPreShift
-    ZB --|> Operation
+    V --|> Instruction
     KB --|> Instruction
     BD --|> Instruction
+    CB --|> Instruction
+    AMD -|> Instruction
+    CD -|> Instruction
+    Instruction <|- VCS
+    Instruction <|- VRS
+    Instruction <|-- CO
+    Instruction <|-- CSz
+    NOP --|> V
+
+    ZB --|> Operation
     IL --|> Operation
-    SmallDivOrMult <|-- MR
-    SmallDivOrMult <|-- DR
-    BigDivOrMult <|-- MC
-    BigDivOrMult <|-- DC
-    AMD --|> Instruction
-    OperationWithPreShift <|-- OB
-    CD -|> Operation
-    Operation <|-- CO
-    CB --|> Operation
-    CSz -|> Operation
-    Operation <|- GG
+    GG -|> Operation
     Operation <|- BO
+
+    OperationWithPreShift <|-- SN 
+    OperationWithPreShift <|-- OB
     OperationWithPreShift <|-- CN
     OperationWithPreShift <|-- AN
+
+    SmallDivOrMult <|-- MR
+    SmallDivOrMult <|-- DR
+
+    BigDivOrMult <|-- MC
+    BigDivOrMult <|-- DC
 @endDC

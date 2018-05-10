@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/machine/drumBlock.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/machine/drumTrack.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/machine/drumTrackGroup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/machine/magneticDrum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../docs/classes.puml" afterPath="$PROJECT_DIR$/../docs/classes.puml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/bullGamma.js" afterPath="$PROJECT_DIR$/machine/bullGamma.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/constants.js" afterPath="$PROJECT_DIR$/machine/constants.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/AMD.js" afterPath="$PROJECT_DIR$/assembly/AMD.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CB.js" afterPath="$PROJECT_DIR$/assembly/CB.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CD.js" afterPath="$PROJECT_DIR$/assembly/CD.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CO.js" afterPath="$PROJECT_DIR$/assembly/CO.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CSz.js" afterPath="$PROJECT_DIR$/assembly/CSz.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/V.js" afterPath="$PROJECT_DIR$/assembly/V.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/VCS.js" afterPath="$PROJECT_DIR$/assembly/VCS.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/VRS.js" afterPath="$PROJECT_DIR$/assembly/VRS.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/operation.js" afterPath="$PROJECT_DIR$/assembly/operation.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,31 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bullGamma.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine/bullGamma.js">
+      <file leaf-file-name="CSz.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assembly/CSz.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine/debug.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="constants.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/machine/constants.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="79" lean-forward="false" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="79" />
+            <state relative-caret-position="34">
+              <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -130,13 +112,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assembly/ZB.js" />
-        <option value="$PROJECT_DIR$/assembly/VCS.js" />
-        <option value="$PROJECT_DIR$/assembly/KB.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/instructions/KB.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/instructions/BD.js" />
         <option value="$PROJECT_DIR$/assembly/BD.js" />
-        <option value="$PROJECT_DIR$/assembly/AMD.js" />
         <option value="$PROJECT_DIR$/assembly/BO.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/OB.js" />
@@ -167,12 +143,9 @@
         <option value="$PROJECT_DIR$/testing/assembly/instructions/DC.js" />
         <option value="$PROJECT_DIR$/assembly/hexParser.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/CP.js" />
-        <option value="$PROJECT_DIR$/assembly/V.js" />
-        <option value="$PROJECT_DIR$/assembly/operation.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/V.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/CN.js" />
         <option value="$PROJECT_DIR$/assembly/CN.js" />
-        <option value="$PROJECT_DIR$/assembly/CD.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/MR.js" />
         <option value="$PROJECT_DIR$/machine/memory.js" />
         <option value="$PROJECT_DIR$/machine/drumBlock.js" />
@@ -181,6 +154,15 @@
         <option value="$PROJECT_DIR$/machine/magneticDrum.js" />
         <option value="$PROJECT_DIR$/machine/bullGamma.js" />
         <option value="$PROJECT_DIR$/machine/constants.js" />
+        <option value="$PROJECT_DIR$/assembly/AMD.js" />
+        <option value="$PROJECT_DIR$/assembly/operation.js" />
+        <option value="$PROJECT_DIR$/assembly/CD.js" />
+        <option value="$PROJECT_DIR$/assembly/CO.js" />
+        <option value="$PROJECT_DIR$/assembly/CSz.js" />
+        <option value="$PROJECT_DIR$/assembly/CB.js" />
+        <option value="$PROJECT_DIR$/assembly/V.js" />
+        <option value="$PROJECT_DIR$/assembly/VCS.js" />
+        <option value="$PROJECT_DIR$/assembly/VRS.js" />
       </list>
     </option>
   </component>
@@ -307,6 +289,11 @@
             <path>
               <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
               <item name="emulator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="assembly" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
@@ -498,7 +485,7 @@
       <workItem from="1525115023502" duration="9566000" />
       <workItem from="1525172347306" duration="4750000" />
       <workItem from="1525191558124" duration="11409000" />
-      <workItem from="1525959258913" duration="3228000" />
+      <workItem from="1525959258913" duration="4479000" />
     </task>
     <servers />
   </component>
@@ -535,7 +522,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147559000" />
+    <option name="totallyTimeSpent" value="148810000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1082" extended-state="7" />
@@ -581,11 +568,6 @@
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assembly/V.js</url>
-          <line>14</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
           <line>190</line>
           <option name="timeStamp" value="94" />
@@ -596,41 +578,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="51" lean-forward="true" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/GG.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/KB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/OB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/ZB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/assembly/instructions/BO.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -658,13 +605,6 @@
         <state relative-caret-position="68">
           <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/AMD.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -759,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/instruction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/machine/ioSerie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -797,13 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/hexParser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assembly/AN.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -820,33 +746,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/operation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="52" lean-forward="false" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/V.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assembly/CN.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/CD.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="57" lean-forward="false" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -955,10 +858,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine/bullGamma.js">
+    <entry file="file://$PROJECT_DIR$/machine/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+        <state relative-caret-position="374">
+          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/AMD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/operation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/CD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/CO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -971,10 +906,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine/constants.js">
+    <entry file="file://$PROJECT_DIR$/machine/bullGamma.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="79" lean-forward="false" selection-start-line="44" selection-start-column="79" selection-end-line="44" selection-end-column="79" />
+        <state relative-caret-position="799">
+          <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/hexParser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="52" column="15" lean-forward="true" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/CB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/VRS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/VCS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/V.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="28" lean-forward="false" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/instruction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/CSz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
           <folding />
         </state>
       </provider>
