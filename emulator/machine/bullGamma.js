@@ -70,8 +70,8 @@ class BullGamma {
    * @param id the octad to return, should be between 0 and 7 included
    */
   getOctad(id) {
-    assert.equal(id >= 0, true, "octad id should be positive");
-    assert.equal(id < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
+    assert(id >= 0, "octad id should be positive");
+    assert(id < NB_COMMUTED_OCTADS, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
     return this.groups[Math.floor(id/NB_OCTADS_PER_GROUP)].octads[id % NB_OCTADS_PER_GROUP]
   }
 

@@ -5,19 +5,16 @@ class DrumTransfer extends Instruction {
     super(TO, AD, OD, OF, bullGamma);
   }
 
-  _transfer() {
-    throw new Error("You have to implement the method _transfer()")
+  _transfer(nbGroup, trackGroup, nbTrack, nbBlock) {
+    throw "You have to implement the method _transfer()"
   }
 
   execute() {
-    this.nbGroup = this.AD >> 1
-    this.trackGroup = this.bullGamma.magneticDrum.trackGroups[0]
+    let trackGroup = this.bullGamma.magneticDrum.trackGroups[0]
     if (this.AD ^ 0x1) {
-      this.trackGroup = this.bullGamma.magneticDrum.commutedGroup
+      trackGroup = this.bullGamma.magneticDrum.commutedTrackGroup
     }
-    this.nbTrack = this.OD
-    this.nbBlock = this.OF >> 1
-    transfer()
+    this._transfer(this.AD >> 1, trackGroup, this.OD, this.OF >> 1)
   }
 
 }

@@ -42,12 +42,14 @@ package Model {
       getInstruction(line): Array<Instruction>
       getInstructions(): Instruction
       setInstructions(hexCode)
+      setContent(hexCode)
     }
 
     class Octad {
       id
       Octad(id, memories)
       getMemory(idx)
+      setContent(hexCode)
     }
 
     class Memory {
@@ -67,6 +69,7 @@ package Model {
       subtract(other, from, to)
       getDecimalValue(from, to) : int
       setDecimalValue(value, from, to)
+      setContent(hexCode)
     }
 
     class CmpMemory {
@@ -89,6 +92,7 @@ package Model {
     class DrumTrackGroup {
       id
       DrumTrackGroup(id, drum)
+      setContent(hexCode)
     }
 
     MagneticDrum "drum" *-- "8 trackGroups" DrumTrackGroup
@@ -97,6 +101,7 @@ package Model {
     class DrumTrack {
       id
       DrumTrack(id, group)
+      setContent(hexCode)
     }
 
     DrumTrackGroup "trackGroup" *- "16 tracks" DrumTrack
@@ -104,6 +109,7 @@ package Model {
     class DrumBlock {
       id
       DrumBlock(id, track)
+      setContent(hexCode)
     }
 
     Serie <|-- Group
@@ -197,7 +203,7 @@ package Model {
     abstract class DrumTransfer {
       DrumTransfer(TO, AD, OD, OF, bullGamma)
       execute()
-      {abstract} _transfer()
+      {abstract} _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
     }
 
     Instruction <|-- Operation
@@ -211,13 +217,13 @@ package Model {
     class BT {
       TO = 0
       computeExeTime()
-      _transfer()
+      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
     }
 
     class TB {
       TO = 0
       computeExeTime()
-      _transfer()
+      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
     }
 
     class V {

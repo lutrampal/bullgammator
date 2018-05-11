@@ -70,11 +70,11 @@ class Memory {
    * @param from which block index should the copy start from, should be positive and inferior to 12
    * @param to where should the copy end (excluded), should be inferior or equal to 12
    */
-  copyBlockValues(other, from, to) {
+  copyBlockValues(other, from=0, to=this.blocks.length, ignore_mode=false) {
     assert.equal(from >= 0, true, "from should be positive")
     assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length)
     for (let i = from; i < to; i++) {
-      if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
+      if (!ignore_mode && this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
         this.blocks[i] = other.blocks[i] - 10
       } else {
         this.blocks[i] = other.blocks[i]
@@ -307,6 +307,12 @@ class Memory {
     this.divide(mb, 0, at + 1)
   }
 
+  setContent(hexCode) {
+    assert(hexCode.length === this.blocks.length, "hexCode should be of length " + this.blocks.length)
+    for (let i = hexCode.length - 1, j = 0; j < hexCode.length; i--, j++) {
+      this.blocks[i] = parseInt(hexCode.charAt(j), 16)
+    }
+  }
 }
 
 module.exports.Memory = Memory;

@@ -1,8 +1,8 @@
-BullGamma = require("../../../machine/bullGamma").BullGamma;
-MEMORY_MODE = require("../../../machine/constants").MEMORY_MODE;
+BullGamma = require("../../machine/bullGamma").BullGamma;
+MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
-AN = require("../../../assembly/AN").AN;
-Memory = require("../../../machine/memory").Memory;
+AN = require("../../assembly/AN").AN;
+Memory = require("../../machine/memory").Memory;
 
 describe('AN', function() {
   describe('#execute()', function () {

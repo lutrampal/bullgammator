@@ -41,15 +41,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
   switch (TO) {
     case 0:
-        if (OF & 0x2) { // OF and 0010 to select first bit
-          if (OF & 0x1) { // OF and 0001 to select last bit
-            return new BT(AD, OD, OF, bullGamma)
-          } else {
-            return new TB(AD, OD, OF, bullGamma)
-          }
-        } else {
-          return new V(AD, OD, OF, bullGamma)
-        }
+      return new V(AD, OD, OF, bullGamma)
     case 1:
       switch (AD) {
         case 0:
@@ -81,7 +73,11 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
           throw "incorrect instruction for TO = 1: got AD = " + AD;
       }
     case 2:
-      throw "not supported yet: TO = 2 (TT)";
+      if (OF & 0x1) { // OF and 0001 to select last bit
+        return new TB(AD, OD, OF, bullGamma)
+      } else {
+        return new BT(AD, OD, OF, bullGamma)
+      }
     case 3:
       if (AD === 0) {
         throw "incorrect instruction for TO = 3: got AD = 0";
@@ -152,10 +148,10 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
  */
 function parse_hex_str_to_instructions(hex_str, bullGamma) {
   let instructions = [];
-  hex_str = hex_str.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
-  hex_str = hex_str.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
+  hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
+  hexCode = hexCode.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
   let i = 1;
-  hex_str.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
+  hexCode.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
       instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma));
       i++;
