@@ -1,0 +1,28 @@
+-- * * * Multiples CO et OB * * *
+-- Ecrit les valueur de la suite (2^n) à différentes positions de différentes octades
+
+4001
+A100
+8800
+1C01
+A100
+8900
+1C02
+A100
+8A00
+1C03
+A100
+8B00
+1C04
+A100
+8C00
+1C05
+A100
+8D00
+1C06
+A100
+8E00
+1C07
+A100
+8F00
+1C00
