@@ -3,7 +3,7 @@
 		<mat-tab label="Groupe {{ i }}">
 			<mat-tab-group *ngIf="gr_index == i" [(selectedIndex)]="tr_index">
 				<div *ngFor="let t of tg.tracks; index as j">
-					<mat-tab label="Piste {{ i * bull.constants.NB_TRACK_GROUPS + j }}">
+					<mat-tab label="Piste {{ i * bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j }}">
 						<mat-tab-group *ngIf="tr_index == j" [(selectedIndex)]="bl_index">
 							<div *ngFor="let b of t.blocks; index as k">
 								<mat-tab label="Bloc {{ k }}">

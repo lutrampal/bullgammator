@@ -8,7 +8,7 @@ Octad = require("../../machine/octad").Octad;
 const NB_BLOCKS_PER_TRACK = require("../../machine/constants").NB_BLOCKS_PER_DRUM_TRACK
 const NB_OCTADS_PER_BLOCK = require("../../machine/constants").NB_OCTADS_PER_DRUM_BLOCK
 const NB_TRACK_GROUPS = require("../../machine/constants").NB_TRACK_GROUPS
-const NB_TRACKS_PER_TRACK_GROUP = require("../../machine/constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
+const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("../../machine/constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
 
 assert = require('assert');
 
@@ -38,7 +38,7 @@ describe('MagneticDrum', function() {
 	        + "111111110000\t"
 	        + "222222220000\n"
         bullGamma.magneticDrum.setContent(
-          hexCode.repeat(NB_TRACK_GROUPS * NB_TRACKS_PER_TRACK_GROUP * NB_BLOCKS_PER_TRACK))
+          hexCode.repeat(NB_TRACK_GROUPS * NB_TRACKS_PER_DRUM_TRACK_GROUP * NB_BLOCKS_PER_TRACK))
         bullGamma.magneticDrum.trackGroups.forEach(function (trackGroup) {
           trackGroup.tracks.forEach(function (track) {
             track.blocks.forEach(function (block) {

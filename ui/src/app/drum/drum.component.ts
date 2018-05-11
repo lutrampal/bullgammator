@@ -22,7 +22,7 @@ export class DrumComponent implements OnInit {
   }
 
 	displayBlock(i, j, k) {
-		return "00: "+ this.drum.getBlock(i * this.bull.constants.NB_TRACK_GROUPS + j, k)
+		return "00: "+ this.drum.getBlock(i * this.bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j, k)
 			.replace("\t", "&emsp;&emsp;01: ")
 			.replace("\t", "&emsp;&emsp;02: ")
 			.replace("\t", "&emsp;&emsp;03: ")
