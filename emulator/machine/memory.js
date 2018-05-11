@@ -5,14 +5,14 @@ MEMORY_MODE = require("./constants").MEMORY_MODE;
 
 class Memory {
   constructor(id, bullGamma, nb_blocks = NB_BLOCKS_PER_MEMORY) {
-    this._id = id;
+    this.id = id;
     this.blocks = new Array(nb_blocks);
-    this._bullGamma = bullGamma;
+    this.bullGamma = bullGamma;
     this.setToZero(0, nb_blocks)
   }
 
   getMode() {
-    return this._bullGamma.getMemoryMode();
+    return this.bullGamma.getMemoryMode();
   }
 
   toString() {
@@ -255,15 +255,15 @@ class Memory {
     let valM1 = this.getDecimalValue(this_from, this_to) - other.getDecimalValue(from, to)
     this.setDecimalValue(Math.abs(valM1), this_from, this_to)
     if (valM1 < 0) {
-      this._bullGamma.ms1 = 10;
+      this.bullGamma.ms1 = 10;
     }
   }
 
   multiply(other, from, to) {
-    while (this._bullGamma.md !== 0) {
+    while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
         this.shiftRight()
-        this._bullGamma.md--
+        this.bullGamma.md--
       } else {
         this.blocks[0]--
         this.add(other, from, to, false)
@@ -272,10 +272,10 @@ class Memory {
   }
 
   multiplyValue(value, at) {
-    while (this._bullGamma.md !== 0) {
+    while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
         this.shiftRight()
-        this._bullGamma.md--
+        this.bullGamma.md--
       } else {
         this.blocks[0]--
         this.addValue(value, at)
@@ -288,11 +288,11 @@ class Memory {
     if (vmb === 0) {
       throw new Error("Divide by 0")
     }
-    while (this._bullGamma.md > 0) {
+    while (this.bullGamma.md > 0) {
       while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) < vmb
-                && this._bullGamma.md > 0) {
+                && this.bullGamma.md > 0) {
         this.shiftLeft()
-        this._bullGamma.md--
+        this.bullGamma.md--
       }
       while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) >= vmb) {
         this.blocks[0]++
@@ -302,7 +302,7 @@ class Memory {
   }
 
   divideValue(value, at) {
-    let mb = new Memory(0, this._bullGamma, NB_BLOCKS_PER_MEMORY)
+    let mb = new Memory(0, this.bullGamma, NB_BLOCKS_PER_MEMORY)
     mb.blocks[at] = value
     this.divide(mb, 0, at + 1)
   }

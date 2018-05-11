@@ -114,10 +114,10 @@ package Model {
 
     BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
     Octad *--> "8 memories" Memory
-    BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
+    BullGamma *-- "generalMemories 7" Memory
     BullGamma --> "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    Serie "4 series" --o "bullGamma" BullGamma
+    Serie "4 series, ioSerie" --o "bullGamma" BullGamma
     Group "4 groups" --* "bullGamma" BullGamma
     ConnexionArray "connexionArray" -- "bullGamma" BullGamma
     Group *--> "2 octads" Octad
@@ -394,4 +394,16 @@ package Model {
 
     BigDivOrMult <|-- MC
     BigDivOrMult <|-- DC
+
+    class InstructionParser {
+      InstructionParser(bullGamma)
+      parseInstructions(hexCode): Instruction
+      parseInstruction(TO, AD, OD, OF): Instruction
+    }
+
+    Instruction <. InstructionParser: Uses
+  }
+
+  Instruction <. Serie: Uses
+  InstructionParser "parser"- "bullGamma" BullGamma
 @endDC

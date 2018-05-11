@@ -1,6 +1,6 @@
-const MEMORY_MODE = require("./constants").MEMORY_MODE;
-const NB_BLOCKS_PER_MEMORY = require("./constants").NB_BLOCKS_PER_MEMORY;
-const NB_BLOCKS_LINE_NUMBER = require("./constants").NB_BLOCKS_LINE_NUMBER;
+const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
+const NB_BLOCKS_PER_MEMORY = require("../machine/constants").NB_BLOCKS_PER_MEMORY;
+const NB_BLOCKS_LINE_NUMBER = require("../machine/constants").NB_BLOCKS_LINE_NUMBER;
 
 class Debug {
 
