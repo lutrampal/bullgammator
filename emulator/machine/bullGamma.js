@@ -2,54 +2,51 @@ assert = require('assert');
 
 InstructionsParser = require("../assembly/hexParser").InstructionsParser;
 Memory = require("./memory").Memory;
-GeneralSerie = require("./generalSerie").GeneralSerie;
-IOSerie = require("./ioSerie").IOSerie;
+Group = require("./group").Group;
 Octad = require("./octad").Octad;
+MagneticDrum = require("./magneticDrum").MagneticDrum;
 CmpMemory = require("./cmpMemory").CmpMemory;
+ConnexionArray = require("./connexionArray").ConnexionArray;
+Serie = require("./serie").Serie
 
 const MEMORY_MODE = require("./constants").MEMORY_MODE;
 
-const NB_MEMORIES_PER_SERIES = require("./constants").NB_MEMORIES_PER_SERIES;
 const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
+const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
 const NB_GENERAL_MEMORIES = require("./constants").NB_GENERAL_MEMORIES;
 const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
-const NB_OTHER_MEMORIES = require("./constants").NB_OTHER_MEMORIES;
-const NB_INST_IOSERIES = require("./constants").NB_INST_IOSERIES;
-const NB_INST_PER_SERIES = require("./constants").NB_INST_PER_SERIES;
+const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY;
+const NB_INST_PER_SERIE = require("./constants").NB_INST_PER_SERIE;
 
 class BullGamma {
 
   constructor() {
     // Memories
-    this._generalMemories = new Array(NB_GENERAL_MEMORIES + NB_OTHER_MEMORIES);
-    for (let i = 1; i < NB_GENERAL_MEMORIES + NB_OTHER_MEMORIES; ++i) {
+    this._generalMemories = new Array(NB_GENERAL_MEMORIES);
+    for (let i = 1; i < NB_GENERAL_MEMORIES; ++i) {
       this._generalMemories[i] = new Memory(i + 1, this);
     }
     // M0 == M1
     this._generalMemories[0] = this._generalMemories[1];
 
-    // Series
-    this._generalSeries = new Array(NB_GENERAL_SERIES);
-    for (let i = 0; i < NB_GENERAL_SERIES; ++i) {
-      this._generalSeries[i] = new GeneralSerie(i, this._generalMemories.slice(
-        NB_GENERAL_MEMORIES + i * NB_MEMORIES_PER_SERIES,
-        NB_GENERAL_MEMORIES + (i + 1) * NB_MEMORIES_PER_SERIES
-      ), this);
-    }
-    this._ioSerie = new IOSerie(NB_GENERAL_SERIES, this);
+    this.connexionArray = new ConnexionArray(NB_GENERAL_SERIES, this)
+    this.ioGroup = new Group(NB_GENERAL_SERIES, this)
 
-    // Octads
-    this._commuted_octads = new Array(NB_COMMUTED_OCTADS);
-    for (let i = 0; i < NB_COMMUTED_OCTADS; ++i) {
-      this._commuted_octads[i] = new Octad(i, this._generalMemories.slice(
-        NB_GENERAL_MEMORIES + i * NB_MEMORIES_PER_OCTAD,
-        NB_GENERAL_MEMORIES + (i + 1) * NB_MEMORIES_PER_OCTAD
-      ));
+    // Series and groups
+    this.series = new Array(NB_GENERAL_SERIES + 1);
+    this.groups = new Array(NB_GENERAL_SERIES + 1)
+    for (let i = 0; i < NB_GENERAL_SERIES; ++i) {
+      this.groups[i] = new Group(i, this);
+      this.series[i] = new Serie(i, this, this.groups[i])
     }
-    this.currentOctad = 0;
+    this.series[NB_GENERAL_SERIES] = this.connexionArray
+    this.groups[NB_GENERAL_SERIES] = this.ioGroup
+
+    this.currentOctad = this.groups[0].octads[0];
 
     // Other
+    this.magneticDrum = new MagneticDrum(this);
     this._memoryMode = MEMORY_MODE.DECIMAL;
     this.ms1 = 0;
     this.md = 0;
@@ -65,12 +62,8 @@ class BullGamma {
    * @param id the serie to return, should be between 0 and 2 included
    */
   getSerie(id) {
-    assert.equal(id >= 0, true, "series id should be positive");
-    assert.equal(id < NB_GENERAL_SERIES + 1, true, "series id should be inferior to " + NB_GENERAL_SERIES + 1);
-    if (id < NB_GENERAL_SERIES) {
-      return this._generalSeries[id];
-    }
-    return this._ioSerie;
+    assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
+    return this.series[id]
   }
 
   /**
@@ -78,27 +71,30 @@ class BullGamma {
    * @param id the octad to return, should be between 0 and 7 included
    */
   getOctad(id) {
-    assert.equal(id >= 0, true, "octad id should be positive");
-    assert.equal(id < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
-    return this._commuted_octads[id];
+    assert(id >= 0, "octad id should be positive");
+    assert(id < NB_COMMUTED_OCTADS, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
+    return this.groups[Math.floor(id/NB_OCTADS_PER_GROUP)].octads[id % NB_OCTADS_PER_GROUP]
   }
 
   /**
    * @param id the memory to be returned, if superior to 7, then the memory is selected from the octad
-   * @param octad if given, the memory will be selected from this octad, else from the current octad
+   * @param octadId if given, the memory will be selected from this octad, else from the current octad
    * @returns {*} the memory with the desired id
    */
-  getMemory(id, octad) {
-    assert.equal(id >= 0, true, "memory id should not be negative");
-    assert.equal(id < NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD, true, "memory id should be inferior to " + NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD);
-    octad = octad || this.currentOctad;
-    assert.equal(octad >= 0, true, "octad id should not be negative");
-    assert.equal(octad < NB_COMMUTED_OCTADS, true, "octad id should be inferior to " + NB_COMMUTED_OCTADS);
+  getMemory(id, octadId) {
+    assert(id >= 0, "memory id should not be negative");
+    assert(id < NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD, "memory id should be inferior to " + NB_GENERAL_MEMORIES
+      + NB_MEMORIES_PER_OCTAD);
 
     if (id < NB_GENERAL_MEMORIES) {
       return this._generalMemories[id];
+    } else {
+      if (octadId !== undefined) {
+        return this.getOctad(octadId).getMemory([id - NB_GENERAL_MEMORIES])
+      } else {
+        return this.currentOctad.getMemory([id - NB_GENERAL_MEMORIES])
+      }
     }
-    return this._commuted_octads[octad].getMemory(id - NB_GENERAL_MEMORIES);
   }
 
   /**
@@ -121,16 +117,16 @@ class BullGamma {
     let old_cp = this.cp;
 
     // compute series
-    var series;
-    if (this.cp < NB_INST_IOSERIES) {
-      series = this._ioSerie;
+    let series;
+    if (this.cp < NB_INST_CONNEXION_ARRAY) {
+      series = this.connexionArray;
     } else {
-      let index = 1 + Math.floor((this.cp - NB_INST_IOSERIES) / NB_INST_PER_SERIES);
+      let index = 1 + Math.floor((this.cp - NB_INST_CONNEXION_ARRAY) / NB_INST_PER_SERIE);
       series = this.getSerie(index);
     }
 
     // compute new line
-    if (this.cp < NB_INST_IOSERIES) {
+    if (this.cp < NB_INST_CONNEXION_ARRAY) {
       this.cp = (this.cp + 1 - series.lineOffset) % (series.nbInst) + series.lineOffset;
     }
 

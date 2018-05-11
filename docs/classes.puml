@@ -9,25 +9,44 @@ package Model {
       _memoryMode
       ms1
       msb
-      md : hexa
+      md
       BullGamma()
       selectOctad(id)
       getMemory(id)
       getOctad(id)
       getMemoryMode()
       setMemoryMode(newMode)
+      getSerie(id): Serie
+      getGroup(id): Group
+      getIOSerie(): Serie
+      getConnexionArray(): ConnexionArray
     }
 
-    abstract class Serie {
+    class Serie {
       id
-      Serie(id, bullGamma)
-      {abstract} getInstruction(index)
+      Serie(id, bullGamma, group)
+      getInstruction(line): Array<Instruction>
+      getInstructions(): Instruction
+      setInstructions(hexCode)
+    }
+
+    class ConnexionArray {
+      ConnexionArray(id, bullGamma)
+      getInstruction(line): Array<Instruction>
+      getInstructions(): Instruction
+      setInstructions(hexCode)
+    }
+
+    class Group {
+      Group(id, bullGamma)
+      setContent(hexCode)
     }
 
     class Octad {
       id
-      Octad(id, bullGamma)
+      Octad(id, memories)
       getMemory(idx)
+      setContent(hexCode)
     }
 
     class Memory {
@@ -47,6 +66,7 @@ package Model {
       subtract(other, from, to)
       getDecimalValue(from, to) : int
       setDecimalValue(value, from, to)
+      setContent(hexCode)
     }
 
     class CmpMemory {
@@ -61,89 +81,49 @@ package Model {
     }
 
     class MagneticDrum {
-        setContent(hexCode)
+      MagneticDrum(bullGamma)
+      setContent(hexCode)
+      setCommutedGroup(id)
     }
 
-    class GeneralSerie {
-        getInstruction(line)
-        getInstructions()
+    class DrumTrackGroup {
+      id
+      DrumTrackGroup(id, drum)
+      setContent(hexCode)
     }
 
-    class IOSerie {
-        instructions
-        max_nb_inst = 64
-        setInstructions(hexCode)
-        getInstruction(line)
-        getInstructions()
+    MagneticDrum "drum" *-- "8 trackGroups" DrumTrackGroup
+    MagneticDrum --> "commutedGroup" DrumTrackGroup
+
+    class DrumTrack {
+      id
+      DrumTrack(id, group)
+      setContent(hexCode)
     }
 
-    class InstructionsArray {
+    DrumTrackGroup "trackGroup" *- "16 tracks" DrumTrack
 
+    class DrumBlock {
+      id
+      DrumBlock(id, track)
+      setContent(hexCode)
     }
 
-    class Parser {
-        parseInstructions(hexCode)
-        parseInstruction(TO, AD, OD, OF)
-    }
-    BullGamma - Parser
-    BullGamma -- "magneticDrum" MagneticDrum
+    Serie o--> "1 group" Group
+    Serie <|-- ConnexionArray
 
-    Serie <|-- IOSerie
-    Serie <|-- GeneralSerie
-    Octad o---> "8 memories" Memory
-    GeneralSerie o---> "16 memories" Memory
-    BullGamma *-- "generalMemories 7\ncp, rnl1, rnl2" Memory
-    BullGamma -- "mc" CmpMemory
+    DrumBlock "8 blocks" --* "track" DrumTrack
+    Octad "2 octads" <--* DrumBlock
+
+    BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
+    Octad *--> "8 memories" Memory
+    BullGamma *-- "generalMemories 7" Memory
+    BullGamma --> "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    IOSerie "ioSerie" -- BullGamma
-    GeneralSerie "generalSeries 3" -- BullGamma
-    InstructionsArray "instructions" <---* IOSerie
-
-  }
-
-  package WireArray {
-
-      class WireArray {
-          editIoSerie()
-          generateWires(instructions)
-      }
-
-
-      abstract class ArrayConnection {
-
-      }
-
-      class Constant {
-        value
-        getValue()
-      }
-
-      class InstructionConnection {
-
-      }
-
-      ArrayConnection <|-- Constant
-      ArrayConnection <|-- InstructionConnection
-
-      class InstrConnectionTuple {
-        value
-        getValue()
-        setValue()
-      }
-
-      class Wire {
-
-      }
-
-      ArrayConnection "ends 2" --o "wire" Wire
-      Wire "wires 0..*" <--* WireArray
-
-      InstructionConnection "connections 2" <--* InstrConnectionTuple
-      InstrConnectionTuple <-* WireArray
-
-      Constant "constants 16" <--* WireArray
-      IOSerie "edit" <--down--o WireArray
-
+    Serie "4 series" --* "bullGamma" BullGamma
+    Group "4 groups" --* "bullGamma" BullGamma
+    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
+    Group *--> "2 octads" Octad
   }
 
   package "Control" {
@@ -151,7 +131,8 @@ package Model {
           editIoSerie(hexCode)
           editDrum(hexCode)
       }
-      IOSerie "edit" <--down--o Editor
+
+      ConnexionArray "edit" <--down--o Editor
       MagneticDrum "edit" <--down--o Editor
 
       class Execution {
@@ -199,29 +180,48 @@ package Model {
     abstract class OperationWithPreShift {
         OperationWithPreShift(TO, AD, OD, OF, bullGamma)
         execute()
-        {abstract} exeInstructionLogic()
+        {abstract} _exeInstructionLogic()
     }
 
     abstract class SmallDivOrMult {
       SmallDivOrMult(TO, AD, OD, OF, bullGamma)
       execute()
-      {abstract} compute(mb: Memory)
-      {abstract} computeValue()
+      {abstract} _compute(mb: Memory)
+      {abstract} _computeValue()
     }
 
     abstract class BigDivOrMult {
       BigDivOrMult(TO, AD, OD, OF, bullGamma)
       execute()
-      {abstract} compute(mb: Memory)
-      {abstract} computeValue()
+      {abstract} _compute(mb: Memory)
+      {abstract} _computeValue()
+    }
+
+    abstract class DrumTransfer {
+      DrumTransfer(TO, AD, OD, OF, bullGamma)
+      execute()
+      {abstract} _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
     }
 
     Instruction <|-- Operation
+    Instruction <|-- DrumTransfer
     Operation <|-- OperationWithPreShift
     Operation <|-- SmallDivOrMult
     Operation <|-- BigDivOrMult
 
     InstructionsArray "64 instructions" *-- Instruction
+
+    class BT {
+      TO = 0
+      computeExeTime()
+      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
+    }
+
+    class TB {
+      TO = 0
+      computeExeTime()
+      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
+    }
 
     class V {
       TO = 0
@@ -318,72 +318,95 @@ package Model {
     class OB {
       TO = 8
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class CN {
       TO = 9
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class AN {
       TO = 10
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class SN {
       TO = 11
       computeExeTime()
-      exeInstructionLogic()
+      _exeInstructionLogic()
     }
 
     class MR {
       TO = 12
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class DR {
       TO = 13
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class MC {
       TO = 14
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
     class DC {
       TO = 15
       computeExeTime()
-      exeInstructionLogic()
+      _compute(mb: Memory)
+      _computeValue()
     }
 
-    V --|> Operation
-    NOP --|> V
-    VCS --|> Operation
-    VRS --|> Operation
-    SN -|> OperationWithPreShift
-    ZB --|> Operation
+    V --|> Instruction
     KB --|> Instruction
     BD --|> Instruction
+    CB --|> Instruction
+    AMD -|> Instruction
+    CD -|> Instruction
+    Instruction <|- VCS
+    Instruction <|- VRS
+    Instruction <|-- CO
+    Instruction <|-- CSz
+    NOP --|> V
+
+    ZB --|> Operation
     IL --|> Operation
-    SmallDivOrMult <|-- MR
-    SmallDivOrMult <|-- DR
-    BigDivOrMult <|-- MC
-    BigDivOrMult <|-- DC
-    AMD --|> Instruction
-    OperationWithPreShift <|-- OB
-    CD -|> Operation
-    Operation <|-- CO
-    CB --|> Operation
-    CSz -|> Operation
-    Operation <|- GG
+    GG -|> Operation
     Operation <|- BO
+
+    DrumTransfer <|-- TB
+    DrumTransfer <|-- BT
+
+    OperationWithPreShift <|-- SN
+    OperationWithPreShift <|-- OB
     OperationWithPreShift <|-- CN
     OperationWithPreShift <|-- AN
+
+    SmallDivOrMult <|-- MR
+    SmallDivOrMult <|-- DR
+
+    BigDivOrMult <|-- MC
+    BigDivOrMult <|-- DC
+
+    class InstructionParser {
+      InstructionParser(bullGamma)
+      parseInstructions(hexCode): Instruction
+      parseInstruction(TO, AD, OD, OF): Instruction
+    }
+
+    Instruction <. InstructionParser: Uses
+  }
+
+  Instruction <. Serie: Uses
+  InstructionParser "parser"- "bullGamma" BullGamma
 @endDC

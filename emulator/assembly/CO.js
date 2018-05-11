@@ -1,6 +1,6 @@
-Operation = require("./operation").Operation
+Instruction = require("./instruction").Instruction
 
-class CO extends Operation {
+class CO extends Instruction {
   constructor(OF, bullGamma) {
     super(1, 12, 0, OF, bullGamma)
   }
@@ -9,7 +9,7 @@ class CO extends Operation {
     if (this.OF > 7) {
       throw "incorrect instruction for TO = 1, AD = C: got OF = " + OF;
     }
-    this.bullGamma.currentOctad = this.OF;
+    this.bullGamma.currentOctad = this.bullGamma.getOctad(this.OF);
   }
 }
 

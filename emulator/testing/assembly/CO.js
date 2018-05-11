@@ -1,14 +1,14 @@
-BullGamma = require("../../../machine/bullGamma").BullGamma;
+BullGamma = require("../../machine/bullGamma").BullGamma;
 assert = require('assert');
-CO = require("../../../assembly/CO").CO;
+CO = require("../../assembly/CO").CO;
 
-describe('AMD', function() {
+describe('CO', function() {
   describe('#execute()', function () {
     it('should transfer OF to currentOctad', function () {
       let bullGamma = new BullGamma();
       let co = new CO(3, bullGamma);
       co.execute();
-      assert.equal(bullGamma.currentOctad, 3);
+      assert.equal(bullGamma.currentOctad.id, 3);
     });
   });
 });

@@ -7,12 +7,12 @@ class SmallDivOrMult extends Operation {
     super(TO, AD, OD, OF, bullGamma)
   }
 
-  compute(mb) {
-    throw new Error('You have to implement the method compute.');
+  _compute(mb) {
+    throw new Error('You have to implement the method _compute().');
   }
 
-  computeValue() {
-    throw new Error('You have to implement the method computeValue.');
+  _computeValue() {
+    throw new Error('You have to implement the method _computeValue().');
   }
 
   execute() {
@@ -25,14 +25,14 @@ class SmallDivOrMult extends Operation {
       let mb = this.bullGamma.getMemory(this.AD)
       if (mb.blocks[this.OF - 1] === 10) {
         mb.blocks[this.OF - 1] = 0
-        this.compute(mb)
+        this._compute(mb)
         mb.blocks[this.OF - 1] = 10
         nb_neg_signs++
       } else {
-        this.compute(mb)
+        this._compute(mb)
       }
     } else {
-      this.computeValue()
+      this._computeValue()
     }
     if (nb_neg_signs % 2 === 0) {
       this.bullGamma.ms1 = 0

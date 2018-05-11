@@ -1,9 +1,9 @@
-const NB_BLOCKS_PER_MEMORY = require("../../../machine/constants").NB_BLOCKS_PER_MEMORY;
-BullGamma = require("../../../machine/bullGamma").BullGamma;
-MEMORY_MODE = require("../../../machine/constants").MEMORY_MODE;
+const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+BullGamma = require("../../machine/bullGamma").BullGamma;
+MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
-OB = require("../../../assembly/OB").OB;
-Memory = require("../../../machine/memory").Memory;
+OB = require("../../assembly/OB").OB;
+Memory = require("../../machine/memory").Memory;
 
 describe('BO', function() {
   describe('#execute()', function() {

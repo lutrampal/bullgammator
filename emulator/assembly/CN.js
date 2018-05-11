@@ -5,7 +5,7 @@ class CN extends OperationWithPreShift {
     super(9, AD, OD, OF, bullGamma)
   }
 
-  exeInstructionLogic() {
+  _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1);
     if (this.AD === 0) {
       let vm1 = m1.getDecimalValue(0, m1.blocks.length)

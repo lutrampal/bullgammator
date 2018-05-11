@@ -7,11 +7,11 @@ class BigDivOrMult extends Operation {
     super(TO, AD, OD, OF, bullGamma)
   }
 
-  compute(m1m2, mb) {
+  _compute(m1m2, mb) {
     throw new Error('You have to implement the method compute.');
   }
 
-  computeValue(m1m2) {
+  _computeValue(m1m2) {
     throw new Error('You have to implement the method computeValue.');
   }
 
@@ -26,9 +26,9 @@ class BigDivOrMult extends Operation {
     m1m2.copyBlockValues(m2, 0, NB_BLOCKS_PER_MEMORY)
     if (this.AD > 0) {
       let mb = this.bullGamma.getMemory(this.AD)
-      this.compute(m1m2, mb)
+      this._compute(m1m2, mb)
     } else {
-      this.computeValue(m1m2)
+      this._computeValue(m1m2)
     }
     for (let i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
       m1.blocks[i] = m1m2.blocks[i + NB_BLOCKS_PER_MEMORY]

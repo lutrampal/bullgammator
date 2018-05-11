@@ -1,8 +1,8 @@
-BullGamma = require("../../../machine/bullGamma").BullGamma;
-MEMORY_MODE = require("../../../machine/constants").MEMORY_MODE;
+BullGamma = require("../../machine/bullGamma").BullGamma;
+MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
-CN = require("../../../assembly/CN").CN;
-Memory = require("../../../machine/memory").Memory;
+CN = require("../../assembly/CN").CN;
+Memory = require("../../machine/memory").Memory;
 
 describe('CN', function() {
   describe('#execute()', function () {

@@ -1,8 +1,8 @@
-const NB_BLOCKS_PER_MEMORY = require("../../../machine/constants").NB_BLOCKS_PER_MEMORY;
-BullGamma = require("../../../machine/bullGamma").BullGamma;
+const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+BullGamma = require("../../machine/bullGamma").BullGamma;
 assert = require('assert');
-ZB = require("../../../assembly/ZB").ZB;
-Memory = require("../../../machine/memory").Memory;
+ZB = require("../../assembly/ZB").ZB;
+Memory = require("../../machine/memory").Memory;
 
 describe('ZB', function() {
   describe('#execute()', function() {

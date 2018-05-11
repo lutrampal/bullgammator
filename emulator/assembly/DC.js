@@ -5,11 +5,11 @@ class DC extends BigDivOrMult {
     super(15, AD, OD, OF, bullGamma)
   }
 
-  compute(m1m2, mb) {
+  _compute(m1m2, mb) {
     m1m2.divide(mb, this.OD, this.OF)
   }
 
-  computeValue(m1m2) {
+  _computeValue(m1m2) {
     m1m2.divideValue(this.OF, this.OD)
   }
 

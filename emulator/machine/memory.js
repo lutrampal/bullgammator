@@ -5,14 +5,14 @@ MEMORY_MODE = require("./constants").MEMORY_MODE;
 
 class Memory {
   constructor(id, bullGamma, nb_blocks = NB_BLOCKS_PER_MEMORY) {
-    this._id = id;
+    this.id = id;
     this.blocks = new Array(nb_blocks);
-    this._bullGamma = bullGamma;
+    this.bullGamma = bullGamma;
     this.setToZero(0, nb_blocks)
   }
 
   getMode() {
-    return this._bullGamma.getMemoryMode();
+    return this.bullGamma.getMemoryMode();
   }
 
   toString() {
@@ -70,11 +70,11 @@ class Memory {
    * @param from which block index should the copy start from, should be positive and inferior to 12
    * @param to where should the copy end (excluded), should be inferior or equal to 12
    */
-  copyBlockValues(other, from, to) {
+  copyBlockValues(other, from=0, to=this.blocks.length, ignore_mode=false) {
     assert.equal(from >= 0, true, "from should be positive")
     assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length)
     for (let i = from; i < to; i++) {
-      if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
+      if (!ignore_mode && this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
         this.blocks[i] = other.blocks[i] - 10
       } else {
         this.blocks[i] = other.blocks[i]
@@ -255,15 +255,15 @@ class Memory {
     let valM1 = this.getDecimalValue(this_from, this_to) - other.getDecimalValue(from, to)
     this.setDecimalValue(Math.abs(valM1), this_from, this_to)
     if (valM1 < 0) {
-      this._bullGamma.ms1 = 10;
+      this.bullGamma.ms1 = 10;
     }
   }
 
   multiply(other, from, to) {
-    while (this._bullGamma.md !== 0) {
+    while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
         this.shiftRight()
-        this._bullGamma.md--
+        this.bullGamma.md--
       } else {
         this.blocks[0]--
         this.add(other, from, to, false)
@@ -272,10 +272,10 @@ class Memory {
   }
 
   multiplyValue(value, at) {
-    while (this._bullGamma.md !== 0) {
+    while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
         this.shiftRight()
-        this._bullGamma.md--
+        this.bullGamma.md--
       } else {
         this.blocks[0]--
         this.addValue(value, at)
@@ -288,11 +288,11 @@ class Memory {
     if (vmb === 0) {
       throw new Error("Divide by 0")
     }
-    while (this._bullGamma.md > 0) {
+    while (this.bullGamma.md > 0) {
       while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) < vmb
-                && this._bullGamma.md > 0) {
+                && this.bullGamma.md > 0) {
         this.shiftLeft()
-        this._bullGamma.md--
+        this.bullGamma.md--
       }
       while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) >= vmb) {
         this.blocks[0]++
@@ -302,11 +302,17 @@ class Memory {
   }
 
   divideValue(value, at) {
-    let mb = new Memory(0, this._bullGamma, NB_BLOCKS_PER_MEMORY)
+    let mb = new Memory(0, this.bullGamma, NB_BLOCKS_PER_MEMORY)
     mb.blocks[at] = value
     this.divide(mb, 0, at + 1)
   }
 
+  setContent(hexCode) {
+    assert(hexCode.length === this.blocks.length, "hexCode should be of length " + this.blocks.length)
+    for (let i = hexCode.length - 1, j = 0; j < hexCode.length; i--, j++) {
+      this.blocks[i] = parseInt(hexCode.charAt(j), 16)
+    }
+  }
 }
 
 module.exports.Memory = Memory;
