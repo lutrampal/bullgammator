@@ -1,4 +1,4 @@
-const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 BullGamma = require("../../machine/bullGamma").BullGamma;
 assert = require('assert');
 ZB = require("../../assembly/ZB").ZB;
@@ -9,7 +9,7 @@ describe('ZB', function() {
     it('should set memory to zero', function() {
       let bullGamma =  new BullGamma();
       let mem4 = bullGamma.getMemory(4);
-      for (let i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (let i = 0; i < NB_CHRS_PER_WORD; ++i) {
         mem4.blocks[i] = 1;
       }
       let zb = new ZB(4, 5, 7, bullGamma);
@@ -20,7 +20,7 @@ describe('ZB', function() {
       for (let i = 5; i < 7; ++i) {
         assert.equal(mem4.blocks[i], 0);
       }
-      for (let i = 7; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (let i = 7; i < NB_CHRS_PER_WORD; ++i) {
         assert.equal(mem4.blocks[i], 1);
       }
     });

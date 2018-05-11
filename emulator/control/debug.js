@@ -1,6 +1,6 @@
 const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
-const NB_BLOCKS_PER_MEMORY = require("../machine/constants").NB_BLOCKS_PER_MEMORY;
-const NB_BLOCKS_LINE_NUMBER = require("../machine/constants").NB_BLOCKS_LINE_NUMBER;
+const NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
+const NB_CHRS_PROGRAM_COUNTER = require("../machine/constants").NB_CHRS_PROGRAM_COUNTER;
 
 class Debug {
 
@@ -52,7 +52,7 @@ class Debug {
     this.bullGamma.getMemory(id, octad).blocks.forEach((val) => {
       value = Debug.hex(val) + value;
     });
-    return Debug.pad(value, NB_BLOCKS_PER_MEMORY);
+    return Debug.pad(value, NB_CHRS_PER_WORD);
   }
 
   /**
@@ -62,7 +62,7 @@ class Debug {
    * @param octad octad number
    */
   setMemory(value, id, octad) {
-    value = Debug.pad(value, NB_BLOCKS_PER_MEMORY);
+    value = Debug.pad(value, NB_CHRS_PER_WORD);
     if (!Debug.banalMemoryValidate(value)) {
       return;
     }
@@ -130,7 +130,7 @@ class Debug {
    * @return string
    */
   getNL() {
-    return Debug.pad(Debug.hex(this.bullGamma.cp), NB_BLOCKS_LINE_NUMBER);
+    return Debug.pad(Debug.hex(this.bullGamma.cp), NB_CHRS_PROGRAM_COUNTER);
   }
 
   /**
@@ -138,7 +138,7 @@ class Debug {
    * @param value correct line number
    */
   setNL(value) {
-    value = Debug.pad(value, NB_BLOCKS_LINE_NUMBER);
+    value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
     if (!Debug.nlValidate(value)) {
       return;
     }
@@ -265,7 +265,7 @@ class Debug {
   * @return string
   */
   getRNL1() {
-    return Debug.pad(Debug.hex(this.bullGamma.rnl1), NB_BLOCKS_LINE_NUMBER);
+    return Debug.pad(Debug.hex(this.bullGamma.rnl1), NB_CHRS_PROGRAM_COUNTER);
   }
 
   /**
@@ -273,7 +273,7 @@ class Debug {
    * @param value correct line number
    */
   setRNL1(value) {
-    value = Debug.pad(value, NB_BLOCKS_LINE_NUMBER);
+    value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
     if (!Debug.nlValidate(value)) {
       return;
     }
@@ -286,7 +286,7 @@ class Debug {
    * @return string
    */
   getRNL2() {
-    return Debug.pad(Debug.hex(this.bullGamma.rnl2), NB_BLOCKS_LINE_NUMBER);
+    return Debug.pad(Debug.hex(this.bullGamma.rnl2), NB_CHRS_PROGRAM_COUNTER);
   }
 
   /**
@@ -294,7 +294,7 @@ class Debug {
    * @param value correct line number
    */
   setRNL2(value) {
-    value = Debug.pad(value, NB_BLOCKS_LINE_NUMBER);
+    value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
     if (!Debug.nlValidate(value)) {
       return;
     }

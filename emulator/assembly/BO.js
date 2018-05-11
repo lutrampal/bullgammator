@@ -1,5 +1,5 @@
 Operation = require("./operation").Operation
-NB_BLOCKS_PER_MEMORY = require("../machine/constants").NB_BLOCKS_PER_MEMORY
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
 class BO extends Operation {
   constructor(AD, OD, OF, bullGamma) {
@@ -10,7 +10,7 @@ class BO extends Operation {
     let m1 = this.bullGamma.getMemory(1);
 
     // save memory value
-    let cp_block = new Array(NB_BLOCKS_PER_MEMORY);
+    let cp_block = new Array(NB_CHRS_PER_WORD);
     for (let i = this.OD; i < this.OF; i++) {
       cp_block[i] = m1.blocks[i];
     }

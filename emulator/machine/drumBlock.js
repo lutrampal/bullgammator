@@ -1,45 +1,49 @@
 assert = require('assert');
+Word = require("./word").Word
 
-const NB_OCTADS_PER_DRUM_BLOCK = require("./constants").NB_OCTADS_PER_DRUM_BLOCK
-const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD
 const NB_HEX_VALUES_PER_DRUM_BLOCK = require("./constants").NB_HEX_VALUES_PER_DRUM_BLOCK
 const NB_HEX_VALUES_PER_OCTAD = require("./constants").NB_HEX_VALUES_PER_OCTAD
+const NB_WORD_PER_DRUM_BLOCK = require("./constants").NB_WORD_PER_DRUM_BLOCK
 
-Octad = require("./octad").Octad;
-Memory = require("./memory").Memory
 
 class DrumBlock {
 
   constructor(id, track) {
-    this.id = id
-    this.track = track
-    this.octads = new Array(NB_OCTADS_PER_DRUM_BLOCK)
-    for (let i = 0; i < NB_OCTADS_PER_DRUM_BLOCK; ++i) {
-      let memories = new Array(8)
-      for (let j = 8; j < 16; ++j) {
-        memories[j - 8] = new Memory(j, track.trackGroup.drum.bullGamma)
-      }
-      this.octads[i] = new Octad(i, memories)
-    }
+    this.id = id;
+    this.track = track;
+		this.words = new Array(NB_WORD_PER_DRUM_BLOCK);
+		for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
+			this.words[w] = new Word();
+		}
   }
 
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
+    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length === NB_HEX_VALUES_PER_DRUM_BLOCK, "hexCode should be of length " + NB_HEX_VALUES_PER_OCTAD)
-    for (let i = 0; i < NB_OCTADS_PER_DRUM_BLOCK; ++i) {
-      this.octads[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_OCTAD, NB_HEX_VALUES_PER_OCTAD))
-    }
+		for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
+			this.words[w].setContent(hexCode.substr(w*NB_CHRS_PER_WORD, NB_CHRS_PER_WORD));
+		}
   }
 
+	/**
+	 * Returns the word corresponding to the id
+	 * @param id from 0 to 15
+	 */
+	getWord(id) {
+		return this.words[id];
+	}
+
   toString() {
-    let str = ""
-    for (let i = 0; i < NB_OCTADS_PER_DRUM_BLOCK/2; ++i) {
-      for (let j = 0; j < NB_MEMORIES_PER_OCTAD; ++j) {
-        str += this.octads[i].getMemory(j).toString() + "\t"
-          + this.octads[i + NB_OCTADS_PER_DRUM_BLOCK/2].getMemory(j).toString() + "\n"
-      }
-    }
-    return str
+    let str = "";
+		for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
+			str += this.words[w].toString();
+			if (w % 4 == 3) {
+				str += "\n";
+			} else {
+				str += "\t";
+			}
+		}
+    return str;
   }
 }
 

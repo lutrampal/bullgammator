@@ -1,6 +1,6 @@
 Operation = require("./operation").Operation
 Memory = require("../machine/memory").Memory
-NB_BLOCKS_PER_MEMORY = require("../machine/memory").NB_BLOCKS_PER_MEMORY
+NB_CHRS_PER_WORD = require("../machine/memory").NB_CHRS_PER_WORD
 
 class SmallDivOrMult extends Operation {
   constructor(TO, AD, OD, OF, bullGamma) {

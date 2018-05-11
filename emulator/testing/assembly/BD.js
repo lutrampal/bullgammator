@@ -1,5 +1,5 @@
 BullGamma = require("../../machine/bullGamma").BullGamma;
-const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 BD = require("../../assembly/BD").BD;

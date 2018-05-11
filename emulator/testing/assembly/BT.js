@@ -12,9 +12,8 @@ describe('BT', function() {
       bullGamma.magneticDrum.commutedTrackGroup = bullGamma.magneticDrum.trackGroups[7]
       bullGamma.groups[2].setContent("aaaaaaaaaaaa\n".repeat(16))
       bt.execute();
-      bullGamma.magneticDrum.trackGroups[7].tracks[15].blocks[7].octads.forEach(function (octad) {
-        assert.equal(octad.toString(), "aaaaaaaaaaaa\n".repeat(8))
-      })
+			assert.equal(bullGamma.magneticDrum.trackGroups[7].tracks[15].blocks[7].toString(),
+				("aaaaaaaaaaaa\t".repeat(3) + "aaaaaaaaaaaa\n").repeat(4));
     });
   });
 });

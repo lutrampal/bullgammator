@@ -22,7 +22,7 @@ class DrumTrackGroup {
   }
 
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
+    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert.equal(hexCode.length, NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,
       "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK_GROUP)
     for (let i = 0; i < NB_TRACKS_PER_DRUM_TRACK_GROUP; ++i) {
@@ -33,7 +33,7 @@ class DrumTrackGroup {
   toString() {
     let str = ""
     this.tracks.forEach(function(track) {
-      str += track.toString() + "\n"
+      str += track.toString() + "\n";
     })
     return str
   }

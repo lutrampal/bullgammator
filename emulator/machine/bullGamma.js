@@ -13,7 +13,7 @@ const MEMORY_MODE = require("./constants").MEMORY_MODE;
 
 const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
 const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
-const NB_GENERAL_MEMORIES = require("./constants").NB_GENERAL_MEMORIES;
+const NB_BANAL_MEMORIES = require("./constants").NB_BANAL_MEMORIES;
 const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
 const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY;
@@ -23,8 +23,8 @@ class BullGamma {
 
   constructor() {
     // Memories
-    this._generalMemories = new Array(NB_GENERAL_MEMORIES);
-    for (let i = 1; i < NB_GENERAL_MEMORIES; ++i) {
+    this._generalMemories = new Array(NB_BANAL_MEMORIES);
+    for (let i = 1; i < NB_BANAL_MEMORIES; ++i) {
       this._generalMemories[i] = new Memory(i + 1, this);
     }
     // M0 == M1
@@ -83,16 +83,16 @@ class BullGamma {
    */
   getMemory(id, octadId) {
     assert(id >= 0, "memory id should not be negative");
-    assert(id < NB_GENERAL_MEMORIES + NB_MEMORIES_PER_OCTAD, "memory id should be inferior to " + NB_GENERAL_MEMORIES
+    assert(id < NB_BANAL_MEMORIES + NB_MEMORIES_PER_OCTAD, "memory id should be inferior to " + NB_BANAL_MEMORIES
       + NB_MEMORIES_PER_OCTAD);
 
-    if (id < NB_GENERAL_MEMORIES) {
+    if (id < NB_BANAL_MEMORIES) {
       return this._generalMemories[id];
     } else {
       if (octadId !== undefined) {
-        return this.getOctad(octadId).getMemory([id - NB_GENERAL_MEMORIES])
+        return this.getOctad(octadId).getMemory([id - NB_BANAL_MEMORIES])
       } else {
-        return this.currentOctad.getMemory([id - NB_GENERAL_MEMORIES])
+        return this.currentOctad.getMemory([id - NB_BANAL_MEMORIES])
       }
     }
   }

@@ -1,5 +1,5 @@
 BullGamma = require("../../machine/bullGamma").BullGamma;
-const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 BO = require("../../assembly/BO").BO;
@@ -13,7 +13,7 @@ describe('BO', function() {
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);
       let val = 4;
-      for (i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = 0; i < NB_CHRS_PER_WORD; ++i) {
         mem4.blocks[i] = val;
       }
       bo.execute();
@@ -25,7 +25,7 @@ describe('BO', function() {
       for (i = od; i < of; ++i) {
         assert.equal(bullGamma.getMemory(1).blocks[i], val, "M1[" + i + "] was not set properly");
       }
-      for (i = of; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = of; i < NB_CHRS_PER_WORD; ++i) {
         assert.equal(bullGamma.getMemory(1).blocks[i], 0, "M1 was not erased");
       }
     });
@@ -35,7 +35,7 @@ describe('BO', function() {
       bullGamma.ms1 = 10
       let od = 4, of = 8;
       let bo = new BO(1, od, of, bullGamma);
-      for (i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = 0; i < NB_CHRS_PER_WORD; ++i) {
         m1.blocks[i] = 4;
       }
       bo.execute();
@@ -55,7 +55,7 @@ describe('BO', function() {
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);
       let val = 10;
-      for (i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = 0; i < NB_CHRS_PER_WORD; ++i) {
         mem4.blocks[i] = val;
       }
       bo.execute();
@@ -68,7 +68,7 @@ describe('BO', function() {
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);
       let val = 15;
-      for (i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = 0; i < NB_CHRS_PER_WORD; ++i) {
         mem4.blocks[i] = val;
       }
       bo.execute();
@@ -81,7 +81,7 @@ describe('BO', function() {
       let od = 4, of = 8;
       let bo = new BO(4, od, of, bullGamma);
       let val = 10;
-      for (i = 0; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (i = 0; i < NB_CHRS_PER_WORD; ++i) {
         mem4.blocks[i] = val;
       }
       bo.execute();

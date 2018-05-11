@@ -1,4 +1,4 @@
-const NB_BLOCKS_PER_MEMORY = require("../../machine/constants").NB_BLOCKS_PER_MEMORY;
+const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 BullGamma = require("../../machine/bullGamma").BullGamma;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
@@ -25,7 +25,7 @@ describe('BO', function() {
       for (let i = od; i < of - 1; ++i) {
         assert.equal(m4.blocks[i], val, "incorrect transfer");
       }
-      for (let i = of - 1; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (let i = of - 1; i < NB_CHRS_PER_WORD; ++i) {
         assert.equal(m4.blocks[i], 0, "incorrect shift");
       }
       assert.equal(bullGamma.md, od, "MD was not set to OD");
@@ -51,7 +51,7 @@ describe('BO', function() {
       let od = 0, of = 4;
       let ob = new OB(1, od, of, bullGamma);
       let val = 9;
-      for (let i = 0; i < NB_BLOCKS_PER_MEMORY; i+=2) {
+      for (let i = 0; i < NB_CHRS_PER_WORD; i+=2) {
         m1.blocks[i] = val;
       }
       bullGamma.md = 3;
@@ -59,7 +59,7 @@ describe('BO', function() {
       for (let i = od; i < of; ++i ) {
         assert.equal(m1.blocks[i], 0, "M1 was not reset between OD and OF")
       }
-      for (let i = of; i < NB_BLOCKS_PER_MEMORY; ++i) {
+      for (let i = of; i < NB_CHRS_PER_WORD; ++i) {
         assert.equal(m1.blocks[i], val*(i%2), "M1 was not shifted properly")
       }
     });
@@ -69,7 +69,7 @@ describe('BO', function() {
       let od = 0, of = 4;
       let ob = new OB(4, od, of, bullGamma);
       let val = 9;
-      for (let i = 0; i < NB_BLOCKS_PER_MEMORY; i++) {
+      for (let i = 0; i < NB_CHRS_PER_WORD; i++) {
         m1.blocks[i] = val;
       }
       bullGamma.ms1 = 10;

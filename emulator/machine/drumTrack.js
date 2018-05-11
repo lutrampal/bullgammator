@@ -20,7 +20,7 @@ class DrumTrack {
   }
 
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r]/g, ''); // remove white space and line breaks
+    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length === NB_HEX_VALUES_PER_DRUM_TRACK,
       "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK)
     for (let i = 0; i < NB_BLOCKS_PER_DRUM_TRACK; ++i) {
@@ -29,21 +29,11 @@ class DrumTrack {
   }
 
   toString() {
-    let str = ""
-    for (let i = 0; i < NB_BLOCKS_PER_DRUM_TRACK/2; ++i) {
-      for (let j = 0; j < NB_OCTADS_PER_DRUM_BLOCK / 2; ++j) {
-        for (let k = 0; k < NB_MEMORIES_PER_OCTAD; ++k) {
-          str += this.blocks[i].octads[j].getMemory(k).toString() + "\t"
-            + this.blocks[i].octads[j + NB_OCTADS_PER_DRUM_BLOCK/2].getMemory(k).toString()
-            + "\t\t"
-            + this.blocks[i + NB_BLOCKS_PER_DRUM_TRACK/2].octads[j].getMemory(k).toString() + "\t"
-            + this.blocks[i + NB_BLOCKS_PER_DRUM_TRACK/2].octads[j + NB_OCTADS_PER_DRUM_BLOCK/2].getMemory(k)
-              .toString() + "\n"
-        }
-        str += "\n"
-      }
+    let str = "";
+    for (let t = 0; t < NB_BLOCKS_PER_DRUM_TRACK; ++t) {
+			str += this.blocks[t].toString() + "\n";
     }
-    return str
+    return str;
   }
 }
 

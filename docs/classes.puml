@@ -49,11 +49,18 @@ package Model {
       setContent(hexCode)
     }
 
+		class Word {
+			blocks : Array<hexa>
+			copy(other)
+			resetWord()
+      setContent(hexCode)
+		}
+
     class Memory {
       id
       blocks : Array<hexa>
       Memory(id, bullGamma)
-      Memory(id, maxValue)
+      Memory(id, bullGamma, maxValue)
       getMode()
       setToZero(from, to)
       copyBlockValues(other, from, to)
@@ -66,8 +73,8 @@ package Model {
       subtract(other, from, to)
       getDecimalValue(from, to) : int
       setDecimalValue(value, from, to)
-      setContent(hexCode)
     }
+		Word <|-- Memory
 
     class CmpMemory {
       greater: boolean
@@ -113,11 +120,11 @@ package Model {
     Serie <|-- ConnexionArray
 
     DrumBlock "8 blocks" --* "track" DrumTrack
-    Octad "2 octads" <--* DrumBlock
+    Word "16 words" <--* DrumBlock
 
     BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
     Octad *--> "8 memories" Memory
-    BullGamma *-- "generalMemories 7" Memory
+    BullGamma *-- "7 generalMemories" Memory
     BullGamma --> "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
     Serie "4 series" --* "bullGamma" BullGamma

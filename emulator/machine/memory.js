@@ -1,48 +1,41 @@
 assert = require('assert');
+Word = require("./word").Word;
 
-const NB_BLOCKS_PER_MEMORY = require("./constants").NB_BLOCKS_PER_MEMORY;
+const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD;
 MEMORY_MODE = require("./constants").MEMORY_MODE;
 
-class Memory {
-  constructor(id, bullGamma, nb_blocks = NB_BLOCKS_PER_MEMORY) {
+
+class Memory extends Word {
+  constructor(id, bullGamma, nb_blocks = NB_CHRS_PER_WORD) {
+		super(nb_blocks);
     this.id = id;
-    this.blocks = new Array(nb_blocks);
     this.bullGamma = bullGamma;
-    this.setToZero(0, nb_blocks)
   }
 
   getMode() {
     return this.bullGamma.getMemoryMode();
   }
 
-  toString() {
-    let str = "";
-    this.blocks.forEach(function (block) {
-      str = block.toString(16) + str;
-    })
-    return str;
-  }
+	/**
+	 * Set every memory block in range to 0
+	 * @param from start index of the selected memory blocks, should be positive or zero
+	 * @param to end index (excluded) of the selected memory blocks, should be inferior to NB_CHRS_PER_WORD
+	 */
+	setToZero(from, to) {
+		assert.equal(from >= 0, true, "from parameter should be superior to 0");
+		assert.equal(to <= this.blocks.length, true, "to parameter should be inferior to " + this.blocks.length);
 
-  /**
-   * Set every memory block in range to 0
-   * @param from start index of the selected memory blocks, should be positive or zero
-   * @param to end index (excluded) of the selected memory blocks, should be inferior to NB_BLOCKS_PER_MEMORY
-   */
-  setToZero(from, to) {
-    assert.equal(from >= 0, true, "from parameter should be superior to 0");
-    assert.equal(to <= this.blocks.length, true, "to parameter should be inferior to " + this.blocks.length);
-
-    for (let i = from; i < to; i++) {
-      this.blocks[i] = 0;
-    }
-  }
+		for (let i = from; i < to; i++) {
+			this.blocks[i] = 0;
+		}
+	}
 
   /**
    * Set the selected memory block to the given value.
    * If in decimal mode and value is > 9, the value's digits are split then the lower one goes to blocks[idx] while
    * blocks[idx + 1] gets the higher one.
    * @param idx the idx of the the block that should be set, must be positive or zero but inferior to
-   * NB_BLOCKS_PER_MEMORY
+   * NB_CHRS_PER_WORD
    * @param value the value to which the block should be set, must be positive or zero and inferior to 16.
    */
   setBlockValue(idx, value) {
@@ -63,6 +56,19 @@ class Memory {
     }
   }
 
+	_setBlockValueBinary(idx, value) {
+		this.blocks[idx] = value;
+	}
+
+	_setBlockValueDecimal(idx, value) {
+		if (value <= 9) {
+			this.blocks[idx] = value;
+			return;
+		}
+		this.blocks[idx] = value % 10;
+		this.blocks[(idx + 1) % this.blocks.length] = 1;
+	}
+
   /**
    * Copy the selected values from an other memory
    * If the calculator is in decimal mode, only ten's complement values will be copied
@@ -71,28 +77,16 @@ class Memory {
    * @param to where should the copy end (excluded), should be inferior or equal to 12
    */
   copyBlockValues(other, from=0, to=this.blocks.length, ignore_mode=false) {
-    assert.equal(from >= 0, true, "from should be positive")
-    assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length)
+    assert.equal(from >= 0, true, "from should be positive");
+    assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length);
+
     for (let i = from; i < to; i++) {
-      if (!ignore_mode && this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
+      if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
         this.blocks[i] = other.blocks[i] - 10
       } else {
         this.blocks[i] = other.blocks[i]
       }
     }
-  }
-
-  _setBlockValueBinary(idx, value) {
-    this.blocks[idx] = value;
-  }
-
-  _setBlockValueDecimal(idx, value) {
-    if (value <= 9) {
-      this.blocks[idx] = value;
-      return;
-    }
-    this.blocks[idx] = value % 10;
-    this.blocks[(idx + 1) % this.blocks.length] = 1;
   }
 
   /**
@@ -169,14 +163,14 @@ class Memory {
     let carry = 0
     for (let i = from; i < to || carry === 1 && !overriding_carry; i++) {
       let other_val = i < to ? other.blocks[i] : 0
-      let res = this.blocks[i%this.blocks.length + this.blocks.length - NB_BLOCKS_PER_MEMORY] + other_val + carry
+      let res = this.blocks[i%this.blocks.length + this.blocks.length - NB_CHRS_PER_WORD] + other_val + carry
       if (res > 9) {
         carry = 1
         res -= 10
       } else {
         carry = 0
       }
-      this.blocks[i%this.blocks.length + this.blocks.length - NB_BLOCKS_PER_MEMORY] = res
+      this.blocks[i%this.blocks.length + this.blocks.length - NB_CHRS_PER_WORD] = res
     }
     if (overriding_carry && carry) {
       this.blocks[to%this.blocks.length] = carry
@@ -289,29 +283,22 @@ class Memory {
       throw new Error("Divide by 0")
     }
     while (this.bullGamma.md > 0) {
-      while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) < vmb
+      while (this.getDecimalValue(from + this.blocks.length - NB_CHRS_PER_WORD, this.blocks.length) < vmb
                 && this.bullGamma.md > 0) {
         this.shiftLeft()
         this.bullGamma.md--
       }
-      while (this.getDecimalValue(from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length) >= vmb) {
+      while (this.getDecimalValue(from + this.blocks.length - NB_CHRS_PER_WORD, this.blocks.length) >= vmb) {
         this.blocks[0]++
-        this.subtract(other, from, to, from + this.blocks.length - NB_BLOCKS_PER_MEMORY, this.blocks.length)
+        this.subtract(other, from, to, from + this.blocks.length - NB_CHRS_PER_WORD, this.blocks.length)
       }
     }
   }
 
   divideValue(value, at) {
-    let mb = new Memory(0, this.bullGamma, NB_BLOCKS_PER_MEMORY)
+    let mb = new Memory(0, this.bullGamma, NB_CHRS_PER_WORD)
     mb.blocks[at] = value
     this.divide(mb, 0, at + 1)
-  }
-
-  setContent(hexCode) {
-    assert(hexCode.length === this.blocks.length, "hexCode should be of length " + this.blocks.length)
-    for (let i = hexCode.length - 1, j = 0; j < hexCode.length; i--, j++) {
-      this.blocks[i] = parseInt(hexCode.charAt(j), 16)
-    }
   }
 }
 

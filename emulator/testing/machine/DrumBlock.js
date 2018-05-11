@@ -15,18 +15,17 @@ describe('DrumBlock', function() {
     describe("#setContent(hexCode)", function () {
       it("should set the DrumBlock's content", function () {
         let bullGamma = new BullGamma()
-        let hexCode = "aaaaaaaa0000\n"
-          + "bbbbbbbb0000\n"
-          + "cccccccc0000\n"
+        let hexCode = "aaaaaaaa0000\t"
+          + "bbbbbbbb0000\t"
+          + "cccccccc0000\t"
           + "dddddddd0000\n"
-          + "eeeeeeee0000\n"
-          + "ffffffff0000\n"
-          + "111111110000\n"
+          + "eeeeeeee0000\t"
+          + "ffffffff0000\t"
+          + "111111110000\t"
           + "222222220000\n"
         bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].setContent(hexCode + hexCode)
-        bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].octads.forEach(function(octad) {
-          assert.equal(octad.toString(), hexCode, "returned hex value doesn't match the expected one")
-        })
+				assert.equal(bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].toString(),
+				hexCode + hexCode, "returned hex value doesn't match the expected one")
       })
     })
   });
