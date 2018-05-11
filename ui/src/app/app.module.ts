@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
@@ -18,23 +19,26 @@ import { MbComponent } from './debug/mb/mb.component';
 import { OctadsComponent } from './debug/octads/octads.component';
 import { SeriesComponent } from './debug/series/series.component';
 import { ExecComponent } from './debug/exec/exec.component';
+import { DrumComponent } from './drum/drum.component';
 
 import { MemoriesService } from './debug/providers/memories.service';
 import { SeriesService } from './debug/providers/series.service';
 import { BullgammatorService } from './providers/bullgammator.service';
+import { DrumService } from './drum/providers/drum.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HexEditorComponent,
-    DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent
+    DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
+		DrumComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule
+    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule
   ],
-  providers: [MemoriesService, SeriesService, BullgammatorService],
+  providers: [MemoriesService, SeriesService, BullgammatorService, DrumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

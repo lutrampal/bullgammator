@@ -1,0 +1,20 @@
+<mat-tab-group [(selectedIndex)]="gr_index">
+	<div *ngFor="let tg of bull.bullgamma.magneticDrum.trackGroups; index as i">
+		<mat-tab label="Groupe {{ i }}">
+			<mat-tab-group *ngIf="gr_index == i" [(selectedIndex)]="tr_index">
+				<div *ngFor="let t of tg.tracks; index as j">
+					<mat-tab label="Piste {{ i * bull.constants.NB_TRACK_GROUPS + j }}">
+						<mat-tab-group *ngIf="tr_index == j" [(selectedIndex)]="bl_index">
+							<div *ngFor="let b of t.blocks; index as k">
+								<mat-tab label="Bloc {{ k }}">
+									<div *ngIf="bl_index == k" class="main" [innerHTML]="displayBlock(i, j, k)">
+									</div>
+								</mat-tab>
+							</div>
+						</mat-tab-group>
+					</mat-tab>
+				</div>
+			</mat-tab-group>
+		</mat-tab>
+	</div>
+</mat-tab-group>

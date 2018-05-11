@@ -27,8 +27,8 @@ export class OctadsComponent implements OnInit {
     for (var octad=0; octad<this.nbOctads; octad++) {
       this.octads[octad] = [];
       for (
-        var mb = this.m.constants.NB_GENERAL_MEMORIES;
-        mb<this.m.constants.NB_GENERAL_MEMORIES+this.m.constants.NB_MEMORIES_PER_OCTAD;
+        var mb = this.m.constants.NB_BANAL_MEMORIES;
+        mb<this.m.constants.NB_BANAL_MEMORIES+this.m.constants.NB_MEMORIES_PER_OCTAD;
         mb++
       ) {
         this.octads[octad].push({ id: mb, label: 'M' + mb.toString() });
