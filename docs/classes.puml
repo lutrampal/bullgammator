@@ -22,12 +22,12 @@ package Model {
       getConnexionArray(): ConnexionArray
     }
 
-    abstract class Serie {
+    class Serie {
       id
-      Serie(id, bullGamma)
-      {abstract} getInstruction(line): Array<Instruction>
-      {abstract} getInstructions(): Instruction
-      {abstract} setInstructions(hexCode)
+      Serie(id, bullGamma, group)
+      getInstruction(line): Array<Instruction>
+      getInstructions(): Instruction
+      setInstructions(hexCode)
     }
 
     class ConnexionArray {
@@ -39,9 +39,6 @@ package Model {
 
     class Group {
       Group(id, bullGamma)
-      getInstruction(line): Array<Instruction>
-      getInstructions(): Instruction
-      setInstructions(hexCode)
       setContent(hexCode)
     }
 
@@ -112,7 +109,7 @@ package Model {
       setContent(hexCode)
     }
 
-    Serie <|-- Group
+    Serie o--> "1 group" Group
     Serie <|-- ConnexionArray
 
     DrumBlock "8 blocks" --* "track" DrumTrack
@@ -123,7 +120,7 @@ package Model {
     BullGamma *-- "generalMemories 7" Memory
     BullGamma --> "mc" CmpMemory
     BullGamma - "selectedOctad" Octad
-    Serie "4 series, ioSerie" --o "bullGamma" BullGamma
+    Serie "4 series" --* "bullGamma" BullGamma
     Group "4 groups" --* "bullGamma" BullGamma
     ConnexionArray "connexionArray" -- "bullGamma" BullGamma
     Group *--> "2 octads" Octad

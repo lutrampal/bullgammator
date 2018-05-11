@@ -7,7 +7,7 @@ class ConnexionArray extends Serie{
   constructor(id, bullGamma) {
     super(id, bullGamma)
     this.lineOffset = 0;
-    this.maxNbInst = 0;
+    this.nbInst = 0;
     this.maxNbInst = NB_INST_CONNEXION_ARRAY;
   }
 
@@ -17,7 +17,7 @@ class ConnexionArray extends Serie{
       throw "instructions number should not be greater than " + NB_INST_CONNEXION_ARRAY;
     }
     this.instructions = instructions;
-    this.maxNbInst = instructions.length;
+    this.nbInst = instructions.length
   }
 
   getInstruction(line) {

@@ -142,11 +142,11 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
 /**
  * Given hexadecimal code for Bull Gamma 3, returns a set of instructions for the machine.
- * @param hex_str the string representing the code to be parsed. code may include single line comments starting with --.
+ * @param hexCode the string representing the code to be parsed. code may include single line comments starting with --.
  * @param bullGamma the machine to which the returned instructions should be attached
  * @returns {Array} the array of parsed instructions
  */
-function parse_hex_str_to_instructions(hex_str, bullGamma) {
+function parse_hex_str_to_instructions(hexCode, bullGamma) {
   let instructions = [];
   hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
   hexCode = hexCode.replace(/[\s\n\r]/g, ''); // remove white space and line breaks

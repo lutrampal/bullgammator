@@ -7,6 +7,7 @@ Octad = require("./octad").Octad;
 MagneticDrum = require("./magneticDrum").MagneticDrum;
 CmpMemory = require("./cmpMemory").CmpMemory;
 ConnexionArray = require("./connexionArray").ConnexionArray;
+Serie = require("./serie").Serie
 
 const MEMORY_MODE = require("./constants").MEMORY_MODE;
 
@@ -16,7 +17,7 @@ const NB_GENERAL_MEMORIES = require("./constants").NB_GENERAL_MEMORIES;
 const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
 const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY;
-const NB_INST_PER_SERIES = require("./constants").NB_INST_PER_GROUP;
+const NB_INST_PER_SERIE = require("./constants").NB_INST_PER_SERIE;
 
 class BullGamma {
 
@@ -36,13 +37,13 @@ class BullGamma {
     this.series = new Array(NB_GENERAL_SERIES + 1);
     this.groups = new Array(NB_GENERAL_SERIES + 1)
     for (let i = 0; i < NB_GENERAL_SERIES; ++i) {
-      this.series[i] = new Group(i, this);
-      this.groups[i] = this.series[i]
+      this.groups[i] = new Group(i, this);
+      this.series[i] = new Serie(i, this, this.groups[i])
     }
     this.series[NB_GENERAL_SERIES] = this.connexionArray
     this.groups[NB_GENERAL_SERIES] = this.ioGroup
 
-    this.currentOctad = this.series[0].octads[0];
+    this.currentOctad = this.groups[0].octads[0];
 
     // Other
     this.magneticDrum = new MagneticDrum(this);
@@ -62,7 +63,7 @@ class BullGamma {
    */
   getSerie(id) {
     assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
-    return this.groups[id]
+    return this.series[id]
   }
 
   /**
@@ -120,13 +121,13 @@ class BullGamma {
     if (this.cp < NB_INST_CONNEXION_ARRAY) {
       series = this.connexionArray;
     } else {
-      let index = 1 + Math.floor((this.cp - NB_INST_CONNEXION_ARRAY) / NB_INST_PER_SERIES);
+      let index = 1 + Math.floor((this.cp - NB_INST_CONNEXION_ARRAY) / NB_INST_PER_SERIE);
       series = this.getSerie(index);
     }
 
     // compute new line
     if (this.cp < NB_INST_CONNEXION_ARRAY) {
-      this.cp = (this.cp + 1 - series.lineOffset) % (series.maxNbInst) + series.lineOffset;
+      this.cp = (this.cp + 1 - series.lineOffset) % (series.nbInst) + series.lineOffset;
     }
 
     // execute instruction
