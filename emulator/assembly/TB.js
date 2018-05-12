@@ -1,4 +1,4 @@
-DrumTransfer = require("./drumTransfer").DrumTransfer
+DrumTransfer = require("./TT").DrumTransfer
 
 const NB_WORD_PER_DRUM_BLOCK = require('../machine/constants').NB_WORD_PER_DRUM_BLOCK
 
