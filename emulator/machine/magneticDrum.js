@@ -21,8 +21,9 @@ class MagneticDrum {
 
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-    assert(hexCode.length === NB_HEX_VALUES_PER_MAGNETIC_DRUM,
+    assert(hexCode.length <= NB_HEX_VALUES_PER_MAGNETIC_DRUM,
       "hexCode should be of length " + NB_HEX_VALUES_PER_MAGNETIC_DRUM)
+		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_MAGNETIC_DRUM, "0");
     for (let i = 0; i < NB_TRACK_GROUPS; ++i) {
       this.trackGroups[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_TRACK_GROUP, NB_HEX_VALUES_PER_TRACK_GROUP))
     }

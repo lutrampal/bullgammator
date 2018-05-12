@@ -19,7 +19,9 @@ class DrumBlock {
 
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-    assert(hexCode.length === NB_HEX_VALUES_PER_DRUM_BLOCK, "hexCode should be of length " + NB_HEX_VALUES_PER_OCTAD)
+    assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_BLOCK,
+			"hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_BLOCK);
+		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_BLOCK, "0");
 		for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
 			this.words[w].setContent(hexCode.substr(w*NB_CHRS_PER_WORD, NB_CHRS_PER_WORD));
 		}

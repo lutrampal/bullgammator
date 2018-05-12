@@ -23,8 +23,9 @@ class DrumTrackGroup {
 
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-    assert.equal(hexCode.length, NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,
+    assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,
       "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK_GROUP)
+		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_TRACK_GROUP, "0");
     for (let i = 0; i < NB_TRACKS_PER_DRUM_TRACK_GROUP; ++i) {
       this.tracks[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_DRUM_TRACK, NB_HEX_VALUES_PER_DRUM_TRACK))
     }

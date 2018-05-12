@@ -14,4 +14,8 @@ export class DrumService {
 		.tracks[trackId % this.bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP]
 		.blocks[block].toString();
 	}
+
+	setContent(hexCode: string) {
+		this.bull.bullgamma.magneticDrum.setContent(hexCode);
+	}
 }
