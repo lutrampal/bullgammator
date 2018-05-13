@@ -6,8 +6,12 @@ class NOP extends V {
   }
 
   execute() {
-    console.log("NOP")
+		// do nothing
   }
+
+	getDescription() {
+		return "Ne fait rien";
+	}
 }
 
 module.exports.NOP = NOP;

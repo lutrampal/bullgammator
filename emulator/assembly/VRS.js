@@ -27,6 +27,19 @@ class VRS extends Instruction {
 				throw "Invalid value for AD: " + this.AD;
 		}
 	}
+
+	getDescription() {
+		switch (this.AD) {
+			case 5:
+				return "Retourne à la ligne enregistrée en RNL1";
+			case 6:
+				return "Retourne à la ligne enregistrée en RNL2";
+			case 7:
+				return "Instruction non implémentée";
+			default:
+				return "Instruction non implémentée invalide";
+		}
+	}
 }
 
 module.exports.VRS = VRS;

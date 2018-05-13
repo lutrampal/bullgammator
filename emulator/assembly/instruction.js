@@ -26,6 +26,10 @@ class Instruction {
     throw new Error('You have to implement the method computeExeTime.');
   }
 
+	getDescription() {
+		throw new Error('You have to implement the method getDescription.');
+	}
+
   toString() {
     return this.hexString
   }
@@ -33,6 +37,8 @@ class Instruction {
   toLineString() {
     return this.hexString + " -- " + this.constructor.name + "\n";
   }
+
+
 }
 
 module.exports.Instruction = Instruction;

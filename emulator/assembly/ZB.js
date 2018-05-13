@@ -7,10 +7,19 @@ class ZB extends Operation {
 
   execute() {
     if (this.AD === 0) {
-      return;
+			throw "Invalid value for AD: " + this.AD;
     }
     this.bullGamma.getMemory(this.AD).setToZero(this.OD, this.OF);
   }
+
+	getDescription() {
+    if (this.AD == 0) {
+			return "Instruction invalide";
+    } else {
+			return "Met à zéro M" + this.AD + " entre les positions "
+			+ this.OD + " et " + this.OF;
+		}
+	}
 }
 
 module.exports.ZB = ZB;

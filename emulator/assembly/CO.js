@@ -11,6 +11,10 @@ class CO extends Instruction {
     }
     this.bullGamma.currentOctad = this.bullGamma.getOctad(this.OF);
   }
+
+	getDescription() {
+		return "Selectionne l'octade commutée " + this.OF;
+	}
 }
 
 module.exports.CO = CO;

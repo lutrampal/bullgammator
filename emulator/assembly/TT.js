@@ -11,7 +11,7 @@ class DrumTransfer extends Instruction {
 
   execute() {
     let trackGroup = this.bullGamma.magneticDrum.trackGroups[0]
-    if (this.AD ^ 0x1) {
+    if (this.AD % 2 == 1) {
       trackGroup = this.bullGamma.magneticDrum.commutedTrackGroup
     }
     this._transfer(this.AD >> 1, trackGroup, this.OD, this.OF >> 1)

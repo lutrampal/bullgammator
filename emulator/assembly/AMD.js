@@ -8,6 +8,10 @@ class AMD extends Instruction {
   execute() {
     this.bullGamma.md = this.OF;
   }
+
+	getDescription() {
+		return "Met la mémoire de décalage à " + this.OF;
+	}
 }
 
 module.exports.AMD = AMD;

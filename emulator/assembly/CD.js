@@ -9,6 +9,10 @@ class CD extends Instruction {
   execute() {
     this.bullGamma._memoryMode = MEMORY_MODE.DECIMAL
   }
+
+	getDescription() {
+		return "Selectionne le mode de calcul décimal";
+	}
 }
 
 module.exports.CD = CD;

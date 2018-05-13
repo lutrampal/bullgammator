@@ -15,18 +15,22 @@
     <div class="lines">
       <div class="column">
         <div *ngFor="let inst of getInstructions() | slice:0:getHalfNbInst(); index as i">
-          <input *ngIf="!isProgramLine(i)" type="checkbox" (change)="emit()" [formControl]="getControl(i)">
-          <input *ngIf="isProgramLine(i)" matInput value="➤" disabled>
-          <label class="label">{{ i }} : </label>
-          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
+					<div [matTooltip]="inst.getDescription()" matTooltipPosition="below">
+	          <input *ngIf="!isProgramLine(i)" type="checkbox" (change)="emit()" [formControl]="getControl(i)">
+	          <input *ngIf="isProgramLine(i)" matInput value="➤" disabled>
+	          <label class="label">{{ i }} : </label>
+	          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
+	        </div>
         </div>
       </div>
       <div class="column">
         <div *ngFor="let inst of getInstructions() | slice:getHalfNbInst():s.getNbInsts(seriesId); index as i">
-          <input *ngIf="!isProgramLine(i + getHalfNbInst(seriesId))" type="checkbox" (change)="emit()" [formControl]="getControl(i + getHalfNbInst())">
-          <input *ngIf="isProgramLine(i + getHalfNbInst(seriesId))" matInput value="➤" disabled>
-          <label class="label">{{ i + getHalfNbInst(seriesId) }} : </label>
-          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
+					<div [matTooltip]="inst.getDescription()" matTooltipPosition="below">
+	          <input *ngIf="!isProgramLine(i + getHalfNbInst(seriesId))" type="checkbox" (change)="emit()" [formControl]="getControl(i + getHalfNbInst())">
+	          <input *ngIf="isProgramLine(i + getHalfNbInst(seriesId))" matInput value="➤" disabled>
+	          <label class="label">{{ i + getHalfNbInst(seriesId) }} : </label>
+	          <label class="hex">{{ inst.toLineString().toUpperCase() }}</label>
+	        </div>
         </div>
       </div>
     </div>

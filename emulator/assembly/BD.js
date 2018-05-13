@@ -8,6 +8,10 @@ class BD extends Instruction {
   execute() {
     this.bullGamma.md = this.bullGamma.getMemory(2).blocks[this.OD];
   }
+
+	getDescription() {
+		return "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
+	}
 }
 
 module.exports.BD = BD;

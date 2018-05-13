@@ -17,6 +17,18 @@ class CN extends OperationWithPreShift {
       this.bullGamma.mc.equal = cmpRes[1]
     }
   }
+
+	getDescription() {
+		if (this.AD == 0) {
+			return "Effectue le décalage de M1 puis compare le contenu de M1 à "
+			+ this.OF + " en position " + this.OD
+			+ ", met le résultat en mémoire de comparaison";
+		} else {
+			return "Effectue le décalage de M1 puis compare le contenu de M1 à celui de M"
+			+ this.AD + " entre les positions " + this.OD + " et " + this.OF
+			+ ", met le résultat en mémoire de comparaison";
+		}
+	}
 }
 
 module.exports.CN = CN;

@@ -47,6 +47,18 @@ class SN extends OperationWithPreShift {
       this.bullGamma.getMemory(1).addValue(-this.OF, this.OD);
     }
   }
+
+	getDescription() {
+		if (this.AD) {
+			return "Effectue le décalage de M1, soustrait M1 à " + this.OF
+			+ " en position " + this.OD
+			+ ", puis met le résultat dans M1";
+		} else {
+			return "Effectue le décalage de M1, soustrait M1 à M" + this.AD
+			+ " entre les positions" + this.OD + " et " + this.OF
+			+ ", puis met le résultat dans M1";
+		}
+	}
 }
 
 module.exports.SN = SN;

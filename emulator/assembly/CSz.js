@@ -6,8 +6,12 @@ class CSz extends Instruction {
   }
 
   execute() {
-    this.bullGamma.magneticDrum.setCommutedGroup((this.OF << 1) >> 1)
+    this.bullGamma.magneticDrum.setCommutedGroup(this.OF & 0x7);
   }
+
+	getDescription() {
+		return "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
+	}
 }
 
 module.exports.CSz = CSz;

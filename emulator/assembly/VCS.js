@@ -31,6 +31,24 @@ class VCS extends Instruction {
 		this.bullGamma.ns = this.OF % 4;
 		this.bullGamma.nl = (this.OD << 2) + (this.OF >> 2);
 	}
+
+	getDescription() {
+		let intro =  "Saute à la ligne " + ((this.OD << 2) + (this.OF >> 2))
+		+ " de la série " + (this.OF % 4);
+
+		switch (this.AD) {
+			case 0:
+				return intro;
+			case 1:
+				return intro + " et retient la ligne de laquelle on saute + 1 en RNL1";
+			case 2:
+				return intro + " et retient la ligne de laquelle on saute + 1 en RNL2";
+			case 3:
+				return intro;
+			default:
+				return "Instruction invalide";
+		}
+	}
 }
 
 module.exports.VCS = VCS;

@@ -18,6 +18,17 @@ class OB extends OperationWithPreShift {
       m1.setToZero(this.OD, this.OF)
     }
   }
+
+	getDescription() {
+		if (this.AD == 1) {
+			return "Met M1 à zéro entre les position " + this.OD + " et " + this.OF;
+		} else if (this.AD > 1) {
+			return "Effectue le décalage de M1 puis copie M1 entre les positions"
+			+ this.OD + " et " + this.OF + " en M" + this.AD + " aux mêmes positions";
+		} else {
+			return "Instruction invalide";
+		}
+	}
 }
 
 module.exports.OB = OB;

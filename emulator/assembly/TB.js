@@ -13,6 +13,13 @@ class TB extends DrumTransfer {
 				trackGroup.tracks[nbTrack].blocks[nbBlock].getWord(w));
 		}
   }
+
+	getDescription() {
+		return "Transfère le contenu du bloc " + (this.OF >> 1)
+		+ " de la piste " + this.OD
+		+ " de la seizaine " + (this.AD % 2 == 1 ? "commutée" : "0")
+		+ " du tambour dans les octades " + (this.AD & 0xE) + " et " + (this.AD | 0x1);
+	}
 }
 
 module.exports.TB = TB;
