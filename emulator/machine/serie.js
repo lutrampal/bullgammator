@@ -15,7 +15,6 @@ class Serie {
     if (group !== undefined) {
       this.group = group
     }
-    this.lineOffset = NB_INST_CONNEXION_ARRAY + id * NB_INST_PER_SERIE;
     this.nbInst = NB_INST_PER_SERIE;
     this.maxNbInst = NB_INST_PER_SERIE;
   }
@@ -25,10 +24,9 @@ class Serie {
    */
   getInstruction(line) {
     assert(this.group, "group attribute is undefined")
-    let index = line - this.lineOffset;
-    assert(index >= 0 && index < this.maxNbInst, true, "invalid instruction index");
-    let q = Math.floor(index / NB_INST_PER_MEM);
-    let r = index % NB_INST_PER_MEM;
+    assert(line >= 0 && line < this.maxNbInst, true, "invalid instruction index");
+    let q = Math.floor(line / NB_INST_PER_MEM);
+    let r = line % NB_INST_PER_MEM;
 
     // blank line every 3 instructions
     if (r === NB_INST_PER_MEM - 1) {
@@ -57,7 +55,7 @@ class Serie {
   getInstructions() {
     let list = []
     for (let i=0; i<this.maxNbInst; i++) {
-      list.push(this.getInstruction(i + this.lineOffset));
+      list.push(this.getInstruction(i));
     }
     return list;
   }

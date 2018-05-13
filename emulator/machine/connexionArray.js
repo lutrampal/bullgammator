@@ -6,7 +6,6 @@ class ConnexionArray extends Serie{
 
   constructor(id, bullGamma) {
     super(id, bullGamma)
-    this.lineOffset = 0;
     this.nbInst = 0;
     this.maxNbInst = NB_INST_CONNEXION_ARRAY;
   }
@@ -21,8 +20,7 @@ class ConnexionArray extends Serie{
   }
 
   getInstruction(line) {
-    let index = line - this.lineOffset;
-    return this.instructions[index];
+    return this.instructions[line];
   }
 
   getInstructions() {

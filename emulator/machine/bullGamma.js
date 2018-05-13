@@ -51,7 +51,8 @@ class BullGamma {
     this.ms1 = 0;
     this.md = 0;
     this.mc = new CmpMemory();
-    this.cp = 0
+    this.nl = 0; // line number
+		this.ns = 3; // series number
     this.rnl1 = 0;
     this.rnl2 = 0;
     this.parser = new InstructionsParser(this);
@@ -113,25 +114,20 @@ class BullGamma {
     this._memoryMode = newMode;
   }
 
+	/**
+	 * Compute the next line to be executed if no jump
+	 * @returns next line
+	 */
+	nextLine() {
+		return (this.nl + 1) % (this.getSerie(this.ns).nbInst);
+	}
+
   execNextInstruction() {
-    let old_cp = this.cp;
-
-    // compute series
-    let series;
-    if (this.cp < NB_INST_CONNEXION_ARRAY) {
-      series = this.connexionArray;
-    } else {
-      let index = 1 + Math.floor((this.cp - NB_INST_CONNEXION_ARRAY) / NB_INST_PER_SERIE);
-      series = this.getSerie(index);
-    }
-
-    // compute new line
-    if (this.cp < NB_INST_CONNEXION_ARRAY) {
-      this.cp = (this.cp + 1 - series.lineOffset) % (series.nbInst) + series.lineOffset;
-    }
+    let old_cp = this.nl;
+		this.nl = this.nextLine();
 
     // execute instruction
-    series.getInstruction(old_cp).execute();
+    this.getSerie(this.ns).getInstruction(old_cp).execute();
   }
 }
 

@@ -20,12 +20,12 @@ export class SeriesComponent implements OnInit {
     public s: SeriesService
   ) {
     this.seriesId = 3;
-
-    for (let s of [3, 0, 1, 2]) {
-      for (var i=0; i<this.s.getMaxNbInsts(s); i++) {
-        this.breakpoints.push(new FormControl(false, []));
-      }
-    }
+		while(this.seriesId != 3 || this.breakpoints.length == 0) {
+			for (var i=0; i<this.s.getMaxNbInsts(this.seriesId); i++) {
+				this.breakpoints.push(new FormControl(false, []));
+			}
+			this.plus();
+		}
     this.breakpoints[0].setValue(true);
     this.emit();
   }
@@ -45,20 +45,25 @@ export class SeriesComponent implements OnInit {
     this.seriesId = (this.seriesId + this.s.getSeriesNumber() - 1) % this.s.getSeriesNumber();
   }
 
-  breakpointAt(line: number, seriesId: number) {
+  breakpointAt(line: number) {
     try {
-      return this.getControl(line, seriesId).value;
+      return this.getControl(line).value;
     } catch(error) {
       return false;
     }
   }
 
-  getHalfNbInst(seriesId: number) {
-    return  Math.floor(this.s.getMaxNbInsts(seriesId)/2);
+	isProgramLine(line: number) {
+		return (line == this.s.getLine()) && (this.seriesId == this.s.getSeries());
+	}
+
+  getHalfNbInst() {
+    return Math.floor(this.s.getMaxNbInsts(this.seriesId) / 2);
   }
 
-  getControl(line: number, seriesId: number) {
-    return this.breakpoints[this.s.getSeriesLineOffset(seriesId) + line];
+  getControl(line: number) {
+		let seriesCode = (this.seriesId + 1) % this.s.getSeriesNumber();
+		return this.breakpoints[(seriesCode << 6) + line];
   }
 
   emit() {

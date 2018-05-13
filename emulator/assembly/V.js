@@ -13,10 +13,10 @@ class V extends Instruction {
         this.bullGamma.ms1 === 0],
     ]
     if (jump_cond_matrix[this.OF%4][this.AD] === undefined) {
-      throw new Error("jump condition not implemented yet")
+      throw "jump condition not implemented yet";
     }
     if (jump_cond_matrix[this.OF%4][this.AD]) {
-      this.bullGamma.cp = (this.OD << 2) + (this.OF >> 2)
+      this.bullGamma.nl = (this.OD << 2) + (this.OF >> 2);
     }
   }
 }

@@ -44,19 +44,9 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       return new V(AD, OD, OF, bullGamma)
     case 1:
       switch (AD) {
-        case 0:
+        case 0: case 1: case 2: case 3:
           return new VCS(AD, OD, OF, bullGamma);
-        case 1:
-          return new VCS(AD, OD, OF, bullGamma);
-        case 2:
-          return new VCS(AD, OD, OF, bullGamma);
-        case 3:
-          return new VCS(AD, OD, OF, bullGamma);
-        case 5:
-          return new VRS(AD, OD, OF, bullGamma);
-        case 6:
-          return new VRS(AD, OD, OF, bullGamma);
-        case 7:
+        case 5: case 6: case 7:
           return new VRS(AD, OD, OF, bullGamma);
         case 8:
         case 9:

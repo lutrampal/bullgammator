@@ -48,11 +48,12 @@ export class ExecComponent implements OnInit {
     }
     if (this.breakpoints.length == 1 &&
         this.breakpoints[0].value == true &&
-        this.bull.bullgamma.cp != 0
+        (this.bull.bullgamma.nl != 0 || this.bull.bullgamma.ns != 3)
     ) {
       return false;
     }
-    return this.breakpoints[this.bull.bullgamma.cp].value;
+		let seriesCode = (this.bull.bullgamma.ns + 1) % this.s.getSeriesNumber();
+    return this.breakpoints[(seriesCode << 6) + this.bull.bullgamma.nl].value;
   }
 
 }

@@ -130,7 +130,8 @@ class Debug {
    * @return string
    */
   getNL() {
-    return Debug.pad(Debug.hex(this.bullGamma.cp), NB_CHRS_PROGRAM_COUNTER);
+    return Debug.pad(Debug.hex((this.bullGamma.ns << 6) + this.bullGamma.nl),
+			NB_CHRS_PROGRAM_COUNTER);
   }
 
   /**
@@ -142,7 +143,8 @@ class Debug {
     if (!Debug.nlValidate(value)) {
       return;
     }
-    this.bullGamma.cp = Debug.reverseHex(value);
+    this.bullGamma.nl = Debug.reverseHex(value) % 64;
+		this.bullGamma.ns = Debug.reverseHex(value) >> 6;
   }
 
   /**

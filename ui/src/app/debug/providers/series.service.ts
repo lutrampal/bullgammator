@@ -24,13 +24,13 @@ export class SeriesService {
   /*
    *  Gets the current instruction line
    */
-  getLine(seriesId: number) {
-    return this.bull.bullgamma.cp - this.getSeriesLineOffset(seriesId);
+  getLine() {
+    return this.bull.bullgamma.nl;
   }
 
-  getSeriesLineOffset(seriesId: number) {
-    return this.bull.bullgamma.getSerie(seriesId).lineOffset;
-  }
+	getSeries() {
+		return this.bull.bullgamma.ns;
+	}
 
   getSeriesNumber() {
     return this.bull.constants.NB_GENERAL_SERIES + 1;
