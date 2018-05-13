@@ -13,6 +13,7 @@ export class ExecComponent implements OnInit {
 
   @Input()
   breakpoints: FormControl[] = [];
+	error: any;
 
   constructor(
     private bull: BullgammatorService,
@@ -27,16 +28,26 @@ export class ExecComponent implements OnInit {
    *  Executes one instruction and prepare the next
    */
   execNextInstruction() {
-    this.bull.bullgamma.execNextInstruction()
+		try {
+			this.error = null;
+	    this.bull.bullgamma.execNextInstruction()
+		} catch (error) {
+			this.error = error;
+		}
   }
 
   /*
    *  Executes instructions until the next breakpoint
    */
   execUntilBreakPoint() {
-    do {
-      this.execNextInstruction();
-    } while (!this.breakpointAtCurrentLine());
+		try {
+			do {
+				this.error = null;
+				this.bull.bullgamma.execNextInstruction();
+			} while (!this.breakpointAtCurrentLine());
+		} catch (error) {
+			this.error = error;
+		}
   }
 
   /*
