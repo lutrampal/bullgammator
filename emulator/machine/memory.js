@@ -163,17 +163,17 @@ class Memory extends Word {
     let carry = 0
     for (let i = from; i < to || carry === 1 && !overriding_carry; i++) {
       let other_val = i < to ? other.blocks[i] : 0
-      let res = this.blocks[i%this.blocks.length + this.blocks.length - NB_CHRS_PER_WORD] + other_val + carry
-      if (res > 9) {
-        carry = 1
-        res -= 10
-      } else {
-        carry = 0
-      }
-      this.blocks[i%this.blocks.length + this.blocks.length - NB_CHRS_PER_WORD] = res
+      let res = this.blocks[i%this.blocks.length + (this.blocks.length - NB_CHRS_PER_WORD)] + other_val + carry
+			if (res >= this.getMode().base) {
+				carry = 1
+				res -= this.getMode().base
+			} else {
+				carry = 0
+			}
+      this.blocks[i%this.blocks.length + (this.blocks.length - NB_CHRS_PER_WORD)] = res
     }
     if (overriding_carry && carry) {
-      this.blocks[to%this.blocks.length] = carry
+      this.blocks[to%this.blocks.length] += carry
     }
   }
 
@@ -187,9 +187,9 @@ class Memory extends Word {
     assert.equal(value < 16, true, "value should be inferior to 16")
     assert.equal(at < this.blocks.length, true, "at should be inferior to the number of blocks per memory")
     this.blocks[at] = Math.abs(this.blocks[at] + value);
-    for (let i = at; this.blocks[i] > 9; i = (i + 1)%this.blocks.length) {
+    for (let i = at; this.blocks[i] >= this.getMode().base; i = (i + 1)%this.blocks.length) {
       this.blocks[(i + 1) % this.blocks.length]++
-      this.blocks[i] -= 10
+      this.blocks[i] -= this.getMode().base
     }
   }
 
@@ -204,12 +204,11 @@ class Memory extends Word {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be smaller than to")
     assert.equal(to <= this.blocks.length, true, "to should not be greater than the number of blocks per memory")
-    assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
     let val = 0;
     let mult = 1;
     for (let i = from; i < to; ++i) {
       val += this.blocks[i]*mult
-      mult *= 10
+      mult *= this.getMode().base
     }
     return val
   }
@@ -225,8 +224,9 @@ class Memory extends Word {
     assert.equal(from < to, true, "from should be smaller than to")
     assert.equal(value >= 0, true, "value should be an absolute value")
     assert.equal(to <= this.blocks.length, true, "to should not be greater than the number of blocks per memory")
-    assert.equal(this.getMode(), MEMORY_MODE.DECIMAL, "the bullgamma should be in decimal mode")
-    let digits = (value).toString(10).split("").map(Number).reverse()
+    let digits = (value).toString(this.getMode().base).split("").map(
+			(chr) => parseInt(chr, this.getMode().base)
+		).reverse()
     let i = 0
     for (; i + from < to && i < digits.length; ++i) {
       this.blocks[from + i] = digits[i];
@@ -246,11 +246,11 @@ class Memory extends Word {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
     assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory")
-    let valM1 = this.getDecimalValue(this_from, this_to) - other.getDecimalValue(from, to)
-    this.setDecimalValue(Math.abs(valM1), this_from, this_to)
-    if (valM1 < 0) {
-      this.bullGamma.ms1 = 10;
-    }
+		let valM1 = this.getDecimalValue(this_from, this_to) - other.getDecimalValue(from, to)
+		this.setDecimalValue(Math.abs(valM1), this_from, this_to)
+		if (valM1 < 0 && this.getMode() === MEMORY_MODE.DECIMAL) {
+			this.bullGamma.ms1 = 10;
+		}
   }
 
   multiply(other, from, to) {

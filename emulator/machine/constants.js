@@ -58,8 +58,8 @@ module.exports.NB_HEX_VALUES_PER_MAGNETIC_DRUM = NB_HEX_VALUES_PER_MAGNETIC_DRUM
 
 // Computation mode
 MEMORY_MODE = {
-  BINARY: {value: 0, name: "binary", code: "b"},
-  DECIMAL: {value: 1, name: "decimal", code: "d"}
+  BINARY: {value: 0, name: "binary", code: "b", base: 16},
+  DECIMAL: {value: 1, name: "decimal", code: "d", base: 10}
 };
 Object.freeze(MEMORY_MODE);
 module.exports.MEMORY_MODE = MEMORY_MODE;

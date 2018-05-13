@@ -86,10 +86,10 @@ class Debug {
    * @return string
    */
   getMode() {
-    if (this.bullGamma._memoryMode == MEMORY_MODE.BINARY) {
+    if (this.bullGamma._memoryMode === MEMORY_MODE.BINARY) {
       return "Binaire";
     }
-    if (this.bullGamma._memoryMode == MEMORY_MODE.DECIMAL) {
+    if (this.bullGamma._memoryMode === MEMORY_MODE.DECIMAL) {
       return "Décimal";
     }
   }
