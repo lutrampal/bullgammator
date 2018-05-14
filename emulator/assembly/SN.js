@@ -53,7 +53,9 @@ class SN extends OperationWithPreShift {
       return
     }
     if (this.AD === 0) {
-      this.bullGamma.getMemory(1).addValue(-this.OF, this.OD);
+    	let mTmp = new Memory(1, this.bullGamma)
+			mTmp.blocks[this.OD] = this.OF
+      this.bullGamma.getMemory(1).subtract(mTmp)
     }
   }
 

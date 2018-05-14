@@ -130,7 +130,7 @@ describe('SN', function() {
       m1.setContent("FEDCBA987654")
       m2.setContent("AAAAAAAAAAAA")
       new SN(2, 0, 12, bullGamma).execute()
-      assert(m1.toString(), "54320FEDCBAA", "wrong value")
+      assert.equal(m1.toString(), "54320FEDCBAA", "wrong value")
     });
     it('[Binary mode] should keep absolute value when MB > M1', function () {
       let bullGamma = new BullGamma();
@@ -141,7 +141,7 @@ describe('SN', function() {
       m2.setContent("FEDCBA987654")
       m1.setContent("AAAAAAAAAAAA")
       new SN(2, 0, 12, bullGamma).execute()
-      assert(m1.toString(), "54320FEDCBAA", "wrong value")
+      assert.equal(m1.toString(), "54320FEDCBAA", "wrong value")
     });
     it('[Binary mode] should subtract OF to M1', function () {
       let bullGamma = new BullGamma();
@@ -149,7 +149,7 @@ describe('SN', function() {
       bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
       m1.setContent("EAAAAAAAAAAA")
       new SN(0, 11, 0xf, bullGamma).execute()
-      assert(m1.toString(), "55555555556", "wrong value")
+      assert.equal(m1.toString(), "055555555556", "wrong value")
     });
   });
 });

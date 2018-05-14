@@ -242,7 +242,7 @@ class Memory extends Word {
    * @param from index of the block from which the subtraction should start
    * @param to index of the block to which the subtraction should end (excluded)
    */
-  subtract(other, from, to, this_from = from, this_to = to) {
+  subtract(other, from = 0, to = this.blocks.length, this_from = from, this_to = to) {
     assert.equal(from >= 0, true, "from should not be negative")
     assert.equal(from < to, true, "from should be inferior to to")
     assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory")
