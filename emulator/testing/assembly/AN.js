@@ -113,5 +113,26 @@ describe('AN', function() {
       new AN(2, 0, 12, bullGamma).execute()
       assert.equal(m1.blocks[0]*10 + m1.blocks[11], 18, "wrong result")
     });
+    it('[Binary mode] should add two binary numbers', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      m1.setContent("0FEDCBA98765")
+      m2.setContent("0AAAAAAAAAAA")
+      new AN(2, 0, 12, bullGamma).execute()
+      assert(m1.toString(), "B54320FEE764", "wrong value")
+    });
+    it('[Binary mode] overflow test', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      m1.setContent("AAAAAAAAAAAA")
+      m2.setContent("AAAAAAAAAAAA")
+      new AN(2, 0, 12, bullGamma).execute()
+      assert(m1.toString(), "555555555555", "wrong value")
+    });
   });
 });

@@ -42,7 +42,7 @@ describe('MagneticDrum', function() {
         bullGamma.magneticDrum.trackGroups.forEach(function (trackGroup) {
           trackGroup.tracks.forEach(function (track) {
             track.blocks.forEach(function (block) {
-							assert.equal(block.toString(), hexCode, "returned hex value doesn't match the expected one")
+							assert.equal(block.toString(), hexCode.toUpperCase(), "returned hex value doesn't match the expected one")
             })
           })
         })

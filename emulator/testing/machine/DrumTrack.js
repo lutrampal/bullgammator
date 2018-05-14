@@ -35,7 +35,7 @@ describe('DrumTrack', function() {
         + "222222220000\n"
       bullGamma.magneticDrum.trackGroups[0].tracks[0].setContent(hexCode.repeat(NB_BLOCKS_PER_TRACK))
       bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks.forEach(function(block) {
-				assert.equal(block.toString(), hexCode, "returned hex value doesn't match the expected one");
+				assert.equal(block.toString(), hexCode.toUpperCase(), "returned hex value doesn't match the expected one");
       })
     })
   })

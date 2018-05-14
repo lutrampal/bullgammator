@@ -21,7 +21,7 @@ describe('Group', function() {
         + "222222220000\n"
       bullGamma.groups[0].setContent(hexCode + hexCode)
       bullGamma.groups[0].octads.forEach(function(octad) {
-        assert.equal(octad.toString(), hexCode, "returned hex value doesn't match the expected one")
+        assert.equal(octad.toString(), hexCode.toUpperCase(), "returned hex value doesn't match the expected one")
       })
     })
   })

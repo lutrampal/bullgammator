@@ -12,7 +12,7 @@ describe('TB', function() {
       bullGamma.magneticDrum.trackGroups[0].tracks[1].blocks[2].setContent("AAAAAAAAAAAA".repeat(16))
       tb.execute();
       bullGamma.groups[2].octads.forEach(function (octad) {
-        assert.equal(octad.toString(), "aaaaaaaaaaaa\n".repeat(8))
+        assert.equal(octad.toString(), "aaaaaaaaaaaa\n".repeat(8).toUpperCase())
       })
     });
   });

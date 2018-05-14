@@ -13,7 +13,7 @@ describe('BT', function() {
       bullGamma.groups[2].setContent("aaaaaaaaaaaa\n".repeat(16))
       bt.execute();
 			assert.equal(bullGamma.magneticDrum.trackGroups[7].tracks[15].blocks[7].toString(),
-				("aaaaaaaaaaaa\t".repeat(3) + "aaaaaaaaaaaa\n").repeat(4));
+				("aaaaaaaaaaaa\t".repeat(3) + "aaaaaaaaaaaa\n").repeat(4).toUpperCase());
     });
   });
 });

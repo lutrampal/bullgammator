@@ -21,7 +21,7 @@ class Word {
 		this.blocks.forEach(function (block) {
 			str = block.toString(16) + str;
 		})
-		return str;
+		return str.toUpperCase();
 	}
 
 	/**
