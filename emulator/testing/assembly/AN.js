@@ -134,5 +134,13 @@ describe('AN', function() {
       new AN(2, 0, 12, bullGamma).execute()
       assert(m1.toString(), "555555555555", "wrong value")
     });
+    it('[Binary mode] should add OF to M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      m1.setContent("0FAAAAAAAAAA")
+      new SN(0, 10, 1, bullGamma).execute()
+      assert(m1.toString(), "10AAAAAAAAAA", "wrong value")
+    });
   });
 });
