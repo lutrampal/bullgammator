@@ -23,7 +23,7 @@ class SmallDivOrMult extends Operation {
     }
     if (this.AD > 0) {
       let mb = this.bullGamma.getMemory(this.AD)
-      if (mb.blocks[this.OF - 1] === 10) {
+      if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && mb.blocks[this.OF - 1] === 10) {
         mb.blocks[this.OF - 1] = 0
         this._compute(mb)
         mb.blocks[this.OF - 1] = 10
@@ -34,10 +34,12 @@ class SmallDivOrMult extends Operation {
     } else {
       this._computeValue()
     }
-    if (nb_neg_signs % 2 === 0) {
-      this.bullGamma.ms1 = 0
-    } else {
-      this.bullGamma.ms1 = 10
+    if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
+      if (nb_neg_signs % 2 === 0) {
+        this.bullGamma.ms1 = 0
+      } else {
+        this.bullGamma.ms1 = 10
+      }
     }
   }
 

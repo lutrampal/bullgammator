@@ -61,5 +61,25 @@ describe('MR', function() {
       new MR(0, 8, 0, bullGamma).execute();
       assert.equal(bullGamma.getMemory(1).getDecimalValue(0, 12), 1111, "wrong result")
     });
+    it('[Binary mode] should multiply M2 and M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      m1.setContent("00000000FED9")
+      m2.setContent("0000A9EE0000")
+      new MR(2, 0, 12, bullGamma).execute()
+      assert(m1.toString(), "0000A92A2EBE", "wrong value")
+    });
+    it('[Binary mode] should multiply M1 and OF', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      m1.setContent("00000000FED9")
+      new MR(0, 4, 0xA, bullGamma).execute()
+      assert(m1.toString(), "00000009F47A", "wrong value")
+    });
   });
 });
