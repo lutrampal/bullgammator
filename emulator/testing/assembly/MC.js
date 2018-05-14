@@ -47,5 +47,31 @@ describe('MC', function() {
       assert(m2.getDecimalValue(0, 12), 88888999999, "wrong result");
       assert(m1.getDecimalValue(0, 12), 888888, "wrong result");
     });
+    it('[Binary mode] should multiply M2 and M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      let m3 = bullGamma.getMemory(3);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      bullGamma.md = 8
+      m3.setContent("00000000abcd")
+      m2.setContent("0000abcdef98")
+      new MC(3, 0, 4, bullGamma).execute()
+      assert(m1.toString(), "00000000734C", "wrong value")
+      assert(m1.toString(), "22F364B80000", "wrong value")
+    });
+    it('[Binary mode] should multiply M1 and OF', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      bullGamma.md = 8
+      m2.setContent("22F364B80000")
+      new MC(0, 4, 0xA, bullGamma).execute()
+      assert(m1.toString(), "000000015D81", "wrong value")
+      assert(m2.toString(), "EF3000000000", "wrong value")
+    });
   });
 });
