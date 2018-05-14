@@ -20,11 +20,13 @@ class CN extends OperationWithPreShift {
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "Effectue le décalage de M1 puis compare le contenu de M1 à "
+			return "CN - Comparaison\n"
+			+ "Effectue le décalage de M1 puis compare le contenu de M1 à "
 			+ this.OF + " en position " + this.OD
 			+ ", met le résultat en mémoire de comparaison";
 		} else {
-			return "Effectue le décalage de M1 puis compare le contenu de M1 à celui de M"
+			return "CN - Comparaison\n"
+			+ "Effectue le décalage de M1 puis compare le contenu de M1 à celui de M"
 			+ this.AD + " entre les positions " + this.OD + " et " + this.OF
 			+ ", met le résultat en mémoire de comparaison";
 		}

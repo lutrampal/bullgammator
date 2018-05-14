@@ -10,7 +10,8 @@ class NOP extends V {
   }
 
 	getDescription() {
-		return "Ne fait rien";
+		return "V - Variante jamais\n"
+		+ "Ne fait rien";
 	}
 }
 

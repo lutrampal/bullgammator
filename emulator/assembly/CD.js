@@ -11,7 +11,8 @@ class CD extends Instruction {
   }
 
 	getDescription() {
-		return "Selectionne le mode de calcul décimal";
+		return "CD - Calcul Décimal\n"
+		+ "Selectionne le mode de calcul décimal";
 	}
 }
 

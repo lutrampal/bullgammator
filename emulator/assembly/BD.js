@@ -10,7 +10,8 @@ class BD extends Instruction {
   }
 
 	getDescription() {
-		return "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
+		return "BD - transfert de mémoire Banale en mémoire de Décalage\n"
+		+ "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
 	}
 }
 

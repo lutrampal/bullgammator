@@ -13,7 +13,8 @@ class CO extends Instruction {
   }
 
 	getDescription() {
-		return "Selectionne l'octade commutée " + this.OF;
+		return "CO - Commutation d'Octade\n"
+		+ "Selectionne l'octade commutée " + this.OF;
 	}
 }
 

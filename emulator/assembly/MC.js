@@ -17,11 +17,14 @@ class MC extends BigDivOrMult {
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "Multipplie le nombre contenu dans M1 par " + this.OF
+			return "MC - Multiplication Complète\n"
+			+ "Multipplie le nombre contenu dans M1 par " + this.OF
 			+ " en position " + this.AD
 			+ ", le résultat est en M1-M2";
 		} else if (this.AD > 2) {
-			return "Multipplie le nombre contenu dans M1 par  M" + this.AD
+			return "MC - Multiplication Complète\n"
+			+ "Multipplie le nombre contenu dans M1 par  M" + this.AD
+			+ " entre les positions " + this.OD + " et " + this.OF
 			+ ", le résultat est en M1-M2";
 		} else {
 			return "Instruction invalide";

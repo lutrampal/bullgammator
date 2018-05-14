@@ -10,7 +10,8 @@ class AMD extends Instruction {
   }
 
 	getDescription() {
-		return "Met la mémoire de décalage à " + this.OF;
+		return "AMD - Alteration de la Mémoire de Décalage\n"
+		+ "Met la mémoire de décalage à " + this.OF;
 	}
 }
 

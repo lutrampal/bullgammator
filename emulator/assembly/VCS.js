@@ -33,7 +33,8 @@ class VCS extends Instruction {
 	}
 
 	getDescription() {
-		let intro =  "Saute à la ligne " + ((this.OD << 2) + (this.OF >> 2))
+		let intro = "VCS - Variante Changement de Serie\n"
+		+ "Saute à la ligne " + ((this.OD << 2) + (this.OF >> 2))
 		+ " de la série " + (this.OF % 4);
 
 		switch (this.AD) {

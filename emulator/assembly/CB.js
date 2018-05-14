@@ -11,7 +11,8 @@ class CB extends Instruction {
   }
 
 	getDescription() {
-		return "Selectionne le mode de calcul binaire";
+		return "CB - Calcul Binaire\n"
+		+ "Selectionne le mode de calcul binaire";
 	}
 }
 

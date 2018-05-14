@@ -15,11 +15,14 @@ class DC extends BigDivOrMult {
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "Divise le nombre contenu dans M1-M2 par " + this.OF
+			return "DC - Division Complète\n"
+			+ "Divise le nombre contenu dans M1-M2 par " + this.OF
 			+ " en position " + this.AD
 			+ ", le quotient est calculé en M2 et le reste en M1-M2 en position MD ou 12 si MD vaut 0";
 		} else if (this.AD > 2) {
-			return "Divise le nombre contenu dans M1-M2 par M" + this.AD
+			return "DC - Division Complète\n"
+			+ "Divise le nombre contenu dans M1-M2 par M" + this.AD
+			+ " entre les positions " + this.OD + " et " + this.OF
 			+ ", le quotient est calculé en M2 et le reste en M1-M2 en position MD ou 12 si MD vaut 0";
 		} else {
 			return "Instruction invalide";

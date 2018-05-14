@@ -13,7 +13,8 @@ class KB extends Instruction {
 		if (this.AD == 0) {
 			return "Emission de 48V";
 		} else {
-			return "Ecrit la constante " + this.OF + " en position " + this.OD
+			return "KB - transfert d'une Constante en mémoire Banale\n"
+			+ "Ecrit la constante " + this.OF + " en position " + this.OD
 			+ " de M" + this.AD;
 		}
 	}

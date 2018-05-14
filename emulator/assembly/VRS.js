@@ -31,13 +31,15 @@ class VRS extends Instruction {
 	getDescription() {
 		switch (this.AD) {
 			case 5:
-				return "Retourne à la ligne enregistrée en RNL1";
+				return "VRS - Variante Retour Serie\n"
+				+ "Retourne à la ligne enregistrée en RNL1";
 			case 6:
-				return "Retourne à la ligne enregistrée en RNL2";
+				return "VRS - Variante Retour Serie\n"
+				+ "Retourne à la ligne enregistrée en RNL2";
 			case 7:
 				return "Instruction non implémentée";
 			default:
-				return "Instruction non implémentée invalide";
+				return "Instruction invalide";
 		}
 	}
 }

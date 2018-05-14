@@ -15,7 +15,8 @@ class TB extends DrumTransfer {
   }
 
 	getDescription() {
-		return "Transfère le contenu du bloc " + (this.OF >> 1)
+		return "TB - transfert du Tambour en mémoire Banale\n"
+		+ "Transfère le contenu du bloc " + (this.OF >> 1)
 		+ " de la piste " + this.OD
 		+ " de la seizaine " + (this.AD % 2 == 1 ? "commutée" : "0")
 		+ " du tambour dans les octades " + (this.AD & 0xE) + " et " + (this.AD | 0x1);

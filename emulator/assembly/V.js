@@ -22,12 +22,13 @@ class V extends Instruction {
 
 	getDescription() {
 		if (this.AD < 5 && this.OF % 4 < 2) {
-			let intro = "Saute à ligne " + ((this.OD << 2) + (this.OF >> 2))
+			let intro = "V - Variante\n"
+			+ "Saute à ligne " + ((this.OD << 2) + (this.OF >> 2))
 			+ " de la série courante";
 
 			if (this.AD == 0 ) {
 				if (this.OF % 4 == 0) {
-					return "Ne fait rien"
+					return "V - Variante\nNe fait rien"
 				} else {
 					return intro;
 				}
@@ -39,8 +40,8 @@ class V extends Instruction {
 				}
 			} else {
 				let jump_cond_matrix = [
-					["est supérieur", "est égal", "est supérieur ou égal"],
-					["est inférieur ou égal", "est différent", "est inférieur"],
+					["'supérieur'", "'égal'", "'supérieur ou égal'"],
+					["'inférieur ou égal'", "'différent'", "'inférieur'"],
 				]
 				return intro + " si la mémoire de décalage contient le resultat "
 				+ jump_cond_matrix[this.OF % 4][this.AD - 1];

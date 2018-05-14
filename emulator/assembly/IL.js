@@ -7,9 +7,11 @@ class IL extends Operation {
 
 	getDescription() {
 		if (this.AD == 10) {
-			return "Calcule un 'et' logique entre chaque position de M1 et " + this.OF;
+			return "IL - Intersection Logique\n"
+			+ "Calcule un 'et' logique entre chaque position de M1 et " + this.OF;
 		} else if (this.AD == 12) {
-			return "Calcule un 'et' logique entre M1 et M2"
+			return "IL - Intersection Logique\n"
+			+ "Calcule un 'et' logique entre M1 et M2"
 		}
 		return "Instruction invalide";
 	}

@@ -59,11 +59,13 @@ class SN extends OperationWithPreShift {
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "Effectue le décalage de M1, soustrait M1 à " + this.OF
+			return "SN - Soustraction\n"
+			+ "Effectue le décalage de M1, soustrait M1 à " + this.OF
 			+ " en position " + this.OD
 			+ ", puis met le résultat dans M1";
 		} else {
-			return "Effectue le décalage de M1, soustrait M1 à M" + this.AD
+			return "SN - Soustraction\n"
+			+ "Effectue le décalage de M1, soustrait M1 à M" + this.AD
 			+ " entre les positions" + this.OD + " et " + this.OF
 			+ ", puis met le résultat dans M1";
 		}

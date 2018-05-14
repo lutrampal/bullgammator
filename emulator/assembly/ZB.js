@@ -16,7 +16,8 @@ class ZB extends Operation {
     if (this.AD == 0) {
 			return "Instruction invalide";
     } else {
-			return "Met à zéro M" + this.AD + " entre les positions "
+			return "ZB - mise à Zéro de mémoire Banale\n"
+			+ "Met à zéro M" + this.AD + " entre les positions "
 			+ this.OD + " et " + this.OF;
 		}
 	}

@@ -10,7 +10,8 @@ class CSz extends Instruction {
   }
 
 	getDescription() {
-		return "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
+		return "CSz - Commutation de Seizaine\n"
+		+ "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
 	}
 }
 

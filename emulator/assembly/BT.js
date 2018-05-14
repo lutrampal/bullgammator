@@ -15,7 +15,8 @@ class BT extends DrumTransfer {
   }
 
 	getDescription() {
-		return "Transfère le contenu des octades " + (this.AD & 0xE) + " et " + (this.AD | 0x1)
+		return "BT - transfert de mémoire Banal au Tambour\n"
+		+ "Transfère le contenu des octades " + (this.AD & 0xE) + " et " + (this.AD | 0x1)
 		+ " dans le bloc " + (this.OF >> 1) + " de la piste " + this.OD
 		+ " de la seizaine " + (this.AD % 2 == 1 ? "commutée" : "0")
 		+ " du tambour";
