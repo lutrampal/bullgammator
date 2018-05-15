@@ -1,10 +1,10 @@
 assert = require('assert')
 
-const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY
-const NB_INST_PER_SERIE = require("./constants").NB_INST_PER_SERIE
-const NB_INST_PER_MEM = require("./constants").NB_INST_PER_MEM
-const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD
-NOP = require("../assembly/NOP").NOP
+const NB_INST_CONNEXION_ARRAY = require("../constants").NB_INST_CONNEXION_ARRAY
+const NB_INST_PER_SERIE = require("../constants").NB_INST_PER_SERIE
+const NB_INST_PER_MEM = require("../constants").NB_INST_PER_MEM
+const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
+NOP = require("../../assembly/NOP").NOP
 
 class Serie {
   constructor(id, bullGamma, group) {

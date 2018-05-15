@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { BullgammatorService } from '../../providers/bullgammator.service';
-import {DrumService } from '../../drum/providers/drum.service';
+import { EditorService } from '../providers/editor.service';
 
 @Component({
   selector: 'app-hex-editor',
@@ -11,54 +10,67 @@ import {DrumService } from '../../drum/providers/drum.service';
 })
 export class HexEditorComponent implements OnInit, OnDestroy {
 
-  control: FormGroup;
-  error: string;
-  watcher: any;
+  series3HexCtrl: FormGroup;
+  magDrumHexCtrl: FormGroup;
+
+  series3HexWatcher: any;
+  magDrumHexWatcher: any;
+
+	series3HexError: string;
+	magDrumHexError: string;
 
   constructor(
     private fb: FormBuilder,
-    private bull: BullgammatorService,
-		private drum: DrumService
+    private edit: EditorService
   ) {
 
   }
 
   ngOnInit() {
-    this.control = this.fb.group({
+    this.series3HexCtrl = this.fb.group({
       hex_entry: ["", [Validators.required, this.hex_validator]]
     })
-    this.watcher = this.control.valueChanges.subscribe(() => {
-      this.error = null;
+    this.series3HexWatcher = this.series3HexCtrl.valueChanges.subscribe(() => {
+      this.series3HexError = null;
+    });
+    this.magDrumHexCtrl = this.fb.group({
+      hex_entry: ["", [Validators.required, this.hex_validator]]
+    })
+    this.magDrumHexWatcher = this.magDrumHexCtrl.valueChanges.subscribe(() => {
+      this.magDrumHexError = null;
     });
   }
 
   ngOnDestroy() {
-    if (this.watcher) {
-      this.watcher.unsubscribe();
-    }
+	  if (this.series3HexWatcher) {
+	    this.series3HexWatcher.unsubscribe();
+	  }
+	  if (this.magDrumHexWatcher) {
+	    this.magDrumHexWatcher.unsubscribe();
+	  }
   }
 
   hex_validator(control: FormControl) {
     return null;
   }
 
-  validate() {
+  validateSeries3Hex() {
     try {
-      this.bull.bullgamma.getSerie(3).setInstructions(this.control.get("hex_entry").value);
+      this.edit.editConnexionArray(this.series3HexCtrl.get("hex_entry").value);
     }
     catch(error) {
       console.error(error);
-      this.error = error;
+      this.series3HexError = error;
     }
   }
 
-	validateDrum() {
+	validateDrumHex() {
 			try {
-				this.drum.setContent(this.control.get("hex_entry").value);
+				this.edit.editDrum(this.magDrumHexCtrl.get("hex_entry").value);
 			}
 			catch(error) {
 				console.error(error);
-				this.error = error;
+				this.magDrumHexError = error;
 			}
 	}
 

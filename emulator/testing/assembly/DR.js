@@ -2,7 +2,7 @@ BullGamma = require("../../machine/bullGamma").BullGamma;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 DR = require("../../assembly/DR").DR;
-Memory = require("../../machine/memory").Memory;
+Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('DR', function() {
   describe('#execute()', function () {

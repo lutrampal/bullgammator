@@ -1,14 +1,30 @@
 <div>
-  <form [formGroup]="control">
+	<mat-tab-group>
+		<mat-tab label="Serie 3">
+		  <form [formGroup]="series3HexCtrl">
 
-    <span *ngIf="error" class="error">{{ error }}</span>
+		    <span *ngIf="series3HexError" class="error">{{ series3HexError }}</span>
 
-    <div class="container">
-      <mat-form-field>
-        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
-      </mat-form-field>
-    </div>
-    <button (click)="validate()" [disabled]="control.invalid" color="primary" mat-raised-button>Charger le code en série 3</button>
-    <button (click)="validateDrum()" [disabled]="control.invalid" color="primary" mat-raised-button>Charger le code dans le tambour</button>
-  </form>
+		    <div class="container">
+		      <mat-form-field>
+		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
+		      </mat-form-field>
+		    </div>
+		    <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code en série 3</button>
+		  </form>
+		</mat-tab>
+		<mat-tab label="Tambour">
+		  <form [formGroup]="magDrumHexCtrl">
+
+		    <span *ngIf="magDrumHexError" class="error">{{ magDrumHexError }}</span>
+
+		    <div class="container">
+		      <mat-form-field>
+		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
+		      </mat-form-field>
+		    </div>
+		    <button (click)="validateDrumHex()" [disabled]="magDrumHexCtrl.invalid" color="primary" mat-raised-button>Charger le code dans le tambour</button>
+		  </form>
+		</mat-tab>
+	</mat-tab-group>
 </div>

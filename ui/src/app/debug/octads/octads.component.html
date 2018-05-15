@@ -13,7 +13,8 @@
             <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[nbOctads * octad + mb.id]">
           </span>
         </div>
-        <button (click)="editMemories();" *ngIf="!edit" mat-raised-button>Editer</button>
+		    <button mat-icon-button matTooltip="Editer" (click)="editMemories();" *ngIf="!edit" mat-raised-button><mat-icon>edit</mat-icon></button>
+		    <button mat-icon-button matTooltip="Effacer" (click)="reset();" *ngIf="!edit" mat-raised-button><mat-icon>clear_all</mat-icon></button>
         <button (click)="setMemories(); edit=false;" [disabled]="!valid()" *ngIf="edit" mat-raised-button>Ok</button>
       </form>
     </div>

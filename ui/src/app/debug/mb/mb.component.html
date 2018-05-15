@@ -3,12 +3,12 @@
     <h4>Controle</h4>
     <div class="columns">
       <div class="control">
+				<span>
+					<label>NL</label>
+					<input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
+					<input *ngIf="edit" matInput placeholder="NL" [formControl]="nlCtrl">
+				</span>
         <span>
-          <label>Mode</label>
-          <input *ngIf="!edit" matInput placeholder="Mode" [value]="getMode()" disabled>
-          <input *ngIf="edit" matInput placeholder="Mode" [formControl]="modeCtrl">
-        </span>
-          <span>
           <label>MS1</label>
           <input *ngIf="!edit" matInput placeholder="MS1" [value]="getMS1()" disabled>
           <input *ngIf="edit" matInput placeholder="MS1" [formControl]="ms1Ctrl">
@@ -34,9 +34,14 @@
           <input *ngIf="edit" matInput placeholder="RNL2" [formControl]="rnl2Ctrl">
         </span>
         <span>
-          <label>NL</label>
-          <input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
-          <input *ngIf="edit" matInput placeholder="NL" [formControl]="nlCtrl">
+          <label>Octade</label>
+          <input *ngIf="!edit" matInput placeholder="Octade" [value]="getOctad()" disabled>
+          <input *ngIf="edit" matInput placeholder="Octade" [formControl]="octadCtrl">
+        </span>
+        <span>
+          <label>Seizaine</label>
+          <input *ngIf="!edit" matInput placeholder="Seizaine" [value]="getTrackGr()" disabled>
+          <input *ngIf="edit" matInput placeholder="Seizaine" [formControl]="trackGrCtrl">
         </span>
 
       </div>
@@ -54,9 +59,16 @@
             <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[mb.id]">
           </span>
         </div>
+
+        <span>
+          <label>Mode</label>
+          <input *ngIf="!edit" matInput placeholder="Mode" [value]="getMode()" disabled>
+          <input *ngIf="edit" matInput placeholder="Mode" [formControl]="modeCtrl">
+        </span>
       </div>
     </div>
-    <button (click)="editMemories();" *ngIf="!edit" mat-raised-button>Editer</button>
+    <button mat-icon-button matTooltip="Editer" (click)="editMemories();" *ngIf="!edit" mat-raised-button><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button matTooltip="Effacer" (click)="reset();" *ngIf="!edit" mat-raised-button><mat-icon>clear_all</mat-icon></button>
     <button (click)="setMemories(); edit=false;" [disabled]="!valid()" *ngIf="edit" mat-raised-button>Ok</button>
   </form>
 </div>

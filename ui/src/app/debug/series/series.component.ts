@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { SeriesService, Series } from '../providers/series.service';
+import { SeriesService } from '../providers/series.service';
 
 @Component({
   selector: 'app-series',
@@ -21,12 +21,13 @@ export class SeriesComponent implements OnInit {
   ) {
     this.seriesId = 3;
 		while(this.seriesId != 3 || this.breakpoints.length == 0) {
-			for (var i=0; i<this.s.getMaxNbInsts(this.seriesId); i++) {
+			for (var i=0; i<this.s.getNumberOfInstructions(this.seriesId); i++) {
 				this.breakpoints.push(new FormControl(false, []));
 			}
 			this.plus();
 		}
     this.breakpoints[0].setValue(true);
+    this.breakpoints[0].disable();
     this.emit();
   }
 
@@ -58,7 +59,7 @@ export class SeriesComponent implements OnInit {
 	}
 
   getHalfNbInst() {
-    return Math.floor(this.s.getMaxNbInsts(this.seriesId) / 2);
+    return Math.floor(this.s.getNumberOfInstructions(this.seriesId) / 2);
   }
 
   getControl(line: number) {

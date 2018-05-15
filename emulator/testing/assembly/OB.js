@@ -3,7 +3,7 @@ BullGamma = require("../../machine/bullGamma").BullGamma;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 OB = require("../../assembly/OB").OB;
-Memory = require("../../machine/memory").Memory;
+Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('BO', function() {
   describe('#execute()', function() {

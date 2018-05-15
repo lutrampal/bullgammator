@@ -1,6 +1,6 @@
 Operation = require("./operation").Operation
-Memory = require("../machine/memory").Memory
-NB_CHRS_PER_WORD = require("../machine/memory").NB_CHRS_PER_WORD
+Memory = require("../machine/innerComponents/memory").Memory
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
 class BigDivOrMult extends Operation {
   constructor(TO, AD, OD, OF, bullGamma) {

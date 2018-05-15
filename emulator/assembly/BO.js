@@ -38,9 +38,11 @@ class BO extends Operation {
       default:
         let mb = this.bullGamma.getMemory(this.AD);
         m1.copyBlockValues(mb, this.OD, this.OF);
-        if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
-          this.bullGamma.ms1 = 10;
-          m1.blocks[this.OF - 1] = 0;
+        if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
+				 	if (this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
+	          this.bullGamma.ms1 = 10;
+	          m1.blocks[this.OF - 1] = 0;
+					}
         }
         break;
 

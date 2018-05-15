@@ -7,19 +7,21 @@ package Model {
   package Machine {
     class BullGamma {
       _memoryMode
-      ms1
-      msb
-      md
+      ms1 md mc
+			nl ns rnl1 rnl2
+			parser
+			magneticDrum
+			connectedMachines
       BullGamma()
-      selectOctad(id)
-      getMemory(id)
-      getOctad(id)
-      getMemoryMode()
-      setMemoryMode(newMode)
-      getSerie(id): Serie
-      getGroup(id): Group
-      getIOSerie(): Serie
-      getConnexionArray(): ConnexionArray
+			getSerie(id): Serie
+			getGroup(id): Group
+			getOctad(id)
+			getMemory(id)
+			getMemoryMode()
+			setMemoryMode(newMode)
+			nextLine()
+			executeNextInstruction()
+			connectMachine(ConnectedMachine machine)
     }
 
     class Serie {
@@ -135,7 +137,7 @@ package Model {
 
   package "Control" {
       class Editor {
-          editIoSerie(hexCode)
+          editConnexionArray(hexCode)
           editDrum(hexCode)
       }
 
@@ -143,13 +145,16 @@ package Model {
       MagneticDrum "edit" <--down--o Editor
 
       class Execution {
-          executeAll()
+          executeUntil(line, seriesId)
           executeNextInstruction()
+					getCurrentLine()
+					getCurrentSeries()
+					getInstructions(seriesId)
+					getNumberOfInstructions()
       }
       BullGamma "execution" <--down--o Execution
 
       class Debug {
-          getInstructions(serieId)
           getMemory(id, octad)
           setMemory(value, id, octad)
           getNL()
@@ -162,6 +167,8 @@ package Model {
           setRNL1(value)
           getRNL2()
           setRNL2(value)
+					getCSz()
+					setCSz(value)
       }
       BullGamma "debug" <--down--o Debug
   }

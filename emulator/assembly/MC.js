@@ -1,5 +1,5 @@
 BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
-Memory = require("../machine/memory").Memory
+Memory = require("../machine/innerComponents/memory").Memory
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
 class MC extends BigDivOrMult {

@@ -1,9 +1,8 @@
 BullGamma = require("../../machine/bullGamma").BullGamma;
-MagneticDrum = require("../../machine/magneticDrum").MagneticDrum;
-DrumTrackGroup = require("../../machine/drumTrackGroup").DrumTrackGroup;
-DrumTrack = require("../../machine/drumTrack").DrumTrack;
-DrumBlock = require("../../machine/drumBlock").DrumBlock;
-Octad = require("../../machine/octad").Octad;
+MagneticDrum = require("../../machine/magneticDrum/magneticDrum").MagneticDrum;
+DrumTrackGroup = require("../../machine/magneticDrum/drumTrackGroup").DrumTrackGroup;
+DrumTrack = require("../../machine/magneticDrum/drumTrack").DrumTrack;
+DrumBlock = require("../../machine/magneticDrum/drumBlock").DrumBlock;
 const NB_BLOCKS_PER_TRACK = require("../../machine/constants").NB_BLOCKS_PER_DRUM_TRACK
 const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("../../machine/constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
 assert = require('assert');
