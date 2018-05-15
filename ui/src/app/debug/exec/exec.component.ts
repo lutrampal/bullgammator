@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { SeriesService } from '../providers/series.service';
-import { BullgammatorService } from '../../providers/bullgammator.service';
+import { ExecService } from '../providers/exec.service';
 
 @Component({
   selector: 'app-exec',
@@ -16,21 +15,20 @@ export class ExecComponent implements OnInit {
 	error: any;
 
   constructor(
-    private bull: BullgammatorService,
-    private s: SeriesService
+    private exec: ExecService
   ) { }
 
   ngOnInit() {
-    this.breakpoints = [new FormControl(true, [])];
+		this.breakpoints = [];
   }
 
   /*
    *  Executes one instruction and prepare the next
    */
-  execNextInstruction() {
+  executeNextInstruction() {
 		try {
 			this.error = null;
-	    this.bull.bullgamma.execNextInstruction()
+	    this.exec.executeNextInstruction();
 		} catch (error) {
 			this.error = error;
 		}
@@ -41,10 +39,14 @@ export class ExecComponent implements OnInit {
    */
   execUntilBreakPoint() {
 		try {
-			do {
-				this.error = null;
-				this.bull.bullgamma.execNextInstruction();
-			} while (!this.breakpointAtCurrentLine());
+			this.error = null;
+			if (this.breakpoints.length == 0) {
+				this.exec.executeUntil(0, 3);
+			} else {
+				do {
+					this.exec.executeNextInstruction();
+				} while (!this.breakpointAtCurrentLine());
+			}
 		} catch (error) {
 			this.error = error;
 		}
@@ -57,14 +59,8 @@ export class ExecComponent implements OnInit {
     if (typeof this.breakpoints == 'undefined') {
       return true;
     }
-    if (this.breakpoints.length == 1 &&
-        this.breakpoints[0].value == true &&
-        (this.bull.bullgamma.nl != 0 || this.bull.bullgamma.ns != 3)
-    ) {
-      return false;
-    }
-		let seriesCode = (this.bull.bullgamma.ns + 1) % this.s.getSeriesNumber();
-    return this.breakpoints[(seriesCode << 6) + this.bull.bullgamma.nl].value;
+		let seriesCode = (this.exec.getSeries() + 1) % this.exec.getNumberOfSeries();
+    return this.breakpoints[(seriesCode << 6) + this.exec.getLine()].value;
   }
 
 }

@@ -24,8 +24,10 @@ import { DrumComponent } from './drum/drum.component';
 
 import { MemoriesService } from './debug/providers/memories.service';
 import { SeriesService } from './debug/providers/series.service';
+import { ExecService } from './debug/providers/exec.service';
 import { BullgammatorService } from './providers/bullgammator.service';
 import { DrumService } from './drum/providers/drum.service';
+import { EditorService } from './editors/providers/editor.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { DrumService } from './drum/providers/drum.service';
     FormsModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule
   ],
-  providers: [MemoriesService, SeriesService, BullgammatorService, DrumService],
+  providers: [
+		MemoriesService, SeriesService, ExecService,
+		BullgammatorService, DrumService, EditorService
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

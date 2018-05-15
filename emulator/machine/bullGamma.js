@@ -11,13 +11,13 @@ Serie = require("./serie").Serie
 
 const MEMORY_MODE = require("./constants").MEMORY_MODE;
 
-const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
-const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
 const NB_BANAL_MEMORIES = require("./constants").NB_BANAL_MEMORIES;
+const NB_GROUPS = require("./constants").NB_GROUPS;
+const NB_SERIES = require("./constants").NB_SERIES;
 const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
+const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
-const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY;
-const NB_INST_PER_SERIE = require("./constants").NB_INST_PER_SERIE;
+const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
 
 class BullGamma {
 
@@ -34,8 +34,8 @@ class BullGamma {
     this.ioGroup = new Group(NB_GENERAL_SERIES, this)
 
     // Series and groups
-    this.series = new Array(NB_GENERAL_SERIES + 1);
-    this.groups = new Array(NB_GENERAL_SERIES + 1)
+    this.series = new Array(NB_SERIES);
+    this.groups = new Array(NB_GROUPS)
     for (let i = 0; i < NB_GENERAL_SERIES; ++i) {
       this.groups[i] = new Group(i, this);
       this.series[i] = new Serie(i, this, this.groups[i])
@@ -47,6 +47,7 @@ class BullGamma {
 
     // Other
     this.magneticDrum = new MagneticDrum(this);
+		this.connectedMachines = [];
     this._memoryMode = MEMORY_MODE.DECIMAL;
     this.ms1 = 0;
     this.md = 0;
@@ -63,7 +64,7 @@ class BullGamma {
    * @param id the serie to return, should be between 0 and 3 included
    */
   getSerie(id) {
-    assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
+    assert(id >= 0 && id < NB_SERIES, "id should not be negative or superior to " + NB_SERIES - 1)
     return this.series[id]
   }
 
@@ -72,7 +73,7 @@ class BullGamma {
    * @param id the group to return, should be between 0 and 3 included
    */
   getGroup(id) {
-    assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
+    assert(id >= 0 && id < NB_GROUPS, "id should not be negative or superior to " + NB_GROUPS - 1)
     return this.groups[id]
   }
 
@@ -131,13 +132,18 @@ class BullGamma {
 		return (this.nl + 1) % (this.getSerie(this.ns).nbInst);
 	}
 
-  execNextInstruction() {
+  executeNextInstruction() {
     let old_cp = this.nl;
 		this.nl = this.nextLine();
 
     // execute instruction
     this.getSerie(this.ns).getInstruction(old_cp).execute();
   }
+
+	connectMachine(machine) {
+		this.connectedMachines.push(machine);
+		machine.setBullGamma(this);
+	}
 }
 
 module.exports.BullGamma = BullGamma;

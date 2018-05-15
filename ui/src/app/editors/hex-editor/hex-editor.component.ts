@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { BullgammatorService } from '../../providers/bullgammator.service';
-import {DrumService } from '../../drum/providers/drum.service';
+import { EditorService } from '../providers/editor.service';
 
 @Component({
   selector: 'app-hex-editor',
@@ -17,8 +16,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private bull: BullgammatorService,
-		private drum: DrumService
+    private edit: EditorService
   ) {
 
   }
@@ -44,7 +42,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   validate() {
     try {
-      this.bull.bullgamma.getSerie(3).setInstructions(this.control.get("hex_entry").value);
+      this.edit.editConnexionArray(this.control.get("hex_entry").value);
     }
     catch(error) {
       console.error(error);
@@ -54,7 +52,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
 	validateDrum() {
 			try {
-				this.drum.setContent(this.control.get("hex_entry").value);
+				this.edit.editDrum(this.control.get("hex_entry").value);
 			}
 			catch(error) {
 				console.error(error);

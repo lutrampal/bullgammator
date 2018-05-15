@@ -44,30 +44,11 @@ class Memory extends Word {
     assert.equal(value >= 0, true, "value should not be negative");
     assert.equal(value < 16, true, "value should be inferior to 16");
 
-    switch (this.getMode()) {
-      case MEMORY_MODE.BINARY:
-        this._setBlockValueBinary(idx, value);
-        break;
-      case MEMORY_MODE.DECIMAL:
-        this._setBlockValueDecimal(idx, value);
-        break;
-      default:
-        throw "unknown memory mode: " + this.getMode();
-    }
-  }
-
-	_setBlockValueBinary(idx, value) {
-		this.blocks[idx] = value;
-	}
-
-	_setBlockValueDecimal(idx, value) {
-		if (value <= 9) {
-			this.blocks[idx] = value;
-			return;
+		if (value >= this.getMode().base) {
+			this.blocks[(idx + 1) % this.blocks.length] = 1; // FIXME : += 1 ?
 		}
-		this.blocks[idx] = value % 10;
-		this.blocks[(idx + 1) % this.blocks.length] = 1;
-	}
+		this.blocks[idx] = value % this.getMode().base;
+  }
 
   /**
    * Copy the selected values from an other memory
@@ -81,11 +62,7 @@ class Memory extends Word {
     assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length);
 
     for (let i = from; i < to; i++) {
-      if (this.getMode() === MEMORY_MODE.DECIMAL && other.blocks[i] > 9) {
-        this.blocks[i] = other.blocks[i] - 10
-      } else {
-        this.blocks[i] = other.blocks[i]
-      }
+			this.blocks[i] = other.blocks[i] % this.getMode().base;
     }
   }
 
