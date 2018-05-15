@@ -65,6 +65,15 @@ export class OctadsComponent implements OnInit {
     }
   }
 
+	reset() {
+    for (var octad=0; octad<this.nbOctads; octad++) {
+      for (let mb of this.octads[octad]) {
+        let id = octad * this.nbOctads + mb.id;
+        this.m.setMemory("000000000000", mb.id, octad);
+      }
+    }
+	}
+
   valid() {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {

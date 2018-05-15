@@ -110,4 +110,30 @@ export class MemoriesService {
     this.debug.setRNL2(value);
   }
 
+  getOctad() {
+    return this.debug.getOctad();
+  }
+  setOctad(value: string) {
+    this.debug.setOctad(value);
+  }
+	octadValidator(control: FormControl) {
+    if (!Debug.octadValidate(control.value)) {
+      return { error: true };
+    }
+    return null;
+	}
+
+  getTrackGr() {
+    return this.debug.getTrackGr();
+  }
+  setTrackGr(value: string) {
+    this.debug.setTrackGr(value);
+  }
+	trackGrValidator(control: FormControl) {
+    if (!Debug.trackGrValidate(control.value)) {
+      return { error: true };
+    }
+    return null;
+	}
+
 }
