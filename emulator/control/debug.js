@@ -1,6 +1,8 @@
 const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
 const NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
 const NB_CHRS_PROGRAM_COUNTER = require("../machine/constants").NB_CHRS_PROGRAM_COUNTER;
+const NB_COMMUTED_OCTADS = require("../machine/constants").NB_COMMUTED_OCTADS;
+const NB_TRACK_GROUPS = require("../machine/constants").NB_TRACK_GROUPS;
 
 class Debug {
 
@@ -301,6 +303,62 @@ class Debug {
       return;
     }
     this.bullGamma.rnl2 = Debug.reverseHex(value);
+  }
+
+  /**
+   * Return a character that represents the current octad
+   * @return string
+   */
+  getOctad() {
+		return Debug.hex(this.bullGamma.currentOctad.id);
+  }
+
+  /**
+   * Set a correct character as current octad value
+   * @param value correct character of current octad value
+   */
+  setOctad(value) {
+    if (!Debug.octadValidate(value)) {
+      return;
+    }
+		this.bullGamma.setCommutedOctad(Debug.reverseHex(value));
+  }
+
+  /**
+   * Return true if the given value is a correct value for current octad
+   * @param value value to test
+   * @return boolean
+   */
+  static octadValidate(value) {
+		return value.match(/^[0-7]$/);
+  }
+
+  /**
+   * Return a character that represents the current track group
+   * @return string
+   */
+  getTrackGr() {
+		return Debug.hex(this.bullGamma.magneticDrum.commutedTrackGroup.id);
+  }
+
+  /**
+   * Set a correct character as current track group value
+   * @param value correct character of current track group value
+   */
+  setTrackGr(value) {
+    if (!Debug.trackGrValidate(value)) {
+      return;
+    }
+		this.bullGamma.magneticDrum.setCommutedGroup(Debug.reverseHex(value));
+  }
+
+  /**
+   * Return true if the given value is a correct value for current track group
+   * @param value value to test
+   * @return boolean
+   */
+  static trackGrValidate(value) {
+		return value.match(/^[0-7]$/);
   }
 }
 

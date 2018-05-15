@@ -87,6 +87,10 @@ class BullGamma {
     return this.groups[Math.floor(id/NB_OCTADS_PER_GROUP)].octads[id % NB_OCTADS_PER_GROUP]
   }
 
+	setCommutedOctad(id) {
+		this.currentOctad = this.getOctad(id);
+	}
+
   /**
    * @param id the memory to be returned, if superior to 7, then the memory is selected from the octad
    * @param octadId if given, the memory will be selected from this octad, else from the current octad

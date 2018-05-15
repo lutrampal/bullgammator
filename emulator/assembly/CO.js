@@ -9,7 +9,7 @@ class CO extends Instruction {
     if (this.OF > 7) {
       throw "incorrect instruction for TO = 1, AD = C: got OF = " + OF;
     }
-    this.bullGamma.currentOctad = this.bullGamma.getOctad(this.OF);
+    this.bullGamma.setCommutedOctad(this.OF);
   }
 
 	getDescription() {
