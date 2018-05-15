@@ -1,13 +1,13 @@
 assert = require('assert');
 
 InstructionsParser = require("../assembly/hexParser").InstructionsParser;
-Memory = require("./memory").Memory;
-Group = require("./group").Group;
-Octad = require("./octad").Octad;
-MagneticDrum = require("./magneticDrum").MagneticDrum;
-CmpMemory = require("./cmpMemory").CmpMemory;
-ConnexionArray = require("./connexionArray").ConnexionArray;
-Serie = require("./serie").Serie
+Memory = require("./innerComponents/memory").Memory;
+Group = require("./innerComponents/group").Group;
+Octad = require("./innerComponents/octad").Octad;
+CmpMemory = require("./innerComponents/cmpMemory").CmpMemory;
+ConnexionArray = require("./innerComponents/connexionArray").ConnexionArray;
+Serie = require("./innerComponents/serie").Serie
+MagneticDrum = require("./magneticDrum/magneticDrum").MagneticDrum;
 
 const MEMORY_MODE = require("./constants").MEMORY_MODE;
 

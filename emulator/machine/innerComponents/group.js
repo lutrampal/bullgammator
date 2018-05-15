@@ -2,10 +2,10 @@ assert = require('assert');
 
 Octad = require("./octad").Octad;
 
-const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
-const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD
-const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD
-const NB_HEX_VALUES_PER_GROUP = require("./constants").NB_HEX_VALUES_PER_GROUP
+const NB_OCTADS_PER_GROUP = require("../constants").NB_OCTADS_PER_GROUP
+const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
+const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
+const NB_HEX_VALUES_PER_GROUP = require("../constants").NB_HEX_VALUES_PER_GROUP
 
 class Group {
   constructor(id, bullGamma) {

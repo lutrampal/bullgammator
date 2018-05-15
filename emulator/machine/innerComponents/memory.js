@@ -1,8 +1,8 @@
 assert = require('assert');
-Word = require("./word").Word;
+Word = require("../word").Word;
 
-const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD;
-const MEMORY_MODE = require("./constants").MEMORY_MODE;
+const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD;
+const MEMORY_MODE = require("../constants").MEMORY_MODE;
 
 
 class Memory extends Word {

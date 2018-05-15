@@ -1,9 +1,9 @@
 assert = require('assert')
 
-const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD
-const NB_BANAL_MEMORIES = require("./constants").NB_BANAL_MEMORIES
-const NB_HEX_VALUES_PER_OCTAD = require("./constants").NB_HEX_VALUES_PER_OCTAD
-const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD
+const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
+const NB_BANAL_MEMORIES = require("../constants").NB_BANAL_MEMORIES
+const NB_HEX_VALUES_PER_OCTAD = require("../constants").NB_HEX_VALUES_PER_OCTAD
+const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
 
 Memory = require("./memory").Memory
 

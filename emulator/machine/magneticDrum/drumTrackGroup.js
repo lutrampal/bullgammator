@@ -1,8 +1,8 @@
 assert = require('assert');
 
-const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("./constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
-const NB_HEX_VALUES_PER_DRUM_TRACK = require("./constants").NB_HEX_VALUES_PER_DRUM_TRACK
-const NB_HEX_VALUES_PER_DRUM_TRACK_GROUP = require("./constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP
+const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("../constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
+const NB_HEX_VALUES_PER_DRUM_TRACK = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK
+const NB_HEX_VALUES_PER_DRUM_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP
 
 DrumTrack = require("./drumTrack").DrumTrack;
 

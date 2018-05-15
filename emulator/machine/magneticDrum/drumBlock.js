@@ -1,9 +1,9 @@
 assert = require('assert');
-Word = require("./word").Word
+Word = require("../word").Word
 
-const NB_HEX_VALUES_PER_DRUM_BLOCK = require("./constants").NB_HEX_VALUES_PER_DRUM_BLOCK
-const NB_HEX_VALUES_PER_OCTAD = require("./constants").NB_HEX_VALUES_PER_OCTAD
-const NB_WORD_PER_DRUM_BLOCK = require("./constants").NB_WORD_PER_DRUM_BLOCK
+const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK
+const NB_HEX_VALUES_PER_OCTAD = require("../constants").NB_HEX_VALUES_PER_OCTAD
+const NB_WORD_PER_DRUM_BLOCK = require("../constants").NB_WORD_PER_DRUM_BLOCK
 
 
 class DrumBlock {

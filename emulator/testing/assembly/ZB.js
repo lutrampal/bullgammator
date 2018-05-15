@@ -2,7 +2,7 @@ const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 BullGamma = require("../../machine/bullGamma").BullGamma;
 assert = require('assert');
 ZB = require("../../assembly/ZB").ZB;
-Memory = require("../../machine/memory").Memory;
+Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('ZB', function() {
   describe('#execute()', function() {

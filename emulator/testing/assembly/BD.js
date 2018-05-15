@@ -3,7 +3,7 @@ const NB_CHRS_PER_WORD = require("../../machine/constants").NB_CHRS_PER_WORD;
 MEMORY_MODE = require("../../machine/constants").MEMORY_MODE;
 assert = require('assert');
 BD = require("../../assembly/BD").BD;
-Memory = require("../../machine/memory").Memory;
+Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('BD', function() {
   describe('#execute()', function () {

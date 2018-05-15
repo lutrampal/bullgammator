@@ -1,6 +1,6 @@
 Serie = require("./serie").Serie
 
-const NB_INST_CONNEXION_ARRAY = require("./constants").NB_INST_CONNEXION_ARRAY;
+const NB_INST_CONNEXION_ARRAY = require("../constants").NB_INST_CONNEXION_ARRAY;
 
 class ConnexionArray extends Serie{
 
