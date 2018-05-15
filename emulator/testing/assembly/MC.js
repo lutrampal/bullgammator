@@ -73,5 +73,31 @@ describe('MC', function() {
       assert(m1.toString(), "000000015D81", "wrong value")
       assert(m2.toString(), "EF3000000000", "wrong value")
     });
+    it('[Binary mode] should shiftLeft M2 and ooverflow in M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      bullGamma.md = 8
+      m2.setContent("22F364B80000")
+      new MC(0, 0, 0x4, bullGamma).execute()
+      assert(m1.toString(), "000000000002", "wrong value")
+      assert(m2.toString(), "2F364B800000", "wrong value")
+    });
+    it('[Binary mode] should shiftLeft M2 and ooverflow in M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      let m3 = bullGamma.getMemory(3);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY)
+      bullGamma.ms1 = 10
+      bullGamma.md = 8
+      m2.setContent("22F364B80000")
+			m3.setContent("000000000004")
+      new MC(3, 0, 0, bullGamma).execute()
+      assert(m1.toString(), "000000000002", "wrong value")
+      assert(m2.toString(), "2F364B800000", "wrong value")
+    });
   });
 });
