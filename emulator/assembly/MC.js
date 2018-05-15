@@ -12,6 +12,9 @@ class MC extends BigDivOrMult {
   }
 
   _computeValue(m1m2) {
+  	if (this.OF !== 0) {
+  	  this.bullGamma.md = NB_CHRS_PER_WORD
+    }
     m1m2.multiplyValue(this.OF, this.OD + NB_CHRS_PER_WORD)
   }
 

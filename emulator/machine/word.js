@@ -10,7 +10,8 @@ class Word {
 	}
 
   setContent(hexCode) {
-    assert(hexCode.length === this.blocks.length, "hexCode should be of length " + this.blocks.length + " not " + hexCode.length)
+		assert(hexCode.length <= this.blocks.length, "hexCode should be shorter than " + this.blocks.length + 1 + " chars")
+    hexCode = "0".repeat(this.blocks.length - hexCode.length) + hexCode
     for (let i = hexCode.length - 1, j = 0; j < hexCode.length; i--, j++) {
       this.blocks[i] = parseInt(hexCode.charAt(j), 16)
     }

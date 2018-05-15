@@ -69,8 +69,8 @@ describe('MR', function() {
       bullGamma.ms1 = 10
       m1.setContent("00000000FED9")
       m2.setContent("0000A9EE0000")
-      new MR(2, 0, 12, bullGamma).execute()
-      assert(m1.toString(), "0000A92A2EBE", "wrong value")
+      new MR(2, 4, 12, bullGamma).execute()
+      assert(m1.toString() === "0000A92A2EBE", "wrong value")
     });
     it('[Binary mode] should multiply M1 and OF', function () {
       let bullGamma = new BullGamma();
@@ -79,7 +79,7 @@ describe('MR', function() {
       bullGamma.ms1 = 10
       m1.setContent("00000000FED9")
       new MR(0, 4, 0xA, bullGamma).execute()
-      assert(m1.toString(), "00000009F47A", "wrong value")
+      assert(m1.toString() === "00000009F47A", "wrong value")
     });
   });
 });
