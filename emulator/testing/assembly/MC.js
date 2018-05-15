@@ -42,6 +42,18 @@ describe('MC', function() {
       assert.equal(m2.toString(), "888888888999", "wrong result");
       assert.equal(m1.toString(), "000000000888", "wrong result");
     });
+    it('when AD = 5 bolliet pdf example', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      let m2 = bullGamma.getMemory(2);
+      let m3 = bullGamma.getMemory(3);
+      m1.setContent("000000000000")
+      m2.setContent("213405246312")
+      m3.setContent("032451134621")
+      new MC(3, 0, 0, bullGamma).execute();
+			assert.equal(m1.toString(), "006925242376", "wrong result in m1");
+      assert.equal(m2.toString(), "898375767752", "wrong result in m2");
+    });
     it('[Binary mode] should multiply M2 and M1', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
