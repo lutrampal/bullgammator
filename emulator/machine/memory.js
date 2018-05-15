@@ -296,7 +296,7 @@ class Memory extends Word {
   }
 
   divideValue(value, at) {
-    let mb = new Memory(0, this.bullGamma, NB_CHRS_PER_WORD)
+    let mb = new Memory(0, this.bullGamma)
     mb.blocks[at] = value
     this.divide(mb, 0, at + 1)
   }
