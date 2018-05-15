@@ -60,11 +60,20 @@ class BullGamma {
 
   /**
    * Given an ID, return the corresponding serie
-   * @param id the serie to return, should be between 0 and 2 included
+   * @param id the serie to return, should be between 0 and 3 included
    */
   getSerie(id) {
     assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
     return this.series[id]
+  }
+
+  /**
+   * Given an ID, return the corresponding group
+   * @param id the group to return, should be between 0 and 3 included
+   */
+  getGroup(id) {
+    assert(id >= 0 && id <= NB_GENERAL_SERIES, "id should not be negative or superior to " + NB_GENERAL_SERIES)
+    return this.groups[id]
   }
 
   /**
