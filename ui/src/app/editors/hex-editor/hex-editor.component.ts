@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { EditorService } from '../providers/editor.service';
@@ -18,6 +18,11 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
 	series3HexError: string;
 	magDrumHexError: string;
+
+	@Output()
+  series3_emit = new EventEmitter<FormGroup>();
+	@Output()
+  drum_emit = new EventEmitter<FormGroup>();
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +44,8 @@ export class HexEditorComponent implements OnInit, OnDestroy {
     this.magDrumHexWatcher = this.magDrumHexCtrl.valueChanges.subscribe(() => {
       this.magDrumHexError = null;
     });
+		this.series3_emit.emit(this.series3HexCtrl);
+		this.drum_emit.emit(this.magDrumHexCtrl);
   }
 
   ngOnDestroy() {

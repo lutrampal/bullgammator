@@ -20,7 +20,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-code-lib></app-code-lib>
+      <app-code-lib [series3]="series3" [drum]="drum"></app-code-lib>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -33,7 +33,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-hex-editor></app-hex-editor>
+      <app-hex-editor (series3_emit)="series3 = $event" (drum_emit)="drum = $event"></app-hex-editor>
     </mat-expansion-panel>
 
     <mat-expansion-panel>

@@ -24,6 +24,10 @@ export class CodeLibService {
 		return this.lib.getProgramsNames();
 	}
 
+	getProgram(name: string, attribute: string) {
+		return this.lib.getProgram(name, attribute);
+	}
+
 	loadProgram(name: string) {
 		this.edit.editConnexionArray(
 			this.lib.getProgram(name, "series3")
