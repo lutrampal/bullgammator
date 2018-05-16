@@ -6,7 +6,14 @@ class KB extends Instruction {
   }
 
   execute() {
-    this.bullGamma.getMemory(this.AD).setBlockValue(this.OD, this.OF);
+		if (this.AD == 0) {
+			for (let machine of this.bullGamma.connectedMachines) {
+				console.log("doStuff");
+				machine.doStuff();
+			}
+		} else {
+			this.bullGamma.getMemory(this.AD).setBlockValue(this.OD, this.OF);
+		}
   }
 
 	getDescription() {

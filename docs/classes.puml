@@ -89,6 +89,16 @@ package Model {
       isGreater()
     }
 
+		class ConnectedMachine {
+			setBullGamma(bullGamma)
+			abstract doStuff()
+		}
+
+		class Console {
+			doStuff()
+		}
+		ConnectedMachine <|-- Console
+
     class MagneticDrum {
       MagneticDrum(bullGamma)
       setContent(hexCode)
@@ -125,6 +135,7 @@ package Model {
     Word "16 words" <--* DrumBlock
 
     BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
+    BullGamma "bullGamma" -- "*" ConnectedMachine
     Octad *--> "8 memories" Memory
     BullGamma *-- "7 generalMemories" Memory
     BullGamma --> "mc" CmpMemory

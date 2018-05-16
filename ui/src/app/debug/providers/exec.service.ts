@@ -33,4 +33,8 @@ export class ExecService {
 	getNumberOfSeries() {
 		return this.bull.constants.NB_SERIES;
 	}
+
+	getConsole() {
+		return this.exec.console;
+	}
 }

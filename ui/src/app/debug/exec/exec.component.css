@@ -9,3 +9,14 @@
 button {
   margin: 8px;
 }
+
+.console {
+	text-align: left;
+  background: #101010;
+  padding: 12px;
+  margin: 8px;
+	max-height: 12vh;
+	height: 12vh;
+	color: #EFEFEF;
+	overflow: scroll;
+}

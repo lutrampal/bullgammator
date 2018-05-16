@@ -1,6 +1,11 @@
 <div class="main">
   <h4>Execution</h4>
   <span *ngIf="error" class="error">{{ error }}</span>
+	<div class="console">
+		<div>
+			<div *ngFor="let line of getConsoleLines()">{{ line }}</div>
+		</div>
+	</div>
 	<div>
 	  <button mat-raised-button color="primary" (click)="executeNextInstruction()">Prochaine instruction</button>
 	  <button mat-raised-button color="primary" (click)="execUntilBreakPoint()">Continuer</button>

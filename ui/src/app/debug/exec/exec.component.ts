@@ -63,4 +63,8 @@ export class ExecComponent implements OnInit {
     return this.breakpoints[(seriesCode << 6) + this.exec.getLine()].value;
   }
 
+	getConsoleLines() {
+		return this.exec.getConsole().getLines();
+	}
+
 }

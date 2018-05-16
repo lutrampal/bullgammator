@@ -1,7 +1,11 @@
+Console = require("../machine/connectedMachines/console").Console;
+
 class Execution {
 
 	constructor(bullGamma) {
 		this.bullGamma = bullGamma;
+		this.console = new Console();
+		this.bullGamma.connectMachine(this.console);
 	}
 
 	/**

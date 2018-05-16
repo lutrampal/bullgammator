@@ -18,6 +18,7 @@ const NB_GENERAL_SERIES = require("./constants").NB_GENERAL_SERIES;
 const NB_OCTADS_PER_GROUP = require("./constants").NB_OCTADS_PER_GROUP
 const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
 const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
+NB_MEMORIES_PER_HALF_OCTAD = require('./constants').NB_MEMORIES_PER_HALF_OCTAD;
 
 class BullGamma {
 
@@ -143,6 +144,22 @@ class BullGamma {
     // execute instruction
     this.getSerie(this.ns).getInstruction(old_cp).execute();
   }
+
+	getExtractors() {
+		let extractors = [];
+		for (let i=3*NB_MEMORIES_PER_HALF_OCTAD; i<4*NB_MEMORIES_PER_HALF_OCTAD; i++) {
+			extractors.push(this.ioGroup.getWord(i));
+		}
+		return extractors;
+	}
+
+	getIntroductors() {
+		let introductors = [];
+		for (let i=1*NB_MEMORIES_PER_HALF_OCTAD; i<2*NB_MEMORIES_PER_HALF_OCTAD; i++) {
+			introductors.push(this.ioGroup.getWord(i));
+		}
+		return introductors;
+	}
 
 	connectMachine(machine) {
 		this.connectedMachines.push(machine);
