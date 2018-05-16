@@ -12,7 +12,11 @@ class DC extends BigDivOrMult {
 
   _computeValue(m1m2) {
   	if (this.OF === 1 ) {
-      
+      while (this.bullGamma.md > 0) {
+        // OD is ignored as of now
+      	m1m2.shiftLeft()
+        this.bullGamma.md--
+			}
 		} else {
       this.bullGamma.md = NB_CHRS_PER_WORD
       m1m2.divideValue(this.OF, this.OD)

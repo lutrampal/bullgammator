@@ -75,5 +75,12 @@ describe('V', function() {
       v.execute();
       assert.equal(bullGamma.nl, 47, 'incorrect CP value');
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new V(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });

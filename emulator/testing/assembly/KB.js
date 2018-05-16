@@ -41,5 +41,12 @@ describe('KB', function() {
         assert.equal(mem4.blocks[11], 0);
         assert.equal(mem4.blocks[0], 1);
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new KB(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });

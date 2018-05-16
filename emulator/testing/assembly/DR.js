@@ -37,6 +37,33 @@ describe('DR', function() {
       new DR(0, 3, 4, bullGamma).execute();
       assert.equal(bullGamma.getMemory(1).getDecimalValue(0, 3), 107, "wrong result")
       assert.equal(bullGamma.getMemory(1).getDecimalValue(3, 12), 3, "wrong result")
+    });  describe('#execute()', function() {
+    it('should set memory to zero', function() {
+      let bullGamma =  new BullGamma();
+      let mem4 = bullGamma.getMemory(4);
+      for (let i = 0; i < NB_CHRS_PER_WORD; ++i) {
+        mem4.blocks[i] = 1;
+      }
+      let zb = new ZB(4, 5, 7, bullGamma);
+      zb.execute();
+      for (let i = 0; i < 5; ++i) {
+        assert.equal(mem4.blocks[i], 1);
+      }
+      for (let i = 5; i < 7; ++i) {
+        assert.equal(mem4.blocks[i], 0);
+      }
+      for (let i = 7; i < NB_CHRS_PER_WORD; ++i) {
+        assert.equal(mem4.blocks[i], 1);
+      }
     });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new DR(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+    })
+  })
+
   });
 });

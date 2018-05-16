@@ -81,5 +81,12 @@ describe('MR', function() {
       new MR(0, 4, 0xA, bullGamma).execute()
       assert(m1.toString() === "00000009F47A", "wrong value")
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new MR(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });

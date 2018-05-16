@@ -63,5 +63,12 @@ describe('DC', function() {
       assert(m1.toString(), "000000000002", "wrong value")
       assert(m2.toString(), "2F364B800000", "wrong value")
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new DC(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });
