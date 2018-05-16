@@ -63,6 +63,14 @@ class Execution {
 	getNumberOfInstructions(seriesId) {
 		return this.bullGamma.getSerie(seriesId).maxNbInst;
 	}
+
+	/**
+	 * Writes a line in the execution console
+	 * @param line the string to be written
+	 */
+	writeConsoleLine(line) {
+		this.console.push(line);
+	}
 }
 
 module.exports.Execution = Execution;

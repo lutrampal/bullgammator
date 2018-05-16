@@ -30,6 +30,14 @@ class Console extends ConnectedMachine {
 	getLines() {
 		return this.lines;
 	}
+
+	/**
+	 * Adds a line to the console
+	 * @param line string to be added
+	 */
+	push(line) {
+		this.lines.push(line);
+	}
 }
 
 module.exports.Console = Console;

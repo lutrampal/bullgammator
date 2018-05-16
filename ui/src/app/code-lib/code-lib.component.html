@@ -1,0 +1,7 @@
+<span *ngIf="message" class="error">{{ message }}</span>
+
+<mat-nav-list>
+	<mat-list-item *ngFor="let prog of getProgramsNames()" (click)="loadProgram(prog)">
+		{{ displayName(prog) }}
+	</mat-list-item>
+</mat-nav-list>

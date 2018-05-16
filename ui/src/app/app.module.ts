@@ -11,9 +11,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
+import { CodeLibComponent } from './code-lib/code-lib.component';
 
 import { DebugComponent } from './debug/debug.component';
 import { MbComponent } from './debug/mb/mb.component';
@@ -28,22 +30,24 @@ import { ExecService } from './debug/providers/exec.service';
 import { BullgammatorService } from './providers/bullgammator.service';
 import { DrumService } from './drum/providers/drum.service';
 import { EditorService } from './editors/providers/editor.service';
+import { CodeLibService } from './code-lib/providers/code-lib.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HexEditorComponent,
+    HexEditorComponent, CodeLibComponent,
     DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
 		DrumComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule
+    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
   ],
   providers: [
 		MemoriesService, SeriesService, ExecService,
-		BullgammatorService, DrumService, EditorService
+		BullgammatorService, DrumService, EditorService, CodeLibService
 	],
   bootstrap: [AppComponent]
 })

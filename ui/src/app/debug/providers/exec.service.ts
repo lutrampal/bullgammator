@@ -34,7 +34,11 @@ export class ExecService {
 		return this.bull.constants.NB_SERIES;
 	}
 
-	getConsole() {
-		return this.exec.console;
+	getConsoleLines() {
+		return this.exec.console.getLines();
+	}
+
+	writeConsoleLine(line: string) {
+		this.exec.writeConsoleLine(line);
 	}
 }

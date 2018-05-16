@@ -4,16 +4,16 @@
 -- 	M3 : x
 -- Sortie :
 --	M4 : sqrt(x)
--- Format des nombres : 
+-- Format des nombres :
 --	idx 0 à 2 <=> exposant biaisé de 
---	idx 2 à 11 <=> mantisse 
+--	idx 2 à 11 <=> mantisse
 --	idx 11 <=> signe
 
 1a00 -- CD
 1c02 -- CO(2)
 632b -- BO, M1 <- M3[2:11]
 0000
-9051 -- CN, M1[5] cmp 1 
+9051 -- CN, M1[5] cmp 1
 8400 -- OB, M4 <- M1
 03d1 -- V, < ? jump l52
 0000
@@ -62,4 +62,3 @@ C0A5 -- MR, M1 <- M1*50000000000
 6400 -- BO, M1 <- M4
 0000
 3200 -- ZB, M2 <- 0
-

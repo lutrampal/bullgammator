@@ -1,0 +1,14 @@
+{
+	"ecriture_sur_octades":	{
+		"series3": "-- * * * Multiples CO et OB * * *--%n%-- Ecrit les valueur de la suite (2^n) à différentes positions de différentes octades--%n%--%n%4001--%n%A100--%n%8800--%n%1C01--%n%A100--%n%8900--%n%1C02--%n%A100--%n%8A00--%n%1C03--%n%A100--%n%8B00--%n%1C04--%n%A100--%n%8C00--%n%1C05--%n%A100--%n%8D00--%n%1C06--%n%A100--%n%8E00--%n%1C07--%n%A100--%n%8F00--%n%1C00--%n%",
+		"drum": ""
+	},
+	"racine_carree":	{
+		"series3": "-- * * * Programme qui calcule une racine carré * * *--%n%--%n%-- Entrée :--%n%-- --%t%M3 : x--%n%-- Sortie :--%n%----%t%M4 : sqrt(x)--%n%-- Format des nombres :--%n%----%t%idx 0 à 2 <=> exposant biaisé de --%n%----%t%idx 2 à 11 <=> mantisse--%n%----%t%idx 11 <=> signe--%n%--%n%1a00 -- CD--%n%1c02 -- CO(2)--%n%632b -- BO, M1 <- M3[2:11]--%n%0000--%n%9051 -- CN, M1[5] cmp 1--%n%8400 -- OB, M4 <- M1--%n%03d1 -- V, < ? jump l52--%n%0000--%n%6302 -- BO, M1 <- M3[0:2]--%n%aa02 -- AN, M1[0:2] <- M1 + M10--%n%c035 -- MR, M1 <- M1*5000--%n%0000--%n%7001 -- AMD(1), MD <- 1--%n%8402 -- OB, M4 <- M1[0:2]--%n%90b5 -- CN, M1 cmp 500000000000--%n%0000--%n%6320 -- BO, M1 <- M3[2:]--%n%0444 -- V, MS- ? jump l17--%n%0354 -- V, > ? jump l21--%n%0000--%n%3d56 -- ZB, M3[5:6] <- 0--%n%8810 -- OB, M8 <- M1[1:0]--%n%0369 -- V, < ? jump l26--%n%0000--%n%A092 -- AN, M1 <- M1 + 2000000000--%n%0075 -- V, jump l29--%n%A085 -- AN, M1 <- M1 + 500000000--%n%0000--%n%A100 -- AN, M1 <- M1 + M1--%n%7000 -- AMD, MD <- 0--%n%8900 -- OB, M9 <- M1--%n%0000--%n%6800 -- BO, M1 <- M8--%n%3200 -- ZB, M2 <- 0--%n%700A -- AMD, MD <- 10--%n%0000--%n%F900 -- DC, M1 <- M1*100/M9--%n%6200 -- BO, M2 <- M1--%n%A009 -- AN, M1 <- M1 + 9--%n%0000--%n%A900 -- AN, M1 <- M1 + M9--%n%C010 -- MR, M1 << 1--%n%C0A5 -- MR, M1 <- M1*50000000000--%n%0000--%n%8900 -- OB, M9 <- M1--%n%6110 -- BO, M1 <- 0, MD <- 1 et MS1 <- 0--%n%9420 -- CN, M1[2:] cmp M4[2:]--%n%0000--%n%8420 -- OB, M4 <- M1[2:]--%n%0281 -- V, != ? jump l32--%n%6400 -- BO, M1 <- M4--%n%0000--%n%3200 -- ZB, M2 <- 0--%n%",
+		"drum": ""
+	},
+	"suite_de_fibonacci":	{
+		"series3": "-- * * * Calcul de la suite de Fibonacci * * *--%n%-- A chaque itération M6 vaut n et M7 fn--%n%--%n%1A00 -- CD--%n%1C07 -- CO 7--%n%--%n%3200 -- ZB -- n = 0  -- M2--%n%3300 -- ZB -- u0 = 0  -- M3--%n%3100 -- ZB--%n%A001 -- AN--%n%8400 -- OB -- u1 = 1  -- M4--%n%--%n%-- while:--%n%--%n%6300 -- m1 = u0--%n%A400 -- m1 = u0 + u1--%n%8500 -- sum in M5--%n%--%n%6400--%n%8300 -- m4 -> m3--%n%--%n%6500--%n%8400 -- m5 -> m4--%n%8F00 -- print--%n%--%n%6200--%n%A001--%n%8200 -- n++--%n%8E00 -- print--%n%--%n%4000 -- 48V--%n%900F -- compare n to 15--%n%011D -- V, jump l7--%n%",
+		"drum": ""
+	}
+}
