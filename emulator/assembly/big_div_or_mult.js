@@ -24,6 +24,9 @@ class BigDivOrMult extends Operation {
       m1m2.shiftLeft()
     }
     m1m2.copyBlockValues(m2, 0, NB_CHRS_PER_WORD)
+    if (this.bullGamma.md === 0) {
+      this.bullGamma.md = 12
+    }
     if (this.AD > 0) {
       let mb = this.bullGamma.getMemory(this.AD)
       this._compute(m1m2, mb)

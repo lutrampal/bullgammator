@@ -1,4 +1,5 @@
 BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
 class DC extends BigDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
@@ -10,7 +11,12 @@ class DC extends BigDivOrMult {
   }
 
   _computeValue(m1m2) {
-    m1m2.divideValue(this.OF, this.OD)
+  	if (this.OF === 1 ) {
+      
+		} else {
+      this.bullGamma.md = NB_CHRS_PER_WORD
+      m1m2.divideValue(this.OF, this.OD)
+		}
   }
 
 	getDescription() {
