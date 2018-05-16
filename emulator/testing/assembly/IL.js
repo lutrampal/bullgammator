@@ -38,6 +38,13 @@ describe('IL M2', function() {
         assert(m1.blocks[i] == resvals[i], "block " + i + " is incorrect");
       }
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new IL(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });
 describe('IL OF', function() {

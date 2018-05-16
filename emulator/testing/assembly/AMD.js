@@ -13,4 +13,11 @@ describe('AMD', function() {
       assert.equal(bullGamma.md, 15);
     });
   });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new AMD(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+    })
+  })
 });

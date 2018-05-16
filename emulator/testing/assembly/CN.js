@@ -151,5 +151,12 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.equal, false)
       assert.equal(bullGamma.mc.greater, true)
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new CN(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });

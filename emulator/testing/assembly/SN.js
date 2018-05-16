@@ -151,5 +151,12 @@ describe('SN', function() {
       new SN(0, 11, 0xf, bullGamma).execute()
       assert.equal(m1.toString(), "055555555556", "wrong value")
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new SN(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });

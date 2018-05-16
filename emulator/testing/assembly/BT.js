@@ -15,5 +15,12 @@ describe('BT', function() {
 			assert.equal(bullGamma.magneticDrum.trackGroups[7].tracks[15].blocks[7].toString(),
 				("aaaaaaaaaaaa\t".repeat(3) + "aaaaaaaaaaaa\n").repeat(4).toUpperCase());
     });
+    describe('#getDescription()', function () {
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new BT(4, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+      })
+    })
   });
 });
