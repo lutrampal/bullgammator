@@ -49,7 +49,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 5: case 6: case 7:
           return new VRS(AD, OD, OF, bullGamma);
         case 8: case 9:
-          throw "not supported yet: ES";
+          return new ES(AD, OD, OF, bullGamma);
         case 10:
           return new CD(AD, OD, OF, bullGamma);
         case 12:

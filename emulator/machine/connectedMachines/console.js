@@ -15,12 +15,28 @@ class Console extends ConnectedMachine {
 	/**
 	 * Function triggered by an instruction of the Bull Gamma
 	 */
-	doStuff() {
+	on48V() {
 		let i = NB_MEMORIES_PER_HALF_OCTAD;
 		for (let ex of this.bullGamma.getExtractors()) {
-			this.lines.push("Sortie "+ i + ": " + ex.toString());
+			this.lines.push(
+				"Sortie "+ i - NB_MEMORIES_PER_HALF_OCTAD + ": " + ex.toString()
+			);
 			i++;
 		}
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction1(OD, OF) {
+		// nothing yet
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction2(OD, OF) {
+		// nothing yet
 	}
 
 	/**

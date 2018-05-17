@@ -9,10 +9,24 @@ class ConnectedMachine {
 	}
 
 	/**
-	 * Function triggered by an instruction of the Bull Gamma
+	 * Function triggered by the instruction KB with AD=0
 	 */
-	doStuff() {
-		throw "Not implemented";
+	on48V() {
+		// to be overridden
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction1(OD, OF) {
+		// to be overridden
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction2(OD, OF) {
+		// to be overridden
 	}
 }
 
