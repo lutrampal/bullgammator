@@ -1,0 +1,127 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam ranksep 110
+skinparam nodesep 150
+
+package Machine {
+
+  class BullGamma {
+    ms1 md mc
+    ...
+    BullGamma(...)
+		executeNextInstruction()
+  }
+
+  class Word {
+    blocks : Array<hexa>
+    Word(...)
+    copy(other)
+    resetWord()
+    setContent(hexCode)
+  }
+
+  package innerComponents {
+    class Serie {
+      ...
+      Serie(...)
+      getInstructions()
+    }
+
+    class ConnexionArray {
+      ...
+      ConnexionArray(...)
+      getInstructions()
+    }
+
+    class Group {
+      ...
+      Group(...)
+      setContent(hexCode)
+    }
+
+    class Octad {
+      ...
+      Octad(...)
+      getMemory(idx)
+      setContent(hexCode)
+    }
+
+    class Memory {
+      blocks : Array<hexa>
+      ...
+      Memory(...)
+    }
+  	Word <|-- Memory
+
+    class CmpMemory {
+      ...
+      isLower()
+      isLowerOrEqual()
+      isEqual()
+      isNotEqual()
+      isGreaterOrEqual()
+      isGreater()
+    }
+  }
+
+  package ConnectedMachine {
+  	class ConnectedMachine {
+  		setBullGamma(bullGamma)
+  		{abstract} doStuff()
+  	}
+
+  	class Console {
+  		doStuff()
+  	}
+  	ConnectedMachine <|-- Console
+  }
+
+  package magneticDrum {
+    class MagneticDrum {
+      MagneticDrum(...)
+      setContent(hexCode)
+    }
+
+    class DrumTrackGroup {
+      DrumTrackGroup(...)
+      setContent(hexCode)
+    }
+
+    MagneticDrum "drum" *-- "8 trackGroups" DrumTrackGroup
+    MagneticDrum --> "commutedGroup" DrumTrackGroup
+
+    class DrumTrack {
+      ...
+      DrumTrack(...)
+      setContent(hexCode)
+    }
+
+    DrumTrackGroup "trackGroup" *- "16 tracks" DrumTrack
+
+    class DrumBlock {
+      ...
+      DrumBlock(...)
+      setContent(hexCode)
+    }
+  }
+
+    Serie o--> "1 group" Group
+    Serie <|-- ConnexionArray
+
+    DrumBlock "8 blocks" --* "track" DrumTrack
+    Word "16 words" <--* DrumBlock
+
+    BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
+    BullGamma "bullGamma" -- "*" ConnectedMachine
+    Octad *--> "8 memories" Memory
+    BullGamma *-- "7 generalMemories" Memory
+    BullGamma --> "mc" CmpMemory
+    BullGamma - "selectedOctad" Octad
+    Serie "4 series" --*  BullGamma
+    Group "4 groups" --*  BullGamma
+    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
+    Group *--> "2 octads" Octad
+
+}
+@endDC

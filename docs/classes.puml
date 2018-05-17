@@ -3,435 +3,164 @@ skinparam monochrome true
 skinparam classAttributeIconSize 0
 skinparam nodesep 110
 
-package Model {
-  package Machine {
-    class BullGamma {
-      _memoryMode
-      ms1 md mc
-			nl ns rnl1 rnl2
-			parser
-			magneticDrum
-			connectedMachines
-      BullGamma()
-			getSerie(id): Serie
-			getGroup(id): Group
-			getOctad(id)
-			getMemory(id)
-			getMemoryMode()
-			setMemoryMode(newMode)
-			nextLine()
-			executeNextInstruction()
-			connectMachine(ConnectedMachine machine)
-    }
-
-    class Serie {
-      id
-      Serie(id, bullGamma, group)
-      getInstruction(line): Array<Instruction>
-      getInstructions(): Instruction
-      setInstructions(hexCode)
-    }
-
-    class ConnexionArray {
-      ConnexionArray(id, bullGamma)
-      getInstruction(line): Array<Instruction>
-      getInstructions(): Instruction
-      setInstructions(hexCode)
-    }
-
-    class Group {
-      Group(id, bullGamma)
-      setContent(hexCode)
-    }
-
-    class Octad {
-      id
-      Octad(id, memories)
-      getMemory(idx)
-      setContent(hexCode)
-    }
-
-		class Word {
-			blocks : Array<hexa>
-			copy(other)
-			resetWord()
-      setContent(hexCode)
-		}
-
-    class Memory {
-      id
-      blocks : Array<hexa>
-      Memory(id, bullGamma)
-      Memory(id, bullGamma, maxValue)
-      getMode()
-      setToZero(from, to)
-      copyBlockValues(other, from, to)
-      setBlockValue(idx, value)
-      shiftLeft()
-      shiftRight()
-      compareTo(other, from, to)
-      add(other, from, to)
-      addValue(value, at)
-      subtract(other, from, to)
-      getDecimalValue(from, to) : int
-      setDecimalValue(value, from, to)
-    }
-		Word <|-- Memory
-
-    class CmpMemory {
-      greater: boolean
-      equal: boolean
-      isLower()
-      isLowerOrEqual()
-      isEqual()
-      isNotEqual()
-      isGreaterOrEqual()
-      isGreater()
-    }
-
-		class ConnectedMachine {
-			setBullGamma(bullGamma)
-			abstract doStuff()
-		}
-
-		class Console {
-			doStuff()
-		}
-		ConnectedMachine <|-- Console
-
-    class MagneticDrum {
-      MagneticDrum(bullGamma)
-      setContent(hexCode)
-      setCommutedGroup(id)
-    }
-
-    class DrumTrackGroup {
-      id
-      DrumTrackGroup(id, drum)
-      setContent(hexCode)
-    }
-
-    MagneticDrum "drum" *-- "8 trackGroups" DrumTrackGroup
-    MagneticDrum --> "commutedGroup" DrumTrackGroup
-
-    class DrumTrack {
-      id
-      DrumTrack(id, group)
-      setContent(hexCode)
-    }
-
-    DrumTrackGroup "trackGroup" *- "16 tracks" DrumTrack
-
-    class DrumBlock {
-      id
-      DrumBlock(id, track)
-      setContent(hexCode)
-    }
-
-    Serie o--> "1 group" Group
-    Serie <|-- ConnexionArray
-
-    DrumBlock "8 blocks" --* "track" DrumTrack
-    Word "16 words" <--* DrumBlock
-
-    BullGamma "bullGamma" -- "magneticDrum" MagneticDrum
-    BullGamma "bullGamma" -- "*" ConnectedMachine
-    Octad *--> "8 memories" Memory
-    BullGamma *-- "7 generalMemories" Memory
-    BullGamma --> "mc" CmpMemory
-    BullGamma - "selectedOctad" Octad
-    Serie "4 series" --* "bullGamma" BullGamma
-    Group "4 groups" --* "bullGamma" BullGamma
-    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
-    Group *--> "2 octads" Octad
+package Assembly {
+  abstract class Instruction {
+     TO
+     AD
+     OD
+     OF
+     executionTime
+     Instruction(TO, AD, OD, OF, bullGamma)
+     toLineString(): String
+    {abstract} execute()
+    {abstract} computeExeTime()
   }
 
-  package "Control" {
-      class Editor {
-          editConnexionArray(hexCode)
-          editDrum(hexCode)
-      }
-
-      ConnexionArray "edit" <--down--o Editor
-      MagneticDrum "edit" <--down--o Editor
-
-      class Execution {
-          executeUntil(line, seriesId)
-          executeNextInstruction()
-					getCurrentLine()
-					getCurrentSeries()
-					getInstructions(seriesId)
-					getNumberOfInstructions()
-      }
-      BullGamma "execution" <--down--o Execution
-
-      class Debug {
-          getMemory(id, octad)
-          setMemory(value, id, octad)
-          getNL()
-          setNL(value)
-          getMS1()
-          setMS1(value)
-          getMCMP()
-          setMCMP(value)
-          getRNL1()
-          setRNL1(value)
-          getRNL2()
-          setRNL2(value)
-					getCSz()
-					setCSz(value)
-      }
-      BullGamma "debug" <--down--o Debug
+  abstract class Operation {
+    Operation(...)
   }
 
-
-  package Assembly {
-    abstract class Instruction {
-       TO
-       AD
-       OD
-       OF
-       executionTime
-       Instruction(TO, AD, OD, OF, bullGamma)
-       toLineString(): String
-      {abstract} execute()
-      {abstract} computeExeTime()
-    }
-
-    abstract class Operation {
-      Operation(TO, AD, OD, OF, bullGamma)
-    }
-
-    abstract class OperationWithPreShift {
-        OperationWithPreShift(TO, AD, OD, OF, bullGamma)
-        execute()
-        {abstract} _exeInstructionLogic()
-    }
-
-    abstract class SmallDivOrMult {
-      SmallDivOrMult(TO, AD, OD, OF, bullGamma)
+  abstract class OperationWithPreShift {
+      OperationWithPreShift(...)
       execute()
-      {abstract} _compute(mb: Memory)
-      {abstract} _computeValue()
-    }
-
-    abstract class BigDivOrMult {
-      BigDivOrMult(TO, AD, OD, OF, bullGamma)
-      execute()
-      {abstract} _compute(mb: Memory)
-      {abstract} _computeValue()
-    }
-
-    abstract class DrumTransfer {
-      DrumTransfer(TO, AD, OD, OF, bullGamma)
-      execute()
-      {abstract} _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
-    }
-
-    Instruction <|-- Operation
-    Instruction <|-- DrumTransfer
-    Operation <|-- OperationWithPreShift
-    Operation <|-- SmallDivOrMult
-    Operation <|-- BigDivOrMult
-
-    InstructionsArray "64 instructions" *-- Instruction
-
-    class BT {
-      TO = 0
-      computeExeTime()
-      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
-    }
-
-    class TB {
-      TO = 0
-      computeExeTime()
-      _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
-    }
-
-    class V {
-      TO = 0
-      execute()
-      computeExeTime()
-    }
-
-    class NOP {
-      TO = 0
-      AD = 0
-      OF % 4 == 0
-      execute()
-      computeExeTime()
-    }
-
-    class VCS {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class VRS {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class CD {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class CO {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class CSz {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class CB {
-      TO = 1
-      execute()
-      computeExeTime()
-    }
-
-    class ZB {
-      TO = 3
-      execute()
-      computeExeTime()
-    }
-
-    class KB {
-      TO = 4
-      execute()
-      computeExeTime()
-    }
-
-    class GG {
-      TO = 5
-      execute()
-      computeExeTime()
-    }
-
-    class BO {
-      TO = 6
-      execute()
-      computeExeTime()
-    }
-
-    class AMD {
-      TO = 7
-      execute()
-      computeExeTime()
-    }
-
-    class BD {
-      TO = 7
-      execute()
-      computeExeTime()
-    }
-
-    class IL {
-      TO = 7
-      execute()
-      computeExeTime()
-    }
-
-    class OB {
-      TO = 8
-      computeExeTime()
-      _exeInstructionLogic()
-    }
-
-    class CN {
-      TO = 9
-      computeExeTime()
-      _exeInstructionLogic()
-    }
-
-    class AN {
-      TO = 10
-      computeExeTime()
-      _exeInstructionLogic()
-    }
-
-    class SN {
-      TO = 11
-      computeExeTime()
-      _exeInstructionLogic()
-    }
-
-    class MR {
-      TO = 12
-      computeExeTime()
-      _compute(mb: Memory)
-      _computeValue()
-    }
-
-    class DR {
-      TO = 13
-      computeExeTime()
-      _compute(mb: Memory)
-      _computeValue()
-    }
-
-    class MC {
-      TO = 14
-      computeExeTime()
-      _compute(mb: Memory)
-      _computeValue()
-    }
-
-    class DC {
-      TO = 15
-      computeExeTime()
-      _compute(mb: Memory)
-      _computeValue()
-    }
-
-    V --|> Instruction
-    KB --|> Instruction
-    BD --|> Instruction
-    CB --|> Instruction
-    AMD -|> Instruction
-    CD -|> Instruction
-    Instruction <|- VCS
-    Instruction <|- VRS
-    Instruction <|-- CO
-    Instruction <|-- CSz
-    NOP --|> V
-
-    ZB --|> Operation
-    IL --|> Operation
-    GG -|> Operation
-    Operation <|- BO
-
-    DrumTransfer <|-- TB
-    DrumTransfer <|-- BT
-
-    OperationWithPreShift <|-- SN
-    OperationWithPreShift <|-- OB
-    OperationWithPreShift <|-- CN
-    OperationWithPreShift <|-- AN
-
-    SmallDivOrMult <|-- MR
-    SmallDivOrMult <|-- DR
-
-    BigDivOrMult <|-- MC
-    BigDivOrMult <|-- DC
-
-    class InstructionParser {
-      InstructionParser(bullGamma)
-      parseInstructions(hexCode): Instruction
-      parseInstruction(TO, AD, OD, OF): Instruction
-    }
-
-    Instruction <. InstructionParser: Uses
+      {abstract} _exeInstructionLogic()
   }
 
-  Instruction <. Serie: Uses
-  InstructionParser "parser"- "bullGamma" BullGamma
+  abstract class SmallDivOrMult {
+    SmallDivOrMult(...)
+    execute()
+    {abstract} _compute(mb: Memory)
+    {abstract} _computeValue()
+  }
+
+  abstract class BigDivOrMult {
+    BigDivOrMult(...)
+    execute()
+    {abstract} _compute(mb: Memory)
+    {abstract} _computeValue()
+  }
+
+  abstract class DrumTransfer {
+    DrumTransfer(...)
+    execute()
+    {abstract} _transfer(...)
+  }
+
+  Instruction <|-- Operation
+  Instruction <|-- DrumTransfer
+  Operation <|-- OperationWithPreShift
+  Operation <|-- SmallDivOrMult
+  Operation <|-- BigDivOrMult
+
+  class BT {
+    TO = 0
+  }
+
+  class TB {
+    TO = 0
+  }
+
+  class V {
+    TO = 0
+  }
+
+  class NOP {
+    TO = 0
+    AD = 0
+    OF % 4 == 0
+  }
+
+  class VRS {
+    TO = 1
+  }
+
+  class CO {
+    TO = 1
+  }
+
+  class CSz {
+    TO = 1
+  }
+
+  class CB {
+    TO = 1
+  }
+
+  class ZB {
+    TO = 3
+  }
+
+  class KB {
+    TO = 4
+  }
+
+  class BO {
+    TO = 6
+  }
+
+  class AMD {
+    TO = 7
+  }
+
+  class BD {
+    TO = 7
+  }
+
+  class CN {
+    TO = 9
+  }
+
+  class AN {
+    TO = 10
+  }
+
+  class SN {
+    TO = 11
+  }
+
+  class MR {
+    TO = 12
+  }
+
+  class DR {
+    TO = 13
+  }
+
+  class DC {
+    TO = 15
+  }
+
+  V --|> Instruction
+  KB --|> Instruction
+  BD --|> Instruction
+  CB --|> Instruction
+  AMD -|> Instruction
+  Instruction <|- VRS
+  Instruction <|-- CO
+  Instruction <|-- CSz
+  NOP --|> V
+
+  ZB --|> Operation
+  Operation <|- BO
+
+  DrumTransfer <|-- TB
+  DrumTransfer <|-- BT
+
+  OperationWithPreShift <|-- SN
+  OperationWithPreShift <|-- CN
+  OperationWithPreShift <|-- AN
+
+  SmallDivOrMult <|-- MR
+  SmallDivOrMult <|-- DR
+
+  BigDivOrMult <|-- DC
+
+  class InstructionParser {
+    InstructionParser(bullGamma)
+    parseInstructions(hexCode): Instruction
+    parseInstruction(TO, AD, OD, OF): Instruction
+  }
+
+  Instruction <. InstructionParser: Uses
+}
 @endDC

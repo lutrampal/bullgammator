@@ -63,25 +63,6 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.isLower(), false)
       assert.equal(bullGamma.mc.isNotEqual(), false)
     });
-    it('should use the entirety of M1 to compute comparisons', function () {
-      let bullGamma = new BullGamma();
-      let m1 = bullGamma.getMemory(1)
-      let m2 = bullGamma.getMemory(2)
-      let od = 8, of = 12
-      bullGamma.md = od
-      for (let i = od; i < of; ++i){
-        m2.blocks[i] = 9
-      }
-      let cn = new CN(2, od, of, bullGamma);
-      m1.blocks[7] = 1
-      cn.execute()
-      assert.equal(bullGamma.mc.isGreater(), true)
-      assert.equal(bullGamma.mc.isGreaterOrEqual(), true)
-      assert.equal(bullGamma.mc.isEqual(), false)
-      assert.equal(bullGamma.mc.isLowerOrEqual(), false)
-      assert.equal(bullGamma.mc.isLower(), false)
-      assert.equal(bullGamma.mc.isNotEqual(), true)
-    });
     it('when used with AD = 1, should detect remaining numbers in blocks outside of the OD->OF portion', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1)

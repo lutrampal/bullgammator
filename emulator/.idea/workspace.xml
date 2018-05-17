@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3565518f-8fc6-4e33-9959-ce782914a5a7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../docs/classes.puml" afterPath="$PROJECT_DIR$/../docs/classes.puml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/DC.js" afterPath="$PROJECT_DIR$/assembly/DC.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/big_div_or_mult.js" afterPath="$PROJECT_DIR$/assembly/big_div_or_mult.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/memory.js" afterPath="$PROJECT_DIR$/machine/memory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/machine/word.js" afterPath="$PROJECT_DIR$/machine/word.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/DC.js" afterPath="$PROJECT_DIR$/testing/assembly/DC.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assembly/CN.js" afterPath="$PROJECT_DIR$/assembly/CN.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/assembly/CN.js" afterPath="$PROJECT_DIR$/testing/assembly/CN.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/emulator$test.coverage" NAME="test Coverage Results" MODIFIED="1526326296811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/emulator$test.coverage" NAME="test Coverage Results" MODIFIED="1526487646051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/emulator$MR__execute___when_AD___0_and_OF___0__should_shift_right_M1_of_OD_positions__losing_exiting_numbers.coverage" NAME="MR.#execute().when AD = 0 and OF = 0, should shift right M1 of OD positions, losing exiting numbers Coverage Results" MODIFIED="1525009385459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CoverageOptionsProvider">
@@ -34,41 +32,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="memory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine/memory.js">
+      <file leaf-file-name="CN.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assembly/CN.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="284" column="16" lean-forward="false" selection-start-line="284" selection-start-column="16" selection-end-line="284" selection-end-column="16" />
+            <state relative-caret-position="289">
+              <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DC.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assembly/DC.js">
+      <file leaf-file-name="CN.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testing/assembly/CN.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="word.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/machine/word.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DC.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testing/assembly/DC.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="73">
+              <caret line="64" column="7" lean-forward="false" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -148,20 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assembly/operation_with_pre_shift.js" />
-        <option value="$PROJECT_DIR$/assembly/MR.js" />
-        <option value="$PROJECT_DIR$/machine/debug.js" />
-        <option value="$PROJECT_DIR$/control/debug.js" />
-        <option value="$PROJECT_DIR$/machine/ConnexionArray.js" />
-        <option value="$PROJECT_DIR$/machine/ioSerie.js" />
-        <option value="$PROJECT_DIR$/machine/generalSerie.js" />
-        <option value="$PROJECT_DIR$/assembly/CO.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/instructions/CO.js" />
-        <option value="$PROJECT_DIR$/testing/machine/prints.js" />
-        <option value="$PROJECT_DIR$/machine/octad.js" />
-        <option value="$PROJECT_DIR$/machine/drumBlock.js" />
-        <option value="$PROJECT_DIR$/machine/drumTrack.js" />
-        <option value="$PROJECT_DIR$/testing/machine/Octad.js" />
         <option value="$PROJECT_DIR$/machine/drumTrackGroup.js" />
         <option value="$PROJECT_DIR$/testing/assembly/instructions/CSz.js" />
         <option value="$PROJECT_DIR$/assembly/drumTransfer.js" />
@@ -177,28 +141,42 @@
         <option value="$PROJECT_DIR$/assembly/hexParser.js" />
         <option value="$PROJECT_DIR$/machine/magneticDrum.js" />
         <option value="$PROJECT_DIR$/assembly/GG.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/GG.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/BT.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/TB.js" />
         <option value="$PROJECT_DIR$/testing/machine/DrumBlock.js" />
         <option value="$PROJECT_DIR$/testing/machine/DrumTrack.js" />
         <option value="$PROJECT_DIR$/testing/machine/Group.js" />
         <option value="$PROJECT_DIR$/testing/machine/DrumTrackGroup.js" />
         <option value="$PROJECT_DIR$/testing/machine/MagneticDrum.js" />
         <option value="$PROJECT_DIR$/assembly/small_div_or_mult.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/MR.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/DR.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/AN.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/SN.js" />
         <option value="$PROJECT_DIR$/assembly/instruction.js" />
         <option value="$PROJECT_DIR$/assembly/SN.js" />
         <option value="$PROJECT_DIR$/assembly/MC.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/MC.js" />
         <option value="$PROJECT_DIR$/machine/memory.js" />
         <option value="$PROJECT_DIR$/machine/word.js" />
-        <option value="$PROJECT_DIR$/testing/assembly/DC.js" />
         <option value="$PROJECT_DIR$/assembly/big_div_or_mult.js" />
         <option value="$PROJECT_DIR$/assembly/DC.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/ZB.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/V.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/TB.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/BD.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/AN.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/AMD.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/BO.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/BT.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/CO.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/CSz.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/DC.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/DR.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/GG.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/IL.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/KB.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/MC.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/MR.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/OB.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/SN.js" />
+        <option value="$PROJECT_DIR$/assembly/VCS.js" />
+        <option value="$PROJECT_DIR$/testing/generalUseCases.js" />
+        <option value="$PROJECT_DIR$/assembly/CN.js" />
+        <option value="$PROJECT_DIR$/testing/assembly/CN.js" />
       </list>
     </option>
   </component>
@@ -318,6 +296,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,6 +314,24 @@
               <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
               <item name="emulator" type="462c0819:PsiDirectoryNode" />
               <item name="machine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="machine" type="462c0819:PsiDirectoryNode" />
+              <item name="connectedMachines" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="machine" type="462c0819:PsiDirectoryNode" />
+              <item name="innerComponents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emulator" type="462c0819:PsiDirectoryNode" />
+              <item name="machine" type="462c0819:PsiDirectoryNode" />
+              <item name="magneticDrum" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emulator" type="b2602c69:ProjectViewProjectNode" />
@@ -356,8 +354,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -434,6 +430,20 @@
         <name value="when AD = 0, should divide M2 with OF" />
       </test-names>
     </configuration>
+    <configuration name="Fibonacci" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/testing/generalUseCases.js</test-file>
+      <test-names>
+        <name value="Fibonacci" />
+      </test-names>
+    </configuration>
     <configuration name="MC.#execute().[Binary mode] should multiply M2 and M1" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -466,22 +476,6 @@
         <name value="when AD = 0 and OF = 0, should shift right M1 and M2 of MD positions, losing exiting numbers" />
       </test-names>
     </configuration>
-    <configuration name="MC.#execute().when AD = 0, should multiply M2 with OF" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/testing/assembly/MC.js</test-file>
-      <test-names>
-        <name value="MC" />
-        <name value="#execute()" />
-        <name value="when AD = 0, should multiply M2 with OF" />
-      </test-names>
-    </configuration>
     <configuration name="test" type="mocha-javascript-test-runner" factoryName="Mocha">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -496,19 +490,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Mocha.test" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0, should multiply M2 with OF" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0 and OF = 0, should shift right M1 and M2 of MD positions, losing exiting numbers" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.MC.#execute().[Binary mode] should multiply M2 and M1" />
-      <item index="4" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
-      <item index="5" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0 and OF = 0, should shift right M1 and M2 of MD positions, losing exiting numbers" />
+      <item index="2" class="java.lang.String" itemvalue="Mocha.MC.#execute().[Binary mode] should multiply M2 and M1" />
+      <item index="3" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
+      <item index="4" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
+      <item index="5" class="java.lang.String" itemvalue="Mocha.Fibonacci" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.MC.#execute().[Binary mode] should multiply M2 and M1" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0 and OF = 0, should shift right M1 and M2 of MD positions, losing exiting numbers" />
-        <item index="4" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0, should multiply M2 with OF" />
+        <item index="0" class="java.lang.String" itemvalue="Mocha.Fibonacci" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.DC.#execute().when AD = 0, should divide M2 with OF" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.DC.#execute().should divide M2 with MB" />
+        <item index="3" class="java.lang.String" itemvalue="Mocha.MC.#execute().[Binary mode] should multiply M2 and M1" />
+        <item index="4" class="java.lang.String" itemvalue="Mocha.MC.#execute().when AD = 0 and OF = 0, should shift right M1 and M2 of MD positions, losing exiting numbers" />
       </list>
     </recent_temporary>
   </component>
@@ -549,49 +543,51 @@
       <workItem from="1526328718874" duration="5901000" />
       <workItem from="1526394550962" duration="5216000" />
       <workItem from="1526399788869" duration="1609000" />
+      <workItem from="1526486597686" duration="6305000" />
+      <workItem from="1526553233877" duration="3241000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 17h 57m 25s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Fibonacci - 2018.05.17 at 12h 49m 51s.xml">
+      <configuration name="Fibonacci" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 17h 59m 15s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Fibonacci - 2018.05.17 at 12h 54m 17s.xml">
+      <configuration name="Fibonacci" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 17h 59m 35s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Fibonacci - 2018.05.17 at 12h 54m 58s.xml">
+      <configuration name="Fibonacci" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 18h 17m 45s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Fibonacci - 2018.05.17 at 12h 55m 58s.xml">
+      <configuration name="Fibonacci" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 18h 17m 46s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Fibonacci - 2018.05.17 at 13h 38m 28s.xml">
+      <configuration name="Fibonacci" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 18h 19m 19s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="DC_#execute()_when_AD_=_0,_should_divide_M2_with_OF - 2018.05.15 at 18h 19m 21s.xml">
-      <configuration name="DC.#execute().when AD = 0, should divide M2 with OF" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test - 2018.05.15 at 18h 19m 30s.xml">
+    <history-entry file="test - 2018.05.16 at 18h 17m 04s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test - 2018.05.15 at 18h 22m 26s.xml">
+    <history-entry file="test - 2018.05.16 at 18h 20m 43s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test - 2018.05.15 at 18h 22m 38s.xml">
+    <history-entry file="test - 2018.05.16 at 18h 20m 46s.xml">
+      <configuration name="test" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test - 2018.05.17 at 13h 38m 39s.xml">
+      <configuration name="test" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test - 2018.05.17 at 13h 38m 55s.xml">
       <configuration name="test" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206250000" />
+    <option name="totallyTimeSpent" value="215796000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="27" width="1920" height="1082" extended-state="7" />
+    <frame x="0" y="-2" width="1920" height="1082" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19303797" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17035864" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7001056" sideWeight="0.5021097" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -620,142 +616,34 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
           <line>157</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
           <line>295</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/machine/memory.js</url>
           <line>284</line>
-          <properties />
           <option name="timeStamp" value="139" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="140" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="141" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="mocha-javascript-test-runner">
+        <watch expression="bullGamma.getOctad(7).getMemory(7)" language="JavaScript" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/testing/assembly/AMD.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/CSz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/CSz.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/drumTransfer.js" />
-    <entry file="file://$PROJECT_DIR$/machine/drumTrack.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="26" column="80" lean-forward="false" selection-start-line="26" selection-start-column="80" selection-end-line="26" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/drumTrackGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/drumBlock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="71" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/octad.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/TB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="106" lean-forward="false" selection-start-line="15" selection-start-column="106" selection-end-line="15" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/connexionArray.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="36" lean-forward="false" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/group.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/hexParser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="42" column="11" lean-forward="false" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/NOP.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/magneticDrum.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="62" lean-forward="false" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/GG.js" />
-    <entry file="file://$PROJECT_DIR$/testing/assembly/BT.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="15" column="65" lean-forward="true" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/machine/DrumBlock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/machine/DrumTrack.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="37" column="60" lean-forward="false" selection-start-line="37" selection-start-column="60" selection-end-line="37" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/machine/Group.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -791,61 +679,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/CN.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/BD.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/serie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-347">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/serie.js" />
     <entry file="file://$PROJECT_DIR$/assembly/MR.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/AN.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="141" column="11" lean-forward="false" selection-start-line="141" selection-start-column="11" selection-end-line="141" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/ZB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/V.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/TB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -863,40 +701,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/machine/bullGamma.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="86" column="4" lean-forward="false" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/SN.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="149" column="33" lean-forward="false" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/OB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/MR.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assembly/SN.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,27 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/DR.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/KB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -936,18 +723,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing/assembly/MC.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="56" column="21" lean-forward="false" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assembly/small_div_or_mult.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="64" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,6 +734,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="44" lean-forward="true" selection-start-line="1" selection-start-column="44" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/memory.js" />
+    <entry file="file://$PROJECT_DIR$/assembly/big_div_or_mult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/ZB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/V.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="80" column="25" lean-forward="false" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/TB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/BD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/AN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="147" column="26" lean-forward="false" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/IL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/DC.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="34" lean-forward="false" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/BO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="93" column="26" lean-forward="false" selection-start-line="93" selection-start-column="26" selection-end-line="93" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/BT.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/CO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/CSz.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -963,38 +831,182 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/machine/memory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="284" column="16" lean-forward="false" selection-start-line="284" selection-start-column="16" selection-end-line="284" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testing/assembly/DC.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        <state relative-caret-position="806">
+          <caret line="68" column="26" lean-forward="false" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/DR.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="62" column="24" lean-forward="false" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/GG.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/big_div_or_mult.js">
+    <entry file="file://$PROJECT_DIR$/testing/assembly/IL.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        <state relative-caret-position="731">
+          <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/KB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="26" lean-forward="false" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/MC.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="110" column="26" lean-forward="false" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assembly/DC.js">
+    <entry file="file://$PROJECT_DIR$/testing/assembly/MR.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state relative-caret-position="806">
+          <caret line="86" column="26" lean-forward="false" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/OB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/VRS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-350">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/VCS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/AN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="59" column="12" lean-forward="false" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/magneticDrum/drumBlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/SN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="701">
+          <caret line="157" column="26" lean-forward="false" selection-start-line="157" selection-start-column="26" selection-end-line="157" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/AMD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/innerComponents/serie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-329">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/innerComponents/connexionArray.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/bullGamma.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-363">
+          <caret line="86" column="4" lean-forward="false" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/innerComponents/octad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-299">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/machine/innerComponents/memory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="179" column="2" lean-forward="false" selection-start-line="179" selection-start-column="2" selection-end-line="179" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assembly/CN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/generalUseCases.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="77" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/assembly/CN.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="64" column="7" lean-forward="false" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
           <folding />
         </state>
       </provider>
