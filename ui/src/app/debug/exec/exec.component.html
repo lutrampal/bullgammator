@@ -7,7 +7,10 @@
 		</div>
 	</div>
 	<div>
-	  <button mat-raised-button color="primary" (click)="executeNextInstruction()">Prochaine instruction</button>
+	  <button mat-raised-button
+			color="primary" matTooltip="Executer la prochaine instruction"
+			(click)="executeNextInstruction()"
+		>Titiller</button>
 	  <button mat-raised-button color="primary" (click)="execUntilBreakPoint()">Continuer</button>
 	</div>
 </div>

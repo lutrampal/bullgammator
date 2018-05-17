@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { EditorService } from '../providers/editor.service';
+import { ExecService } from '../../debug/providers/exec.service';
 
 @Component({
   selector: 'app-hex-editor',
@@ -19,14 +20,23 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 	series3HexError: string;
 	magDrumHexError: string;
 
-	@Output()
-  series3_emit = new EventEmitter<FormGroup>();
-	@Output()
-  drum_emit = new EventEmitter<FormGroup>();
+	@Input()
+	set series3(series3: string) {
+		if (series3) {
+			this.series3HexCtrl.get("hex_entry").setValue(series3);
+		}
+	}
+	@Input()
+	set drum(drum: string) {
+		if (drum) {
+			this.magDrumHexCtrl.get("hex_entry").setValue(drum);
+		}
+	}
 
   constructor(
     private fb: FormBuilder,
-    private edit: EditorService
+    private edit: EditorService,
+		private exec: ExecService
   ) {
 
   }
@@ -44,8 +54,6 @@ export class HexEditorComponent implements OnInit, OnDestroy {
     this.magDrumHexWatcher = this.magDrumHexCtrl.valueChanges.subscribe(() => {
       this.magDrumHexError = null;
     });
-		this.series3_emit.emit(this.series3HexCtrl);
-		this.drum_emit.emit(this.magDrumHexCtrl);
   }
 
   ngOnDestroy() {
@@ -64,6 +72,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
   validateSeries3Hex() {
     try {
       this.edit.editConnexionArray(this.series3HexCtrl.get("hex_entry").value);
+			this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
     }
     catch(error) {
       console.error(error);
@@ -74,6 +83,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 	validateDrumHex() {
 			try {
 				this.edit.editDrum(this.magDrumHexCtrl.get("hex_entry").value);
+				this.exec.writeConsoleLine("Tambour chargé depuis l'éditeur");
 			}
 			catch(error) {
 				console.error(error);

@@ -1,6 +1,6 @@
 <mat-tab-group [(selectedIndex)]="gr_index">
 	<div *ngFor="let tg of bull.bullgamma.magneticDrum.trackGroups; index as i">
-		<mat-tab label="Groupe {{ i }}">
+		<mat-tab label="Seizaine {{ i }}">
 			<mat-tab-group *ngIf="gr_index == i" [(selectedIndex)]="tr_index">
 				<div *ngFor="let t of tg.tracks; index as j">
 					<mat-tab label="Piste {{ i * bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j }}">

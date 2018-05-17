@@ -15,8 +15,4 @@ export class DebugComponent implements OnInit {
   ngOnInit() {
   }
 
-  setBreakPoints(breakpoints: FormControl[]) {
-    this.breakpoints = breakpoints;
-  }
-
 }

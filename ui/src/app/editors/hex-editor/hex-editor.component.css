@@ -10,3 +10,7 @@
 mat-form-field {
 	margin-top: 16px;
 }
+
+textarea {
+	height: 50vh;
+}

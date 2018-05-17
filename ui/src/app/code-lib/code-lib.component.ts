@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormGroup } from '@angular/forms';
 
 import { CodeLibService } from './providers/code-lib.service';
@@ -12,10 +12,10 @@ export class CodeLibComponent implements OnInit {
 
 	message: any;
 
-	@Input()
-	series3: FormGroup;
-	@Input()
-	drum: FormGroup;
+	@Output()
+	series3_emit = new EventEmitter<string>();
+	@Output()
+	drum_emit = new EventEmitter<string>();
 
   constructor(
 		private lib: CodeLibService
@@ -31,12 +31,8 @@ export class CodeLibComponent implements OnInit {
 	loadProgram(name: string) {
 		try {
 			this.lib.loadProgram(name);
-			if (this.series3) {
-				this.series3.get("hex_entry").setValue(this.lib.getProgram(name, "series3"));
-			}
-			if (this.drum) {
-				this.drum.get("hex_entry").setValue(this.lib.getProgram(name, "drum"));
-			}
+			this.series3_emit.emit(this.lib.getProgram(name, "series3"));
+			this.drum_emit.emit(this.lib.getProgram(name, "drum"));
 			this.message = 'Programme "' + this.displayName(name) + '" chargé, \
 				vous pouvez controler l\'exécution de ce programme dans l\'onglet "Debug"';
 		} catch (error) {

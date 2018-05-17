@@ -1,47 +1,127 @@
 @startuml
-class mainVue {
+
+package IG {
+	class MainVue {
+		series
+		drum
+	}
+
+	class WirePannel {
+	}
+	MainVue *-- WirePannel
+
+	class Editors {
+	}
+	MainVue *-- Editors
+
+	class HexEditor {
+		@Input series3
+		@Input drum
+		@Output series3 = null
+		@Output drum = null
+		editDrum(hexCode)
+		editConnexionArray(hexCode)
+	}
+	Editors *-- HexEditor
+
+	class CodeLibrary {
+		@Output series3
+		@Output drum
+		getProgramsNames()
+		loadProgram(name)
+	}
+	MainVue *--- CodeLibrary
+
+	class Control {
+		breakpoints
+	}
+	MainVue *-- Control
+
+	class Memories {
+		edit(hexCode)
+	}
+	Control *-- Memories
+
+	class Octads {
+		edit(hexCode)
+		selectOctad(octadId)
+	}
+	Control *-- Octads
+
+	class Series {
+		@Output breakpoints
+		setBreakPoint(line)
+		selectSeries(seriesId)
+	}
+	Control *-- Series
+
+	class Exec {
+		@Input breakpoints
+		executeNextInstruction()
+		execUntilBreakPoint()
+	}
+	Control *-- Exec
+
+	class Drum {
+		getBlock(groupId, trackId, blockId)
+	}
+	MainVue *--- Drum
 }
 
-class wirePannel {
-}
-mainVue *-- wirePannel
+package Interface_IG-Model {
+	class EditorService {
+		bull: BullgammatorService
+		editDrum(hexCode)
+		editConnexionArray(hexCode)
+	}
+	HexEditor o-- EditorService
 
-class editors {
-}
-mainVue *-- editors
+	class CodeLibService {
+		getProgramsNames()
+		loadProgram(name)
+	}
+	CodeLibrary o-- CodeLibService
 
-class hexEditor {
-}
-editors *-- hexEditor
+	class MemoriesService {
+		set()
+		get()
+	}
+	Octads o-- MemoriesService
+	Memories o-- MemoriesService
 
-class debug {
-  breakpoints
-  setBreakPoints()
-}
-mainVue *-- debug
+	class SeriesService {
+		getInstructions(series)
+	}
+	Series o-- SeriesService
 
-class memories {
-  edit()
-}
-debug *--- memories
+	class ExecService {
+		getInstructions(series)
+	}
+	Exec o-- ExecService
 
-class octads {
-  edit()
-  selectOctad()
+	class DrumService {
+		getBlock(groupId, trackId, blockId)
+	}
+	Drum o-- DrumService
 }
-debug *--- octads
 
-class series {
-  @Output breakpts_emit
-  setBreakPoint()
-  selectSeries()
-}
-debug *--- series
+package Model {
+  class Editor {
+  }
+	EditorService *-- Editor
+  Editor o-- BullGamma
 
-class execution {
-  @Input breakpoints
-  executeNextInstruction()
-  execUntilBreakPoint()
+  class Execution {
+  }
+	ExecService *-- Execution
+	SeriesService *-- Execution
+  Execution o-- BullGamma
+
+  class Debug {
+  }
+	MemoriesService *-- Debug
+  DrumService o-- BullGamma
+  Debug o-- BullGamma
 }
-debug *-- execution
+
 @enduml
