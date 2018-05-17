@@ -132,6 +132,16 @@ describe('CN', function() {
       assert.equal(bullGamma.mc.equal, false)
       assert.equal(bullGamma.mc.greater, true)
     });
+    it('should be equal to a constant', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1)
+			bullGamma.setMemoryMode(MEMORY_MODE.BINARY);
+      m1.setContent("800000000000")
+      let cn = new CN(0, 11, 8, bullGamma);
+      cn.execute();
+      assert.equal(bullGamma.mc.equal, true)
+      assert.equal(bullGamma.mc.greater, false)
+    });
     describe('#getDescription()', function () {
       it("should print the instruction's description", function () {
         let bullGamma =  new BullGamma();

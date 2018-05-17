@@ -7,15 +7,16 @@ class CN extends OperationWithPreShift {
 
   _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1);
-    let vm1 = m1.getDecimalValue(0, m1.blocks.length)
+		let base = this.bullGamma.getMemoryMode().base;
+    let vm1 = m1.getDecimalValue(0, m1.blocks.length);
     if (this.AD === 0) {
-      this.bullGamma.mc.greater = vm1 > this.OF*(10**this.OD)
-      this.bullGamma.mc.equal = vm1 === this.OF*(10**this.OD);
+      this.bullGamma.mc.greater = vm1 > this.OF * (base ** this.OD);
+      this.bullGamma.mc.equal = vm1 == this.OF * (base ** this.OD);
     } else {
-      let valMb = this.bullGamma.getMemory(this.AD).getDecimalValue(this.OD, this.OF)
-      valMb *= this.bullGamma.getMemoryMode().base**this.OD
-      this.bullGamma.mc.greater = vm1 > valMb
-      this.bullGamma.mc.equal = vm1 === valMb
+      let valMb = this.bullGamma.getMemory(this.AD).getDecimalValue(this.OD, this.OF);
+      valMb *= base ** this.OD;
+      this.bullGamma.mc.greater = vm1 > valMb;
+      this.bullGamma.mc.equal = vm1 == valMb;
     }
   }
 

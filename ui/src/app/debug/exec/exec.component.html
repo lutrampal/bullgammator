@@ -11,6 +11,10 @@
 			color="primary" matTooltip="Executer la prochaine instruction"
 			(click)="executeNextInstruction()"
 		>Titiller</button>
-	  <button mat-raised-button color="primary" (click)="execUntilBreakPoint()">Continuer</button>
+	  <button mat-raised-button
+			color="primary"
+			matTooltip="Executer des instructions jusqu'à rencontrer un point d'arrêt"
+			(click)="execUntilBreakPoint()"
+		>Continuer</button>
 	</div>
 </div>
