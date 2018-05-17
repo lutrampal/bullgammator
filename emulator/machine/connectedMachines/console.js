@@ -19,7 +19,7 @@ class Console extends ConnectedMachine {
 		let i = NB_MEMORIES_PER_HALF_OCTAD;
 		for (let ex of this.bullGamma.getExtractors()) {
 			this.lines.push(
-				"Sortie "+ i - NB_MEMORIES_PER_HALF_OCTAD + ": " + ex.toString()
+				"Sortie "+ (i - NB_MEMORIES_PER_HALF_OCTAD) + ": " + ex.toString()
 			);
 			i++;
 		}
@@ -33,7 +33,7 @@ class Console extends ConnectedMachine {
 		// first extractor is used for error
 		// other for standard outputs
 		let nb_errors = 1;
-		
+
 		switch (OD) {
 			case 0:
 				// display outputs
