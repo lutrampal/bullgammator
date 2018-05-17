@@ -29,7 +29,31 @@ class Console extends ConnectedMachine {
 	 * Function triggered by the instruction ES1
 	 */
 	onStaticExtraction1(OD, OF) {
-		// nothing yet
+		let extractors = this.bullGamma.getExtractors();
+		// first extractor is used for error
+		// other for standard outputs
+		let nb_errors = 1;
+		
+		switch (OD) {
+			case 0:
+				// display outputs
+				if (OF < extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + ": " + extractors[OF + nb_errors].toString()
+					);
+				}
+				break;
+			case 1:
+				// display errors
+				if (OF < nb_errors) {
+					this.lines.push(
+						"Erreur: " + extractors[OF].toString()
+					);
+				}
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
