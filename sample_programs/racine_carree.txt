@@ -2,63 +2,94 @@
 
 -- Entrée :
 -- 	M3 : x
+--	M4 : 50 (biais de l'exposant)
 -- Sortie :
---	M4 : sqrt(x)
+--	M5 : sqrt(x)
 -- Format des nombres :
---	idx 0 à 2 <=> exposant biaisé de 
+--	idx 0 à 2 <=> exposant biaisé de
 --	idx 2 à 11 <=> mantisse
 --	idx 11 <=> signe
 
 1a00 -- CD
-1c02 -- CO(2)
+0000
 632b -- BO, M1 <- M3[2:11]
 0000
+
+-- x = 0 ?
 9051 -- CN, M1[5] cmp 1
-8400 -- OB, M4 <- M1
+8500 -- OB, M5 <- M1
 03d1 -- V, < ? jump l52
 0000
+
+-- calcul de l'exposant
 6302 -- BO, M1 <- M3[0:2]
-aa02 -- AN, M1[0:2] <- M1 + M10
+a402 -- AN, M1 <- M1 + M4[0:2]
 c035 -- MR, M1 <- M1*5000
 0000
 7001 -- AMD(1), MD <- 1
-8402 -- OB, M4 <- M1[0:2]
+8502 -- OB, M5 <- M1[0:2]
+
+-- exposant pair ?
 90b5 -- CN, M1 cmp 500000000000
 0000
 6320 -- BO, M1 <- M3[2:]
+
+-- blocage si x < 0
 0444 -- V, MS- ? jump l17
-0354 -- V, > ? jump l21
-0000
-3d56 -- ZB, M3[5:6] <- 0
-8810 -- OB, M8 <- M1[1:0]
+
+-- tout exposant
+0354 -- V, >= ? jump l21
+
+-- exposant pair
+7003 -- CHANGED
+8102 -- CHANGED
+--3156 -- ZB, M3[5:6] <- 0 -- CHANGED
+
+-- tout exposant
+8610 -- OB, M6 <- M1[1:0]
 0369 -- V, < ? jump l26
 0000
+
+-- exposant impair
 A092 -- AN, M1 <- M1 + 2000000000
 0075 -- V, jump l29
+
+-- exposant pair
 A085 -- AN, M1 <- M1 + 500000000
 0000
 A100 -- AN, M1 <- M1 + M1
+
+-- iterations sur la mantisse
 7000 -- AMD, MD <- 0
-8900 -- OB, M9 <- M1
+8700 -- OB, M7 <- M1
 0000
-6800 -- BO, M1 <- M8
+6600 -- BO, M1 <- M6
 3200 -- ZB, M2 <- 0
 700A -- AMD, MD <- 10
 0000
-F900 -- DC, M1 <- M1*100/M9
+F700 -- DC, M1 <- M1*100/M7
 6200 -- BO, M2 <- M1
 A009 -- AN, M1 <- M1 + 9
 0000
-A900 -- AN, M1 <- M1 + M9
+A700 -- AN, M1 <- M1 + M7
 C010 -- MR, M1 << 1
 C0A5 -- MR, M1 <- M1*50000000000
 0000
-8900 -- OB, M9 <- M1
+8700 -- OB, M7 <- M1
 6110 -- BO, M1 <- 0, MD <- 1 et MS1 <- 0
-9420 -- CN, M1[2:] cmp M4[2:]
+9520 -- CN, M1[2:] cmp M5[2:]
 0000
-8420 -- OB, M4 <- M1[2:]
+8520 -- OB, M5 <- M1[2:]
 0281 -- V, != ? jump l32
-6400 -- BO, M1 <- M4
+
+-- fin
+6500 -- BO, M1 <- M5
 0000
 3200 -- ZB, M2 <- 0
+1C07 -- CO(7)
+8D00 -- M13 <- M1
+0000
+1800 -- print
+
+<m3>014400000052</m3>
+<m4>000000000050</m4>

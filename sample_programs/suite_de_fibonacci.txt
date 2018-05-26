@@ -1,5 +1,5 @@
 -- * * * Calcul de la suite de Fibonacci * * *
--- A chaque itération M6 vaut n et M7 fn
+-- A chaque itération M2 vaut n et M4 fn
 
 1A00 -- CD
 1C07 -- CO 7

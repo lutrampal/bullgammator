@@ -25,6 +25,33 @@ class Console extends ConnectedMachine {
 		}
 	}
 
+	convertToFloat(value) {
+		let exponent = (parseInt(value.charAt(0), 16) & 0x7) * (2**5)
+			+ parseInt(value.charAt(1), 16) * 2
+			+ (parseInt(value.charAt(2), 16) >> 3);
+		exponent -= 7 * 16 + 15;
+
+		let sign = ((parseInt(value.charAt(0), 16) & 0x8) >> 3) ? -1: 1
+
+		let mantissa = (parseInt(value.charAt(2), 16) & 0x7) / 4;
+		for (let i = 3; i < value.length; i++) {
+			mantissa += parseInt(value.charAt(i), 16) / (4 * (16**(i-2)));
+		}
+
+		return sign * (mantissa * (2**exponent))
+	}
+
+	convertToInt(value) {
+		let sign = ((parseInt(value.charAt(0), 16) & 0x8) >> 3) ? -1: 1
+
+		let mantissa = (parseInt(value.charAt(2), 16) & 0x7) * (16**11);
+		for (let i = 1, j = value.length - 2; i < value.length; i++, j--) {
+			mantissa += parseInt(value.charAt(i), 16) * (16**j);
+		}
+
+		return sign * mantissa;
+	}
+
 	/**
 	 * Function triggered by the instruction ES1
 	 */
@@ -39,7 +66,13 @@ class Console extends ConnectedMachine {
 				// display outputs
 				if (OF < extractors.length - nb_errors) {
 					this.lines.push(
-						"Sortie "+ OF + ": " + extractors[OF + nb_errors].toString()
+						"Sortie "+ OF + " brute : " + extractors[OF + nb_errors].toString()
+					);
+					this.lines.push(
+						"+--> flottant binaire : " + this.convertToFloat(extractors[OF + nb_errors].toString())
+					);
+					this.lines.push(
+						"+----> entier binaire : " + this.convertToInt(extractors[OF + nb_errors].toString())
 					);
 				}
 				break;
