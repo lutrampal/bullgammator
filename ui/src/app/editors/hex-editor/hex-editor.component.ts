@@ -28,7 +28,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 	}
 	@Input()
 	set drum(drum: string) {
-		if (drum) {
+		if (drum || drum === "") {
 			this.magDrumHexCtrl.get("hex_entry").setValue(drum);
 		}
 	}

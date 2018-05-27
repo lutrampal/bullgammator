@@ -33,7 +33,7 @@ export class CodeLibService {
 			this.lib.getProgram(name, "series3")
 		);
 		this.edit.editDrum(
-			this.lib.getProgram(name, "drum")
+			this.lib.getProgram(name, "drum") || ""
 		);
 		for (let i=1; i<this.bull.constants.NB_BANAL_MEMORIES; i++) {
 			if (this.lib.getProgram(name, "m" + i)) {
