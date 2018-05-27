@@ -66,13 +66,7 @@ class Console extends ConnectedMachine {
 				// display outputs
 				if (OF < extractors.length - nb_errors) {
 					this.lines.push(
-						"Sortie "+ OF + " brute : " + extractors[OF + nb_errors].toString()
-					);
-					this.lines.push(
-						"+--> flottant binaire : " + this.convertToFloat(extractors[OF + nb_errors].toString())
-					);
-					this.lines.push(
-						"+----> entier binaire : " + this.convertToInt(extractors[OF + nb_errors].toString())
+						"Sortie "+ OF + " : " + extractors[OF + nb_errors].toString()
 					);
 				}
 				break;
@@ -81,6 +75,22 @@ class Console extends ConnectedMachine {
 				if (OF < nb_errors) {
 					this.lines.push(
 						"Erreur: " + extractors[OF].toString()
+					);
+				}
+				break;
+			case 2:
+				// display outputs
+				if (OF < extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + " : " + this.convertToFloat(extractors[OF + nb_errors].toString())
+					);
+				}
+				break;
+			case 3:
+				// display outputs
+				if (OF < extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + " : " + this.convertToInt(extractors[OF + nb_errors].toString())
 					);
 				}
 				break;
