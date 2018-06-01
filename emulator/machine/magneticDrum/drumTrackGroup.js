@@ -7,11 +7,17 @@ const NB_HEX_VALUES_PER_DRUM_TRACK_GROUP = require("../constants").NB_HEX_VALUES
 DrumTrack = require("./drumTrack").DrumTrack;
 
 /**
+ * A DrumTrackGroup is a set of 16 (NB_TRACKS_PER_DRUM_TRACK_GROUP) DrumTracks attached to a Drum
  * Note: I was unable to find a proper translation for the word "Seizaine" in English which is equivalent to "dozen"
  * or "decade" but with 16.
  */
 class DrumTrackGroup {
 
+  /**
+   * constructs a new instance of DrumTrackGroup
+   * @param id the id for this DrumTrackGroup
+   * @param drum the Drum to which this track group belongs
+   */
   constructor(id, drum) {
     this.id = id
     this.drum = drum
@@ -21,6 +27,11 @@ class DrumTrackGroup {
     }
   }
 
+
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,

@@ -2,6 +2,9 @@ DrumTransfer = require("./TT").DrumTransfer
 
 const NB_WORD_PER_DRUM_BLOCK = require('../machine/constants').NB_WORD_PER_DRUM_BLOCK
 
+/**
+ * drum to group transfer
+ */
 class TB extends DrumTransfer {
   constructor(AD, OD, OF, bullGamma) {
     super(2, AD, OD, OF, bullGamma)

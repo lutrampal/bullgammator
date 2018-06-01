@@ -1,5 +1,8 @@
 Instruction = require("./instruction").Instruction
 
+/**
+ * M2 to MD transfer
+ */
 class BD extends Instruction {
   constructor(OD, OF, bullGamma) {
     super(7, 2, OD, OF, bullGamma)

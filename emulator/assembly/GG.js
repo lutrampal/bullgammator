@@ -2,7 +2,9 @@ Instruction = require("./instruction").Instruction
 NB_OCTADS_PER_GROUP = require("../machine/constants").NB_OCTADS_PER_GROUP
 NB_MEMORIES_PER_OCTAD = require("../machine/constants").NB_MEMORIES_PER_OCTAD
 
-
+/**
+ * Group to Group transfer
+ */
 class GG extends Instruction {
   constructor(OD, OF, bullGamma) {
     super(5, 0, OD, OF, bullGamma)

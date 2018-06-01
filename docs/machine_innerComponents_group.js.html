@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: machine/innerComponents/group.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: machine/innerComponents/group.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>assert = require('assert');
+
+Octad = require("./octad").Octad;
+
+const NB_OCTADS_PER_GROUP = require("../constants").NB_OCTADS_PER_GROUP
+const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
+const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
+const NB_HEX_VALUES_PER_GROUP = require("../constants").NB_HEX_VALUES_PER_GROUP
+
+/**
+ * A group is a set of NB_OCTADS_PER_GROUP octads
+ */
+class Group {
+
+  /**
+   * constructs a new instance of Group
+   * @param id the Group's ID
+   * @param bullGamma the machine attached to this Group
+   */
+  constructor(id, bullGamma) {
+    assert(id >= 0, "id should not be negative");
+    this.id = id
+    this.bullGamma = bullGamma
+    this.octads = new Array(NB_OCTADS_PER_GROUP)
+    for (let i = 0; i &lt; NB_OCTADS_PER_GROUP; ++i) {
+      this.octads[i] = new Octad(i + id*NB_OCTADS_PER_GROUP, bullGamma)
+    }
+  }
+
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
+  setContent(hexCode) {
+    hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
+    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+    assert(hexCode.length &lt;= NB_HEX_VALUES_PER_GROUP,
+			"hexCode should be of length " + NB_HEX_VALUES_PER_GROUP)
+		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_GROUP, "0");
+    for (let i = 0; i &lt; NB_OCTADS_PER_GROUP; ++i) {
+      this.octads[i].setContent(hexCode.substr(i*(NB_MEMORIES_PER_OCTAD*NB_CHRS_PER_WORD),
+        (i + 1)*(NB_MEMORIES_PER_OCTAD*NB_CHRS_PER_WORD)))
+    }
+  }
+
+	/**
+	 * Returns the word corresponding to the id
+	 * @param id from 0 to 15
+	 */
+	getWord(id) {
+		for (let o = 0; o &lt; NB_OCTADS_PER_GROUP; o++) {
+			if (id &lt; (o + 1) * NB_MEMORIES_PER_OCTAD) {
+				return this.octads[o].getMemory(id - o * NB_MEMORIES_PER_OCTAD);
+			}
+		}
+		throw "not a valid id for word in group: " + id;
+	}
+
+  toString() {
+    let str = ""
+    for (let i = 0; i &lt; NB_OCTADS_PER_GROUP/2; ++i) {
+      for (let j = 0; j &lt; NB_MEMORIES_PER_OCTAD; ++j) {
+        str += this.octads[i].getMemory(j).toString() + "\t"
+          + this.octads[i + NB_OCTADS_PER_GROUP/2].getMemory(j).toString() + "\n"
+      }
+    }
+    return str
+  }
+}
+
+module.exports.Group = Group;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnexionArray.html">ConnexionArray</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 01 2018 20:40:42 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

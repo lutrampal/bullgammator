@@ -1,6 +1,9 @@
 Operation = require("./operation").Operation
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
+/**
+ * MB to M1 transfer
+ */
 class BO extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     super(6, AD, OD, OF, bullGamma)

@@ -1,15 +1,21 @@
 assert = require('assert');
 
-const NB_BLOCKS_PER_DRUM_TRACK = require("../constants").NB_BLOCKS_PER_DRUM_TRACK;
-const NB_OCTADS_PER_DRUM_BLOCK = require("../constants").NB_OCTADS_PER_DRUM_BLOCK
-const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
+const NB_BLOCKS_PER_DRUM_TRACK = require("../constants").NB_BLOCKS_PER_DRUM_TRACK
 const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK
 const NB_HEX_VALUES_PER_DRUM_TRACK = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK
 
 DrumBlock = require("./drumBlock").DrumBlock;
 
+/**
+ * A DrumTrack is a set of NB_BLOCKS_PER_DRUM_TRACK DrumBlock that is part of a DrumTrackGroup
+ */
 class DrumTrack {
 
+  /**
+   * constructs a new instance of DrumTrack
+   * @param id the ID of this Track
+   * @param trackGroup the TrackGroup to which this track belongs
+   */
   constructor(id, trackGroup) {
     this.id = id
     this.trackGroup = trackGroup
@@ -19,6 +25,10 @@ class DrumTrack {
     }
   }
 
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK,

@@ -6,7 +6,17 @@ const NB_INST_PER_MEM = require("../constants").NB_INST_PER_MEM
 const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
 NOP = require("../../assembly/NOP").NOP
 
+/**
+ * A Series is Group which content is interpreted as instructions
+ */
 class Serie {
+
+  /**
+   * constructs a new instance of Series
+   * @param id the id of this Series
+   * @param bullGamma the machine attached to this Serie
+   * @param group the group encapsulated in the Series
+   */
   constructor(id, bullGamma, group) {
     assert(id >= 0, "id should not be negative")
     assert(bullGamma, "bullGamma should neither be null nor undefined")

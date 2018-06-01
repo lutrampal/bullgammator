@@ -1,5 +1,8 @@
 Instruction = require("./instruction").Instruction
 
+/**
+ * Abstract class for all instructions where OD cannot be greater than OF
+ */
 class Operation extends Instruction {
   constructor(TO, AD, OD, OF, bullGamma) {
     let of = OF

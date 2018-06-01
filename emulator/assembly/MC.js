@@ -2,6 +2,9 @@ BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
 Memory = require("../machine/innerComponents/memory").Memory
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
+/**
+ * complete multiplication
+ */
 class MC extends BigDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     super(14, AD, OD, OF, bullGamma)

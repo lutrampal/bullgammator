@@ -3,7 +3,7 @@ NB_MEMORIES_PER_HALF_OCTAD = require('../constants').NB_MEMORIES_PER_HALF_OCTAD;
 
 /**
  * NB: This connected machine is not an actual device af the Bull Gamma
- µ It is used for debug purposes only
+ * It is used for debug purposes only
  */
 class Console extends ConnectedMachine {
 

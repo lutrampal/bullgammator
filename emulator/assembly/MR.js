@@ -1,5 +1,8 @@
 SmallDivOrMultOperation = require("./small_div_or_mult").SmallDivOrMult
 
+/**
+ * reduced multiplication
+ */
 class MR extends SmallDivOrMultOperation {
   constructor(AD, OD, OF, bullGamma) {
     super(12, AD, OD, OF, bullGamma)

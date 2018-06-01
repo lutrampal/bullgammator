@@ -20,8 +20,14 @@ const NB_COMMUTED_OCTADS = require("./constants").NB_COMMUTED_OCTADS;
 const NB_MEMORIES_PER_OCTAD = require("./constants").NB_MEMORIES_PER_OCTAD;
 NB_MEMORIES_PER_HALF_OCTAD = require('./constants').NB_MEMORIES_PER_HALF_OCTAD;
 
+/**
+ * Central class meant to represent the whole machine
+ */
 class BullGamma {
 
+  /**
+   * Constructs a new instance of BullGamma
+   */
   constructor() {
     // Memories
     this._generalMemories = new Array(NB_BANAL_MEMORIES);
@@ -88,6 +94,10 @@ class BullGamma {
     return this.groups[Math.floor(id/NB_OCTADS_PER_GROUP)].octads[id % NB_OCTADS_PER_GROUP]
   }
 
+  /**
+   * Changes the current octad the Bull Gamma is working with
+   * @param id id of the desired octad
+   */
 	setCommutedOctad(id) {
 		this.currentOctad = this.getOctad(id);
 	}
@@ -137,6 +147,9 @@ class BullGamma {
 		return (this.nl + 1) % (this.getSerie(this.ns).nbInst);
 	}
 
+  /**
+   * Executes the coming instruction if the current Series
+   */
   executeNextInstruction() {
     let old_cp = this.nl;
 		this.nl = this.nextLine();

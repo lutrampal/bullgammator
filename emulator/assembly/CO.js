@@ -1,5 +1,8 @@
 Instruction = require("./instruction").Instruction
 
+/**
+ * octad selection
+ */
 class CO extends Instruction {
   constructor(OF, bullGamma) {
     super(1, 12, 0, OF, bullGamma)

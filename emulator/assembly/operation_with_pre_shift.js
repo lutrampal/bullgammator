@@ -1,5 +1,8 @@
 Operation = require("./operation").Operation
 
+/**
+ * Abstract class for instructions with pre-shift
+ */
 class OperationWithPreShift extends Operation {
 
   execute() {
@@ -21,6 +24,10 @@ class OperationWithPreShift extends Operation {
     this._exeInstructionLogic();
   }
 
+  /**
+   * Abstract method, called by #execute() after the shift is done
+   * @protected
+   */
   _exeInstructionLogic() {
     throw new Error('You have to implement the method _exeInstructionLogic().');
   }

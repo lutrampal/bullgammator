@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: assembly/AN.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: assembly/AN.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
+MEMORY_MODE = require("../machine/constants").MEMORY_MODE
+
+/**
+ * Add
+ */
+class AN extends OperationWithPreShift {
+  constructor(AD, OD, OF, bullGamma) {
+    super(10, AD, OD, OF, bullGamma)
+  }
+
+  _exeInstructionLogic() {
+    let m1 = this.bullGamma.getMemory(1);
+    if (this.AD > 1) { // use of MB
+      let mb = this.bullGamma.getMemory(this.AD)
+			if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
+				// handle sign in decimal mode
+				if (this.bullGamma.ms1 !== 10 &amp;&amp; mb.blocks[this.OF - 1] !== 10) { // M1, MB positive
+					m1.add(mb, this.OD, this.OF);
+					return;
+				}
+				if (this.bullGamma.ms1 !== 10 &amp;&amp; mb.blocks[this.OF - 1] === 10) { // M1 positive, MB negative
+					mb.blocks[this.OF - 1] = 0;
+					m1.subtract(mb, this.OD, this.OF);
+					mb.blocks[this.OF - 1] = 10;
+					return;
+				}
+				if (this.bullGamma.ms1 === 10 &amp;&amp; mb.blocks[this.OF - 1] !== 10) { // M1 negative, MB positive
+					// -M1 + MB &lt;=> MB - M1, so MB gets copied to M1 and a buffer for M1 is used
+					let cpM1 = new Memory(1, this.bullGamma);
+					cpM1.copyBlockValues(m1, this.OD, this.OF);
+					m1.copyBlockValues(mb, this.OD, this.OF);
+					m1.subtract(cpM1, this.OD, this.OF);
+					return;
+				}
+				if (this.bullGamma.ms1 === 10 &amp;&amp; mb.blocks[this.OF - 1] === 10) { // M1, MB negative
+					mb.blocks[this.OF - 1] = 0;
+					m1.add(mb, this.OD, this.OF);
+					mb.blocks[this.OF - 1] = 10;
+					return;
+				}
+			} else {
+				// no signhandling in binary mode
+				m1.add(mb, this.OD, this.OF);
+			}
+    }
+    if (this.AD === 1) {
+      m1.add(m1, this.OD, this.OF);
+      return;
+    }
+    if (this.AD === 0) {
+      this.bullGamma.getMemory(1).addValue(this.OF, this.OD);
+    }
+  }
+
+	getDescription() {
+		if (this.AD == 0) {
+			return "AN - Addition\n"
+			+ "Effectue le décalage de M1, additionne M1 à " + this.OF
+			+ " en position " + this.OD
+			+ ", puis met le résultat dans M1";
+		} else {
+			return "AN - Addition\n"
+			+ "Effectue le décalage de M1, additionne M1 à M" + this.AD
+			+ " entre les positions " + this.OD + " et " + this.OF
+			+ ", puis met le résultat dans M1";
+		}
+	}
+}
+
+module.exports.AN = AN;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnexionArray.html">ConnexionArray</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 01 2018 20:40:42 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

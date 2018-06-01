@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: machine/connectedMachines/console.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: machine/connectedMachines/console.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>ConnectedMachine = require('./connectedMachine').ConnectedMachine;
+NB_MEMORIES_PER_HALF_OCTAD = require('../constants').NB_MEMORIES_PER_HALF_OCTAD;
+
+/**
+ * NB: This connected machine is not an actual device af the Bull Gamma
+ * It is used for debug purposes only
+ */
+class Console extends ConnectedMachine {
+
+	constructor() {
+		super();
+		this.lines = [];
+	}
+
+	/**
+	 * Function triggered by an instruction of the Bull Gamma
+	 */
+	on48V() {
+		let i = NB_MEMORIES_PER_HALF_OCTAD;
+		for (let ex of this.bullGamma.getExtractors()) {
+			this.lines.push(
+				"Sortie "+ (i - NB_MEMORIES_PER_HALF_OCTAD) + ": " + ex.toString()
+			);
+			i++;
+		}
+	}
+
+	convertToFloat(value) {
+		let exponent = (parseInt(value.charAt(0), 16) &amp; 0x7) * (2**5)
+			+ parseInt(value.charAt(1), 16) * 2
+			+ (parseInt(value.charAt(2), 16) >> 3);
+		exponent -= 7 * 16 + 15;
+
+		let sign = ((parseInt(value.charAt(0), 16) &amp; 0x8) >> 3) ? -1: 1
+
+		let mantissa = (parseInt(value.charAt(2), 16) &amp; 0x7) / 4;
+		for (let i = 3; i &lt; value.length; i++) {
+			mantissa += parseInt(value.charAt(i), 16) / (4 * (16**(i-2)));
+		}
+
+		return sign * (mantissa * (2**exponent))
+	}
+
+	convertToInt(value) {
+		let sign = ((parseInt(value.charAt(0), 16) &amp; 0x8) >> 3) ? -1: 1
+
+		let mantissa = (parseInt(value.charAt(2), 16) &amp; 0x7) * (16**11);
+		for (let i = 1, j = value.length - 2; i &lt; value.length; i++, j--) {
+			mantissa += parseInt(value.charAt(i), 16) * (16**j);
+		}
+
+		return sign * mantissa;
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction1(OD, OF) {
+		let extractors = this.bullGamma.getExtractors();
+		// first extractor is used for error
+		// other for standard outputs
+		let nb_errors = 1;
+
+		switch (OD) {
+			case 0:
+				// display outputs
+				if (OF &lt; extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + " : " + extractors[OF + nb_errors].toString()
+					);
+				}
+				break;
+			case 1:
+				// display errors
+				if (OF &lt; nb_errors) {
+					this.lines.push(
+						"Erreur: " + extractors[OF].toString()
+					);
+				}
+				break;
+			case 2:
+				// display outputs
+				if (OF &lt; extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + " : " + this.convertToFloat(extractors[OF + nb_errors].toString())
+					);
+				}
+				break;
+			case 3:
+				// display outputs
+				if (OF &lt; extractors.length - nb_errors) {
+					this.lines.push(
+						"Sortie "+ OF + " : " + this.convertToInt(extractors[OF + nb_errors].toString())
+					);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	/**
+	 * Function triggered by the instruction ES1
+	 */
+	onStaticExtraction2(OD, OF) {
+		// nothing yet
+	}
+
+	/**
+	 * Returns the list of lines printed to the console
+	 * @returns String[]
+	 */
+	getLines() {
+		return this.lines;
+	}
+
+	/**
+	 * Adds a line to the console
+	 * @param line string to be added
+	 */
+	push(line) {
+		this.lines.push(line);
+	}
+}
+
+module.exports.Console = Console;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnexionArray.html">ConnexionArray</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jun 01 2018 20:40:42 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

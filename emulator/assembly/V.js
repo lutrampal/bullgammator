@@ -1,5 +1,8 @@
 Instruction = require("./instruction").Instruction
 
+/**
+ * jump
+ */
 class V extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
     super(0, AD, OD, OF, bullGamma)

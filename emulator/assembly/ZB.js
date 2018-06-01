@@ -1,5 +1,8 @@
 Operation = require("./operation").Operation
 
+/**
+ * Memory reset
+ */
 class ZB extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     super(3, AD, OD, OF, bullGamma)

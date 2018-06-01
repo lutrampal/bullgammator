@@ -1,6 +1,9 @@
 OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
 MEMORY_MODE = require("../machine/constants").MEMORY_MODE
 
+/**
+ * Add
+ */
 class AN extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
     super(10, AD, OD, OF, bullGamma)

@@ -1,6 +1,9 @@
 Operation = require("./operation").Operation
 assert = require('assert');
 
+/**
+ * Logical intersection instruction
+ */
 class IL extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     super(7, AD, OD, OF, bullGamma)

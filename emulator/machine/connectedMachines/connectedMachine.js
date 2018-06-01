@@ -13,6 +13,7 @@ class ConnectedMachine {
 	 */
 	on48V() {
 		// to be overridden
+		throw ""
 	}
 
 	/**

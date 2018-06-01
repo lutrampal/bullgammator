@@ -7,7 +7,16 @@ const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
 const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
 const NB_HEX_VALUES_PER_GROUP = require("../constants").NB_HEX_VALUES_PER_GROUP
 
+/**
+ * A group is a set of NB_OCTADS_PER_GROUP octads
+ */
 class Group {
+
+  /**
+   * constructs a new instance of Group
+   * @param id the Group's ID
+   * @param bullGamma the machine attached to this Group
+   */
   constructor(id, bullGamma) {
     assert(id >= 0, "id should not be negative");
     this.id = id
@@ -18,6 +27,10 @@ class Group {
     }
   }
 
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
   setContent(hexCode) {
     hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks

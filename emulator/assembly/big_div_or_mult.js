@@ -7,10 +7,19 @@ class BigDivOrMult extends Operation {
     super(TO, AD, OD, OF, bullGamma)
   }
 
+  /**
+   * Abstract method, should compute M1 = M1 OP MB
+   * @param mb
+   * @protected
+   */
   _compute(m1m2, mb) {
     throw new Error('You have to implement the method compute.');
   }
 
+  /**
+   * Abstract method, should compute M1 = M1 OP OF
+   * @protected
+   */
   _computeValue(m1m2) {
     throw new Error('You have to implement the method computeValue.');
   }

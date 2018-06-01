@@ -1,5 +1,8 @@
 Instruction = require("./instruction").Instruction
 
+/**
+ * Abstract class for drum transfer instructions
+ */
 class DrumTransfer extends Instruction {
   constructor(TO, AD, OD, OF, bullGamma) {
     super(TO, AD, OD, OF, bullGamma);

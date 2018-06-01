@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/lutrampal/bullgammator#readme",
   "dependencies": {
-    "mocha": "^5.1.1"
+    "mocha": "^5.2.0"
   },
   "devDependencies": {
     "nyc": "^11.8.0"

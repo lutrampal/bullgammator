@@ -1,6 +1,9 @@
 BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 
+/**
+ * Complete Division
+ */
 class DC extends BigDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     super(15, AD, OD, OF, bullGamma)

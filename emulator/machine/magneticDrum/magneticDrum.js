@@ -6,8 +6,15 @@ const NB_HEX_VALUES_PER_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_
 
 DrumTrackGroup = require("./drumTrackGroup").DrumTrackGroup;
 
+/**
+ * A magnetic drum is an ancient storage device that was connected to the Bull Gamma
+ */
 class MagneticDrum {
 
+  /**
+   * Constructs a new instance of MagneticDrum
+   * @param bullGamma the machine to which this drum is attached
+   */
   constructor(bullGamma) {
     assert(bullGamma, "bullGamma must not be null or undefined")
     this.bullGamma = bullGamma
@@ -18,6 +25,11 @@ class MagneticDrum {
     this.commutedTrackGroup = this.trackGroups[0]
   }
 
+
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length <= NB_HEX_VALUES_PER_MAGNETIC_DRUM,

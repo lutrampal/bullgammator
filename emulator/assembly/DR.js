@@ -1,5 +1,8 @@
 SmallDivOrMult = require("./small_div_or_mult").SmallDivOrMult
 
+/**
+ * Reduced Division
+ */
 class DR extends SmallDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     super(12, AD, OD, OF, bullGamma)

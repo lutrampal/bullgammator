@@ -1,5 +1,10 @@
 assert = require("assert")
 
+/**
+ * Abstract class meant to represent an Instruction, please refer to
+ * http://aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf for further documentation about the specific
+ * instructions behavior
+ */
 class Instruction {
   constructor(TO, AD, OD, OF, bullGamma) {
     assert(TO >= 0, "TO should not be negative");
@@ -20,14 +25,23 @@ class Instruction {
     this.hexString = TO.toString(16) + AD.toString(16) + OD.toString(16) + OF.toString(16);
   }
 
+  /**
+   * Abstract method, execute the instruction logic
+   */
   execute() {
     throw new Error('You have to implement the method execute.');
   }
 
+  /**
+   * Abstract method, return the execution time of this instruction
+   */
   computeExeTime() {
     throw new Error('You have to implement the method computeExeTime.');
   }
 
+  /**
+   * Abstract method, return the textual description of this instruction
+   */
 	getDescription() {
 		throw new Error('You have to implement the method getDescription.');
 	}
@@ -39,7 +53,6 @@ class Instruction {
   toLineString() {
     return this.hexString + " -- " + this.constructor.name + "\n";
   }
-
 
 }
 

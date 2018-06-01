@@ -4,14 +4,27 @@ Word = require("../word").Word;
 const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD;
 const MEMORY_MODE = require("../constants").MEMORY_MODE;
 
-
+/**
+ * A Memory is Word directly connected to the Bullgamma (not through an Octad or a DrumBlock). It possess some
+ * computation methods that makes it easier to manipulate for instructions.
+ */
 class Memory extends Word {
+
+  /**
+   * constructs a new instance of Memory
+   * @param id the ID of this memory
+   * @param bullGamma the machine attached to this memory
+   * @param nb_blocks the number of blocks for this memory (same as Word)
+   */
   constructor(id, bullGamma, nb_blocks = NB_CHRS_PER_WORD) {
 		super(nb_blocks);
     this.id = id;
     this.bullGamma = bullGamma;
   }
 
+  /**
+   * @returns {MEMORY_MODE} the computation mode for this Memory
+   */
   getMode() {
     return this.bullGamma.getMemoryMode();
   }
@@ -57,7 +70,7 @@ class Memory extends Word {
    * @param from which block index should the copy start from, should be positive and inferior to 12
    * @param to where should the copy end (excluded), should be inferior or equal to 12
    */
-  copyBlockValues(other, from=0, to=this.blocks.length, ignore_mode=false) {
+  copyBlockValues(other, from=0, to=this.blocks.length) {
     assert.equal(from >= 0, true, "from should be positive");
     assert.equal(to <= this.blocks.length, true, "to should be inferior or equal to " + this.blocks.length);
 
@@ -230,6 +243,12 @@ class Memory extends Word {
 		}
   }
 
+  /**
+   * multiply the given memory to this one
+   * @param other the memory that should be multiplied
+   * @param from index of the block from which the multiplication should start
+   * @param to index of the block to which the multiplication should end (excluded)
+   */
   multiply(other, from, to) {
     while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
@@ -242,6 +261,11 @@ class Memory extends Word {
     }
   }
 
+  /**
+   * multiply the memory with the given value, equivalent to this = this * value * (10 or 2)^at
+   * @param value
+   * @param at
+   */
   multiplyValue(value, at) {
     while (this.bullGamma.md !== 0) {
       if (this.blocks[0] === 0) {
@@ -254,6 +278,12 @@ class Memory extends Word {
     }
   }
 
+  /**
+   * divide the given memory to this one
+   * @param other the memory that should be divided
+   * @param from index of the block from which the division should start
+   * @param to index of the block to which the division should end (excluded)
+   */
   divide(other, from, to) {
     let vmb = other.getDecimalValue(from, to)
     if (vmb === 0) {
@@ -272,6 +302,12 @@ class Memory extends Word {
     }
   }
 
+
+  /**
+   * divide the memory with the given value, equivalent to this = this / (value * (10 or 2)^at)
+   * @param value
+   * @param at
+   */
   divideValue(value, at) {
     let mb = new Memory(0, this.bullGamma)
     mb.blocks[at] = value

@@ -7,7 +7,16 @@ const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
 
 Memory = require("./memory").Memory
 
+/**
+ * An octad is a set of 8 memories
+ */
 class Octad {
+
+  /**
+   * construct a new instance of Octad
+   * @param id the id of this octad
+   * @param bullGamma the machine to which the octad is attached
+   */
   constructor(id, bullGamma) {
     this.id = id;
     this.memories = new Array(NB_MEMORIES_PER_OCTAD);
@@ -24,6 +33,10 @@ class Octad {
     return this.memories[idx];
   }
 
+  /**
+   * Set the Word's content with hex values
+   * @param hexCode a String that represents the new hex values of this Word
+   */
   setContent(hexCode) {
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(hexCode.length === NB_HEX_VALUES_PER_OCTAD, "hexCode should be of length " + NB_HEX_VALUES_PER_OCTAD)

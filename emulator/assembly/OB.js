@@ -1,6 +1,9 @@
 OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
 const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
 
+/**
+ * M1 to MB transfer
+ */
 class OB extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
     super(8, AD, OD, OF, bullGamma)
