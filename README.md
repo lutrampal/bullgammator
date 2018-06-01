@@ -35,8 +35,8 @@ Tests for each instruction can be run from the emulator/ directory with:
 `npm test`
 
 ## Authors 
-* José Maillard - *UI, emulator architecture, instruction set* - (hnvseau)[https://github.com/hnvseau] 
-* Lucas Trampal - *emulator architecture, instruction set* - (lutrampal)[https://github.com/lutrampal] 
+* José Maillard - *UI, emulator architecture, instruction set* - [hnvseau](https://github.com/hnvseau)
+* Lucas Trampal - *emulator architecture, instruction set* - [lutrampal](https://github.com/lutrampal) 
 
 ## License
 This project is licensed under the GNU GPU License - see the [LICENCE.md](https://raw.githubusercontent.com/lutrampal/bullgammator/master/LICENSE) for details.
