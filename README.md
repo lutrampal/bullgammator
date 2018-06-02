@@ -43,5 +43,5 @@ This project is licensed under the GNU GPU License - see the [LICENCE.md](https:
 
 ## Acknowledgments
 * ACONIT for their documentation base
-* Rolland Groz, researcher at Grenoble Informatics Laboratory (LIG), teacher at Ensimag and mentor of this project
+* Roland Groz, researcher at Grenoble Informatics Laboratory (LIG), teacher at Ensimag and mentor of this project
 * Alain Guyot, member of ACONIT
