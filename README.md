@@ -29,6 +29,7 @@ Mocha is used for unit testing:
 [JSDoc](https://github.com/jsdoc3/jsdoc) is used to generate the API documentation.
 
 ## Running the UI
+From the `ui/` directory, run `ng serve -o` to start a local development web server on port 4200. It can then be accessed at `localhost:4200`
 
 ## Running the unit test
 Tests for each instruction can be run from the `emulator/` directory with:  
