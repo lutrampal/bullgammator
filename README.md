@@ -20,18 +20,15 @@ These instructions will get you a copy of the project up and running on your loc
 ## Prerequisites
 NodeJS, see: https://nodejs.org/en/  
 
-Angular is used for the UI:  
-`npm install -g @angular/cli`  
-
-Mocha is used for unit testing:  
-`npm install -g mocha`  
+To install all the dependencies, run this command both from the `emulator/` and the `ui/` directories :  
+`npm install`
 
 [JSDoc](https://github.com/jsdoc3/jsdoc) is used to generate the API documentation.
 
 ## Running the UI
 From the `ui/` directory, run `ng serve -o` to start a local development web server on port 4200. It can then be accessed at `localhost:4200`
 
-## Running the unit test
+## Running the unit tests
 Tests for each instruction can be run from the `emulator/` directory with:  
 `npm test`
 
