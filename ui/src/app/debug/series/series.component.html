@@ -5,7 +5,7 @@
         <button mat-icon-button class="arrow" (click)="minus()"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </div>
       <div>
-        <h4>Série {{ seriesId }}</h4>
+        <h4 matTooltip="{{ getDescription() }}">Série {{ seriesId }}</h4>
       </div>
       <div>
         <button mat-icon-button class="arrow" (click)="plus()"><mat-icon>keyboard_arrow_right</mat-icon></button>
