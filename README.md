@@ -20,7 +20,10 @@ These instructions will get you a copy of the project up and running on your loc
 ## Prerequisites
 NodeJS, see: https://nodejs.org/en/  
 
-To install all the dependencies, run this command both from the `emulator/` and the `ui/` directories :  
+Install AngularJS globally with:  
+`npm install -g @angular/cli`
+
+To install all the dependencies, run this command both from the `emulator/` and the `ui/` directories:  
 `npm install`
 
 [JSDoc](https://github.com/jsdoc3/jsdoc) is used to generate the API documentation.
