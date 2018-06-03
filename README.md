@@ -49,3 +49,4 @@ This project is licensed under the GNU GPU License - see the [LICENCE.md](https:
 * ACONIT for their documentation base
 * Roland Groz, researcher at Grenoble Informatics Laboratory (LIG), teacher at Ensimag and mentor of this project
 * Alain Guyot, member of ACONIT
+* Vincent Joguin, CEO of Eupalia, for an example of a working emulator of the Gamma ET
