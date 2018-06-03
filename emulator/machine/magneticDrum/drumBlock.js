@@ -4,6 +4,8 @@ Word = require("../word").Word
 const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK
 const NB_WORD_PER_DRUM_BLOCK = require("../constants").NB_WORD_PER_DRUM_BLOCK
 
+InstructionsParser = require("../../assembly/hexParser").InstructionsParser
+
 /**
  * A DrumBlock is a set of NB_WORD_PER_DRUM_BLOCK that belongs to a DrumTrack
  */
@@ -28,7 +30,7 @@ class DrumBlock {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+    hexCode = InstructionsParser.parseHex(hexCode);
     assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_BLOCK,
 			"hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_BLOCK);
 		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_BLOCK, "0");

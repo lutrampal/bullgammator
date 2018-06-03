@@ -1,6 +1,6 @@
 <div>
 	<mat-tab-group>
-		<mat-tab label="Serie 3">
+		<mat-tab label="Tableau de connexions">
 		  <form [formGroup]="series3HexCtrl">
 
 		    <span *ngIf="series3HexError" class="error">{{ series3HexError }}</span>
@@ -10,7 +10,7 @@
 		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
 		      </mat-form-field>
 		    </div>
-		    <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code en série 3</button>
+		    <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code sur le tableau de connexions</button>
 		  </form>
 		</mat-tab>
 		<mat-tab label="Tambour">

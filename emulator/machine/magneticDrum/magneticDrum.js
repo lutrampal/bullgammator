@@ -5,6 +5,7 @@ const NB_HEX_VALUES_PER_MAGNETIC_DRUM = require("../constants").NB_HEX_VALUES_PE
 const NB_HEX_VALUES_PER_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP
 
 DrumTrackGroup = require("./drumTrackGroup").DrumTrackGroup;
+InstructionsParser = require("../../assembly/hexParser").InstructionsParser
 
 /**
  * A magnetic drum is an ancient storage device that was connected to the Bull Gamma
@@ -31,7 +32,7 @@ class MagneticDrum {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+    hexCode = InstructionsParser.parseHex(hexCode);
     assert(hexCode.length <= NB_HEX_VALUES_PER_MAGNETIC_DRUM,
       "hexCode should be of length " + NB_HEX_VALUES_PER_MAGNETIC_DRUM)
 		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_MAGNETIC_DRUM, "0");

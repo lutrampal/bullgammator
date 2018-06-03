@@ -30,11 +30,6 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   }
   let operands = instruction.toLowerCase().split('');
 
-  operands.forEach(function (operand) {
-    if (!['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'].includes(operand)) {
-      throw "not a hex digit: " + operand + ".";
-    }
-  });
   let TO = parseInt(operands[0], 16);
   let AD = parseInt(operands[1], 16);
   let OD = parseInt(operands[2], 16);
@@ -131,15 +126,29 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 }
 
 /**
+* Function that return the hex code without comments, return, tab, spaces
+* @param entry string with comments, hex code, spaces...
+* @returns hex code
+* @throws error in case of incorrect entry
+*/
+function parse_hex_code(entry) {
+	hexCode = entry.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
+	hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+	if (!/^[0-9a-fA-F]*$/.test(hexCode)){
+		throw "incorrect hex code"
+	}
+	return hexCode;
+}
+
+/**
  * Given hexadecimal code for Bull Gamma 3, returns a set of instructions for the machine.
- * @param hexCode the string representing the code to be parsed. code may include single line comments starting with --.
+ * @param entry the string representing the code to be parsed. code may include single line comments starting with --.
  * @param bullGamma the machine to which the returned instructions should be attached
  * @returns {Array} the array of parsed instructions
  */
-function parse_hex_str_to_instructions(hexCode, bullGamma) {
+function parse_hex_str_to_instructions(entry, bullGamma) {
+	let hexCode = parse_hex_code(entry);
   let instructions = [];
-  hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
-  hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
   let i = 1;
   hexCode.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
@@ -160,12 +169,22 @@ class InstructionsParser {
     this.bullGamma = bullGamma;
   }
 
+	/**
+	* Function that return the hex code without comments, return, tab, spaces
+	* @param entry string with comments, hex code, spaces...
+	* @returns hex code
+	* @throws error in case of incorrect entry
+	*/
+	static parseHex(entry) {
+		return parse_hex_code(entry);
+	}
+
   /**
    * function that returns a list of instructions from the given code
-   * @param hexCode code with comments, spaces, returns allowed
+   * @param entry code with comments, spaces, returns allowed
    */
-  parseInstructions(hexCode) {
-    return parse_hex_str_to_instructions(hexCode, this.bullGamma);
+  parseInstructions(entry) {
+    return parse_hex_str_to_instructions(entry, this.bullGamma);
   }
 
   /**
