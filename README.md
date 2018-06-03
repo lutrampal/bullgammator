@@ -1,14 +1,14 @@
 # BullGammator
 <img src="https://raw.githubusercontent.com/lutrampal/bullgammator/master/bullgammator.jpg" height="300" />
 
-BullGammator is a web emulator for the ancient Bull Gamma 3 computer. 
+BullGammator is a web emulator for the ancient Bull Gamma 3 computer.
 
 The Gamma 3 was a machine built by French company Bull in the 50's, in a pre-transistor era.  
 It initially possessed only seven 48 bits memories but this capacity was later extended with the ET (for "Extension Tambour", Drum Extension) version.  
 The drum extension added many more 48 bits memories and a magnetic drum with a whopping storage capacity of 96 KB!
 Coding for the Bull Gamma 3 was no easy task as you can imagine since no programming language could be compiled for it. The instructions, which are somewhat similar to those of today's machines, had to be coded by hand on an array of wires. With the drum extension, they could finally be stored in memory.   
 
-This emulator aims to recreate the Bull Gamma 3 with its drum extension. 
+This emulator aims to recreate the Bull Gamma 3 with its drum extension.
 
 This project was backed by ACONIT, an association from Grenoble, France that aims to study and illustrate the History of computer science.  
 
@@ -35,9 +35,12 @@ From the `ui/` directory, run `ng serve -o` to start a local development web ser
 Tests for each instruction can be run from the `emulator/` directory with:  
 `npm test`
 
-## Authors 
+## Compiling the project
+To compile the project for deploy, run `ng build --prod` from `ui/` directory. The compiled project should be available in the `dist/` folder.
+
+## Authors
 * José Maillard - *UI, emulator architecture, instruction set* - [hnvseau](https://github.com/hnvseau)
-* Lucas Trampal - *emulator architecture, instruction set* - [lutrampal](https://github.com/lutrampal) 
+* Lucas Trampal - *emulator architecture, instruction set* - [lutrampal](https://github.com/lutrampal)
 
 ## License
 This project is licensed under the GNU GPU License - see the [LICENCE.md](https://raw.githubusercontent.com/lutrampal/bullgammator/master/LICENSE) for details.
