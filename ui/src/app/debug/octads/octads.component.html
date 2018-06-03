@@ -5,7 +5,7 @@
     </div>
     <div>
       <form>
-        <h4>Octade {{ octad }}</h4>
+        <h4 matTooltip="{{ getDescription() }}">Octade {{ octad }}</h4>
         <div *ngFor="let mb of getOctad()">
           <span>
             <label>{{ mb.label }}</label>
