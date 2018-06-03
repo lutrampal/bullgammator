@@ -67,4 +67,8 @@ export class ExecComponent implements OnInit {
 		return this.exec.getConsoleLines();
 	}
 
+	getDescription() {
+		return ""; // TODO
+	}
+
 }

@@ -101,4 +101,8 @@ export class OctadsComponent implements OnInit {
   minus() {
     this.octad = (this.octad + 7) % this.nbOctads;
   }
+
+	getDescription() {
+		return ""; // TODO
+	}
 }

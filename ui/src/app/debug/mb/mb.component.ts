@@ -167,4 +167,8 @@ export class MbComponent implements OnInit {
 		this.modeCtrl.setValue(this.getMode());
   }
 
+	getDescription() {
+		return ""; // TODO
+	}
+
 }

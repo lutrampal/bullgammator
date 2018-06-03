@@ -71,4 +71,8 @@ export class SeriesComponent implements OnInit {
     this.breakpts_emit.emit(this.breakpoints);
   }
 
+	getDescription() {
+		return ""; // TODO
+	}
+
 }
