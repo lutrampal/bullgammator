@@ -168,7 +168,9 @@ export class MbComponent implements OnInit {
   }
 
 	getDescription() {
-		return ""; // TODO
+		return "Le panneau “Contrôle” présente le contenu des mémoires internes à la machine. Il est possible de les " +
+      "éditer et des les réinitialiser manuellement. Ce qui n’aurait bien entendu pas été faisable sur le véritable " +
+      "calculateur."
 	}
 
 }

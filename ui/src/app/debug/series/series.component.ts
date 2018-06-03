@@ -72,7 +72,9 @@ export class SeriesComponent implements OnInit {
   }
 
 	getDescription() {
-		return ""; // TODO
+		return "Le panneau des séries montre le code qui sera exécuté. On peut fixer des points d’arrêts en cochant les " +
+      "cases avant chaque instruction. Le calculateur retourne à l’instruction 0 après la 63ème ligne comme le " +
+      "véritable calculateur. Le passage à une autre série nécessite une instruction."
 	}
 
 }

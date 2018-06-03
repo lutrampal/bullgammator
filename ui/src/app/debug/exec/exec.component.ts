@@ -68,7 +68,9 @@ export class ExecComponent implements OnInit {
 	}
 
 	getDescription() {
-		return ""; // TODO
+		return "Le panneau \"Exécution\" affiche tout ce qui est écrit sur la sortie du Gamma 3. Dans la réalité, il " +
+      "s’agirait plutôt d’une imprimante à cartes perforées. Le bouton “titiller” (vocabulaire de l’époque) permet de " +
+      "passer à l’instruction suivante tandis que “continuer” exécute tout le code jusqu’au prochain point d’arrêt."
 	}
 
 }

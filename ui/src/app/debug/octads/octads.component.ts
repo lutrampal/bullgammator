@@ -103,6 +103,6 @@ export class OctadsComponent implements OnInit {
   }
 
 	getDescription() {
-		return ""; // TODO
+		return "La panneau “Octade” montre le contenu des octades ajoutées par l’extension tambour."
 	}
 }
