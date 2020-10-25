@@ -33,6 +33,9 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	@Output()
+	series3_emit = new EventEmitter<string>();
+
   constructor(
     private fb: FormBuilder,
     private edit: EditorService,
@@ -71,7 +74,9 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   validateSeries3Hex() {
     try {
-      this.edit.editConnexionArray(this.series3HexCtrl.get("hex_entry").value);
+			let hexCode = this.series3HexCtrl.get("hex_entry").value;
+			this.edit.editConnexionArray(hexCode);
+			this.series3_emit.emit(hexCode);
 			this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
     }
     catch(error) {

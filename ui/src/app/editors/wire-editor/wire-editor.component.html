@@ -1,0 +1,16 @@
+<div class="info">
+	Sur la façade du Gamma 3 un tableau permet de câbler jusqu’à 64 instructions. Chaque instruction a 4 champs : TO AD OD OF, chaque champ pouvant être câblé à une valeur hexadécimale (0 à F) avec des fils.<br>
+	Cliquer une valeur dans la partie Distrib au centre du tableau (valeurs 1 à F), puis cliquer où la connecter. La valeur "0", par défaut, peut servir ici à effacer une connexion.<br>
+	Le Gamma 3 démarre sur la première instruction du tableau. Il était donc nécessaire de câbler au moins 4 instructions (bootstrap) pour charger en mémoire exécutable un programme stocké sur le tambour, mais le tableau servait aussi à des programmes résidents (bibliothèque virgule flottante) ou à la mise au point de petits programmes, extrêmement faciles à modifier, puis qu’il suffisait de débrancher/rebrancher quelques fils.<br>
+	Les connexions peuvent être tendues (Tendu) ou laxes (Courbe).
+</div>
+
+<span *ngIf="error" class="error">{{ error }}</span>
+
+<!-- TODO: Find a way to interract with the connections table (get/set code) -->
+<iframe src="https://www.aconit.org/histoire/Gamma-3/Simulateur/tableau.html" title="Tableau de connections interractif"></iframe>
+
+<div class="">
+	<!-- TODO: Update disabled condition -->
+	<button (click)="validateSeries3Hex()" [disabled]="true" color="primary" mat-raised-button>Charger le code en série 3</button>
+</div>

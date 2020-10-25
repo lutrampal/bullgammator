@@ -16,6 +16,15 @@ body {
   width: 100%;
 }
 
+.error {
+  background:#f1f0ef;
+  padding:1em;
+  width:100%;
+  display:block;
+  margin-bottom:20px;
+  margin-left: -1em;
+}
+
 .info {
   text-align: justify;
   margin-bottom: 10px;

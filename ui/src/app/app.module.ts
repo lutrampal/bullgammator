@@ -18,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
+import { WireEditorComponent } from './editors/wire-editor/wire-editor.component';
 import { CodeLibComponent } from './code-lib/code-lib.component';
 
 import { DebugComponent } from './debug/debug.component';
@@ -38,19 +39,19 @@ import { CodeLibService } from './code-lib/providers/code-lib.service';
 @NgModule({
   declarations: [
     AppComponent,
-	HexEditorComponent, CodeLibComponent,
-	DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
-	DrumComponent
+    HexEditorComponent, WireEditorComponent, CodeLibComponent,
+    DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
+    DrumComponent
   ],
   imports: [
     AppRoutingModule,
-	BrowserModule, BrowserAnimationsModule,
-	FormsModule, ReactiveFormsModule,
-	MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
+    BrowserModule, BrowserAnimationsModule,
+    FormsModule, ReactiveFormsModule,
+    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
   ],
   providers: [
     MemoriesService, SeriesService, ExecService,
-	BullgammatorService, DrumService, EditorService, CodeLibService
+    BullgammatorService, DrumService, EditorService, CodeLibService
   ],
   bootstrap: [AppComponent]
 })

@@ -48,6 +48,7 @@ Cet émulateur a été écrit par deux élèves ingénieur de l’ENSIMAG, dont 
 
       <app-hex-editor
 				[series3]="series3"
+				(series3_emit)="series3=$event"
 				[drum]="drum"
 			></app-hex-editor>
     </mat-expansion-panel>
@@ -74,6 +75,10 @@ Cet émulateur a été écrit par deux élèves ingénieur de l’ENSIMAG, dont 
         </mat-panel-description>
       </mat-expansion-panel-header>
 
+			<app-wire-editor
+				[series3]="series3"
+				(series3_emit)="series3=$event"
+			></app-wire-editor>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
