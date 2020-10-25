@@ -12,7 +12,9 @@ This emulator aims to recreate the Bull Gamma 3 with its drum extension.
 
 This project was backed by ACONIT, an association from Grenoble, France that aims to study and illustrate the History of computer science.  
 
-Documentation about [the machine](http://www.aconit.org/spip/spip.php?article246) and how to code for it can be found on [ACONIT's index](http://aconit.org/histoire/Gamma-3/Articles/). The most interesting documents if you want to write code for it being [Bolliet's course](http://aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf), [Chabrol's manual](http://aconit.org/histoire/Gamma-3/Articles/Cours_Gamma_3_Chabrol.pdf) and [the instruction set](http://aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg) (all in French language only).
+Documentation about [the machine](http://www.aconit.org/spip/spip.php?article246) and how to code for it can be found on [ACONIT's index](http://aconit.org/histoire/Gamma-3/Articles/). The most interesting documents if you want to write code for it being [Bolliet's course](http://aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf), [Chabrol's manual](http://aconit.org/histoire/Gamma-3/Articles/Cours_Gamma_3_Chabrol.pdf) and [the instruction set](http://aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg) (all in French language only).  
+
+Documentation about the engine API can be found [here](https://lutrampal.github.io/bullgammator/)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
