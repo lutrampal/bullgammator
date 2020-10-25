@@ -4,7 +4,8 @@
   "description": "A library to emulate the Bull Gamma 3",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -- testing/**/*.js"
+    "test": "mocha -- testing/**/*.js",
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,10 @@
     "url": "https://github.com/lutrampal/bullgammator/issues"
   },
   "homepage": "https://github.com/lutrampal/bullgammator#readme",
-  "dependencies": {
-    "mocha": "^5.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "nyc": "^11.8.0"
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0"
   },
   "nyc": {
     "exclude": [

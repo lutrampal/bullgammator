@@ -1,4 +1,4 @@
-exports.BullGamma = require("./machine/bullGamma").BullGamma;1
+exports.BullGamma = require("./machine/bullGamma").BullGamma;
 exports.constants = require("./machine/constants");
 exports.Debug = require("./control/debug").Debug;
 exports.Editor = require("./control/editor").Editor;

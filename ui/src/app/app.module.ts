@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,7 +17,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 
-import { AppComponent } from './app.component';
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
 import { CodeLibComponent } from './code-lib/code-lib.component';
 
@@ -32,23 +35,23 @@ import { DrumService } from './drum/providers/drum.service';
 import { EditorService } from './editors/providers/editor.service';
 import { CodeLibService } from './code-lib/providers/code-lib.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    HexEditorComponent, CodeLibComponent,
-    DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
-		DrumComponent
+	HexEditorComponent, CodeLibComponent,
+	DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
+	DrumComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
+    AppRoutingModule,
+	BrowserModule, BrowserAnimationsModule,
+	FormsModule, ReactiveFormsModule,
+	MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
   ],
   providers: [
-		MemoriesService, SeriesService, ExecService,
-		BullgammatorService, DrumService, EditorService, CodeLibService
-	],
+    MemoriesService, SeriesService, ExecService,
+	BullgammatorService, DrumService, EditorService, CodeLibService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
