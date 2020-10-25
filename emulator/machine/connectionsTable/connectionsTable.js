@@ -29,6 +29,25 @@ class ConnectionsTable {
 		}
 	}
 
+  /**
+   * Set the ConnexionArray's content with hex values
+   * @param hexCode a String that represents the new hex values of the array
+   */
+  setInstructions(hexCode) {
+		this.reset();
+		let instructions = this.bullGamma.parser.parseInstructions(hexCode);
+		if (instructions.length > NB_INST_CONNEXION_ARRAY) {
+			throw "instructions number should not be greater than " + NB_INST_CONNEXION_ARRAY;
+		}
+		for (let instIndex = 0; instIndex < instructions.length; ++instIndex) {
+			this.instructions[instIndex] = new Array(NB_HEX_VALUES_PER_INST);
+			this.instructions[instIndex][3] = instructions[instIndex].TO;
+			this.instructions[instIndex][2] = instructions[instIndex].AD;
+			this.instructions[instIndex][1] = instructions[instIndex].OD;
+			this.instructions[instIndex][0] = instructions[instIndex].OF;
+		}
+	}
+
 	/**
 	 * Sets a value for the given instruction digit
 	 * @param instIndex The instruction index in the connexionArray

@@ -54,6 +54,43 @@ describe('ConnectionsTable', function() {
 				table.reset();
 				assert.equal(table.getConnectionsLeft()[0].length, NB_INST_CONNEXION_ARRAY / 2 * NB_HEX_VALUES_PER_INST, "connections should all be 0")
       })
-    })
+    });
+
+    describe("set instructions from hex code", function () {
+      it("should set the instuctions", function () {
+	      let bullGamma = new BullGamma();
+				let table = new ConnectionsTable(bullGamma);
+				table.setInstructions("-- test\nA100\nC31B\n")
+
+				table.loadInstructions();
+				inst = bullGamma.getSerie(3).getInstruction(0);
+				assert.equal(inst.toString(), "a10c", "returned hex value doesn't match the expected one") // FIXME: expect a100 but equivalent
+				inst = bullGamma.getSerie(3).getInstruction(1);
+				assert.equal(inst.toString(), "c31b", "returned hex value doesn't match the expected one")
+				assert.equal(table.getHexCode().split("\n")[1], "a10c", "returned hex value doesn't match the expected one") // FIXME: expect a100 but equivalent
+				assert.equal(table.getHexCode().split("\n")[2], "c31b", "returned hex value doesn't match the expected one")
+				assert.equal(table.getHexCode().split("\n").length, NB_INST_CONNEXION_ARRAY + 2, "incorrect number of lines")
+
+				left = table.getConnectionsLeft();
+				assert.equal(left[1][0][0], 0, "return left connections for value 1 incorrect")
+				assert.equal(left[1][0][1], 2, "return left connections for value 1 incorrect")
+				assert.equal(left[1][1][0], 1, "return left connections for value 1 incorrect")
+				assert.equal(left[1][1][1], 1, "return left connections for value 1 incorrect")
+				assert.equal(left[1].length, 2, "return left connections for value 1 incorrect")
+				assert.equal(left[12][0][0], 0, "return left connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(left[12][0][1], 0, "return left connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(left[12][1][0], 1, "return left connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(left[12][1][1], 3, "return left connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(left[12].length, 2, "return left connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(left[5].length, 0, "return left connections for value 5 incorrect")
+				assert.equal(left[0].length, (NB_INST_CONNEXION_ARRAY / 2 * NB_HEX_VALUES_PER_INST) - 7, "return left connections for value 0 incorrect") // FIXME: expect a100 but equivalent
+
+				right = table.getConnectionsRight();
+				assert.equal(right[12].length, 0, "return right connections for value 12 incorrect")
+
+				table.reset();
+				assert.equal(table.getConnectionsLeft()[0].length, NB_INST_CONNEXION_ARRAY / 2 * NB_HEX_VALUES_PER_INST, "connections should all be 0")
+      })
+    });
   });
 });
