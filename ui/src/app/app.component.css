@@ -5,3 +5,11 @@ mat-card {
 span {
   display: inline-block;
 }
+
+img {
+  margin: 10px;
+}
+
+.intro {
+  text-align: justify;
+}

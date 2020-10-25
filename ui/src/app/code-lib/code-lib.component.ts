@@ -40,8 +40,12 @@ export class CodeLibComponent implements OnInit {
 		}
 	}
 
-	displayName(name: string) {
+	displayName(name: string): string {
 		return this.lib.displayName(name);
+	}
+
+	description(name: string): string {
+		return this.lib.getProgram(name, "description");
 	}
 
 }

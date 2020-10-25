@@ -1,7 +1,10 @@
 <span *ngIf="message" class="error">{{ message }}</span>
 
-<mat-nav-list>
-	<mat-list-item *ngFor="let prog of getProgramsNames()" (click)="loadProgram(prog)">
-		{{ displayName(prog) }}
-	</mat-list-item>
-</mat-nav-list>
+<div *ngFor="let prog of getProgramsNames()" class="prog">
+	<span>{{ displayName(prog) }}
+		<button mat-icon-button (click)="loadProgram(prog)">
+			<mat-icon>play_circle_outline</mat-icon>
+		</button>
+	</span>
+	<div><small [innerHTML]="description(prog)"></small></div>
+</div>

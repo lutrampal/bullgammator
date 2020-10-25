@@ -6,3 +6,12 @@
   margin-bottom:20px;
   margin-left: -1em;
 }
+
+.prog {
+  padding: 10px;
+  text-align: justify;
+}
+
+.prog:hover {
+  background-color: #f5f5f5;
+}

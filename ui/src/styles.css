@@ -15,3 +15,40 @@ body {
 .container > * {
   width: 100%;
 }
+
+.info {
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+a:link {
+  color: #3f51b5;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #3f51b5;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3f51b5;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #3f51b5;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.quote {
+  color: white;
+  background-color: #3f51b5;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+}
