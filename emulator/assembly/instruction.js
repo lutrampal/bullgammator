@@ -1,4 +1,4 @@
-assert = require("assert")
+assert = require('assert')
 
 /**
  * Abstract class meant to represent an Instruction, please refer to
