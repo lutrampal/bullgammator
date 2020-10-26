@@ -41,10 +41,12 @@ class ConnectionsTable {
 		}
 		for (let instIndex = 0; instIndex < instructions.length; ++instIndex) {
 			this.instructions[instIndex] = new Array(NB_HEX_VALUES_PER_INST);
-			this.instructions[instIndex][3] = instructions[instIndex].TO;
-			this.instructions[instIndex][2] = instructions[instIndex].AD;
-			this.instructions[instIndex][1] = instructions[instIndex].OD;
-			this.instructions[instIndex][0] = instructions[instIndex].OF;
+			// NB: .toString() is prefered to .TO/.AD/.OD/.OF so that A100 does not become A10C
+			var hex = instructions[instIndex].toString();
+			this.instructions[instIndex][3] = parseInt(hex[0], 16);
+			this.instructions[instIndex][2] = parseInt(hex[1], 16);
+			this.instructions[instIndex][1] = parseInt(hex[2], 16);
+			this.instructions[instIndex][0] = parseInt(hex[3], 16);
 		}
 	}
 

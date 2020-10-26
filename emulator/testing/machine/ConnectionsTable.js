@@ -68,10 +68,10 @@ describe('ConnectionsTable', function() {
 
 				table.loadInstructions();
 				inst = bullGamma.getSerie(3).getInstruction(0);
-				assert.equal(inst.toString(), "a10c", "returned hex value doesn't match the expected one") // FIXME: expect a100 but equivalent
+				assert.equal(inst.toString(), "a100", "returned hex value doesn't match the expected one")
 				inst = bullGamma.getSerie(3).getInstruction(1);
 				assert.equal(inst.toString(), "c31b", "returned hex value doesn't match the expected one")
-				assert.equal(table.getHexCode().split("\n")[1], "a10c", "returned hex value doesn't match the expected one") // FIXME: expect a100 but equivalent
+				assert.equal(table.getHexCode().split("\n")[1], "a100", "returned hex value doesn't match the expected one")
 				assert.equal(table.getHexCode().split("\n")[2], "c31b", "returned hex value doesn't match the expected one")
 				assert.equal(table.getHexCode().split("\n").length, NB_INST_CONNEXION_ARRAY + 2, "incorrect number of lines")
 
@@ -81,13 +81,11 @@ describe('ConnectionsTable', function() {
 				assert.equal(corner[1][1][0], 1, "return corner connections for value 1 incorrect")
 				assert.equal(corner[1][1][1], 1, "return corner connections for value 1 incorrect")
 				assert.equal(corner[1].length, 2, "return corner connections for value 1 incorrect")
-				assert.equal(corner[12][0][0], 0, "return corner connections for value 12 incorrect") // FIXME: expect a100 but equivalent
-				assert.equal(corner[12][0][1], 0, "return corner connections for value 12 incorrect") // FIXME: expect a100 but equivalent
-				assert.equal(corner[12][1][0], 1, "return corner connections for value 12 incorrect") // FIXME: expect a100 but equivalent
-				assert.equal(corner[12][1][1], 3, "return corner connections for value 12 incorrect") // FIXME: expect a100 but equivalent
-				assert.equal(corner[12].length, 2, "return corner connections for value 12 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(corner[12][0][0], 1, "return corner connections for value 12 incorrect")
+				assert.equal(corner[12][0][1], 3, "return corner connections for value 12 incorrect")
+				assert.equal(corner[12].length, 1, "return corner connections for value 12 incorrect")
 				assert.equal(corner[5].length, 0, "return corner connections for value 5 incorrect")
-				assert.equal(corner[0].length, (16 * NB_HEX_VALUES_PER_INST) - 7, "return left connections for value 0 incorrect") // FIXME: expect a100 but equivalent
+				assert.equal(corner[0].length, (16 * NB_HEX_VALUES_PER_INST) - 6, "return left connections for value 0 incorrect") 
 
 				corner = table.getConnectionsBottomLeft();
 				assert.equal(corner[12].length, 0, "return corner connections for value 12 incorrect")
