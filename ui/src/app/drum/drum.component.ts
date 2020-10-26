@@ -23,21 +23,21 @@ export class DrumComponent implements OnInit {
 
 	displayBlock(i, j, k) {
 		return "00: "+ this.drum.getBlock(i * this.bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j, k)
-			.replace("\t", "&emsp;&emsp;01: ")
-			.replace("\t", "&emsp;&emsp;02: ")
-			.replace("\t", "&emsp;&emsp;03: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;01: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;02: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;03: ")
 			.replace("\n", "<br>04: ")
-			.replace("\t", "&emsp;&emsp;05: ")
-			.replace("\t", "&emsp;&emsp;06: ")
-			.replace("\t", "&emsp;&emsp;07: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;05: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;06: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;07: ")
 			.replace("\n", "<br>08: ")
-			.replace("\t", "&emsp;&emsp;09: ")
-			.replace("\t", "&emsp;&emsp;10: ")
-			.replace("\t", "&emsp;&emsp;11: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;09: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;10: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;11: ")
 			.replace("\n", "<br>12: ")
-			.replace("\t", "&emsp;&emsp;13: ")
-			.replace("\t", "&emsp;&emsp;14: ")
-			.replace("\t", "&emsp;&emsp;15: ");
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;13: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;14: ")
+			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;15: ");
 	}
 
 }

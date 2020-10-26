@@ -1,7 +1,7 @@
 <div class="main">
   <h4 matTooltip="{{ getDescription() }}">Execution</h4>
   <span *ngIf="error" class="error">{{ error }}</span>
-	<div class="console">
+	<div class="console monospace">
 		<div>
 			<div *ngFor="let line of getConsoleLines()">{{ line }}</div>
 		</div>

@@ -7,7 +7,7 @@
       <form>
         <h4 matTooltip="{{ getDescription() }}">Octade {{ octad }}</h4>
         <div *ngFor="let mb of getOctad()">
-          <span>
+          <span class="monospace">
             <label>{{ mb.label }}</label>
             <input *ngIf="!edit" matInput placeholder="{{ mb.label }}" [value]="getMemory(mb.id, octad)" disabled>
             <input *ngIf="edit" matInput placeholder="{{ mb.label }}" [formControl]="controls[nbOctads * octad + mb.id]">

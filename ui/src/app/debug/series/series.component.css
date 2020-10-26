@@ -25,6 +25,15 @@ input {
   width: 40px;
 }
 
+.checkpoint {
+	display: inline-block;
+	width: 40px !important;
+	height: 22.6333px !important;
+	margin-left: 4px;
+	margin-right: 3px;
+	/* text-align: center; */
+}
+
 .label {
   position: absolute;
 }

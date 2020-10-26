@@ -11,7 +11,7 @@
 
 		    <div class="container">
 		      <mat-form-field>
-		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
+		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
 		      </mat-form-field>
 		    </div>
 		    <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code sur le tableau de connexions</button>
@@ -24,7 +24,7 @@
 
 		    <div class="container">
 		      <mat-form-field>
-		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry"></textarea>
+		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
 		      </mat-form-field>
 		    </div>
 		    <button (click)="validateDrumHex()" [disabled]="magDrumHexCtrl.invalid" color="primary" mat-raised-button>Charger le code dans le tambour</button>

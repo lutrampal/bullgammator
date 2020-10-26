@@ -61,3 +61,7 @@ a:active {
   padding-right: 5px;
   border-radius: 2px;
 }
+
+.monospace {
+	font-family: "Lucida Console", Monaco, monospace !important;
+}
