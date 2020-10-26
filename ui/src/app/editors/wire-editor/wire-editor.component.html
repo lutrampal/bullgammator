@@ -9,10 +9,12 @@
 
 <span *ngIf="error" class="error">{{ error }}</span>
 
-<!-- TODO: Find a way to interract with the connections table (get/set code) -->
-<iframe src="https://www.aconit.org/histoire/Gamma-3/Simulateur/tableau.html" title="Tableau de connections interractif"></iframe>
+<canvas #canvas
+	(click)="onImageClick($event)"
+	width="563" height="950"
+>Canvas non supporté</canvas>
 
 <div class="">
-	<!-- TODO: Update disabled condition -->
-	<button (click)="validateSeries3Hex()" [disabled]="true" color="primary" mat-raised-button>Charger le code en série 3</button>
+	<button (click)="reset()" [disabled]="false" color="normal" mat-raised-button>Effacer</button>
+	<button (click)="validateSeries3Hex()" [disabled]="false" color="primary" mat-raised-button>Charger le code en série 3</button>
 </div>

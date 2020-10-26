@@ -2,3 +2,8 @@ iframe {
 	width: 520px;
 	height: 1000px;
 }
+
+button {
+	margin-left: 20px;
+	margin-right: 20px;
+}
