@@ -1,4 +1,4 @@
-assert = require('assert');
+const assert = require('../../tools/assert');
 
 Octad = require("./octad").Octad;
 

@@ -1,4 +1,4 @@
-assert = require('assert')
+const assert = require('../../tools/assert');
 
 const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
 const NB_BANAL_MEMORIES = require("../constants").NB_BANAL_MEMORIES

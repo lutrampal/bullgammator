@@ -1,4 +1,4 @@
-assert = require('assert');
+const assert = require('../../tools/assert');
 
 const NB_TRACK_GROUPS = require("../constants").NB_TRACK_GROUPS
 const NB_HEX_VALUES_PER_MAGNETIC_DRUM = require("../constants").NB_HEX_VALUES_PER_MAGNETIC_DRUM

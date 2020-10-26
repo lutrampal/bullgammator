@@ -1,5 +1,5 @@
 Operation = require("./operation").Operation
-assert = require('assert');
+const assert = require('../tools/assert');
 
 /**
  * Logical intersection instruction

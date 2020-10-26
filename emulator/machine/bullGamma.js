@@ -1,4 +1,4 @@
-assert = require('assert');
+const assert = require('../tools/assert');
 
 InstructionsParser = require("../assembly/hexParser").InstructionsParser;
 Memory = require("./innerComponents/memory").Memory;

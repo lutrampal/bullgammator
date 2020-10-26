@@ -1,4 +1,4 @@
-assert = require('assert');
+const assert = require('../tools/assert');
 
 const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD;
 

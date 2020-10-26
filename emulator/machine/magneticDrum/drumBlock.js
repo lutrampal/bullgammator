@@ -1,4 +1,4 @@
-assert = require('assert');
+const assert = require('../../tools/assert');
 Word = require("../word").Word
 
 const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK
