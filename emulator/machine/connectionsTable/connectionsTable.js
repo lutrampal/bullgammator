@@ -89,20 +89,38 @@ class ConnectionsTable {
 
 	/**
 	 * Returns the instructions digits that by value and ordered by instruction index and hex digit index.
-	 * The instructions considered are only the ones on the left hand side of the table
+	 * The instructions considered are only the ones on the top left of the table
 	 * @returns An array of arrays
 	 */
-	getConnectionsLeft() {
-		return this._getConnections(0, NB_INST_CONNEXION_ARRAY / 2, 1)
+	getConnectionsTopLeft() {
+		return this._getConnections(0, 16, 1)
 	}
 
 	/**
 	 * Returns the instructions digits that by value and ordered by instruction index and hex digit index.
-	 * The instructions considered are only the ones on the right hand side of the table
+	 * The instructions considered are only the ones on the bottom left of the table
 	 * @returns An array of arrays
 	 */
-	getConnectionsRight() {
-		return this._getConnections(NB_INST_CONNEXION_ARRAY / 2, NB_INST_CONNEXION_ARRAY, 1)
+	getConnectionsBottomLeft() {
+		return this._getConnections(16, 32, 1)
+	}
+
+	/**
+	 * Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+	 * The instructions considered are only the ones on the top right of the table
+	 * @returns An array of arrays
+	 */
+	getConnectionsTopRight() {
+		return this._getConnections(32, 48, 1)
+	}
+
+	/**
+	 * Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+	 * The instructions considered are only the ones on the bottom right of the table
+	 * @returns An array of arrays
+	 */
+	getConnectionsBottomRight() {
+		return this._getConnections(48, 64, 1)
 	}
 
 	getHexCode() {
