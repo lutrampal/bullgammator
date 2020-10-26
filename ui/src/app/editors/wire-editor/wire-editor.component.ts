@@ -125,7 +125,6 @@ export class WireEditorComponent implements OnInit {
 
 	// normalized coodinates 0 <= x,y <= 1
 	onClick(xCoord: number, yCoord: number) {
-		console.log(xCoord, yCoord);
 		var currentX = this.offsetX;
 		var clickedColumn = -1;
 		var clickedLine = -1;
@@ -136,14 +135,12 @@ export class WireEditorComponent implements OnInit {
 			}
 			if (xCoord < currentX + column.width) {
 				clickedColumn = columnIndex;
-				console.log("column", column.label);
 				break;
 			}
 			currentX += column.width;
 		}
 
 		clickedLine = Math.floor((yCoord - this.offsetY) / this.rowHeight);
-		console.log("line", clickedLine);
 
 		if (clickedColumn < 0 || clickedColumn < 0) {
 			return;
@@ -169,8 +166,6 @@ export class WireEditorComponent implements OnInit {
 		if (side < 0) {
 			return;
 		}
-
-		console.log("inst", instructionIndex);
 
 		if (column.label == "Distrib") {
 			var instructionIndex = clickedLine + (side == 1 ? this.linesNumber : 0);
@@ -254,7 +249,6 @@ export class WireEditorComponent implements OnInit {
 					7: 6
 				};
 				var columnIndex = reverse[hexIndex + 4 * Math.floor(instIndex / this.linesNumber)]
-				console.log(instIndex, hexIndex, columnIndex)
 				var column = this.columns[columnIndex];
 				var centerX2 = this.offsetX + column.offset + column.circleOffsetX1;
 				var centerY2 = 15 + this.offsetY + (instIndex % this.linesNumber) * this.rowHeight;
@@ -377,8 +371,7 @@ export class WireEditorComponent implements OnInit {
 	}
 
 	dessConex(context, x1, y1, x2, y2, color) {
-		// dessine une connexion sur le calque connexion
-		// console.log("dessConex", x1, y1, x2, y2, coul) ;
+		// dessine une connexion
 		context.beginPath();
 		context.strokeStyle = color;
 		context.lineWidth = 3;
