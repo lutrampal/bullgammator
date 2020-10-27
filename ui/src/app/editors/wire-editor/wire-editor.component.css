@@ -1,9 +1,8 @@
-iframe {
-	width: 520px;
-	height: 1000px;
+canvas {
+	margin-top: 10px;
 }
 
 button {
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 15px;
+	margin-right: 15px;
 }

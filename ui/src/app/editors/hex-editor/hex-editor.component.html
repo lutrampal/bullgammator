@@ -1,6 +1,18 @@
 <div class="info">
-	L’éditeur de code va charger dans le Gamma ET le code à exécuter.<br>
-	Un premier onglet permet l’édition du tableau de connexions (série 3) et un deuxième l’édition du tambour. Lors de la validation (bouton "Charger le code"), le texte source est analysé : les commentaires, les espaces, les retours et tabulations sont retirés. Puis, s’il n’y a aucune erreur, le code est écrit dans la mémoire correspondante ("série 3" ou "tambour").
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Aide
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+		L’éditeur de code va charger dans le Gamma ET le code à exécuter.<br>
+		Un premier onglet permet l’édition du tableau de connexions (série 3) et un deuxième l’édition du tambour. Lors de la validation (bouton "Charger le code"), le texte source est analysé :
+		les commentaires, les espaces, les retours et tabulations sont retirés. Puis, s’il n’y a aucune erreur, le code est écrit dans la mémoire correspondante ("série 3" ou "tambour").<br>
+		<br>
+		Le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg" target="_blank">jeu d'instructions</a> s'avère être indispensable pour programmer le Gamma 3.
+		De la documentation complémentaire est disponible <a href="https://www.aconit.org/histoire/Gamma-3/Articles/" target="_blank">ici</a>, notamment le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf" target="_blank">polycopié du cours de Louis Bolliet</a>.
+  </mat-expansion-panel>
 </div>
 <div>
 	<mat-tab-group>
@@ -9,7 +21,7 @@
 
 		    <span *ngIf="series3HexError" class="error">{{ series3HexError }}</span>
 
-		    <div class="container">
+		    <div class="tab">
 		      <mat-form-field>
 		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
 		      </mat-form-field>
@@ -22,7 +34,7 @@
 
 		    <span *ngIf="magDrumHexError" class="error">{{ magDrumHexError }}</span>
 
-		    <div class="container">
+		    <div class="tab">
 		      <mat-form-field>
 		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
 		      </mat-form-field>

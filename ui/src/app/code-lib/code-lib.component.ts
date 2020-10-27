@@ -33,8 +33,8 @@ export class CodeLibComponent implements OnInit {
 			this.lib.loadProgram(name);
 			this.series3_emit.emit(this.lib.getProgram(name, "series3"));
 			this.drum_emit.emit(this.lib.getProgram(name, "drum") || "");
-			this.message = 'Programme "' + this.displayName(name) + '" chargé, \
-				vous pouvez controler l\'exécution de ce programme dans l\'onglet "Debug"';
+			this.message = 'Programme "' + this.displayName(name) + '" chargé. \
+				vous pouvez controler l\'exécution de ce programme dans l\'onglet "Supervision".';
 		} catch (error) {
 			this.message = error;
 		}

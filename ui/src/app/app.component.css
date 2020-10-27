@@ -13,3 +13,7 @@ img {
 .intro {
   text-align: justify;
 }
+
+.top-container {
+	min-width: 940px;
+}

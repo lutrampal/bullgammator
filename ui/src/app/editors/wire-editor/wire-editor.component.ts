@@ -12,12 +12,11 @@ import { ExecService } from '../../debug/providers/exec.service';
 export class WireEditorComponent implements OnInit {
 
 	public error: string;
-	public context;
-
-	private tendu = false;
+	public tensed: boolean = false;
 
 	public canvasWidth = 563;
 	public canvasHeight = 1000;
+	private context;
 
 	private currentValue = 0;
 
@@ -32,7 +31,7 @@ export class WireEditorComponent implements OnInit {
 		2: { label: "AD", textOffset: 14, offset: 80, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 2, color: "#FFC085"},
 		3: { label: "OD", textOffset: 14, offset: 130, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 1, color: "#E3D0FF"},
 		4: { label: "OF", textOffset: 14, offset: 180, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 0, color: "#CAFCFC"},
-		5: { label: "Distrib", textOffset: 10, offset: 230, width: 50 + 25, circleOffsetX1: 26, circleOffsetX2: 50, type: 1, hex: -1, color: "#D0FFBC"},
+		5: { label: "Distrib", textOffset: 12, offset: 230, width: 50 + 25, circleOffsetX1: 26, circleOffsetX2: 50, type: 1, hex: -1, color: "#D0FFBC"},
 		6: { label: "TO", textOffset: 14, offset: 305, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 3, color: "#F8FF85"},
 		7: { label: "AD", textOffset: 14, offset: 355, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 2, color: "#FFC085"},
 		8: { label: "OD", textOffset: 14, offset: 405, width: 50, circleOffsetX1: 14, circleOffsetX2: 37, type: 0, hex: 1, color: "#E3D0FF"},
@@ -375,7 +374,7 @@ export class WireEditorComponent implements OnInit {
 		context.beginPath();
 		context.strokeStyle = color;
 		context.lineWidth = 3;
-		if (this.tendu) {   // connexion tendue = droite
+		if (this.tensed) {   // connexion tendue = droite
 			context.moveTo(x1, y1);
 			context.lineTo(x2, y2);
 		} else {   // connexion distendue = arc de cercle
@@ -393,6 +392,11 @@ export class WireEditorComponent implements OnInit {
 			context.arc(x, y, r, Math.min(angle1,angle2), Math.max(angle1,angle2));
 		}
 		context.stroke();
+	}
+
+	toogleTensed() {
+		this.tensed = !this.tensed;
+		this.draw();
 	}
 
 }

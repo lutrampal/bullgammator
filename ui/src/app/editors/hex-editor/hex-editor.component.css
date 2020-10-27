@@ -13,4 +13,9 @@ mat-form-field {
 
 textarea {
 	height: 50vh;
+	width: 100%;
+}
+
+.tab > * {
+  width: 100%;
 }
