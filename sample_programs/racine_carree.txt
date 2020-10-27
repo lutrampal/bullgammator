@@ -83,5 +83,11 @@ C0A5 -- MR, M1 <- M1*50000000000
 8E00 -- M13 <- M1
 1801 -- afficher
 
+<description>
+Calcule la racine carrée d’un réél en virgule flottante.
+L’algorithme est détaillé dans le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf#page=83" target="_blank">polycopié du cours</a>,
+et le programme faisait partie de la bibliothèque virgule flottante du Gamma-ET.
+</description>
+
 <m3>014400000052</m3>
 <m4>000000000050</m4>

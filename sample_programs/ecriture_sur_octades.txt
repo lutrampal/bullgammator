@@ -26,3 +26,9 @@ A100
 A100
 8F00
 1C00
+
+<description>
+Ce programme naïf écrit la valeur 2<sup>i+1</sup> dans le (i+8)<sup>ème</sup> mot de la i<sup>ème</sup> octade pour chacune des 8 octades.
+Il initialise la « mémoire opérateur M1 » (l’accumulateur) à 1,
+puis répète 8 fois addition de la mémoire opérateur à elle même et rangement du résultat dans le mot suivant de l’octade suivants.
+</description>

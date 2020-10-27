@@ -33,3 +33,10 @@ A001
 
 900F -- compare n a 15
 011D -- V, saut l7
+
+<description>
+Chaque terme de cette suite est la somme des deux termes qui précèdent.
+Ce programme calcule les 16 premiers termes.
+Vers 1850 Ada Lovelace a codé le calcul de cette suite pour la machine analytique de Charles Babbage, 
+cet exemple est bien connu des informaticiens.
+</description>

@@ -1,14 +1,14 @@
 -- * * * Calcul du terme de la suite de fibonacci * * *
 
 -- Description
---      Calcul du n ème terme de la suite de fibonacci
---			Généré à partir de decac, compilateur pour le language Deca
+--	Calcul du n ème terme de la suite de fibonacci
+--	Généré à partir de decac, compilateur pour le language Deca
 
 -- Resultat
---      pour n=10, affiche 55 (0x37)
+--	pour n=10, affiche 55 (0x37)
 
 -- Historique
---      Crée le 02/02/18
+--	Crée le 02/02/18
 
 -- Code :
 -- {
@@ -28,6 +28,13 @@
 -- }
 
 2001 2203 1001 0000 0000 1003
+
+<description>
+Calcule la suite de Fibonacci.
+Ce programme a été compilé à partir du langage Deca, un sous-langage de Java.
+Il utilise les 4 « séries » (tableaux de programmation).
+Les séries 0, 1 et 2 sont chargées dynamiquement à partir du tambour (instruction de transfert).
+</description>
 
 <drum>
 1000 23ff 1d07 0000 0000 0000 8000 0000

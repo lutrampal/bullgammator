@@ -1,51 +1,63 @@
+"""
+A script to agregate CODE samples in DESTFILE
+"""
 import os
 import re
 
-dirname = "sample_programs"
-destfile = "emulator/control/code_samples.json"
+DIRNAME = "sample_programs"
+DESTFILE = "emulator/control/code_samples.json"
 
 def get_start(text):
-	m = re.match(r"(.*?)(<[a-zA-Z0-9]+>).*?</[a-zA-Z0-9]+>", text)
-	if m:
-		return m.group(1), text[text.find(m.group(2)):]
-	else:
-		return text, ""
+	"""
+	Extracts the series 3 CODE from the file
+	text: the string to parse
+	"""
+	match = re.match(r"(.*?)(<[a-zA-Z0-9]+>).*?</[a-zA-Z0-9]+>", text)
+	if match:
+		return match.group(1), text[text.find(match.group(2)):]
+	return text, None
 
 def get_tag(text):
-	m = re.match(r".*?<([a-zA-Z0-9]+)>(.*?)</([a-zA-Z0-9]+)>(.*?)$", text)
+	"""
+	Reads and extracts the content of the first tag encountered.
+	Tag <description> can contain other tags (HTML data).
+	text: the string to parse
+	return: tag, inner data, rest of the text
+	"""
+	match = re.match(r".*?<description>(.*?)</description>(.*?)$", text)
+	if match:
+		return "description", match.group(1).replace('"', '\\"'), match.group(2)
 
-	if m:
-		assert m.group(1) == m.group(3), "differents tag: " + m.group(1) + "/" + m.group(3)
-		tag = m.group(1)
-		data = m.group(2)
-		text = m.group(4)
-		return tag, data, text
-	else:
-		return 0, "", ""
+	match = re.match(r".*?<([a-zA-Z0-9]+)>(.*?)</([a-zA-Z0-9]+)>(.*?)$", text)
+	if match:
+		tag = match.group(1)
+		assert tag == match.group(3), "differents tag: " + tag + "/" + match.group(3)
+		return tag, match.group(2), match.group(4)
 
-code = "{\n"
-for filename in os.listdir(dirname):
-	code += '\t"' + filename.replace(".txt", "") + '":'
-	with open(os.path.join(dirname, filename), "r") as text:
+	return None, None, None
+
+def get_tags(filename):
+	"""
+	Yields the tags and their data
+	"""
+	with open(os.path.join(DIRNAME, filename), "r") as file:
 		print(filename)
-		code += "\t{\n"
-		filecontent = text.read().replace("\n", "--%n%").replace("\t", "--%t%")
+		filecontent = file.read().replace("\n", "--%n%").replace("\t", "--%t%")
 
+		tag = "series3"
 		data, filecontent = get_start(filecontent)
-		tag = len(filecontent) > 0
-		lines = ['\t\t"series3": "' + data + '"']
 
-		while True:
+		while filecontent:
+			yield tag, data
 			tag, data, filecontent = get_tag(filecontent)
-			if tag:
-				lines.append('\t\t"' + tag + '": "' + data + '"')
-			else:
-				break
 
-		code += ",\n".join(lines)
-		code += "\n\t},\n"
-code = code[:-2]
-code += "\n}"
 
-with open(destfile, "w") as json:
-	json.write(code)
+SAMPLES = "{\n\t" + ",\n\t".join([
+		"\"" + filename.replace(".txt", "") + "\": {\n\t\t" + ",\n\t\t".join([
+				"\"" + tag +"\": \"" + data + "\"" for tag, data in get_tags(filename)
+		]) + "\n\t}" for filename in os.listdir(DIRNAME)
+]) + "\n}"
+
+
+with open(DESTFILE, "w") as json:
+	json.write(SAMPLES)
