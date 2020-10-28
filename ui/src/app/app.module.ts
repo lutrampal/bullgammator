@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HexEditorComponent } from './editors/hex-editor/hex-editor.component';
 import { WireEditorComponent } from './editors/wire-editor/wire-editor.component';
@@ -50,7 +51,7 @@ import { HelpComponent } from './shared-components/help/help.component';
     AppRoutingModule,
     BrowserModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule
+    MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule, MatTooltipModule, MatListModule, MatSnackBarModule
   ],
   providers: [
     MemoriesService, SeriesService, ExecService,

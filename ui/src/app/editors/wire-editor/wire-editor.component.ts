@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { EditorService } from '../providers/editor.service';
 import { ExecService } from '../../debug/providers/exec.service';
@@ -57,6 +57,7 @@ export class WireEditorComponent implements OnInit {
 	@ViewChild("canvas", { read: ElementRef, static: true }) canvas: ElementRef;
 
   constructor(
+		private snackBar: MatSnackBar,
     private edit: EditorService,
 		private exec: ExecService
   ) { }
@@ -71,6 +72,10 @@ export class WireEditorComponent implements OnInit {
       this.edit.getConnectionsTable().loadInstructions();
 			this.series3_emit.emit(this.edit.getConnectionsTable().getHexCode());
 			this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
+			this.snackBar.open(
+				"Série 3 et 'Editeur' mis à jour.",
+				"OK", {duration: 6000}
+			);
     }
     catch(error) {
       console.error(error);

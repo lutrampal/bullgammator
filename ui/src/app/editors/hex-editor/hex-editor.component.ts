@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { EditorService } from '../providers/editor.service';
 import { ExecService } from '../../debug/providers/exec.service';
@@ -37,6 +38,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 	series3_emit = new EventEmitter<string>();
 
   constructor(
+		private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private edit: EditorService,
 		private exec: ExecService
@@ -78,6 +80,10 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 			this.edit.editConnexionArray(hexCode);
 			this.series3_emit.emit(hexCode);
 			this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
+			this.snackBar.open(
+				"Série 3 et 'Tableau de connnexions' mis à jour.",
+				"OK", {duration: 6000}
+			);
     }
     catch(error) {
       console.error(error);
@@ -89,6 +95,10 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 			try {
 				this.edit.editDrum(this.magDrumHexCtrl.get("hex_entry").value);
 				this.exec.writeConsoleLine("Tambour chargé depuis l'éditeur");
+				this.snackBar.open(
+					"Tambour mise à jour.",
+					"OK", {duration: 5000}
+				);
 			}
 			catch(error) {
 				console.error(error);

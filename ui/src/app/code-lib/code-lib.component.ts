@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CodeLibService } from './providers/code-lib.service';
 
@@ -18,6 +19,7 @@ export class CodeLibComponent implements OnInit {
 	drum_emit = new EventEmitter<string>();
 
   constructor(
+		private snackBar: MatSnackBar,
 		private lib: CodeLibService
 	) { }
 
@@ -33,8 +35,12 @@ export class CodeLibComponent implements OnInit {
 			this.lib.loadProgram(name);
 			this.series3_emit.emit(this.lib.getProgram(name, "series3"));
 			this.drum_emit.emit(this.lib.getProgram(name, "drum") || "");
-			this.message = 'Programme "' + this.displayName(name) + '" chargé. \
-				vous pouvez controler l\'exécution de ce programme dans l\'onglet "Supervision".';
+			this.message = "";
+			this.snackBar.open(
+				"Programme '" + this.displayName(name) + "' chargé. \
+				Contrôlez son exécution dans l'onglet 'Supervision'.",
+				"OK", {duration: 8000}
+			);
 		} catch (error) {
 			this.message = error;
 		}
