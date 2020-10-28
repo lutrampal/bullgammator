@@ -2,7 +2,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    background:#E2E4E6;
+    background-color: #E2E4E6;
+		margin: 0;
 }
 
 .container {
@@ -13,7 +14,7 @@ body {
 }
 
 .container > * {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .error {
