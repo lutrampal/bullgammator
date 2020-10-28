@@ -1,21 +1,13 @@
-<div class="info">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Aide
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-		Sur la façade du Gamma 3 un tableau permet de câbler jusqu’à 64 instructions. Chaque instruction a 4 champs : TO AD OD OF, chaque champ pouvant être câblé à une valeur hexadécimale (0 à F) avec des fils.<br>
-		Cliquer une valeur dans la partie Distrib au centre du tableau (valeurs 1 à F), puis cliquer où la connecter. La valeur "0", par défaut, peut servir ici à effacer une connexion.<br>
-		<br>
-		Le Gamma 3 démarre sur la première instruction du tableau. Il était donc nécessaire de câbler au moins 4 instructions (bootstrap) pour charger en mémoire exécutable un programme stocké sur le tambour, mais le tableau servait aussi à des programmes résidents (bibliothèque virgule flottante) ou à la mise au point de petits programmes, extrêmement faciles à modifier, puisqu’il suffisait de débrancher / rebrancher quelques fils.<br>
-		<br>
-		Les connexions peuvent être tendues (Tendu) ou laxes (Courbe).<br>
-		<br>
-		<a href="https://www.aconit.org/histoire/Gamma-3/Simulateur3D/pieces/panneau/" target="_blank">Voir le tableau 3D</a>
-  </mat-expansion-panel>
-</div>
+<app-help>
+	Sur la façade du Gamma 3 un tableau permet de câbler jusqu’à 64 instructions. Chaque instruction a 4 champs : TO AD OD OF, chaque champ pouvant être câblé à une valeur hexadécimale (0 à F) avec des fils.<br>
+	Cliquer une valeur dans la partie Distrib au centre du tableau (valeurs 1 à F), puis cliquer où la connecter. La valeur "0", par défaut, peut servir ici à effacer une connexion.<br>
+	<br>
+	Le Gamma 3 démarre sur la première instruction du tableau. Il était donc nécessaire de câbler au moins 4 instructions (bootstrap) pour charger en mémoire exécutable un programme stocké sur le tambour, mais le tableau servait aussi à des programmes résidents (bibliothèque virgule flottante) ou à la mise au point de petits programmes, extrêmement faciles à modifier, puisqu’il suffisait de débrancher / rebrancher quelques fils.<br>
+	<br>
+	Les connexions peuvent être tendues (Tendu) ou laxes (Courbe).<br>
+	<br>
+	<a href="https://www.aconit.org/histoire/Gamma-3/Simulateur3D/pieces/panneau/" target="_blank">Voir le tableau 3D</a>
+</app-help>
 
 <span *ngIf="error" class="error">{{ error }}</span>
 

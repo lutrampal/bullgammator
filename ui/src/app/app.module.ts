@@ -36,12 +36,15 @@ import { DrumService } from './drum/providers/drum.service';
 import { EditorService } from './editors/providers/editor.service';
 import { CodeLibService } from './code-lib/providers/code-lib.service';
 
+import { HelpComponent } from './shared-components/help/help.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HexEditorComponent, WireEditorComponent, CodeLibComponent,
     DebugComponent, MbComponent, OctadsComponent, SeriesComponent, ExecComponent,
-    DrumComponent
+    DrumComponent,
+    HelpComponent
   ],
   imports: [
     AppRoutingModule,
