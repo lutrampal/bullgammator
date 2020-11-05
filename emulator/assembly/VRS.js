@@ -5,7 +5,10 @@ Instruction = require("./instruction").Instruction
  */
 class VRS extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
-    super(1, AD, OD, OF, bullGamma)
+		if (AD < 5 || AD > 7) {
+			throw Error("Invalid instruction 1" + this.getChar(AD) + "xx");
+		}
+    super(1, AD, OD, OF, bullGamma);
   }
 
 	execute() {
@@ -24,10 +27,10 @@ class VRS extends Instruction {
 				break;
 			case 7:
 				// complex behavior
-				throw "not implemented for AD = " + this.AD;
+				throw Error("Excution of instruction 17xx not implemented");
 				break;
 			default:
-				throw "Invalid value for AD: " + this.AD;
+				throw Error("Cannot execute invalid instruction");
 		}
 	}
 
@@ -42,9 +45,18 @@ class VRS extends Instruction {
 			case 7:
 				return "Instruction non implémentée";
 			default:
-				return "Instruction invalide";
+				throw Error("Cannot describe invalid instruction");
 		}
 	}
+
+	getShortType() {
+		return "VRS";
+	}
+
+	getLongType() {
+		return "Variante Retour Serie";
+	}
+
 }
 
 module.exports.VRS = VRS;

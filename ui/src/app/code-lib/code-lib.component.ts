@@ -26,11 +26,11 @@ export class CodeLibComponent implements OnInit {
   ngOnInit() {
   }
 
-	getProgramsNames() {
+	getProgramsNames(): string[] {
 		return this.lib.getProgramsNames();
 	}
 
-	loadProgram(name: string) {
+	loadProgram(name: string): void {
 		try {
 			this.lib.loadProgram(name);
 			this.series3_emit.emit(this.lib.getProgram(name, "series3"));

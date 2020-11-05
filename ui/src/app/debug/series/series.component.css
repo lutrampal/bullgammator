@@ -23,15 +23,17 @@
 
 input {
   width: 40px;
+	font: inherit;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .checkpoint {
 	display: inline-block;
 	width: 40px !important;
-	height: 22.6333px !important;
 	margin-left: 4px;
 	margin-right: 3px;
-	/* text-align: center; */
+	font: inherit;
 }
 
 .label {
@@ -46,4 +48,12 @@ input {
 .arrow {
   margin: auto;
   margin-top: 10px;
+}
+
+.click {
+	cursor: pointer;
+}
+
+label {
+	cursor: pointer;
 }

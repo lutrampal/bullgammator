@@ -5,7 +5,7 @@ Instruction = require("./instruction").Instruction
  */
 class NOP extends V {
   constructor(bullGamma) {
-    super(0, 0, 0, bullGamma)
+    super(0, 0, 0, bullGamma);
   }
 
   execute() {
@@ -13,8 +13,15 @@ class NOP extends V {
   }
 
 	getDescription() {
-		return "V - Variante\n"
-		+ "Ne fait rien";
+		return "Ne fait rien";
+	}
+
+	getShortType() {
+		return "V";
+	}
+
+	getLongType() {
+		return "Variante";
 	}
 }
 

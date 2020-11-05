@@ -7,7 +7,7 @@ NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
  */
 class SmallDivOrMult extends Operation {
   constructor(TO, AD, OD, OF, bullGamma) {
-    super(TO, AD, OD, OF, bullGamma)
+    super(TO, AD, OD, OF, bullGamma);
   }
 
   /**
@@ -16,7 +16,7 @@ class SmallDivOrMult extends Operation {
    * @protected
    */
   _compute(mb) {
-    throw new Error('You have to implement the method _compute().');
+    throw Error('You have to implement the method _compute().');
   }
 
   /**
@@ -24,33 +24,40 @@ class SmallDivOrMult extends Operation {
    * @protected
    */
   _computeValue() {
-    throw new Error('You have to implement the method _computeValue().');
+    throw Error('You have to implement the method _computeValue().');
   }
 
   execute() {
+		if (this.AD == 1) {
+			throw Error("Cannot execute invalid instruction");
+		}
+
     this.bullGamma.md = this.OD;
-    let nb_neg_signs = 0
+    let nb_neg_signs = 0;
     if (this.bullGamma.ms1 === 10) {
       nb_neg_signs++;
     }
-    if (this.AD > 0) {
-      let mb = this.bullGamma.getMemory(this.AD)
+
+		if (this.AD == 0) {
+			this._computeValue();
+		}
+    if (this.AD > 1) {
+      let mb = this.bullGamma.getMemory(this.AD);
       if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && mb.blocks[this.OF - 1] === 10) {
-        mb.blocks[this.OF - 1] = 0
-        this._compute(mb)
-        mb.blocks[this.OF - 1] = 10
-        nb_neg_signs++
+        mb.blocks[this.OF - 1] = 0;
+        this._compute(mb);
+        mb.blocks[this.OF - 1] = 10;
+        nb_neg_signs++;
       } else {
-        this._compute(mb)
+        this._compute(mb);
       }
-    } else {
-      this._computeValue()
     }
+
     if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
       if (nb_neg_signs % 2 === 0) {
-        this.bullGamma.ms1 = 0
+        this.bullGamma.ms1 = 0;
       } else {
-        this.bullGamma.ms1 = 10
+        this.bullGamma.ms1 = 10;
       }
     }
   }

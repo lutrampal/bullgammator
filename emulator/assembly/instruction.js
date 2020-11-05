@@ -29,21 +29,35 @@ class Instruction {
    * Abstract method, execute the instruction logic
    */
   execute() {
-    throw new Error('You have to implement the method execute.');
+    throw Error('You have to implement the method execute.');
   }
 
   /**
    * Abstract method, return the execution time of this instruction
    */
   computeExeTime() {
-    throw new Error('You have to implement the method computeExeTime.');
+    throw Error('You have to implement the method computeExeTime.');
   }
 
   /**
    * Abstract method, return the textual description of this instruction
    */
 	getDescription() {
-		throw new Error('You have to implement the method getDescription.');
+		throw Error('You have to implement the method getDescription.');
+	}
+
+  /**
+   * Abstract method, return the short type name of this instruction
+   */
+	getShortType() {
+		throw Error('You have to implement the method getShortType.');
+	}
+
+  /**
+   * Abstract method, return the long type name of this instruction
+   */
+	getLongType() {
+		throw Error('You have to implement the method getLongType.');
 	}
 
   toString() {
@@ -53,6 +67,10 @@ class Instruction {
   toLineString() {
     return this.hexString + " -- " + this.constructor.name + "\n";
   }
+
+	static getChar(intValue) {
+		return intValue.toString(16).toUpperCase();
+	}
 
 }
 

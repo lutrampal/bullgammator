@@ -2,6 +2,9 @@ Instruction = require("./instruction").Instruction
 
 class ES extends Instruction {
 	constructor(AD, OD, OF, bullGamma) {
+		if (AD != 8 && AD != 9) {
+			throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+		}
 		super(1, AD, OD, OF, bullGamma);
 	}
 
@@ -18,14 +21,25 @@ class ES extends Instruction {
 				}
 				break;
 			default:
-				break;
+				throw Error("Cannot execute invalid instruction");
 		}
 	}
 
 	getDescription() {
-		return "ES" + (this.AD - 7) + " - Extraction Statique\n"
-		+ "Envoie des données à une machine connectée";
+		if (this.AD == 8 || this.AD == 9) {
+			return "Envoie des données à une machine connectée";
+		}
+		throw Error("Cannot describe invalid instruction");
 	}
+
+	getShortType() {
+		return "ES" + (this.AD - 7);
+	}
+
+	getLongType() {
+		return "Extraction Statique";
+	}
+
 }
 
 module.exports.ES = ES;

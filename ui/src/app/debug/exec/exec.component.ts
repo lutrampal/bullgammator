@@ -10,22 +10,28 @@ import { ExecService } from '../providers/exec.service';
 })
 export class ExecComponent implements OnInit {
 
-  @Input()
-  breakpoints: FormControl[] = [];
+  _breakpoints: FormControl[][];
+
+	@Input()
+	set breakpoints(breakpoints: FormControl[][]) {
+		if (breakpoints && breakpoints.length > 0) {
+			this._breakpoints = breakpoints;
+		}
+	}
+
 	error: any;
 
   constructor(
     private exec: ExecService
   ) { }
 
-  ngOnInit() {
-		this.breakpoints = [];
-  }
+  ngOnInit(): void {
+	}
 
   /*
    *  Executes one instruction and prepare the next
    */
-  executeNextInstruction() {
+  executeNextInstruction(): void {
 		try {
 			this.error = null;
 	    this.exec.executeNextInstruction();
@@ -37,12 +43,12 @@ export class ExecComponent implements OnInit {
   /*
    *  Executes instructions until the next breakpoint
    */
-  execUntilBreakPoint() {
+  execUntilBreakPoint(): void {
 		try {
 			this.error = null;
-			if (this.breakpoints.length == 0) {
+			if (!this._breakpoints) {
 				this.exec.executeUntil(0, 3);
-			} else {
+	    } else {
 				do {
 					this.exec.executeNextInstruction();
 				} while (!this.breakpointAtCurrentLine());
@@ -55,19 +61,18 @@ export class ExecComponent implements OnInit {
   /*
    *  Returns wether the is a breakpoint at the next line to bez executed
    */
-  breakpointAtCurrentLine() {
-    if (typeof this.breakpoints == 'undefined') {
+  breakpointAtCurrentLine(): boolean {
+    if (!this._breakpoints) {
       return true;
     }
-		let seriesCode = (this.exec.getSeries() + 1) % this.exec.getNumberOfSeries();
-    return this.breakpoints[(seriesCode << 6) + this.exec.getLine()].value;
+		return this._breakpoints[this.exec.getSeries()][this.exec.getLine()].value;
   }
 
-	getConsoleLines() {
+	getConsoleLines(): string[] {
 		return this.exec.getConsoleLines();
 	}
 
-	getDescription() {
+	getDescription(): string {
 		return "Le panneau \"Exécution\" affiche tout ce qui est écrit sur la sortie du Gamma 3. Dans la réalité, il " +
       "s’agirait plutôt d’une imprimante à cartes perforées. Le bouton “titiller” (vocabulaire de l’époque) permet de " +
       "passer à l’instruction suivante tandis que “continuer” exécute tout le code jusqu’au prochain point d’arrêt."

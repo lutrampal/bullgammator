@@ -125,16 +125,20 @@ class ConnectionsTable {
 		return this._getConnections(48, 64, 1)
 	}
 
+	getInstructionCode(instIndex) {
+		return new Instruction(
+			this.instructions[instIndex][3],
+			this.instructions[instIndex][2],
+			this.instructions[instIndex][1],
+			this.instructions[instIndex][0],
+			this.bullGamma
+		).toString();
+	}
+
 	getHexCode() {
 		var code = "-- Code généré par le tableau de connexions\n";
 		for (var instIndex = 0; instIndex < NB_INST_CONNEXION_ARRAY; instIndex++) {
-			code += new Instruction(
-				this.instructions[instIndex][3],
-				this.instructions[instIndex][2],
-				this.instructions[instIndex][1],
-				this.instructions[instIndex][0],
-				this.bullGamma
-			).toString() + "\n";
+			code += this.getInstructionCode(instIndex) + "\n";
 			// for (var hexIndex = 0; hexIndex < NB_HEX_VALUES_PER_INST; hexIndex++) {
 			// 	hexValue = this.instructions[instIndex][hexIndex];
 			// 	code += Number(hexValue).toString(16).toUpperCase();

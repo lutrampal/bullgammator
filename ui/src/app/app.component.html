@@ -1,114 +1,141 @@
-<div class="container top-container">
-  <div>
-    <mat-card>
-      <div>
-        <h1>BullGammaTor</h1>
-        <span>Émulateur de l'ordinateur Bull Gamma ET (1952)</span>
-        <div class="">
-          <a href="https://www.aconit.org/" target="_blank"><img alt="Logo ACONIT" src="assets/logo_aconit.jpg"></a>
-          <a href="https://ensimag.grenoble-inp.fr/" target="_blank"><img alt="Logo ENSIMAG" src="assets/logo_ensimag.png"></a>
-        </div>
-	    </div>
-	  </mat-card>
-	</div>
+<div class="home-container" [class.is-mobile]="false">
 
-  <mat-accordion>
+	<mat-toolbar color="primary" class="toolbar">
+		<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+	</mat-toolbar>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Présentation
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+	<!-- Side navigation bar & content -->
+	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="false ? 56 : 0">
 
-			<div class="intro">
-				L'application WEB <a href="https://github.com/lutrampal/bullgammator/" target="_blank"><b>BullGammaTor</b></a> émule un ordinateur <b>Bull Gamma ET</b> de 1952, premier modèle d’ordinateur électronique français industrialisé, développé par la « Compagnie des machines BULL ». Ce fut aussi le premier <a href="https://www.echosciences-grenoble.fr/articles/destin-d-objets-scientifiques-et-techniques-l-aventure-du-gamma-3-5-10-annee-2018" target="_blank">ordinateur de recherche en France</a>, acquis par l’université de Grenoble en 1957.<br>
-				Cet ordinateur emblématique est sauvegardé par ACONIT, qui a également mis en ligne un <a href="https://aconit.org/histoire/Gamma-3/Gamma-3-histoire.xls" target="_blank">fond documentaire</a>.<br>
-				Un <a href="http://www.feb-patrimoine.com/projet/gamma3/gamma3.htm" target="_blank">exemplaire de Gamma 3</a> est également sauvegardé par « La Fédération des Equipes BULL »<br>
-				Cet émulateur a été écrit par deux élèves ingénieur de l’ENSIMAG, dont le <a href="https://aconit.org/histoire/Gamma-3/Articles/rapport%20projet%20ENSIMAG-18.pdf" target="_blank">rapport</a> contient un mode d’emploi de l’émulateur.<br>
-				<br>
-				Pour démarrer, choisissez un programme existant dans la bibliothèque. Il est chargé sur la machine.<br>
-				Le tableau de connexions montre comment ce programme aurait était transmis à la machine en réalité : en utilisant des câbles pour coder les instructions !<br>
-				L'éditeur montre les instructions qui sont effectivement envoyées à la machine au format hexadécimal. Pour les programmes plus complexes, des données et instructions supplémentaires pouvaient être sockées dans le tambour, à l'aide de cartes perforées cette fois.<br>
-				Enfin, il est possible controler et monitorer l'exécutions du programme grâce à l'onget "Supervision".<br>
-				<br>
-				Pour aller plus loin, le tableau de connexions ou l'éditeur permettent aussi d'écrire des programmes personnalisés, à l'aide du <a href="https://www.aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg" target="_blank">jeu d'instructions</a>. De la documentation complémentaire est disponible <a href="https://www.aconit.org/histoire/Gamma-3/Articles/" target="_blank">ici</a>, notamment le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf" target="_blank">polycopié du cours de Louis Bolliet</a>.
+		<!-- Side bar -->
+		<mat-sidenav #snav [mode]="false ? 'over' : 'side'" [fixedInViewport]="false" fixedTopGap="56">
+			<app-instructions-help
+				[inst]="inst"
+			></app-instructions-help>
+		</mat-sidenav>
+
+		<!-- Content -->
+		<mat-sidenav-content (swiperight)="snav.open()" (swipeleft)="snav.close()">
+
+			<div class="container top-container">
+			  <div>
+			    <mat-card>
+			      <div>
+			        <h1>BullGammaTor</h1>
+			        <span>Émulateur de l'ordinateur Bull Gamma ET (1952)</span>
+			        <div class="">
+			          <a href="https://www.aconit.org/" target="_blank"><img alt="Logo ACONIT" src="assets/logo_aconit.jpg"></a>
+			          <a href="https://ensimag.grenoble-inp.fr/" target="_blank"><img alt="Logo ENSIMAG" src="assets/logo_ensimag.png"></a>
+			        </div>
+				    </div>
+				  </mat-card>
+				</div>
+
+			  <mat-accordion>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Présentation
+			        </mat-panel-title>
+			      </mat-expansion-panel-header>
+
+						<div class="intro">
+							L'application WEB <a href="https://github.com/lutrampal/bullgammator/" target="_blank"><b>BullGammaTor</b></a> émule un ordinateur <b>Bull Gamma ET</b> de 1952, premier modèle d’ordinateur électronique français industrialisé, développé par la « Compagnie des machines BULL ». Ce fut aussi le premier <a href="https://www.echosciences-grenoble.fr/articles/destin-d-objets-scientifiques-et-techniques-l-aventure-du-gamma-3-5-10-annee-2018" target="_blank">ordinateur de recherche en France</a>, acquis par l’université de Grenoble en 1957.<br>
+							Cet ordinateur emblématique est sauvegardé par ACONIT, qui a également mis en ligne un <a href="https://aconit.org/histoire/Gamma-3/Gamma-3-histoire.xls" target="_blank">fond documentaire</a>.<br>
+							Un <a href="http://www.feb-patrimoine.com/projet/gamma3/gamma3.htm" target="_blank">exemplaire de Gamma 3</a> est également sauvegardé par « La Fédération des Equipes BULL »<br>
+							Cet émulateur a été écrit par deux élèves ingénieur de l’ENSIMAG, dont le <a href="https://aconit.org/histoire/Gamma-3/Articles/rapport%20projet%20ENSIMAG-18.pdf" target="_blank">rapport</a> contient un mode d’emploi de l’émulateur.<br>
+							<br>
+							Pour démarrer, choisissez un programme existant dans la bibliothèque. Il est chargé sur la machine.<br>
+							Le tableau de connexions montre comment ce programme aurait était transmis à la machine en réalité : en utilisant des câbles pour coder les instructions !<br>
+							L'éditeur montre les instructions qui sont effectivement envoyées à la machine au format hexadécimal. Pour les programmes plus complexes, des données et instructions supplémentaires pouvaient être sockées dans le tambour, à l'aide de cartes perforées cette fois.<br>
+							Enfin, il est possible controler et monitorer l'exécutions du programme grâce à l'onget "Supervision".<br>
+							<br>
+							Pour aller plus loin, le tableau de connexions ou l'éditeur permettent aussi d'écrire des programmes personnalisés, à l'aide du <a href="https://www.aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg" target="_blank">jeu d'instructions</a>. De la documentation complémentaire est disponible <a href="https://www.aconit.org/histoire/Gamma-3/Articles/" target="_blank">ici</a>, notamment le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf" target="_blank">polycopié du cours de Louis Bolliet</a>.
+						</div>
+			    </mat-expansion-panel>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Bibliothèque
+			        </mat-panel-title>
+			        <mat-panel-description>
+			          Sélectionner un programme pré-enregistré
+			        </mat-panel-description>
+			      </mat-expansion-panel-header>
+
+			      <app-code-lib
+							(series3_emit)="series3=$event"
+							(drum_emit)="drum=$event"
+						></app-code-lib>
+			    </mat-expansion-panel>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Tableau de connexions
+			        </mat-panel-title>
+			        <mat-panel-description>
+			          Définir des instructions
+			        </mat-panel-description>
+			      </mat-expansion-panel-header>
+
+						<app-wire-editor
+							[series3]="series3"
+							(series3_emit)="series3=$event"
+							(inst_emit)="updateInstruction($event)"
+						></app-wire-editor>
+			    </mat-expansion-panel>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Editeur
+			        </mat-panel-title>
+			        <mat-panel-description>
+			          Ecrire du code pour le Bull Gamma
+			        </mat-panel-description>
+			      </mat-expansion-panel-header>
+
+			      <app-hex-editor
+							[series3]="series3"
+							(series3_emit)="series3=$event"
+							[drum]="drum"
+						></app-hex-editor>
+			    </mat-expansion-panel>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Supervision
+			        </mat-panel-title>
+			        <mat-panel-description>
+			          Controler l'execution du programme
+			        </mat-panel-description>
+			      </mat-expansion-panel-header>
+			      <app-debug
+							(inst_emit)="updateInstruction($event)"
+						></app-debug>
+			    </mat-expansion-panel>
+
+			    <mat-expansion-panel>
+			      <mat-expansion-panel-header>
+			        <mat-panel-title>
+			          Tambour
+			        </mat-panel-title>
+			        <mat-panel-description>
+			          Observer le contenu du tambour
+			        </mat-panel-description>
+			      </mat-expansion-panel-header>
+						<app-drum></app-drum>
+			    </mat-expansion-panel>
+
+			  </mat-accordion>
+
 			</div>
-    </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Bibliothèque
-        </mat-panel-title>
-        <mat-panel-description>
-          Sélectionner un programme pré-enregistré
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+		</mat-sidenav-content>
 
-      <app-code-lib
-				(series3_emit)="series3=$event"
-				(drum_emit)="drum=$event"
-			></app-code-lib>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Tableau de connexions
-        </mat-panel-title>
-        <mat-panel-description>
-          Définir des instructions
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-			<app-wire-editor
-				[series3]="series3"
-				(series3_emit)="series3=$event"
-			></app-wire-editor>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Editeur
-        </mat-panel-title>
-        <mat-panel-description>
-          Ecrire du code pour le Bull Gamma
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <app-hex-editor
-				[series3]="series3"
-				(series3_emit)="series3=$event"
-				[drum]="drum"
-			></app-hex-editor>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Supervision
-        </mat-panel-title>
-        <mat-panel-description>
-          Controler l'execution du programme
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-debug></app-debug>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Tambour
-        </mat-panel-title>
-        <mat-panel-description>
-          Observer le contenu du tambour
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-			<app-drum></app-drum>
-    </mat-expansion-panel>
-
-  </mat-accordion>
-
+	</mat-sidenav-container>
 </div>

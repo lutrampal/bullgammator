@@ -3,6 +3,11 @@ import { FormControl } from '@angular/forms';
 
 import { MemoriesService } from '../providers/memories.service';
 
+export class MemoryInfo {
+	id: number;
+	label: string;
+}
+
 @Component({
   selector: 'app-octads',
   templateUrl: './octads.component.html',
@@ -11,7 +16,7 @@ import { MemoriesService } from '../providers/memories.service';
 export class OctadsComponent implements OnInit {
 
   octad: number;
-  octads: { [id: number]: any } = {};
+  octads: { [id: number]: MemoryInfo[] } = {};
   nbOctads: number;
 
   controls: { [id: number]: FormControl } = {};
@@ -37,7 +42,7 @@ export class OctadsComponent implements OnInit {
     this.edit = false;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
         let id = octad * this.nbOctads + mb.id;
@@ -46,7 +51,7 @@ export class OctadsComponent implements OnInit {
     }
   }
 
-  editMemories() {
+  editMemories(): void {
     this.edit = true;
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
@@ -56,7 +61,7 @@ export class OctadsComponent implements OnInit {
     }
   }
 
-  setMemories() {
+  setMemories(): void {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
         let id = octad * this.nbOctads + mb.id;
@@ -65,7 +70,7 @@ export class OctadsComponent implements OnInit {
     }
   }
 
-	reset() {
+	reset(): void {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
         let id = octad * this.nbOctads + mb.id;
@@ -74,7 +79,7 @@ export class OctadsComponent implements OnInit {
     }
 	}
 
-  valid() {
+  valid(): boolean {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
         let id = octad * this.nbOctads + mb.id;
@@ -86,23 +91,23 @@ export class OctadsComponent implements OnInit {
     return true;
   }
 
-  getOctad() {
+  getOctad(): MemoryInfo[] {
     return this.octads[this.octad] || [];
   }
 
-  getMemory(id: number, octad: number) {
+  getMemory(id: number, octad: number): string {
     return this.m.getMemory(id, octad);
   }
 
-  plus() {
+  plus(): void {
     this.octad = (this.octad + 1) % this.nbOctads;
   }
 
-  minus() {
+  minus(): void {
     this.octad = (this.octad + 7) % this.nbOctads;
   }
 
-	getDescription() {
+	getDescription(): string {
 		return "La panneau “Octade” montre le contenu des octades ajoutées par l’extension tambour."
 	}
 }

@@ -41,7 +41,7 @@ describe('IL M2', function() {
     describe('#getDescription()', function () {
       it("should print the instruction's description", function () {
         let bullGamma =  new BullGamma();
-        let instr = new IL(4, 5, 7, bullGamma);
+        let instr = new IL(10, 5, 7, bullGamma);
         console.debug(instr.getDescription());
       })
     })

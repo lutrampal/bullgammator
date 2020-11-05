@@ -5,7 +5,7 @@ Instruction = require("./instruction").Instruction
  */
 class KB extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
-    super(4, AD, OD, OF, bullGamma)
+    super(4, AD, OD, OF, bullGamma);
   }
 
   execute() {
@@ -21,11 +21,23 @@ class KB extends Instruction {
 	getDescription() {
 		if (this.AD == 0) {
 			return "Emission de 48V";
-		} else {
-			return "KB - transfert d'une Constante en mémoire Banale\n"
-			+ "Ecrit la constante " + this.OF + " en position " + this.OD
-			+ " de M" + this.AD;
 		}
+		return "Ecrit la constante " + this.OF + " en position " + this.OD
+		+ " de M" + this.AD;
+	}
+
+	getShortType() {
+		if (this.AD == 0) {
+			return "48V";
+		}
+		return "KB";
+	}
+
+	getLongType() {
+		if (this.AD == 0) {
+			return "Emission de 48V";
+		}
+		return "Transfert d'une Constante en mémoire Banale";
 	}
 
 }

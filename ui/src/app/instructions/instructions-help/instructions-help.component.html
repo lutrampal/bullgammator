@@ -1,0 +1,41 @@
+<mat-card>
+	<h2>Liste des instructions</h2>
+
+	<app-help>
+		La liste d'instructions décrit les operations prédéfinies qu'il est possible de réaliser sur les mémoires.<br>
+		Les mémoires sont représentées dans l'onglet "Supervision".<br>
+		<br>
+		Chaque instruction est composée de 4 chiffres hexadécimal. Le premier détermine le type d'opération (TO). Il est possible de choisir un type d'opérations en cliquant sur un bouton de la forme "2xxx".<br>
+		Le 2<sup>ème</sup> chiffre, l'adresse (AD), précise le type d'opération, en donnant notamment les mémoires utilisées. <br>
+		Enfin, le deux derniers chiffres, l'ordre de début (OD) et l'ordre de fin (OF), permettent de définir quelle partie d'une mémoire va être utilisée. Ceux-ci ne sont pas listés mais peuvent être édités directement dans le détail de l'instruction.
+	</app-help>
+
+	<div class="">
+
+		<div class="buttons">
+			<span *ngFor="let TOgroup of instructions" class="">
+				<button mat-button type="button"
+					(click)="operationType=TOgroup[0].TO"
+					[disabled]="operationType==TOgroup[0].TO"
+					class="monospace"
+				>{{ TOgroup[0].TO.toString(16).toUpperCase() + "xxx" }}</button>
+			</span>
+		</div>
+		<hr>
+		<ng-container *ngFor="let inst of instructions[operationType]">
+			<div class="inst"
+				[class.addr-selected]="selectedAddr==inst.AD && !instructionError[operationType][inst.AD]"
+				[class.addr-error]="selectedAddr==inst.AD && instructionError[operationType][inst.AD]"
+				(click)="selectedAddr=inst.AD"
+			>
+				<div class="monospace">
+					{{ getInstructionAddress(inst) }}<input type="text" maxlength="2" size="2" placeholder="00" [formControl]="control" class="monospace">
+				</div>
+				<div class="">
+					{{ getDescription(inst) }}
+				</div>
+			</div>
+		</ng-container>
+
+	</div>
+</mat-card>

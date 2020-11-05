@@ -6,7 +6,7 @@ NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
  */
 class BO extends Operation {
   constructor(AD, OD, OF, bullGamma) {
-    super(6, AD, OD, OF, bullGamma)
+    super(6, AD, OD, OF, bullGamma);
   }
 
   execute() {
@@ -21,7 +21,7 @@ class BO extends Operation {
     // common
     m1.setToZero(0, 12);
     if (this.AD !== 1) {
-      this.bullGamma.ms1 = 0
+      this.bullGamma.ms1 = 0;
     }
     this.bullGamma.md = this.OD;
 
@@ -53,21 +53,28 @@ class BO extends Operation {
   }
 
 	getDescription() {
-		let intro = "BO - transfert de mémoire Banale en mémoire Opérative\n"
-		+ "Efface M1 ";
 		switch (this.AD) {
 			case 1:
-				return intro + "à l'extérieur des positions " + this.OD + " et " + this.OF
+				return "Efface M1 à l'extérieur des positions " + this.OD + " et " + this.OF
 				+ ", la mémoire de décalage prend la valeur " + this.OD;
 			case 0:
-				return intro + "puis met " + this.OF + " en position " + this.OD
+				return "Efface M1 puis met " + this.OF + " en position " + this.OD
 				+ ", la mémoire de décalage prend la valeur " + this.OD;
 			default:
-				return intro + "puis met M" + this.AD
+				return "Efface M1 puis met M" + this.AD
 				+ " entre les positions " + this.OD + " et " + this.OF + " en M1"
 				+ ", la mémoire de décalage prend la valeur " + this.OD;
 		}
 	}
+
+	getShortType() {
+		return "BO";
+	}
+
+	getLongType() {
+		return "Transfert de mémoire Banale en mémoire Opérative";
+	}
+
 }
 
 module.exports.BO = BO;

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Execution } from 'bullgammator';
 import { BullgammatorService } from '../../providers/bullgammator.service';
+import { Instruction } from 'bullgammator';
 
 @Injectable()
 export class SeriesService {
@@ -17,26 +18,30 @@ export class SeriesService {
   /*
    *  Returns the instructions list for a given series
    */
-  getInstructions(seriesId: number) {
+  getInstructions(seriesId: number): Instruction[] {
     return this.exec.getInstructions(seriesId);
   }
 
   /*
    *  Gets the current instruction line
    */
-  getLine() {
+  getLine(): number {
     return this.exec.getCurrentLine();
   }
 
-	getSeries() {
+	getSeries(): number {
 		return this.exec.getCurrentSeries();
 	}
 
-  getSeriesNumber() {
+  getSeriesNumber(): number {
     return this.bull.constants.NB_SERIES;
   }
 
-  getNumberOfInstructions(seriesId: number) {
+  getSeriesList(): number[] {
+    return Array.from(Array(this.bull.constants.NB_SERIES).keys());
+  }
+
+  getNumberOfInstructions(seriesId: number): number {
     return this.exec.getNumberOfInstructions(seriesId);
   }
 

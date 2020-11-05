@@ -12,26 +12,18 @@
       </div>
     </div>
 
-    <div class="lines">
-      <div class="column">
-        <div *ngFor="let inst of getInstructions() | slice:0:getHalfNbInst(); index as i">
-					<div matTooltip="{{ inst.getDescription().replace('\n', ' -- \t') }}" matTooltipPosition="below">
-	          <input *ngIf="!isProgramLine(i)" type="checkbox" (change)="emit()" [formControl]="getControl(i)">
-	          <label *ngIf="isProgramLine(i)" class="checkpoint">➤</label>
-	          <label class="label monospace">{{ i }} : </label>
-	          <label class="hex monospace">{{ inst.toString().toUpperCase() }}</label>
-	        </div>
-        </div>
-      </div>
-      <div class="column">
-        <div *ngFor="let inst of getInstructions() | slice:getHalfNbInst():s.getNumberOfInstructions(seriesId); index as i">
-					<div matTooltip="{{ inst.getDescription().replace('\n', ' -- \t') }}" matTooltipPosition="below">
-	          <input *ngIf="!isProgramLine(i + getHalfNbInst(seriesId))" type="checkbox" (change)="emit()" [formControl]="getControl(i + getHalfNbInst())">
-						<label *ngIf="isProgramLine(i + getHalfNbInst(seriesId))" class="checkpoint">➤</label>
-	          <label class="label monospace">{{ i + getHalfNbInst(seriesId) }} : </label>
-	          <label class="hex monospace">{{ inst.toString().toUpperCase() }}</label>
-	        </div>
-        </div>
-      </div>
+		<div *ngFor="let seriesIndex of series.getSeriesList()" class="lines">
+			<ng-container *ngIf="seriesIndex==seriesId">
+	      <div *ngFor="let columnIndex of [0, 1]" class="column">
+					<div *ngFor="let inst of getInstructions(seriesIndex, columnIndex); index as i">
+						<input *ngIf="!isProgramLine(seriesIndex, columnIndex, i)" type="checkbox" (change)="emitBreakpoints()" [formControl]="getControl(seriesIndex, columnIndex, i)">
+						<label *ngIf="isProgramLine(seriesIndex, columnIndex, i)" class="checkpoint">➤</label>
+						<span (click)="openInstruction(inst)" class="click">
+							<label class="label monospace">{{ getLineNumber(seriesIndex, columnIndex, i) }} : </label>
+							<label class="hex monospace">{{ getInstructionText(inst) }}</label>
+						</span>
+					</div>
+				</div>
+			</ng-container>
     </div>
 </div>

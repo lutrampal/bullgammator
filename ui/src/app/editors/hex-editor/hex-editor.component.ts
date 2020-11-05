@@ -46,7 +46,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.series3HexCtrl = this.fb.group({
       hex_entry: ["", [Validators.required, this.hex_validator]]
     })
@@ -61,7 +61,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
 	  if (this.series3HexWatcher) {
 	    this.series3HexWatcher.unsubscribe();
 	  }
@@ -70,11 +70,11 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 	  }
   }
 
-  hex_validator(control: FormControl) {
+  hex_validator(control: FormControl): object {
     return null;
   }
 
-  validateSeries3Hex() {
+  validateSeries3Hex(): void {
     try {
 			let hexCode = this.series3HexCtrl.get("hex_entry").value;
 			this.edit.editConnexionArray(hexCode);
@@ -91,7 +91,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-	validateDrumHex() {
+	validateDrumHex(): void {
 			try {
 				this.edit.editDrum(this.magDrumHexCtrl.get("hex_entry").value);
 				this.exec.writeConsoleLine("Tambour chargé depuis l'éditeur");

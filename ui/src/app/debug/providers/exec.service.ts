@@ -14,31 +14,31 @@ export class ExecService {
 		this.exec = new Execution(this.bull.bullgamma);
 	}
 
-	executeNextInstruction() {
+	executeNextInstruction(): void {
 		this.exec.executeNextInstruction();
 	}
 
-	executeUntil(line: number, seriesId: number) {
+	executeUntil(line: number, seriesId: number): void {
 		this.exec.executeUntil(line, seriesId);
 	}
 
-	getLine() {
+	getLine(): number {
 		return this.exec.getCurrentLine();
 	}
 
-	getSeries() {
+	getSeries(): number {
 		return this.exec.getCurrentSeries();
 	}
 
-	getNumberOfSeries() {
+	getNumberOfSeries(): number {
 		return this.bull.constants.NB_SERIES;
 	}
 
-	getConsoleLines() {
+	getConsoleLines(): string[] {
 		return this.exec.console.getLines();
 	}
 
-	writeConsoleLine(line: string) {
+	writeConsoleLine(line: string): void {
 		this.exec.writeConsoleLine(line);
 	}
 }

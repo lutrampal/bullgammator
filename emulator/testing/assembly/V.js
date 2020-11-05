@@ -78,7 +78,7 @@ describe('V', function() {
     describe('#getDescription()', function () {
       it("should print the instruction's description", function () {
         let bullGamma =  new BullGamma();
-        let instr = new V(4, 5, 7, bullGamma);
+        let instr = new V(4, 5, 4, bullGamma);
         console.debug(instr.getDescription());
       })
     })

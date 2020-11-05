@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { EditorService } from '../providers/editor.service';
 import { ExecService } from '../../debug/providers/exec.service';
+import { Instruction } from 'bullgammator';
 
 @Component({
   selector: 'app-wire-editor',
@@ -14,16 +15,16 @@ export class WireEditorComponent implements OnInit {
 	public error: string;
 	public tensed: boolean = false;
 
-	public canvasWidth = 563;
-	public canvasHeight = 1000;
-	private context;
+	public canvasWidth: number = 563;
+	public canvasHeight: number = 1000;
+	private context: any;
 
-	private currentValue = 0;
+	private currentValue: number = 0;
 
-	private rowHeight = 27;
-	private linesNumber = 32; // NB_INST_CONNEXION_ARRAY / 2
-	private offsetX = 14;
-	private offsetY = 20;
+	private rowHeight: number = 27;
+	private linesNumber: number = 32; // NB_INST_CONNEXION_ARRAY / 2
+	private offsetX: number = 14;
+	private offsetY: number = 20;
 
 	private columns = {
 		0: { label: "NL", textOffset: 5, offset: 0, width: 30, circleOffsetX1: 0, circleOffsetX2: 0, type: -1, hex: -1, color: "#FFFFFF"},
@@ -54,6 +55,9 @@ export class WireEditorComponent implements OnInit {
 	@Output()
 	series3_emit = new EventEmitter<string>();
 
+	@Output()
+	inst_emit = new EventEmitter<string>();
+
 	@ViewChild("canvas", { read: ElementRef, static: true }) canvas: ElementRef;
 
   constructor(
@@ -67,7 +71,7 @@ export class WireEditorComponent implements OnInit {
 		this.draw();
   }
 
-  validateSeries3Hex() {
+  validateSeries3Hex(): void {
     try {
       this.edit.getConnectionsTable().loadInstructions();
 			this.series3_emit.emit(this.edit.getConnectionsTable().getHexCode());
@@ -83,41 +87,41 @@ export class WireEditorComponent implements OnInit {
     }
   }
 
-	setHexValue(instIndex, hexIndex, hexValue) {
+	setHexValue(instIndex, hexIndex, hexValue): void {
 		return this.edit.getConnectionsTable().setHexValue(instIndex, hexIndex, hexValue);
 	}
 
-	reset() {
+	reset(): void {
 		this.edit.getConnectionsTable().reset();
 		this.draw();
 	}
 
-	getConnectionsTopLeft() {
+	getConnectionsTopLeft(): number[][] {
 		return this.edit.getConnectionsTable().getConnectionsTopLeft();
 	}
 
-	getConnectionsBottomLeft() {
+	getConnectionsBottomLeft(): number[][] {
 		return this.edit.getConnectionsTable().getConnectionsBottomLeft();
 	}
 
-	getConnectionsTopRight() {
+	getConnectionsTopRight(): number[][] {
 		return this.edit.getConnectionsTable().getConnectionsTopRight();
 	}
 
-	getConnectionsBottomRight() {
+	getConnectionsBottomRight(): number[][] {
 		return this.edit.getConnectionsTable().getConnectionsBottomRight();
 	}
 
-	dist(x1: number, y1: number, x2: number, y2: number) {
+	dist(x1: number, y1: number, x2: number, y2: number): number {
 		return Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
 	}
 
-	getScale() {
+	getScale(): number {
 		var rect = this.canvas.nativeElement.getBoundingClientRect();
 		return (rect.right - rect.left) / this.canvasWidth;
 	}
 
-	onImageClick(event: MouseEvent) {
+	onImageClick(event: MouseEvent): void {
 		var rect = this.canvas.nativeElement.getBoundingClientRect();
 		var xCoord = event.clientX - rect.left;
 		var yCoord = event.clientY - rect.top;
@@ -128,7 +132,7 @@ export class WireEditorComponent implements OnInit {
 	}
 
 	// normalized coodinates 0 <= x,y <= 1
-	onClick(xCoord: number, yCoord: number) {
+	onClick(xCoord: number, yCoord: number): void {
 		var currentX = this.offsetX;
 		var clickedColumn = -1;
 		var clickedLine = -1;
@@ -181,23 +185,24 @@ export class WireEditorComponent implements OnInit {
 		if (column.type == 0) {
 			var instructionIndex = clickedLine + (column.offset > this.columns[5].offset ? this.linesNumber : 0)
 			this.setHexValue(instructionIndex, column.hex, this.currentValue % 16);
+			this.inst_emit.emit(this.edit.getConnectionsTable().getInstructionCode(instructionIndex));
 			this.draw();
 			return;
 		}
 	}
 
-	selectValue(context, instructionIndex) {
+	selectValue(context: any, instructionIndex): void {
 		this.currentValue = instructionIndex;
 	}
 
-	draw() {
+	draw(): void {
 		this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 		this.drawBackground(this.context);
 		this.drawSelectedValue(this.context);
 		this.drawConnections(this.context);
 	}
 
-	drawSelectedValue(context) {
+	drawSelectedValue(context: any): void {
 		var column = this.columns[5];
 		this.selectCircle(
 			context,
@@ -225,14 +230,14 @@ export class WireEditorComponent implements OnInit {
 		);
 	}
 
-	drawConnections(context) {
+	drawConnections(context: any): void {
 		this.drawCornerConnections(context, this.getConnectionsTopLeft(), 0);
 		this.drawCornerConnections(context, this.getConnectionsBottomLeft(), 1);
 		this.drawCornerConnections(context, this.getConnectionsTopRight(), 2);
 		this.drawCornerConnections(context, this.getConnectionsBottomRight(), 3);
 	}
 
-	drawCornerConnections(context, corner, id) {
+	drawCornerConnections(context: any, corner: number[][], id: number): void {
 		var distribColumn = this.columns[5];
 		for (let hexValue = 1; hexValue < corner.length; hexValue++) {
 			var centerX1 = this.offsetX + distribColumn.offset + (id < 2 ? distribColumn.circleOffsetX1 : distribColumn.circleOffsetX2);
@@ -267,7 +272,7 @@ export class WireEditorComponent implements OnInit {
 		}
 	}
 
-	drawBackground(context) {
+	drawBackground(context: any): void {
 		// dessin du panneau vide
 		context.font = '16px sans-serif';
 		context.strokeStyle = "black";
@@ -343,7 +348,7 @@ export class WireEditorComponent implements OnInit {
 
 	}
 
-	circle(context, x, y) {
+	circle(context: any, x: number, y: number): void {
 		// dessine un cercle vide
 	  context.beginPath();
 	  context.lineWidth= 1;
@@ -351,7 +356,7 @@ export class WireEditorComponent implements OnInit {
 	  context.stroke();
 	}
 
-	fillCircle(context, x, y, color) {
+	fillCircle(context: any, x: number, y: number, color: string) {
 		// rempli l'interieur du cercle
 		context.fillStyle = color;
 	  context.beginPath();
@@ -359,14 +364,14 @@ export class WireEditorComponent implements OnInit {
 	  context.fill();
 	}
 
-	petitLien(context, x, y) {
+	petitLien(context: any, x: number, y: number): void {
 		context.beginPath();
 		context.moveTo(x, y);
 		context.lineTo(x+8, y);
 		context.stroke();
 	}
 
-	selectCircle(context, x, y, color) {
+	selectCircle(context: any, x: number, y: number, color: string): void {
 		context.strokeStyle = color;
 	  context.beginPath();
 	  context.lineWidth = 2;
@@ -374,7 +379,7 @@ export class WireEditorComponent implements OnInit {
 	  context.stroke();
 	}
 
-	dessConex(context, x1, y1, x2, y2, color) {
+	dessConex(context: any, x1: number, y1: number, x2: number, y2: number, color: string): void {
 		// dessine une connexion
 		context.beginPath();
 		context.strokeStyle = color;
@@ -399,7 +404,7 @@ export class WireEditorComponent implements OnInit {
 		context.stroke();
 	}
 
-	toogleTensed() {
+	toogleTensed(): void {
 		this.tensed = !this.tensed;
 		this.draw();
 	}

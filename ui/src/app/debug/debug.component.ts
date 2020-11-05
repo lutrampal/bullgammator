@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,18 @@ import { FormControl } from '@angular/forms';
 export class DebugComponent implements OnInit {
 
   breakpoints: FormControl[];
+	update: boolean;
+
+	@Output()
+	inst_emit = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
+
+	openInstruction(inst: string): void {
+		this.inst_emit.emit(inst);
+	}
 
 }

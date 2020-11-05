@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ui';
+  title: string = 'ui';
   series3: string;
+  inst: string;
   drum: string;
+
+	@ViewChild(MatSidenav) snav: MatSidenav;
+
+	updateInstruction(inst): void {
+		this.inst = inst;
+		this.snav.open();
+	}
 }

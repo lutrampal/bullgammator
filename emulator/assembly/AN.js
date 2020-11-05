@@ -6,7 +6,7 @@ MEMORY_MODE = require("../machine/constants").MEMORY_MODE
  */
 class AN extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
-    super(10, AD, OD, OF, bullGamma)
+    super(10, AD, OD, OF, bullGamma);
   }
 
   _exeInstructionLogic() {
@@ -55,17 +55,24 @@ class AN extends OperationWithPreShift {
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "AN - Addition\n"
-			+ "Effectue le décalage de M1, additionne M1 à " + this.OF
+			return "Effectue le décalage de M1, additionne M1 à " + this.OF
 			+ " en position " + this.OD
 			+ ", puis met le résultat dans M1";
 		} else {
-			return "AN - Addition\n"
-			+ "Effectue le décalage de M1, additionne M1 à M" + this.AD
+			return "Effectue le décalage de M1, additionne M1 à M" + this.AD
 			+ " entre les positions " + this.OD + " et " + this.OF
 			+ ", puis met le résultat dans M1";
 		}
 	}
+
+	getShortType() {
+		return "AN";
+	}
+
+	getLongType() {
+		return "Addition";
+	}
+
 }
 
 module.exports.AN = AN;

@@ -36,7 +36,7 @@ describe('GG', function() {
     describe('#getDescription()', function () {
       it("should print the instruction's description", function () {
         let bullGamma =  new BullGamma();
-        let instr = new GG(4, 5, 7, bullGamma);
+        let instr = new GG(2, 3, bullGamma);
         console.debug(instr.getDescription());
       })
     })

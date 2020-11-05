@@ -5,7 +5,10 @@ Instruction = require("./instruction").Instruction
  */
 class VCS extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
-    super(1, AD, OD, OF, bullGamma)
+		if (AD > 3) {
+			throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+		}
+    super(1, AD, OD, OF, bullGamma);
   }
 
 	execute() {
@@ -29,30 +32,38 @@ class VCS extends Instruction {
 				// not implemented
 				break;
 			default:
-				throw "Invalid value for AD: " + this.AD;
+				throw Error("Cannot execute invalid instruction");
 		}
 		this.bullGamma.ns = this.OF % 4;
 		this.bullGamma.nl = (this.OD << 2) + (this.OF >> 2);
 	}
 
 	getDescription() {
-		let intro = "VCS - Variante Changement de Serie\n"
-		+ "Saute à la ligne " + ((this.OD << 2) + (this.OF >> 2))
+		let action = "Saute à la ligne " + ((this.OD << 2) + (this.OF >> 2))
 		+ " de la série " + (this.OF % 4);
 
 		switch (this.AD) {
 			case 0:
-				return intro;
+				return action;
 			case 1:
-				return intro + " et retient la ligne de laquelle on saute + 1 en RNL1";
+				return action + " et retient la ligne de laquelle on saute + 1 en RNL1";
 			case 2:
-				return intro + " et retient la ligne de laquelle on saute + 1 en RNL2";
+				return action + " et retient la ligne de laquelle on saute + 1 en RNL2";
 			case 3:
-				return intro;
+				return action;
 			default:
-				return "Instruction invalide";
+				throw Error("Cannot describe invalid instruction");
 		}
 	}
+
+	getShortType() {
+		return "VCS";
+	}
+
+	getLongType() {
+		return "Variante Changement de Serie";
+	}
+
 }
 
 module.exports.VCS = VCS;

@@ -15,7 +15,7 @@ export class DrumService {
 		.blocks[block].toString();
 	}
 
-	setContent(hexCode: string) {
+	setContent(hexCode: string): void {
 		this.bull.bullgamma.magneticDrum.setContent(hexCode);
 	}
 }

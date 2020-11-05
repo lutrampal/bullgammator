@@ -9,15 +9,15 @@ class DrumTransfer extends Instruction {
   }
 
   _transfer(nbGroup, trackGroup, nbTrack, nbBlock) {
-    throw "You have to implement the method _transfer()"
+    throw Error("You have to implement the method _transfer()");
   }
 
   execute() {
-    let trackGroup = this.bullGamma.magneticDrum.trackGroups[0]
+    let trackGroup = this.bullGamma.magneticDrum.trackGroups[0];
     if (this.AD % 2 == 1) {
-      trackGroup = this.bullGamma.magneticDrum.commutedTrackGroup
+      trackGroup = this.bullGamma.magneticDrum.commutedTrackGroup;
     }
-    this._transfer(this.AD >> 1, trackGroup, this.OD, this.OF >> 1)
+    this._transfer(this.AD >> 1, trackGroup, this.OD, this.OF >> 1);
   }
 
 }

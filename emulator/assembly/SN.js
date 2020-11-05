@@ -6,7 +6,7 @@ MEMORY_MODE = require("../machine/constants").MEMORY_MODE
  */
 class SN extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
-    super(11, AD, OD, OF, bullGamma)
+    super(11, AD, OD, OF, bullGamma);
   }
 
   _exeInstructionLogic() {
@@ -56,25 +56,32 @@ class SN extends OperationWithPreShift {
       return
     }
     if (this.AD === 0) {
-    	let mTmp = new Memory(1, this.bullGamma)
-			mTmp.blocks[this.OD] = this.OF
-      this.bullGamma.getMemory(1).subtract(mTmp)
+    	let mTmp = new Memory(1, this.bullGamma);
+			mTmp.blocks[this.OD] = this.OF;
+      this.bullGamma.getMemory(1).subtract(mTmp);
     }
   }
 
 	getDescription() {
 		if (this.AD == 0) {
-			return "SN - Soustraction\n"
-			+ "Effectue le décalage de M1, soustrait M1 à " + this.OF
+			return "Effectue le décalage de M1, soustrait M1 à " + this.OF
 			+ " en position " + this.OD
 			+ ", puis met le résultat dans M1";
 		} else {
-			return "SN - Soustraction\n"
-			+ "Effectue le décalage de M1, soustrait M1 à M" + this.AD
+			return "Effectue le décalage de M1, soustrait M1 à M" + this.AD
 			+ " entre les positions" + this.OD + " et " + this.OF
 			+ ", puis met le résultat dans M1";
 		}
 	}
+
+	getShortType() {
+		return "SN";
+	}
+
+	getLongType() {
+		return "Soustraction";
+	}
+
 }
 
 module.exports.SN = SN;

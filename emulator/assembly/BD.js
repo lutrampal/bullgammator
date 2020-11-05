@@ -5,7 +5,7 @@ Instruction = require("./instruction").Instruction
  */
 class BD extends Instruction {
   constructor(OD, OF, bullGamma) {
-    super(7, 2, OD, OF, bullGamma)
+    super(7, 2, OD, OF, bullGamma);
   }
 
   execute() {
@@ -13,9 +13,17 @@ class BD extends Instruction {
   }
 
 	getDescription() {
-		return "BD - transfert de mémoire Banale en mémoire de Décalage\n"
-		+ "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
+		return "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
 	}
+
+	getShortType() {
+		return "BD";
+	}
+
+	getLongType() {
+		return "Transfert de mémoire Banale en mémoire de Décalage";
+	}
+
 }
 
 module.exports.BD = BD;

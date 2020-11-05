@@ -7,7 +7,10 @@ NB_MEMORIES_PER_OCTAD = require("../machine/constants").NB_MEMORIES_PER_OCTAD
  */
 class GG extends Instruction {
   constructor(OD, OF, bullGamma) {
-    super(5, 0, OD, OF, bullGamma)
+		if ((OD > 3 && OD < 8) || OF > 3) {
+			throw Error("Invalid instruction 50" + Instruction.getChar(OD) + Instruction.getChar(OF));
+		}
+    super(5, 0, OD, OF, bullGamma);
   }
 
 	execute() {
@@ -15,27 +18,34 @@ class GG extends Instruction {
 			this.bullGamma.getGroup(this.OF).setContent("");
 			return;
 		}
-		if (this.OD > 3 || this.OF > 3) {
-			throw "invalid parameter for GG: OD = " + this.OD + " and OF = " + this.OF;
+		if (this.OD < 4 && this.OF < 4) {
+			let gsrc = this.bullGamma.getGroup(this.OD);
+			let gdest = this.bullGamma.getGroup(this.OF);
+			for (let i=0; i<NB_OCTADS_PER_GROUP*NB_MEMORIES_PER_OCTAD; i++) {
+				gdest.getWord(i).copy(gsrc.getWord(i));
+			}
+			return;
 		}
-		let gsrc = this.bullGamma.getGroup(this.OD);
-		let gdest = this.bullGamma.getGroup(this.OF);
-		for (let i=0; i<NB_OCTADS_PER_GROUP*NB_MEMORIES_PER_OCTAD; i++) {
-			gdest.getWord(i).copy(gsrc.getWord(i));
-		}
+		throw Error("Cannot execute invalid instruction");
 	}
 
 	getDescription() {
 		if (this.OD >= 8 && this.OF < 4) {
-			return "GG - Groupe - Groupe\n"
-			+ "Met à 0 les octades " + (this.OF << 1) + " et " + ((this.OF << 1) | 0x1);
+			return "Met à 0 les octades " + (this.OF << 1) + " et " + ((this.OF << 1) | 0x1);
 		}
-		if (this.OD > 3 || this.OF > 3) {
-			return "Instruction invalide";
+		if (this.OD < 4 && this.OF < 4) {
+			return "Copie le contenu des octades " + ((this.OD & 0x7) << 1) + " et " + (((this.OD & 0x7) << 1) | 0x1)
+			+ " dans les octades " + ((this.OF & 0x7) << 1) + " et " + (((this.OF & 0x7) << 1) | 0x1);
 		}
-		return "GG - Groupe - Groupe\n"
-		+ "Copie le contenu des octades " + ((this.OD & 0x7) << 1) + " et " + (((this.OD & 0x7) << 1) | 0x1)
-		+ " dans les octades " + ((this.OF & 0x7) << 1) + " et " + (((this.OF & 0x7) << 1) | 0x1);
+		throw Error("Cannot describe invalid instruction");
+	}
+
+	getShortType() {
+		return "GG";
+	}
+
+	getLongType() {
+		return "Groupe - Groupe";
 	}
 }
 

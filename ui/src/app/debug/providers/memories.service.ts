@@ -17,119 +17,119 @@ export class MemoriesService {
     this.constants = this.bull.constants;
   }
 
-  getMemory(id: number, octad: number) {
+  getMemory(id: number, octad: number): string {
     return this.debug.getMemory(id, octad);
   }
-  setMemory(value: string, id: number, octad: number) {
+  setMemory(value: string, id: number, octad: number): void {
     this.debug.setMemory(value, id, octad);
   }
 
-  banalMemoryValidator(control: FormControl) {
+  banalMemoryValidator(control: FormControl): object {
     if (!Debug.banalMemoryValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getMode() {
+  getMode(): string {
     return this.debug.getMode();
   }
-  setMode(value: string) {
+  setMode(value: string): void {
     this.debug.setMode(value);
   }
-  modeValidator(control: FormControl) {
+  modeValidator(control: FormControl): object {
     if (!Debug.modeValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getNL() {
+  getNL(): string {
     return this.debug.getNL();
   }
-  setNL(value: string) {
+  setNL(value: string): void {
     this.debug.setNL(value);
   }
-  nlValidator(control: FormControl) {
+  nlValidator(control: FormControl): object {
     if (!Debug.nlValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getMS1() {
+  getMS1(): string {
     return this.debug.getMS1();
   }
-  setMS1(value: string) {
+  setMS1(value: string): void {
     this.debug.setMS1(value);
   }
-  ms1Validator(control: FormControl) {
+  ms1Validator(control: FormControl): object {
     if (!Debug.ms1Validate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getMD() {
+  getMD(): string {
     return this.debug.getMD();
   }
-  setMD(value: string) {
+  setMD(value: string): void {
     this.debug.setMD(value);
   }
-  mdValidator(control: FormControl) {
+  mdValidator(control: FormControl): object {
     if (!Debug.mdValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getMCMP() {
+  getMCMP(): string {
     return this.debug.getMCMP();
   }
-  setMCMP(value: string) {
+  setMCMP(value: string): void {
     this.debug.setMCMP(value);
   }
-  mcmpValidator(control: FormControl) {
+  mcmpValidator(control: FormControl): object {
     if (!Debug.mcmpValidate(control.value)) {
       return { error: true };
     }
     return null;
   }
 
-  getRNL1() {
+  getRNL1(): string {
     return this.debug.getRNL1();
   }
-  setRNL1(value: string) {
+  setRNL1(value: string): void {
     this.debug.setRNL1(value);
   }
 
-  getRNL2() {
+  getRNL2(): string {
     return this.debug.getRNL2();
   }
-  setRNL2(value: string) {
+  setRNL2(value: string): void {
     this.debug.setRNL2(value);
   }
 
-  getOctad() {
+  getOctad(): string {
     return this.debug.getOctad();
   }
-  setOctad(value: string) {
+  setOctad(value: string): void {
     this.debug.setOctad(value);
   }
-	octadValidator(control: FormControl) {
+	octadValidator(control: FormControl): object {
     if (!Debug.octadValidate(control.value)) {
       return { error: true };
     }
     return null;
 	}
 
-  getTrackGr() {
+  getTrackGr(): string {
     return this.debug.getTrackGr();
   }
-  setTrackGr(value: string) {
+  setTrackGr(value: string): void {
     this.debug.setTrackGr(value);
   }
-	trackGrValidator(control: FormControl) {
+	trackGrValidator(control: FormControl): object {
     if (!Debug.trackGrValidate(control.value)) {
       return { error: true };
     }

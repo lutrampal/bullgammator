@@ -5,7 +5,7 @@ Instruction = require("./instruction").Instruction
  */
 class CSz extends Instruction {
   constructor(OD, OF, bullGamma) {
-    super(1, 13, OD, OF, bullGamma)
+    super(1, 13, OD, OF, bullGamma);
   }
 
   execute() {
@@ -13,9 +13,17 @@ class CSz extends Instruction {
   }
 
 	getDescription() {
-		return "CSz - Commutation de Seizaine\n"
-		+ "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
+		return "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
 	}
+
+	getShortType() {
+		return "CSz";
+	}
+
+	getLongType() {
+		return "Commutation de Seizaine";
+	}
+
 }
 
 module.exports.CSz = CSz;

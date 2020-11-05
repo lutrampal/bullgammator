@@ -18,10 +18,10 @@ export class DrumComponent implements OnInit {
 		public bull: BullgammatorService
 	) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-	displayBlock(i, j, k) {
+	displayBlock(i, j, k): string {
 		return "00: "+ this.drum.getBlock(i * this.bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j, k)
 			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;01: ")
 			.replace("\t", "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;02: ")

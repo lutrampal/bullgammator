@@ -26,7 +26,7 @@ BT = require("./BT").BT;
 
 function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
   if (instruction.length !== 4) {
-    throw "incorrect instruction length: got " + instruction.length + ", expected 4.";
+    throw Error("Invalid instruction length: got " + instruction.length + ", expected 4.");
   }
   let operands = instruction.toLowerCase().split('');
 
@@ -47,15 +47,15 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 8: case 9:
           return new ES(AD, OD, OF, bullGamma);
         case 10:
-          return new CD(AD, OD, OF, bullGamma);
+          return new CD(OD, OF, bullGamma);
         case 12:
-          return new CO(OF, bullGamma);
+          return new CO(OD, OF, bullGamma);
         case 13:
           return new CSz(OD, OF, bullGamma);
         case 15:
           return new CB(OD, OF, bullGamma);
         default:
-          throw "incorrect instruction for TO = 1: got AD = " + AD;
+          throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
       }
     case 2:
       if (OF & 0x1) { // OF and 0001 to select last bit
@@ -64,15 +64,12 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         return new BT(AD, OD, OF, bullGamma)
       }
     case 3:
-      if (AD === 0) {
-        throw "incorrect instruction for TO = 3: got AD = 0";
-      }
       return new ZB(AD, OD, OF, bullGamma);
     case 4:
       return new KB(AD, OD, OF, bullGamma);
     case 5:
       if (AD !== 0) {
-        throw "incorrect instruction for TO = 5: got AD = " + AD;
+				throw Error("Invalid instruction 5" + Instruction.getChar(AD) + "xx");
       }
       return new GG(OD, OF, bullGamma);
     case 6:
@@ -87,12 +84,9 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 12:
           return new IL(AD, OD, OF, bullGamma);
         default:
-          throw "incorrect instruction for TO = 7: got AD = " + AD;
+					throw Error("Invalid instruction 7" + Instruction.getChar(AD) + "xx");
       }
     case 8:
-      if (AD === 0) {
-        throw "incorrect instruction for TO = 8: got AD = 0";
-      }
       return new OB(AD, OD, OF, bullGamma);
     case 9:
       return new CN(AD, OD, OF, bullGamma);
@@ -101,27 +95,15 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
     case 11:
       return new SN(AD, OD, OF, bullGamma);
     case 12:
-      if (AD === 1) {
-        throw "incorrect instruction for TO = 12: got AD = 1";
-      }
       return new MR(AD, OD, OF, bullGamma);
     case 13:
-      if (AD === 1) {
-        throw "incorrect instruction for TO = 13: got AD = 1";
-      }
       return new DR(AD, OD, OF, bullGamma);
     case 14:
-      if (AD === 1 || AD === 2) {
-        throw "incorrect instruction for TO = 14: got AD = " + AD;
-      }
       return new MC(AD, OD, OF, bullGamma);
     case 15:
-      if (AD === 1 || AD === 2) {
-        throw "incorrect instruction for TO = 15: got AD = " + AD;
-      }
       return new DC(AD, OD, OF, bullGamma);
     default:
-      throw "fell in default case when it shouldn't have happened";
+      throw Error("Fell in default case when it shouldn't have happened");
   }
 }
 
@@ -135,7 +117,7 @@ function parse_hex_code(entry) {
 	hexCode = entry.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
 	hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
 	if (!/^[0-9a-fA-F]*$/.test(hexCode)){
-		throw "incorrect hex code"
+		throw Error("Invalid hex code");
 	}
 	return hexCode;
 }
@@ -155,7 +137,7 @@ function parse_hex_str_to_instructions(entry, bullGamma) {
       instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma));
       i++;
     } catch (error) {
-      throw "parsing error at instruction #" + i + ": " + error;
+      throw Error("Parsing error at instruction #" + i + ": " + error.message);
     }
   });
   return instructions;

@@ -4,21 +4,36 @@ Instruction = require("./instruction").Instruction
  * octad selection
  */
 class CO extends Instruction {
-  constructor(OF, bullGamma) {
-    super(1, 12, 0, OF, bullGamma)
+  constructor(OD, OF, bullGamma) {
+    if (OF > 7) {
+      throw Error("Invalid instruction 1C0" + this.getChar(OF));
+    }
+    super(1, 12, OD, OF, bullGamma);
   }
 
   execute() {
-    if (this.OF > 7) {
-      throw "incorrect instruction for TO = 1, AD = C: got OF = " + OF;
-    }
-    this.bullGamma.setCommutedOctad(this.OF);
+		if (this.OF < 8) {
+			this.bullGamma.setCommutedOctad(this.OF);
+			return;
+		}
+		throw Error("Cannot execute invalid instruction");
   }
 
 	getDescription() {
-		return "CO - Commutation d'Octade\n"
-		+ "Selectionne l'octade commutée " + this.OF;
+		if (this.OF < 8) {
+			return "Selectionne l'octade commutée " + this.OF;
+		}
+		throw Error("Cannot describe invalid instruction");
 	}
+
+	getShortType() {
+		return "CO";
+	}
+
+	getLongType() {
+		return "Commutation d'Octade";
+	}
+
 }
 
 module.exports.CO = CO;

@@ -17,15 +17,15 @@ export class EditorService {
 		this.connectionsTable = new ConnectionsTable(this.bull.bullgamma);
 	}
 
-	editConnexionArray(hexCode: string) {
+	editConnexionArray(hexCode: string): void {
 		this.editor.editConnexionArray(hexCode);
 	}
 
-	editDrum(hexCode: string) {
+	editDrum(hexCode: string): void {
 		this.editor.editDrum(hexCode);
 	}
 
-	getConnectionsTable() {
+	getConnectionsTable(): ConnectionsTable {
 		return this.connectionsTable;
 	}
 

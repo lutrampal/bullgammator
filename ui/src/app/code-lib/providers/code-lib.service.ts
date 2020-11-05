@@ -20,15 +20,15 @@ export class CodeLibService {
 		this.lib = new CodeLibrary();
 	}
 
-	getProgramsNames() {
+	getProgramsNames(): string[] {
 		return this.lib.getProgramsNames();
 	}
 
-	getProgram(name: string, attribute: string) {
+	getProgram(name: string, attribute: string): string {
 		return this.lib.getProgram(name, attribute);
 	}
 
-	loadProgram(name: string) {
+	loadProgram(name: string): void {
 		this.edit.editConnexionArray(
 			this.lib.getProgram(name, "series3")
 		);
@@ -43,7 +43,7 @@ export class CodeLibService {
 		this.exec.exec.console.push('Programme "' + this.displayName(name) + '" chargé');
 	}
 
-	displayName(name: string) {
+	displayName(name: string): string {
 		return this.lib.getDisplayName(name);
 	}
 

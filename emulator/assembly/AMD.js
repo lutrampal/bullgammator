@@ -5,7 +5,7 @@ Instruction = require("./instruction").Instruction
  */
 class AMD extends Instruction {
   constructor(OD, OF, bullGamma) {
-    super(7, 0, OD, OF, bullGamma)
+    super(7, 0, OD, OF, bullGamma);
   }
 
   execute() {
@@ -13,9 +13,17 @@ class AMD extends Instruction {
   }
 
 	getDescription() {
-		return "AMD - Alteration de la Mémoire de Décalage\n"
-		+ "Met la mémoire de décalage à " + this.OF;
+		return "Met la mémoire de décalage à " + this.OF;
 	}
+
+	getShortType() {
+		return "AMD";
+	}
+
+	getLongType() {
+		return "Alteration de la Mémoire de Décalage";
+	}
+
 }
 
 module.exports.AMD = AMD;
