@@ -3,7 +3,7 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": ["./assembly", "./control", "./machine"],
+    "include": ["./assembly", "./control", "./machine", "./tools"],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "docs"
   },
