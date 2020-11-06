@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -- testing/**/*.js",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "doc": "jsdoc -c jsdoc_conf.json"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/lutrampal/bullgammator#readme",
   "dependencies": {},
   "devDependencies": {
+    "jsdoc": "^3.6.6",
     "mocha": "^8.2.0",
     "nyc": "^15.1.0"
   },

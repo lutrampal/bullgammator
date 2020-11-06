@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: BullGamma</title>
+    <title>JSDoc: Class: ConnectionsTable</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: BullGamma</h1>
+    <h1 class="page-title">Class: ConnectionsTable</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>BullGamma<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ConnectionsTable<span class="signature">(bullGamma)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Central class meant to represent the whole machine</div>
+            <div class="class-description">A connection table was used to define the code in series 3 using voltages and wires</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="BullGamma"><span class="type-signature"></span>new BullGamma<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ConnectionsTable"><span class="type-signature"></span>new ConnectionsTable<span class="signature">(bullGamma)</span><span class="type-signature"></span></h4>
     
 
     
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Constructs a new instance of BullGamma
+    Constructs a new instance of ConnectionsTable
 </div>
 
 
@@ -62,6 +62,50 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bullGamma</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the machine to which this drum is attached</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -97,7 +141,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line26">line 26</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -153,7 +197,7 @@
     
 
     
-    <h4 class="name" id="executeNextInstruction"><span class="type-signature"></span>executeNextInstruction<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="_getConnections"><span class="type-signature"></span>_getConnections<span class="signature">(startIndex, stopIndex, step)</span><span class="type-signature"></span></h4>
     
 
     
@@ -161,7 +205,177 @@
 
 
 <div class="description">
-    Executes the coming instruction if the current Series
+    Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+The parameters give the instructions to be considered
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>startIndex</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the first instruction</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stopIndex</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the last instruction (excluded)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>step</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The step to skip some indices</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getConnectionsBottomLeft"><span class="type-signature"></span>getConnectionsBottomLeft<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+The instructions considered are only the ones on the bottom left of the table
 </div>
 
 
@@ -205,285 +419,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line155">line 155</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getGroup"><span class="type-signature"></span>getGroup<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Given an ID, return the corresponding group
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the group to return, should be between 0 and 3 included</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line82">line 82</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getMemory"><span class="type-signature"></span>getMemory<span class="signature">(id, octadId)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the memory to be returned, if superior to 7, then the memory is selected from the octad</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>octadId</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">if given, the memory will be selected from this octad, else from the current octad</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line110">line 110</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -512,22 +448,10 @@
 
         
 <div class="param-desc">
-    the memory with the desired id
+    An array of arrays
 </div>
 
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
 
     
 
@@ -541,12 +465,17 @@
     
 
     
-    <h4 class="name" id="getMemoryMode"><span class="type-signature"></span>getMemoryMode<span class="signature">()</span><span class="type-signature"> &rarr; {*}</span></h4>
+    <h4 class="name" id="getConnectionsBottomRight"><span class="type-signature"></span>getConnectionsBottomRight<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+The instructions considered are only the ones on the bottom right of the table
+</div>
 
 
 
@@ -589,7 +518,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line131">line 131</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -618,22 +547,10 @@
 
         
 <div class="param-desc">
-    the current memory mode for the machine, either MEMORY_MODE.BINARY or MEMORY_MODE.DECIMAL
+    An array of arrays
 </div>
 
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
 
     
 
@@ -647,7 +564,7 @@
     
 
     
-    <h4 class="name" id="getOctad"><span class="type-signature"></span>getOctad<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getConnectionsTopLeft"><span class="type-signature"></span>getConnectionsTopLeft<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -655,271 +572,8 @@
 
 
 <div class="description">
-    Given an ID, return the corresponding octad
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the octad to return, should be between 0 and 7 included</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line91">line 91</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getSerie"><span class="type-signature"></span>getSerie<span class="signature">(id)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Given an ID, return the corresponding serie
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the serie to return, should be between 0 and 3 included</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line73">line 73</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="nextLine"><span class="type-signature"></span>nextLine<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Compute the next line to be executed if no jump
+    Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+The instructions considered are only the ones on the top left of the table
 </div>
 
 
@@ -963,7 +617,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line148">line 148</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -992,7 +646,7 @@
 
         
 <div class="param-desc">
-    next line
+    An array of arrays
 </div>
 
 
@@ -1009,7 +663,7 @@
     
 
     
-    <h4 class="name" id="setCommutedOctad"><span class="type-signature"></span>setCommutedOctad<span class="signature">(id)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getConnectionsTopRight"><span class="type-signature"></span>getConnectionsTopRight<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -1017,7 +671,106 @@
 
 
 <div class="description">
-    Changes the current octad the Bull Gamma is working with
+    Returns the instructions digits that by value and ordered by instruction index and hex digit index.
+The instructions considered are only the ones on the top right of the table
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line115">line 115</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An array of arrays
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setHexValue"><span class="type-signature"></span>setHexValue<span class="signature">(instIndex, hexIndex, hexValue)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Sets a value for the given instruction digit
 </div>
 
 
@@ -1053,7 +806,7 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>instIndex</code></td>
             
 
             <td class="type">
@@ -1064,7 +817,43 @@
 
             
 
-            <td class="description last">id of the desired octad</td>
+            <td class="description last">The instruction index in the connexionArray</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hexIndex</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The index of the hex digit in the instruction (0: OF, 1: OD, 2: AD, 3: TO)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hexValue</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The value of the hex digit in base 10 (from 0 to 15)</td>
         </tr>
 
     
@@ -1105,7 +894,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line101">line 101</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -1141,7 +930,7 @@
     
 
     
-    <h4 class="name" id="setMemoryMode"><span class="type-signature"></span>setMemoryMode<span class="signature">(newMode)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setInstructions"><span class="type-signature"></span>setInstructions<span class="signature">(hexCode)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1149,7 +938,7 @@
 
 
 <div class="description">
-    set the value for the machine's memory mode
+    Set the ConnexionArray's content with hex values
 </div>
 
 
@@ -1185,7 +974,7 @@
 
         <tr>
             
-                <td class="name"><code>newMode</code></td>
+                <td class="name"><code>hexCode</code></td>
             
 
             <td class="type">
@@ -1196,7 +985,7 @@
 
             
 
-            <td class="description last">the new value, either MEMORY_MODE.BINARY or MEMORY_MODE.DECIMAL</td>
+            <td class="description last">a String that represents the new hex values of the array</td>
         </tr>
 
     
@@ -1237,7 +1026,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_bullGamma.js.html">machine/bullGamma.js</a>, <a href="machine_bullGamma.js.html#line139">line 139</a>
+        <a href="machine_connectionsTable_connectionsTable.js.html">machine/connectionsTable/connectionsTable.js</a>, <a href="machine_connectionsTable_connectionsTable.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
