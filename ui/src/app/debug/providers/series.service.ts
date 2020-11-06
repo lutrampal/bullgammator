@@ -7,13 +7,13 @@ import { Instruction } from 'bullgammator';
 @Injectable()
 export class SeriesService {
 
-	exec: Execution;
+  exec: Execution;
 
   constructor(
     private bull: BullgammatorService
   ) {
-		this.exec = new Execution(this.bull.bullgamma);
-	}
+    this.exec = new Execution(this.bull.bullgamma);
+  }
 
   /*
    *  Returns the instructions list for a given series
@@ -29,9 +29,9 @@ export class SeriesService {
     return this.exec.getCurrentLine();
   }
 
-	getSeries(): number {
-		return this.exec.getCurrentSeries();
-	}
+  getSeries(): number {
+    return this.exec.getCurrentSeries();
+  }
 
   getSeriesNumber(): number {
     return this.bull.constants.NB_SERIES;

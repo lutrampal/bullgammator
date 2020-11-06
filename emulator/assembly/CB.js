@@ -13,17 +13,17 @@ class CB extends Instruction {
     this.bullGamma._memoryMode = MEMORY_MODE.BINARY;
   }
 
-	getDescription() {
-		return "Selectionne le mode de calcul binaire";
-	}
+  getDescription() {
+    return "Selectionne le mode de calcul binaire";
+  }
 
-	getShortType() {
-		return "CB";
-	}
+  getShortType() {
+    return "CB";
+  }
 
-	getLongType() {
-		return "Calcul Binaire";
-	}
+  getLongType() {
+    return "Calcul Binaire";
+  }
 
 }
 

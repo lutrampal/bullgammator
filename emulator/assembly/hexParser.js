@@ -39,24 +39,24 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
     case 0:
       return new V(AD, OD, OF, bullGamma)
     case 1:
-      switch (AD) {
-        case 0: case 1: case 2: case 3:
-          return new VCS(AD, OD, OF, bullGamma);
-        case 5: case 6: case 7:
-          return new VRS(AD, OD, OF, bullGamma);
-        case 8: case 9:
-          return new ES(AD, OD, OF, bullGamma);
-        case 10:
-          return new CD(OD, OF, bullGamma);
-        case 12:
-          return new CO(OD, OF, bullGamma);
-        case 13:
-          return new CSz(OD, OF, bullGamma);
-        case 15:
-          return new CB(OD, OF, bullGamma);
-        default:
-          throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
-      }
+    switch (AD) {
+      case 0: case 1: case 2: case 3:
+        return new VCS(AD, OD, OF, bullGamma);
+      case 5: case 6: case 7:
+        return new VRS(AD, OD, OF, bullGamma);
+      case 8: case 9:
+        return new ES(AD, OD, OF, bullGamma);
+      case 10:
+        return new CD(OD, OF, bullGamma);
+      case 12:
+        return new CO(OD, OF, bullGamma);
+      case 13:
+        return new CSz(OD, OF, bullGamma);
+      case 15:
+        return new CB(OD, OF, bullGamma);
+      default:
+        throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+    }
     case 2:
       if (OF & 0x1) { // OF and 0001 to select last bit
         return new TB(AD, OD, OF, bullGamma)
@@ -69,7 +69,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       return new KB(AD, OD, OF, bullGamma);
     case 5:
       if (AD !== 0) {
-				throw Error("Invalid instruction 5" + Instruction.getChar(AD) + "xx");
+        throw Error("Invalid instruction 5" + Instruction.getChar(AD) + "xx");
       }
       return new GG(OD, OF, bullGamma);
     case 6:
@@ -84,7 +84,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 12:
           return new IL(AD, OD, OF, bullGamma);
         default:
-					throw Error("Invalid instruction 7" + Instruction.getChar(AD) + "xx");
+          throw Error("Invalid instruction 7" + Instruction.getChar(AD) + "xx");
       }
     case 8:
       return new OB(AD, OD, OF, bullGamma);
@@ -108,18 +108,18 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 }
 
 /**
-* Function that return the hex code without comments, return, tab, spaces
-* @param entry string with comments, hex code, spaces...
-* @returns hex code
-* @throws error in case of incorrect entry
-*/
+ * Function that return the hex code without comments, return, tab, spaces
+ * @param entry string with comments, hex code, spaces...
+ * @returns hex code
+ * @throws error in case of incorrect entry
+ */
 function parse_hex_code(entry) {
-	hexCode = entry.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
-	hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-	if (!/^[0-9a-fA-F]*$/.test(hexCode)){
-		throw Error("Invalid hex code");
-	}
-	return hexCode;
+  hexCode = entry.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
+  hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+  if (!/^[0-9a-fA-F]*$/.test(hexCode)){
+    throw Error("Invalid hex code");
+  }
+  return hexCode;
 }
 
 /**
@@ -129,7 +129,7 @@ function parse_hex_code(entry) {
  * @returns {Array} the array of parsed instructions
  */
 function parse_hex_str_to_instructions(entry, bullGamma) {
-	let hexCode = parse_hex_code(entry);
+  let hexCode = parse_hex_code(entry);
   let instructions = [];
   let i = 1;
   hexCode.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
@@ -151,15 +151,15 @@ class InstructionsParser {
     this.bullGamma = bullGamma;
   }
 
-	/**
-	* Function that return the hex code without comments, return, tab, spaces
-	* @param entry string with comments, hex code, spaces...
-	* @returns hex code
-	* @throws error in case of incorrect entry
-	*/
-	static parseHex(entry) {
-		return parse_hex_code(entry);
-	}
+  /**
+   * Function that return the hex code without comments, return, tab, spaces
+   * @param entry string with comments, hex code, spaces...
+   * @returns hex code
+   * @throws error in case of incorrect entry
+   */
+  static parseHex(entry) {
+    return parse_hex_code(entry);
+  }
 
   /**
    * function that returns a list of instructions from the given code

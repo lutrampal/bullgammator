@@ -1,22 +1,22 @@
 -- * * * Resolution d'une équation du 2nd degré * * *
 
 -- Description
---	Algorithme qui approche les solutions d'une equation du second
---	degre.
---	Généré à partir de decac, compilateur pour le language Deca
+-- 	Algorithme qui approche les solutions d'une equation du second
+-- 	degre.
+-- 	Généré à partir de decac, compilateur pour le language Deca
 
 -- Resultat
---	Stock la ou les racines dans x1 et x2. Si le determinant est negatif,
---	on met les solutions à 0.
+-- 	Stock la ou les racines dans x1 et x2. Si le determinant est negatif,
+-- 	on met les solutions à 0.
 
 -- Code :
 --
 -- {
 -- 	float x1;
---	float x2;
---	float a = -1.2646485231;
---	float b = -2.8955232;
---	float c = 5.4584531;
+-- 	float x2;
+-- 	float a = -1.2646485231;
+-- 	float b = -2.8955232;
+-- 	float c = 5.4584531;
 --
 -- 	// Calcul de la racine
 -- 	float determinantAuCarre = b*b - 4.0*a*c;

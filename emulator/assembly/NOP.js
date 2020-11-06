@@ -9,20 +9,20 @@ class NOP extends V {
   }
 
   execute() {
-		// do nothing
+    // do nothing
   }
 
-	getDescription() {
-		return "Ne fait rien";
-	}
+  getDescription() {
+    return "Ne fait rien";
+  }
 
-	getShortType() {
-		return "V";
-	}
+  getShortType() {
+    return "V";
+  }
 
-	getLongType() {
-		return "Variante";
-	}
+  getLongType() {
+    return "Variante";
+  }
 }
 
 module.exports.NOP = NOP;

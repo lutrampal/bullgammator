@@ -3,11 +3,11 @@
     <h4 matTooltip="{{ getDescription() }}">Controle</h4>
     <div class="columns monospace">
       <div class="control">
-				<span>
-					<label>NL</label>
-					<input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
-					<input *ngIf="edit" matInput placeholder="NL" [formControl]="nlCtrl">
-				</span>
+        <span>
+          <label>NL</label>
+          <input *ngIf="!edit" matInput placeholder="NL" [value]="getNL()" disabled>
+          <input *ngIf="edit" matInput placeholder="NL" [formControl]="nlCtrl">
+        </span>
         <span>
           <label>MS1</label>
           <input *ngIf="!edit" matInput placeholder="MS1" [value]="getMS1()" disabled>

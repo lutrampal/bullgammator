@@ -15,78 +15,78 @@ const HEX_VALUES = Array.from(Array(16).keys());
   styleUrls: ['./instructions-help.component.css']
 })
 export class InstructionsHelpComponent implements OnInit, OnDestroy {
-	private unsubscribe: Subject<void> = new Subject();
+  private unsubscribe: Subject<void> = new Subject();
 
-	public instructions: Instruction[][];
-	public control: FormControl;
-	public operationType: number = 10;
-	public selectedAddr: number = 0;
-	public instructionError: {[TO: number]: {[AD: number]: boolean}};
+  public instructions: Instruction[][];
+  public control: FormControl;
+  public operationType: number = 10;
+  public selectedAddr: number = 0;
+  public instructionError: {[TO: number]: {[AD: number]: boolean}};
 
-	@Input()
-	set inst(inst: string) {
-		if (inst && inst.length == 4) {
-			inst = inst.toUpperCase();
-			this.operationType = parseInt(inst[0], 16);
-			this.selectedAddr = parseInt(inst[1], 16);
-			this.control.setValue(inst[2] + inst[3]);
-		}
-	}
-
-  constructor(
-		private bull: BullgammatorService
-	) { }
-
-  ngOnInit(): void {
-		this.instructions = this.getInstructions(0, 0);
-		this.control = new FormControl(null, [Validators.pattern('[0-9A-F]{2}'), Validators.required, Validators.minLength(2)]);
-		this.control.valueChanges.pipe(
-			takeUntil(this.unsubscribe)
-		).subscribe(value => {
-			if (this.control.valid) {
-				this.instructions = this.getInstructions(parseInt(value[0], 16), parseInt(value[1], 16));
-			}
-		});
+  @Input()
+  set inst(inst: string) {
+    if (inst && inst.length == 4) {
+      inst = inst.toUpperCase();
+      this.operationType = parseInt(inst[0], 16);
+      this.selectedAddr = parseInt(inst[1], 16);
+      this.control.setValue(inst[2] + inst[3]);
+    }
   }
 
-	ngOnDestroy(): void {
-		this.unsubscribe.next();
-		this.unsubscribe.complete();
-	}
+  constructor(
+    private bull: BullgammatorService
+  ) { }
 
-	getInstructionAddress(inst): string {
-		// return inst.toLineString();
-		return inst.TO.toString(16).toUpperCase() + inst.AD.toString(16).toUpperCase();
-	}
+  ngOnInit(): void {
+    this.instructions = this.getInstructions(0, 0);
+    this.control = new FormControl(null, [Validators.pattern('[0-9A-F]{2}'), Validators.required, Validators.minLength(2)]);
+    this.control.valueChanges.pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(value => {
+      if (this.control.valid) {
+        this.instructions = this.getInstructions(parseInt(value[0], 16), parseInt(value[1], 16));
+      }
+    });
+  }
 
-	getDescription(inst): string {
-		return inst.getShortType() + " - " + inst.getLongType() + " -- " + inst.getDescription();
-	}
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
 
-	getInstructions(OD, OF): Instruction[][] {
-		let instructions = []
-		this.instructionError = {};
+  getInstructionAddress(inst): string {
+    // return inst.toLineString();
+    return inst.TO.toString(16).toUpperCase() + inst.AD.toString(16).toUpperCase();
+  }
 
-		for (let TO of HEX_VALUES) {
-			instructions.push([]);
-			this.instructionError[TO] = {};
-			for (let AD of HEX_VALUES) {
-				this.instructionError[TO][AD] = false;
-				try {
-					let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
-					instructions[TO].push(inst);
-				} catch (error) {
-					try {
-						this.instructionError[TO][AD] = true;
-						let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
-						instructions[TO].push(inst);
-					} catch (error) {
-						// do nothing
-					}
-				}
-			}
-		}
-		return instructions;
-	}
+  getDescription(inst): string {
+    return inst.getShortType() + " - " + inst.getLongType() + " -- " + inst.getDescription();
+  }
+
+  getInstructions(OD, OF): Instruction[][] {
+    let instructions = []
+    this.instructionError = {};
+
+    for (let TO of HEX_VALUES) {
+      instructions.push([]);
+      this.instructionError[TO] = {};
+      for (let AD of HEX_VALUES) {
+        this.instructionError[TO][AD] = false;
+        try {
+          let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
+          instructions[TO].push(inst);
+        } catch (error) {
+          try {
+            this.instructionError[TO][AD] = true;
+            let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
+            instructions[TO].push(inst);
+          } catch (error) {
+            // do nothing
+          }
+        }
+      }
+    }
+    return instructions;
+  }
 
 }

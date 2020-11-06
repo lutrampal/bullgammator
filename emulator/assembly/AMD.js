@@ -12,17 +12,17 @@ class AMD extends Instruction {
     this.bullGamma.md = this.OF;
   }
 
-	getDescription() {
-		return "Met la mémoire de décalage à " + this.OF;
-	}
+  getDescription() {
+    return "Met la mémoire de décalage à " + this.OF;
+  }
 
-	getShortType() {
-		return "AMD";
-	}
+  getShortType() {
+    return "AMD";
+  }
 
-	getLongType() {
-		return "Alteration de la Mémoire de Décalage";
-	}
+  getLongType() {
+    return "Alteration de la Mémoire de Décalage";
+  }
 
 }
 

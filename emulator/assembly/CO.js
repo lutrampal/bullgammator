@@ -12,27 +12,27 @@ class CO extends Instruction {
   }
 
   execute() {
-		if (this.OF < 8) {
-			this.bullGamma.setCommutedOctad(this.OF);
-			return;
-		}
-		throw Error("Cannot execute invalid instruction");
+    if (this.OF < 8) {
+      this.bullGamma.setCommutedOctad(this.OF);
+      return;
+    }
+    throw Error("Cannot execute invalid instruction");
   }
 
-	getDescription() {
-		if (this.OF < 8) {
-			return "Selectionne l'octade commutée " + this.OF;
-		}
-		throw Error("Cannot describe invalid instruction");
-	}
+  getDescription() {
+    if (this.OF < 8) {
+      return "Selectionne l'octade commutée " + this.OF;
+    }
+    throw Error("Cannot describe invalid instruction");
+  }
 
-	getShortType() {
-		return "CO";
-	}
+  getShortType() {
+    return "CO";
+  }
 
-	getLongType() {
-		return "Commutation d'Octade";
-	}
+  getLongType() {
+    return "Commutation d'Octade";
+  }
 
 }
 

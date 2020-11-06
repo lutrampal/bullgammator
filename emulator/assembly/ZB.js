@@ -5,35 +5,35 @@ Operation = require("./operation").Operation
  */
 class ZB extends Operation {
   constructor(AD, OD, OF, bullGamma) {
-		if (AD == 0) {
-			throw Error("Invalid instruction 30xx");
-		}
+    if (AD == 0) {
+      throw Error("Invalid instruction 30xx");
+    }
     super(3, AD, OD, OF, bullGamma);
   }
 
   execute() {
     if (this.AD != 0) {
-			this.bullGamma.getMemory(this.AD).setToZero(this.OD, this.OF);
-			return;
+      this.bullGamma.getMemory(this.AD).setToZero(this.OD, this.OF);
+      return;
     }
-		throw Error("Cannot execute invalid instruction");
+    throw Error("Cannot execute invalid instruction");
   }
 
-	getDescription() {
+  getDescription() {
     if (this.AD != 0) {
-			return "Met à zéro M" + this.AD + " entre les positions "
-			+ this.OD + " et " + this.OF;
+      return "Met à zéro M" + this.AD + " entre les positions "
+      + this.OD + " et " + this.OF;
     }
-		throw Error("Cannot describe invalid instruction");
-	}
+    throw Error("Cannot describe invalid instruction");
+  }
 
-	getShortType() {
-		return "ZB";
-	}
+  getShortType() {
+    return "ZB";
+  }
 
-	getLongType() {
-		return "Mise à Zéro de mémoire Banale";
-	}
+  getLongType() {
+    return "Mise à Zéro de mémoire Banale";
+  }
 
 }
 

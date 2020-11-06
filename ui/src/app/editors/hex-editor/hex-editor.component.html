@@ -1,38 +1,38 @@
 <app-help>
-	L’éditeur de code va charger dans le Gamma ET le code à exécuter.<br>
-	Un premier onglet permet l’édition du tableau de connexions (série 3) et un deuxième l’édition du tambour. Lors de la validation (bouton "Charger le code"), le texte source est analysé :
-	les commentaires, les espaces, les retours et tabulations sont retirés. Puis, s’il n’y a aucune erreur, le code est écrit dans la mémoire correspondante ("série 3" ou "tambour").<br>
-	<br>
-	Le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg" target="_blank">jeu d'instructions</a> s'avère être indispensable pour programmer le Gamma 3.
-	De la documentation complémentaire est disponible <a href="https://www.aconit.org/histoire/Gamma-3/Articles/" target="_blank">ici</a>, notamment le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf" target="_blank">polycopié du cours de Louis Bolliet</a>.
+  L’éditeur de code va charger dans le Gamma ET le code à exécuter.<br>
+  Un premier onglet permet l’édition du tableau de connexions (série 3) et un deuxième l’édition du tambour. Lors de la validation (bouton "Charger le code"), le texte source est analysé :
+  les commentaires, les espaces, les retours et tabulations sont retirés. Puis, s’il n’y a aucune erreur, le code est écrit dans la mémoire correspondante ("série 3" ou "tambour").<br>
+  <br>
+  Le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/tableau-de-code.jpg" target="_blank">jeu d'instructions</a> s'avère être indispensable pour programmer le Gamma 3.
+  De la documentation complémentaire est disponible <a href="https://www.aconit.org/histoire/Gamma-3/Articles/" target="_blank">ici</a>, notamment le <a href="https://www.aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf" target="_blank">polycopié du cours de Louis Bolliet</a>.
 </app-help>
 <div>
-	<mat-tab-group>
-		<mat-tab label="Tableau de connexions">
-		  <form [formGroup]="series3HexCtrl">
+  <mat-tab-group>
+    <mat-tab label="Tableau de connexions">
+      <form [formGroup]="series3HexCtrl">
 
-		    <span *ngIf="series3HexError" class="error">{{ series3HexError }}</span>
+        <span *ngIf="series3HexError" class="error">{{ series3HexError }}</span>
 
-		    <div class="tab">
-		      <mat-form-field>
-		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
-		      </mat-form-field>
-		    </div>
-		    <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code sur le tableau de connexions</button>
-		  </form>
-		</mat-tab>
-		<mat-tab label="Tambour">
-		  <form [formGroup]="magDrumHexCtrl">
+        <div class="tab">
+          <mat-form-field>
+            <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
+          </mat-form-field>
+        </div>
+        <button (click)="validateSeries3Hex()" [disabled]="series3HexCtrl.invalid" color="primary" mat-raised-button>Charger le code sur le tableau de connexions</button>
+      </form>
+    </mat-tab>
+    <mat-tab label="Tambour">
+      <form [formGroup]="magDrumHexCtrl">
 
-		    <span *ngIf="magDrumHexError" class="error">{{ magDrumHexError }}</span>
+        <span *ngIf="magDrumHexError" class="error">{{ magDrumHexError }}</span>
 
-		    <div class="tab">
-		      <mat-form-field>
-		        <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
-		      </mat-form-field>
-		    </div>
-		    <button (click)="validateDrumHex()" [disabled]="magDrumHexCtrl.invalid" color="primary" mat-raised-button>Charger le code dans le tambour</button>
-		  </form>
-		</mat-tab>
-	</mat-tab-group>
+        <div class="tab">
+          <mat-form-field>
+            <textarea matInput placeholder="Code Hexa" formControlName="hex_entry" class=monospace></textarea>
+          </mat-form-field>
+        </div>
+        <button (click)="validateDrumHex()" [disabled]="magDrumHexCtrl.invalid" color="primary" mat-raised-button>Charger le code dans le tambour</button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
 </div>

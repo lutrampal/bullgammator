@@ -116,12 +116,12 @@ export class MemoriesService {
   setOctad(value: string): void {
     this.debug.setOctad(value);
   }
-	octadValidator(control: FormControl): object {
+  octadValidator(control: FormControl): object {
     if (!Debug.octadValidate(control.value)) {
       return { error: true };
     }
     return null;
-	}
+  }
 
   getTrackGr(): string {
     return this.debug.getTrackGr();
@@ -129,11 +129,11 @@ export class MemoriesService {
   setTrackGr(value: string): void {
     this.debug.setTrackGr(value);
   }
-	trackGrValidator(control: FormControl): object {
+  trackGrValidator(control: FormControl): object {
     if (!Debug.trackGrValidate(control.value)) {
       return { error: true };
     }
     return null;
-	}
+  }
 
 }

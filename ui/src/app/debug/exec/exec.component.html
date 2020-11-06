@@ -1,20 +1,20 @@
 <div class="main">
   <h4 matTooltip="{{ getDescription() }}">Execution</h4>
   <span *ngIf="error" class="error">{{ error }}</span>
-	<div class="console monospace">
-		<div>
-			<div *ngFor="let line of getConsoleLines()">{{ line }}</div>
-		</div>
-	</div>
-	<div>
-	  <button mat-raised-button
-			color="primary" matTooltip="Executer la prochaine instruction"
-			(click)="executeNextInstruction()"
-		>Titiller</button>
-	  <button mat-raised-button
-			color="primary"
-			matTooltip="Executer des instructions jusqu'à rencontrer un point d'arrêt"
-			(click)="execUntilBreakPoint()"
-		>Continuer</button>
-	</div>
+  <div class="console monospace">
+    <div>
+      <div *ngFor="let line of getConsoleLines()">{{ line }}</div>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button
+      color="primary" matTooltip="Executer la prochaine instruction"
+      (click)="executeNextInstruction()"
+    >Titiller</button>
+    <button mat-raised-button
+      color="primary"
+      matTooltip="Executer des instructions jusqu'à rencontrer un point d'arrêt"
+      (click)="execUntilBreakPoint()"
+    >Continuer</button>
+  </div>
 </div>

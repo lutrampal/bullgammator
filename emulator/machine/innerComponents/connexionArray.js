@@ -15,10 +15,10 @@ class ConnexionArray extends Serie {
    * @param bullGamma the bull gamma to which this array is connected
    */
   constructor(id, bullGamma) {
-    super(id, bullGamma)
+    super(id, bullGamma);
     this.maxNbInst = NB_INST_CONNEXION_ARRAY;
-		this.instructions = [];
-		this.completeInstructions();
+    this.instructions = [];
+    this.completeInstructions();
   }
 
   /**
@@ -31,18 +31,18 @@ class ConnexionArray extends Serie {
       throw "instructions number should not be greater than " + NB_INST_CONNEXION_ARRAY;
     }
     this.instructions = instructions;
-		this.completeInstructions();
+    this.completeInstructions();
   }
 
   /**
    * fills up the empty instructions slots with NOP instructions
    */
-	completeInstructions() {
-		for (let i=this.instructions.length; i<this.maxNbInst; i++) {
-			this.instructions.push(new NOP(this.bullGamma));
-		}
-		this.nbInst = this.instructions.length
-	}
+  completeInstructions() {
+    for (let i=this.instructions.length; i<this.maxNbInst; i++) {
+      this.instructions.push(new NOP(this.bullGamma));
+    }
+    this.nbInst = this.instructions.length;
+  }
 
   /**
    * @param line the position of the desired instructions
@@ -58,6 +58,7 @@ class ConnexionArray extends Serie {
   getInstructions() {
     return this.instructions;
   }
+
 }
 
 module.exports.ConnexionArray = ConnexionArray

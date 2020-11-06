@@ -132,8 +132,10 @@ class Debug {
    * @return string
    */
   getNL() {
-    return Debug.pad(Debug.hex((this.bullGamma.ns << 6) + this.bullGamma.nl),
-			NB_CHRS_PROGRAM_COUNTER);
+    return Debug.pad(
+      Debug.hex((this.bullGamma.ns << 6) + this.bullGamma.nl),
+      NB_CHRS_PROGRAM_COUNTER
+    );
   }
 
   /**
@@ -146,7 +148,7 @@ class Debug {
       return;
     }
     this.bullGamma.nl = Debug.reverseHex(value) % 64;
-		this.bullGamma.ns = Debug.reverseHex(value) >> 6;
+    this.bullGamma.ns = Debug.reverseHex(value) >> 6;
   }
 
   /**
@@ -263,11 +265,11 @@ class Debug {
     return value.match(/^(=|<|>)$/);
   }
 
- /**
-  * Return a 2 characters string of the program line number
-  * that was memorised in RNL1
-  * @return string
-  */
+  /**
+   * Return a 2 characters string of the program line number
+   * that was memorised in RNL1
+   * @return string
+   */
   getRNL1() {
     return Debug.pad(Debug.hex(this.bullGamma.rnl1), NB_CHRS_PROGRAM_COUNTER);
   }
@@ -310,7 +312,7 @@ class Debug {
    * @return string
    */
   getOctad() {
-		return Debug.hex(this.bullGamma.currentOctad.id);
+    return Debug.hex(this.bullGamma.currentOctad.id);
   }
 
   /**
@@ -321,7 +323,7 @@ class Debug {
     if (!Debug.octadValidate(value)) {
       return;
     }
-		this.bullGamma.setCommutedOctad(Debug.reverseHex(value));
+    this.bullGamma.setCommutedOctad(Debug.reverseHex(value));
   }
 
   /**
@@ -330,7 +332,7 @@ class Debug {
    * @return boolean
    */
   static octadValidate(value) {
-		return value.match(/^[0-7]$/);
+    return value.match(/^[0-7]$/);
   }
 
   /**
@@ -338,7 +340,7 @@ class Debug {
    * @return string
    */
   getTrackGr() {
-		return Debug.hex(this.bullGamma.magneticDrum.commutedTrackGroup.id);
+    return Debug.hex(this.bullGamma.magneticDrum.commutedTrackGroup.id);
   }
 
   /**
@@ -349,7 +351,7 @@ class Debug {
     if (!Debug.trackGrValidate(value)) {
       return;
     }
-		this.bullGamma.magneticDrum.setCommutedGroup(Debug.reverseHex(value));
+    this.bullGamma.magneticDrum.setCommutedGroup(Debug.reverseHex(value));
   }
 
   /**
@@ -358,8 +360,9 @@ class Debug {
    * @return boolean
    */
   static trackGrValidate(value) {
-		return value.match(/^[0-7]$/);
+    return value.match(/^[0-7]$/);
   }
+
 }
 
 exports.Debug = Debug;

@@ -25,9 +25,9 @@ class BigDivOrMult extends Operation {
   }
 
   execute() {
-		if (this.AD == 1 || this.AD == 2) {
-			throw Error("Cannot execute invalid instruction");
-		}
+    if (this.AD == 1 || this.AD == 2) {
+      throw Error("Cannot execute invalid instruction");
+    }
 
     let m1m2 = new Memory(0, this.bullGamma, NB_CHRS_PER_WORD*2);
     let m1 = this.bullGamma.getMemory(1);
@@ -41,9 +41,9 @@ class BigDivOrMult extends Operation {
       this.bullGamma.md = 12;
     }
 
-		if (this.AD == 0) {
-			this._computeValue(m1m2);
-		}
+    if (this.AD == 0) {
+      this._computeValue(m1m2);
+    }
     if (this.AD > 2) {
       let mb = this.bullGamma.getMemory(this.AD);
       this._compute(m1m2, mb);

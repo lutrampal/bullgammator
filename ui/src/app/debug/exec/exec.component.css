@@ -11,12 +11,12 @@ button {
 }
 
 .console {
-	text-align: left;
+  text-align: left;
   background: #101010;
   padding: 12px;
   margin: 8px;
-	max-height: 12vh;
-	height: 12vh;
-	color: #EFEFEF;
-	overflow: scroll;
+  max-height: 12vh;
+  height: 12vh;
+  color: #EFEFEF;
+  overflow: scroll;
 }

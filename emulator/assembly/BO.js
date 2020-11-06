@@ -42,38 +42,38 @@ class BO extends Operation {
         let mb = this.bullGamma.getMemory(this.AD);
         m1.copyBlockValues(mb, this.OD, this.OF);
         if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
-				 	if (this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
-	          this.bullGamma.ms1 = 10;
-	          m1.blocks[this.OF - 1] = 0;
-					}
+          if (this.AD !== 1 && mb.blocks[this.OF - 1] === 10) {
+            this.bullGamma.ms1 = 10;
+            m1.blocks[this.OF - 1] = 0;
+          }
         }
         break;
 
     }
   }
 
-	getDescription() {
-		switch (this.AD) {
-			case 1:
-				return "Efface M1 à l'extérieur des positions " + this.OD + " et " + this.OF
-				+ ", la mémoire de décalage prend la valeur " + this.OD;
-			case 0:
-				return "Efface M1 puis met " + this.OF + " en position " + this.OD
-				+ ", la mémoire de décalage prend la valeur " + this.OD;
-			default:
-				return "Efface M1 puis met M" + this.AD
-				+ " entre les positions " + this.OD + " et " + this.OF + " en M1"
-				+ ", la mémoire de décalage prend la valeur " + this.OD;
-		}
-	}
+  getDescription() {
+    switch (this.AD) {
+      case 1:
+        return "Efface M1 à l'extérieur des positions " + this.OD + " et " + this.OF
+        + ", la mémoire de décalage prend la valeur " + this.OD;
+      case 0:
+        return "Efface M1 puis met " + this.OF + " en position " + this.OD
+        + ", la mémoire de décalage prend la valeur " + this.OD;
+      default:
+        return "Efface M1 puis met M" + this.AD
+        + " entre les positions " + this.OD + " et " + this.OF + " en M1"
+        + ", la mémoire de décalage prend la valeur " + this.OD;
+    }
+  }
 
-	getShortType() {
-		return "BO";
-	}
+  getShortType() {
+    return "BO";
+  }
 
-	getLongType() {
-		return "Transfert de mémoire Banale en mémoire Opérative";
-	}
+  getLongType() {
+    return "Transfert de mémoire Banale en mémoire Opérative";
+  }
 
 }
 

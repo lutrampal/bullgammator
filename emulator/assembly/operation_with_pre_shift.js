@@ -4,7 +4,6 @@ Operation = require("./operation").Operation
  * Abstract class for instructions with pre-shift
  */
 class OperationWithPreShift extends Operation {
-
   execute() {
     if (this.AD !== 0) {
       if (this.bullGamma.md - this.OD > 0){

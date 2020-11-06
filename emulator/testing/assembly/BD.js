@@ -11,7 +11,7 @@ describe('BD', function() {
       let bullGamma = new BullGamma();
       let m2 = bullGamma.getMemory(2);
       let bd = new BD(2, 0, bullGamma);
-      m2.blocks[2] = 15
+      m2.blocks[2] = 15;
       bd.execute();
       assert.equal(bullGamma.md, 15);
     });

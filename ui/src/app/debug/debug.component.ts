@@ -9,18 +9,18 @@ import { FormControl } from '@angular/forms';
 export class DebugComponent implements OnInit {
 
   breakpoints: FormControl[];
-	update: boolean;
+  update: boolean;
 
-	@Output()
-	inst_emit = new EventEmitter<string>();
+  @Output()
+  inst_emit = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-	openInstruction(inst: string): void {
-		this.inst_emit.emit(inst);
-	}
+  openInstruction(inst: string): void {
+    this.inst_emit.emit(inst);
+  }
 
 }

@@ -18,6 +18,6 @@ describe('AMD', function() {
       let bullGamma =  new BullGamma();
       let instr = new AMD(4, 5, 7, bullGamma);
       console.debug(instr.getDescription());
-    })
-  })
+    });
+  });
 });

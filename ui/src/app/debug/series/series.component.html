@@ -12,18 +12,18 @@
       </div>
     </div>
 
-		<div *ngFor="let seriesIndex of series.getSeriesList()" class="lines">
-			<ng-container *ngIf="seriesIndex==seriesId">
-	      <div *ngFor="let columnIndex of [0, 1]" class="column">
-					<div *ngFor="let inst of getInstructions(seriesIndex, columnIndex); index as i">
-						<input *ngIf="!isProgramLine(seriesIndex, columnIndex, i)" type="checkbox" (change)="emitBreakpoints()" [formControl]="getControl(seriesIndex, columnIndex, i)">
-						<label *ngIf="isProgramLine(seriesIndex, columnIndex, i)" class="checkpoint">➤</label>
-						<span (click)="openInstruction(inst)" class="click">
-							<label class="label monospace">{{ getLineNumber(seriesIndex, columnIndex, i) }} : </label>
-							<label class="hex monospace">{{ getInstructionText(inst) }}</label>
-						</span>
-					</div>
-				</div>
-			</ng-container>
+    <div *ngFor="let seriesIndex of series.getSeriesList()" class="lines">
+      <ng-container *ngIf="seriesIndex==seriesId">
+        <div *ngFor="let columnIndex of [0, 1]" class="column">
+          <div *ngFor="let inst of getInstructions(seriesIndex, columnIndex); index as i">
+            <input *ngIf="!isProgramLine(seriesIndex, columnIndex, i)" type="checkbox" (change)="emitBreakpoints()" [formControl]="getControl(seriesIndex, columnIndex, i)">
+            <label *ngIf="isProgramLine(seriesIndex, columnIndex, i)" class="checkpoint">➤</label>
+            <span (click)="openInstruction(inst)" class="click">
+              <label class="label monospace">{{ getLineNumber(seriesIndex, columnIndex, i) }} : </label>
+              <label class="hex monospace">{{ getInstructionText(inst) }}</label>
+            </span>
+          </div>
+        </div>
+      </ng-container>
     </div>
 </div>

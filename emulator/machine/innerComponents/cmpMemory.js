@@ -41,7 +41,6 @@ class CmpMemory {
   }
 
   /**
-   *
    * @returns {boolean} true if the memory is set to greater or equal
    */
   isGreaterOrEqual() {
@@ -49,7 +48,6 @@ class CmpMemory {
   }
 
   /**
-   *
    * @returns {boolean} true if the memory is not set to equal
    */
   isNotEqual() {

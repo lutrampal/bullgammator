@@ -18,12 +18,12 @@ class Serie {
    * @param group the group encapsulated in the Series
    */
   constructor(id, bullGamma, group) {
-    assert(id >= 0, "id should not be negative")
-    assert(bullGamma, "bullGamma should neither be null nor undefined")
+    assert(id >= 0, "id should not be negative");
+    assert(bullGamma, "bullGamma should neither be null nor undefined");
     this.id = id;
     this.bullGamma = bullGamma;
     if (group !== undefined) {
-      this.group = group
+      this.group = group;
     }
     this.nbInst = NB_INST_PER_SERIE;
     this.maxNbInst = NB_INST_PER_SERIE;
@@ -33,7 +33,7 @@ class Serie {
    * Return the instructions list of the series
    */
   getInstruction(line) {
-    assert(this.group, "group attribute is undefined")
+    assert(this.group, "group attribute is undefined");
     assert(line >= 0 && line < this.maxNbInst, true, "invalid instruction index");
     let q = Math.floor(line / NB_INST_PER_MEM);
     let r = line % NB_INST_PER_MEM;
@@ -43,7 +43,7 @@ class Serie {
       return new NOP(this.bullGamma);
     }
 
-    let mem = this.group.octads[Math.floor(q / NB_MEMORIES_PER_OCTAD)].getMemory(q % NB_MEMORIES_PER_OCTAD)
+    let mem = this.group.octads[Math.floor(q / NB_MEMORIES_PER_OCTAD)].getMemory(q % NB_MEMORIES_PER_OCTAD);
     let TO = mem.blocks[4 * r + 3];
     let AD = mem.blocks[4 * r + 2];
     let OD = mem.blocks[4 * r + 1];
@@ -63,12 +63,13 @@ class Serie {
    * @param line programm line of the desired instruction
    */
   getInstructions() {
-    let list = []
+    let list = [];
     for (let i=0; i<this.maxNbInst; i++) {
       list.push(this.getInstruction(i));
     }
     return list;
   }
+
 }
 
 module.exports.Serie = Serie;

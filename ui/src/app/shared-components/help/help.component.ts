@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HelpComponent implements OnInit {
 
-	@Input() public title: string = "Aide";
+  @Input() public title: string = "Aide";
 
   constructor() { }
 

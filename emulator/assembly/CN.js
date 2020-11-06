@@ -10,7 +10,7 @@ class CN extends OperationWithPreShift {
 
   _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1);
-		let base = this.bullGamma.getMemoryMode().base;
+    let base = this.bullGamma.getMemoryMode().base;
     let vm1 = m1.getDecimalValue(0, m1.blocks.length);
     if (this.AD === 0) {
       this.bullGamma.mc.greater = vm1 > this.OF * (base ** this.OD);
@@ -23,25 +23,25 @@ class CN extends OperationWithPreShift {
     }
   }
 
-	getDescription() {
-		if (this.AD == 0) {
-			return "Effectue le décalage de M1 puis compare le contenu de M1 à "
-			+ this.OF + " en position " + this.OD
-			+ ", met le résultat en mémoire de comparaison";
-		} else {
-			return "Effectue le décalage de M1 puis compare le contenu de M1 à celui de M"
-			+ this.AD + " entre les positions " + this.OD + " et " + this.OF
-			+ ", met le résultat en mémoire de comparaison";
-		}
-	}
+  getDescription() {
+    if (this.AD == 0) {
+      return "Effectue le décalage de M1 puis compare le contenu de M1 à "
+      + this.OF + " en position " + this.OD
+      + ", met le résultat en mémoire de comparaison";
+    } else {
+      return "Effectue le décalage de M1 puis compare le contenu de M1 à celui de M"
+      + this.AD + " entre les positions " + this.OD + " et " + this.OF
+      + ", met le résultat en mémoire de comparaison";
+    }
+  }
 
-	getShortType() {
-		return "CN";
-	}
+  getShortType() {
+    return "CN";
+  }
 
-	getLongType() {
-		return "Comparaison";
-	}
+  getLongType() {
+    return "Comparaison";
+  }
 
 }
 

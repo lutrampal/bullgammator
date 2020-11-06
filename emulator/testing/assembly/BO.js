@@ -32,7 +32,7 @@ describe('BO', function() {
     it('should not alter MS1 when transferring M1 to M1', function() {
       let bullGamma =  new BullGamma();
       let m1 = bullGamma.getMemory(1);
-      bullGamma.ms1 = 10
+      bullGamma.ms1 = 10;
       let od = 4, of = 8;
       let bo = new BO(1, od, of, bullGamma);
       for (i = 0; i < NB_CHRS_PER_WORD; ++i) {

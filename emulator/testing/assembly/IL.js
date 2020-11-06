@@ -24,9 +24,9 @@ describe('IL M2', function() {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
       let m2 = bullGamma.getMemory(2);
-			m1vals  = "123456789ABC".split("").map(v => parseInt(v, 16));
-			m2vals  = "987654322222".split("").map(v => parseInt(v, 16));
-			resvals = "103454300220".split("").map(v => parseInt(v, 16));
+      m1vals  = "123456789ABC".split("").map(v => parseInt(v, 16));
+      m2vals  = "987654322222".split("").map(v => parseInt(v, 16));
+      resvals = "103454300220".split("").map(v => parseInt(v, 16));
       for (let i = 0; i < NB_CHRS_PER_WORD; ++i) {
         m1.blocks[i] = m1vals[i];
         m2.blocks[i] = m2vals[i];
@@ -65,8 +65,8 @@ describe('IL OF', function() {
     it('should M1 & M2', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
-			m1vals  = "123456789ABC".split("").map(v => parseInt(v, 16));
-			resvals = "101454501014".split("").map(v => parseInt(v, 16));
+      m1vals  = "123456789ABC".split("").map(v => parseInt(v, 16));
+      resvals = "101454501014".split("").map(v => parseInt(v, 16));
       for (let i = 0; i < NB_CHRS_PER_WORD; ++i) {
         m1.blocks[i] = m1vals[i];
       }

@@ -43,7 +43,7 @@ describe('BO', function() {
       bullGamma.ms1 = 10;
       bullGamma.md = 1;
       ob.execute();
-      assert.equal(m4.blocks[of - 1], 10, "sign was not transferred")
+      assert.equal(m4.blocks[of - 1], 10, "sign was not transferred");
     });
     it('should shift M1 and reset it between OD and OF when AD is 1', function() {
       let bullGamma =  new BullGamma();
@@ -57,10 +57,10 @@ describe('BO', function() {
       bullGamma.md = 3;
       ob.execute();
       for (let i = od; i < of; ++i ) {
-        assert.equal(m1.blocks[i], 0, "M1 was not reset between OD and OF")
+        assert.equal(m1.blocks[i], 0, "M1 was not reset between OD and OF");
       }
       for (let i = of; i < NB_CHRS_PER_WORD; ++i) {
-        assert.equal(m1.blocks[i], val*(i%2), "M1 was not shifted properly")
+        assert.equal(m1.blocks[i], val*(i%2), "M1 was not shifted properly");
       }
     });
     it('should not transfer MS1 if M1[OF - 1] is significant', function() {
@@ -74,7 +74,7 @@ describe('BO', function() {
       }
       bullGamma.ms1 = 10;
       ob.execute();
-      assert.equal(bullGamma.getMemory(4).blocks[of - 1], val, "sign was transferred when it shouldn't have been")
+      assert.equal(bullGamma.getMemory(4).blocks[of - 1], val, "sign was transferred when it shouldn't have been");
     });
     describe('#getDescription()', function () {
       it("should print the instruction's description", function () {

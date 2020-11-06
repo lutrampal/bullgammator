@@ -2,13 +2,13 @@
 
 -- Entrée :
 -- 	M3 : x
---	M4 : 50 (biais de l'exposant)
+-- 	M4 : 50 (biais de l'exposant)
 -- Sortie :
---	M5 : sqrt(x)
+-- 	M5 : sqrt(x)
 -- Format des nombres :
---	idx 0 à 2 <=> exposant biaisé de
---	idx 2 à 11 <=> mantisse
---	idx 11 <=> signe
+-- 	idx 0 à 2 <=> exposant biaisé de
+-- 	idx 2 à 11 <=> mantisse
+-- 	idx 11 <=> signe
 
 -- afficher x
 1C07 -- CO(7)

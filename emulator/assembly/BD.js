@@ -12,17 +12,17 @@ class BD extends Instruction {
     this.bullGamma.md = this.bullGamma.getMemory(2).blocks[this.OD];
   }
 
-	getDescription() {
-		return "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
-	}
+  getDescription() {
+    return "Met la valeur en position " + this.OD + " de M2 en mémoire de décalage";
+  }
 
-	getShortType() {
-		return "BD";
-	}
+  getShortType() {
+    return "BD";
+  }
 
-	getLongType() {
-		return "Transfert de mémoire Banale en mémoire de Décalage";
-	}
+  getLongType() {
+    return "Transfert de mémoire Banale en mémoire de Décalage";
+  }
 
 }
 

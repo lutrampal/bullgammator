@@ -28,9 +28,9 @@ class SmallDivOrMult extends Operation {
   }
 
   execute() {
-		if (this.AD == 1) {
-			throw Error("Cannot execute invalid instruction");
-		}
+    if (this.AD == 1) {
+      throw Error("Cannot execute invalid instruction");
+    }
 
     this.bullGamma.md = this.OD;
     let nb_neg_signs = 0;
@@ -38,9 +38,9 @@ class SmallDivOrMult extends Operation {
       nb_neg_signs++;
     }
 
-		if (this.AD == 0) {
-			this._computeValue();
-		}
+    if (this.AD == 0) {
+      this._computeValue();
+    }
     if (this.AD > 1) {
       let mb = this.bullGamma.getMemory(this.AD);
       if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL && mb.blocks[this.OF - 1] === 10) {

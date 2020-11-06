@@ -13,10 +13,10 @@ export class AppComponent {
   inst: string;
   drum: string;
 
-	@ViewChild(MatSidenav) snav: MatSidenav;
+  @ViewChild(MatSidenav) snav: MatSidenav;
 
-	updateInstruction(inst): void {
-		this.inst = inst;
-		this.snav.open();
-	}
+  updateInstruction(inst): void {
+    this.inst = inst;
+    this.snav.open();
+  }
 }

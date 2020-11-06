@@ -56,7 +56,7 @@ import { HelpComponent } from './shared-components/help/help.component';
     BrowserModule, BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatExpansionModule, MatIconModule, MatTabsModule,
-		MatTooltipModule, MatListModule, MatSnackBarModule, MatSidenavModule, MatToolbarModule
+    MatTooltipModule, MatListModule, MatSnackBarModule, MatSidenavModule, MatToolbarModule
   ],
   providers: [
     MemoriesService, SeriesService, ExecService,

@@ -1,14 +1,14 @@
 <app-help>
-	Choisir un programmme et cliquer sur <mat-icon>play_circle_outline</mat-icon> pour le charger sur la machine.
+  Choisir un programmme et cliquer sur <mat-icon>play_circle_outline</mat-icon> pour le charger sur la machine.
 </app-help>
 
 <span *ngIf="message" class="error">{{ message }}</span>
 
 <div *ngFor="let prog of getProgramsNames()" class="prog">
-	<span>{{ displayName(prog) }}
-		<button mat-icon-button (click)="loadProgram(prog)">
-			<mat-icon>play_circle_outline</mat-icon>
-		</button>
-	</span>
-	<div><small [innerHTML]="description(prog)"></small></div>
+  <span>{{ displayName(prog) }}
+    <button mat-icon-button (click)="loadProgram(prog)">
+      <mat-icon>play_circle_outline</mat-icon>
+    </button>
+  </span>
+  <div><small [innerHTML]="description(prog)"></small></div>
 </div>

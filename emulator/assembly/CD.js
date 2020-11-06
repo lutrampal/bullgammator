@@ -13,17 +13,17 @@ class CD extends Instruction {
     this.bullGamma._memoryMode = MEMORY_MODE.DECIMAL;
   }
 
-	getDescription() {
-		return "Selectionne le mode de calcul décimal";
-	}
+  getDescription() {
+    return "Selectionne le mode de calcul décimal";
+  }
 
-	getShortType() {
-		return "CD";
-	}
+  getShortType() {
+    return "CD";
+  }
 
-	getLongType() {
-		return "Calcul Décimal";
-	}
+  getLongType() {
+    return "Calcul Décimal";
+  }
 
 }
 

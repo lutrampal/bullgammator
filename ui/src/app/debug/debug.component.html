@@ -1,13 +1,13 @@
 <app-help>
-	L’interface d’exécution et de mise au point est découpée en quatre panneaux.<br>
-	<br>
-	Tout d’abord une console (panneau Exécution), qui affiche ce qui est écrit sur la sortie du Gamma 3. Dans la réalité cette sortie allait vers une imprimante. Le bouton "Titiller" (vocabulaire de l’époque) permet de passer à l’instruction suivante tandis que "Continuer" exécute tout le code jusqu’au prochain point d’arrêt.<br>
-	<br>
-	Le panneau Contrôle présente quant à lui le contenu des mémoires internes à la machine. Il est possible de les éditer et de les réinitialiser manuellement.<br>
-	<br>
-	Le panneau Octade montre le contenu des octades ajoutées par l’extension tambour.<br>
-	<br>
-	A droite, le panneau Série affiche le code à exécuter. On obtient un descriptif de chaque instruction dans la barre latéralé en cliquant dessus. On pose des points d’arrêt en cochant les cases avant chaque instruction. Un point d’arrêt inamovible est fixé à la ligne 0. Une petite flèche indique l’instruction en cours. Cette flèche disparait lorsqu’on saute dans une autre série qui n’est pas celle affichée à l'écran(instruction changement de série).
+  L’interface d’exécution et de mise au point est découpée en quatre panneaux.<br>
+  <br>
+  Tout d’abord une console (panneau Exécution), qui affiche ce qui est écrit sur la sortie du Gamma 3. Dans la réalité cette sortie allait vers une imprimante. Le bouton "Titiller" (vocabulaire de l’époque) permet de passer à l’instruction suivante tandis que "Continuer" exécute tout le code jusqu’au prochain point d’arrêt.<br>
+  <br>
+  Le panneau Contrôle présente quant à lui le contenu des mémoires internes à la machine. Il est possible de les éditer et de les réinitialiser manuellement.<br>
+  <br>
+  Le panneau Octade montre le contenu des octades ajoutées par l’extension tambour.<br>
+  <br>
+  A droite, le panneau Série affiche le code à exécuter. On obtient un descriptif de chaque instruction dans la barre latéralé en cliquant dessus. On pose des points d’arrêt en cochant les cases avant chaque instruction. Un point d’arrêt inamovible est fixé à la ligne 0. Une petite flèche indique l’instruction en cours. Cette flèche disparait lorsqu’on saute dans une autre série qui n’est pas celle affichée à l'écran(instruction changement de série).
 </app-help>
 <div class="debug">
   <span class="item1"><app-exec [breakpoints]=breakpoints></app-exec></span>

@@ -20,9 +20,9 @@ class DrumTrackGroup {
    * @param drum the Drum to which this track group belongs
    */
   constructor(id, drum) {
-    this.id = id
-    this.drum = drum
-    this.tracks = new Array(NB_TRACKS_PER_DRUM_TRACK_GROUP)
+    this.id = id;
+    this.drum = drum;
+    this.tracks = new Array(NB_TRACKS_PER_DRUM_TRACK_GROUP);
     for (let i = 0; i < NB_TRACKS_PER_DRUM_TRACK_GROUP; ++i) {
       this.tracks[i] = new DrumTrack(i, this);
     }
@@ -35,21 +35,24 @@ class DrumTrackGroup {
    */
   setContent(hexCode) {
     hexCode = InstructionsParser.parseHex(hexCode);
-    assert(hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,
-      "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK_GROUP)
-		hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_TRACK_GROUP, "0");
+    assert(
+      hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK_GROUP,
+      "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK_GROUP
+    );
+    hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_TRACK_GROUP, "0");
     for (let i = 0; i < NB_TRACKS_PER_DRUM_TRACK_GROUP; ++i) {
-      this.tracks[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_DRUM_TRACK, NB_HEX_VALUES_PER_DRUM_TRACK))
+      this.tracks[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_DRUM_TRACK, NB_HEX_VALUES_PER_DRUM_TRACK));
     }
   }
 
   toString() {
-    let str = ""
+    let str = "";
     this.tracks.forEach(function(track) {
       str += track.toString() + "\n";
-    })
-    return str
+    });
+    return str;
   }
+
 }
 
 module.exports.DrumTrackGroup = DrumTrackGroup;

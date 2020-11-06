@@ -42,35 +42,35 @@ class Instruction {
   /**
    * Abstract method, return the textual description of this instruction
    */
-	getDescription() {
-		throw Error('You have to implement the method getDescription.');
-	}
+  getDescription() {
+    throw Error('You have to implement the method getDescription.');
+  }
 
   /**
    * Abstract method, return the short type name of this instruction
    */
-	getShortType() {
-		throw Error('You have to implement the method getShortType.');
-	}
+  getShortType() {
+    throw Error('You have to implement the method getShortType.');
+  }
 
   /**
    * Abstract method, return the long type name of this instruction
    */
-	getLongType() {
-		throw Error('You have to implement the method getLongType.');
-	}
+  getLongType() {
+    throw Error('You have to implement the method getLongType.');
+  }
 
   toString() {
-    return this.hexString
+    return this.hexString;
   }
 
   toLineString() {
-    return this.hexString + " -- " + this.constructor.name + "\n";
+    return this.hexString + " -- " + this.getShortType();
   }
 
-	static getChar(intValue) {
-		return intValue.toString(16).toUpperCase();
-	}
+  static getChar(intValue) {
+    return intValue.toString(16).toUpperCase();
+  }
 
 }
 

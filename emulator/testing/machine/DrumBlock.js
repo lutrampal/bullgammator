@@ -9,7 +9,7 @@ describe('DrumBlock', function() {
   describe('#toString()', function () {
     it('should print the DrumBlock properly', function () {
       let bullGamma = new BullGamma();
-      console.log(bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].toString())
+      console.log(bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].toString());
     });
     describe("#setContent(hexCode)", function () {
       it("should set the DrumBlock's content", function () {
@@ -21,11 +21,13 @@ describe('DrumBlock', function() {
           + "eeeeeeee0000\t"
           + "ffffffff0000\t"
           + "111111110000\t"
-          + "222222220000\n"
-        bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].setContent(hexCode + hexCode)
-				assert.equal(bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].toString(),
-				hexCode.repeat(2).toUpperCase(), "returned hex value doesn't match the expected one")
-      })
-    })
+          + "222222220000\n";
+        bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].setContent(hexCode + hexCode);
+        assert.equal(
+          bullGamma.magneticDrum.trackGroups[0].tracks[0].blocks[0].toString(),
+          hexCode.repeat(2).toUpperCase(), "returned hex value doesn't match the expected one"
+        );
+      });
+    });
   });
 });

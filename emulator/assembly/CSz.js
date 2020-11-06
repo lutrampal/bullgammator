@@ -12,17 +12,17 @@ class CSz extends Instruction {
     this.bullGamma.magneticDrum.setCommutedGroup(this.OF & 0x7);
   }
 
-	getDescription() {
-		return "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
-	}
+  getDescription() {
+    return "Selectionne la seizaine commutée " + (this.OF & 0x7) + " du tambour";
+  }
 
-	getShortType() {
-		return "CSz";
-	}
+  getShortType() {
+    return "CSz";
+  }
 
-	getLongType() {
-		return "Commutation de Seizaine";
-	}
+  getLongType() {
+    return "Commutation de Seizaine";
+  }
 
 }
 

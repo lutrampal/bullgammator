@@ -1,5 +1,5 @@
 {
-	"hosting": {
-		"public": "dist/ui/"
-	}
+  "hosting": {
+    "public": "dist/ui/"
+  }
 }

@@ -4,8 +4,8 @@ import { FormControl } from '@angular/forms';
 import { MemoriesService } from '../providers/memories.service';
 
 export class MemoryInfo {
-	id: number;
-	label: string;
+  id: number;
+  label: string;
 }
 
 @Component({
@@ -70,14 +70,14 @@ export class OctadsComponent implements OnInit {
     }
   }
 
-	reset(): void {
+  reset(): void {
     for (var octad=0; octad<this.nbOctads; octad++) {
       for (let mb of this.octads[octad]) {
         let id = octad * this.nbOctads + mb.id;
         this.m.setMemory("000000000000", mb.id, octad);
       }
     }
-	}
+  }
 
   valid(): boolean {
     for (var octad=0; octad<this.nbOctads; octad++) {
@@ -107,7 +107,7 @@ export class OctadsComponent implements OnInit {
     this.octad = (this.octad + 7) % this.nbOctads;
   }
 
-	getDescription(): string {
-		return "La panneau “Octade” montre le contenu des octades ajoutées par l’extension tambour."
-	}
+  getDescription(): string {
+    return "La panneau “Octade” montre le contenu des octades ajoutées par l’extension tambour."
+  }
 }
