@@ -93,7 +93,7 @@ describe('SL', function() {
         instr.AD = 7;
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "Jump condition does not exist or is not implemented");
+        assert.equal(e.message, "Cannot execute invalid instruction.");
         return;
       }
       assert(false);

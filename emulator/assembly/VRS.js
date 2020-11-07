@@ -1,4 +1,8 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError; // FIXME: remove
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * jump to another Series
@@ -6,7 +10,7 @@ Instruction = require("./instruction").Instruction
 class VRS extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
     if (AD < 5 || AD > 7) {
-      throw Error("Invalid instruction 1" + this.getChar(AD) + "xx");
+      throw new InvalidInstructionError("1" + this.getChar(AD) + "xx");
     }
     super(1, AD, OD, OF, bullGamma);
   }
@@ -27,9 +31,9 @@ class VRS extends Instruction {
         break;
       case 7:
         // complex behavior
-        throw Error("Excution of instruction 17xx not implemented");
+        throw new MethodNotImplementedError("excute");
       default:
-        throw Error("Cannot execute invalid instruction");
+        throw new InvalidInstructionExecutionError();
     }
   }
 
@@ -44,7 +48,7 @@ class VRS extends Instruction {
       case 7:
         return "Instruction non implémentée";
       default:
-        throw Error("Cannot describe invalid instruction");
+        throw new InvalidInstructionDescriptionError();
     }
   }
 

@@ -20,7 +20,7 @@ describe('Series3', function() {
       try {
         series3.setInstructions("1234".repeat(NB_INST_SERIES_3+1));
       } catch (e) {
-        assert.equal(e.message, "Instructions number should not be greater than 64");
+        assert.equal(e.message, "Hex entry too long. Expected length '256', got '260'.");
         return;
       }
       assert(false);

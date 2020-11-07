@@ -1,4 +1,6 @@
-SmallDivOrMult = require("./small_div_or_mult").SmallDivOrMult
+SmallDivOrMult = require("./small_div_or_mult").SmallDivOrMult;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * Reduced Division
@@ -6,7 +8,7 @@ SmallDivOrMult = require("./small_div_or_mult").SmallDivOrMult
 class DR extends SmallDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 1) {
-      throw Error("Invalid instruction D1xx");
+      throw new InvalidInstructionError("d1xx");
     }
     super(13, AD, OD, OF, bullGamma);
   }
@@ -31,7 +33,7 @@ class DR extends SmallDivOrMult {
       + "Divise le nombre contenu dans M1 par M" + this.AD
       + ", le quotient est en M1 en position 0 et le reste en position MD";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

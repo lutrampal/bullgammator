@@ -6,6 +6,9 @@ const NB_CHRS_PROGRAM_COUNTER = require("../machine/constants").NB_CHRS_PROGRAM_
 const NB_COMMUTED_OCTADS = require("../machine/constants").NB_COMMUTED_OCTADS;
 const NB_TRACK_GROUPS = require("../machine/constants").NB_TRACK_GROUPS;
 
+const GET_ERROR_MESSAGE = "Cannot get invalid value.";
+const SET_ERROR_MESSAGE = "Cannot set invalid value.";
+
 class Debug {
 
   constructor(bullGamma) {
@@ -41,9 +44,7 @@ class Debug {
    * @return string
    */
   static pad(n, width, z) {
-    z = z || '0';
-    n = n + '';
-    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    return (n + '').padStart(width, z || '0');
   }
 
   /**
@@ -58,7 +59,7 @@ class Debug {
     this.bullGamma.getMemory(id, octad).blocks.forEach((val) => {
       value = Debug.hex(val) + value;
     });
-    assert(Debug.banalMemoryValidate(value), "Cannot get invalid value.");
+    assert(Debug.banalMemoryValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -71,7 +72,7 @@ class Debug {
    */
   setMemory(value, id, octad) {
     value = Debug.pad(value, NB_CHRS_PER_WORD);
-    assert(Debug.banalMemoryValidate(value), "Cannot set invalid value.");
+    assert(Debug.banalMemoryValidate(value), SET_ERROR_MESSAGE);
     let mem = this.bullGamma.getMemory(id, octad);
     for (var i = 0; i < 12; i++) {
       mem.blocks[11 - i] = Debug.reverseHex(value.charAt(i));
@@ -99,7 +100,7 @@ class Debug {
     if (this.bullGamma._memoryMode === MEMORY_MODE.DECIMAL) {
       return "Décimal";
     }
-    throw Error("Cannot get invalid value.");
+    throw new Error(GET_ERROR_MESSAGE);
   }
 
   /**
@@ -108,7 +109,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setMode(value) {
-    assert(Debug.modeValidate(value), "Cannot set invalid value.");
+    assert(Debug.modeValidate(value), SET_ERROR_MESSAGE);
     if (value == "Binaire") {
       this.bullGamma._memoryMode = MEMORY_MODE.BINARY;
     }
@@ -142,7 +143,7 @@ class Debug {
       Debug.hex((this.bullGamma.ns << 6) + this.bullGamma.nl),
       NB_CHRS_PROGRAM_COUNTER
     );
-    assert(Debug.nlValidate(value), "Cannot get invalid value.");
+    assert(Debug.nlValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -153,7 +154,7 @@ class Debug {
    */
   setNL(value) {
     value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
-    assert(Debug.nlValidate(value), "Cannot set invalid value.");
+    assert(Debug.nlValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.nl = Debug.reverseHex(value) % 64;
     this.bullGamma.ns = Debug.reverseHex(value) >> 6;
   }
@@ -174,7 +175,7 @@ class Debug {
    */
   getMS1() {
     let value = Debug.hex(this.bullGamma.ms1);
-    assert(Debug.ms1Validate(value), "Cannot get invalid value.");
+    assert(Debug.ms1Validate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -184,7 +185,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setMS1(value) {
-    assert(Debug.ms1Validate(value), "Cannot set invalid value.");
+    assert(Debug.ms1Validate(value), SET_ERROR_MESSAGE);
     this.bullGamma.ms1 = Debug.reverseHex(value);
   }
 
@@ -204,7 +205,7 @@ class Debug {
    */
   getMD() {
     let value = Debug.hex(this.bullGamma.md);
-    assert(Debug.mdValidate(value), "Cannot get invalid value.");
+    assert(Debug.mdValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -214,7 +215,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setMD(value) {
-    assert(Debug.mdValidate(value), "Cannot set invalid value.");
+    assert(Debug.mdValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.md = Debug.reverseHex(value);
   }
 
@@ -252,7 +253,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setMCMP(value) {
-    assert(Debug.mcmpValidate(value), "Cannot set invalid value.");
+    assert(Debug.mcmpValidate(value), SET_ERROR_MESSAGE);
     let mc = this.bullGamma.mc;
     if (value == "=") {
       mc.equal = true;
@@ -283,7 +284,7 @@ class Debug {
    */
   getRNL1() {
     let value = Debug.pad(Debug.hex(this.bullGamma.rnl1), NB_CHRS_PROGRAM_COUNTER);
-    assert(Debug.nlValidate(value), "Cannot get invalid value.");
+    assert(Debug.nlValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -294,7 +295,7 @@ class Debug {
    */
   setRNL1(value) {
     value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
-    assert(Debug.nlValidate(value), "Cannot set invalid value.");
+    assert(Debug.nlValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.rnl1 = Debug.reverseHex(value);
   }
 
@@ -306,7 +307,7 @@ class Debug {
    */
   getRNL2() {
     let value = Debug.pad(Debug.hex(this.bullGamma.rnl2), NB_CHRS_PROGRAM_COUNTER);
-    assert(Debug.nlValidate(value), "Cannot get invalid value.");
+    assert(Debug.nlValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -317,7 +318,7 @@ class Debug {
    */
   setRNL2(value) {
     value = Debug.pad(value, NB_CHRS_PROGRAM_COUNTER);
-    assert(Debug.nlValidate(value), "Cannot set invalid value.");
+    assert(Debug.nlValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.rnl2 = Debug.reverseHex(value);
   }
 
@@ -328,7 +329,7 @@ class Debug {
    */
   getOctad() {
     let value = Debug.hex(this.bullGamma.currentOctad.id);
-    assert(Debug.octadValidate(value), "Cannot get invalid value.");
+    assert(Debug.octadValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -338,7 +339,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setOctad(value) {
-    assert(Debug.octadValidate(value), "Cannot set invalid value.");
+    assert(Debug.octadValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.setCommutedOctad(Debug.reverseHex(value));
   }
 
@@ -358,7 +359,7 @@ class Debug {
    */
   getTrackGr() {
     let value = Debug.hex(this.bullGamma.magneticDrum.commutedTrackGroup.id);
-    assert(Debug.trackGrValidate(value), "Cannot get invalid value.");
+    assert(Debug.trackGrValidate(value), GET_ERROR_MESSAGE);
     return value;
   }
 
@@ -368,7 +369,7 @@ class Debug {
    * @throw Error in case of invalid value
    */
   setTrackGr(value) {
-    assert(Debug.trackGrValidate(value), "Cannot set invalid value.");
+    assert(Debug.trackGrValidate(value), SET_ERROR_MESSAGE);
     this.bullGamma.magneticDrum.setCommutedGroup(Debug.reverseHex(value));
   }
 

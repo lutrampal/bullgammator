@@ -35,10 +35,8 @@ class ConnectionsTable {
    */
   setInstructions(hexCode) {
     this.reset();
-    let instructions = this.bullGamma.parser.parseInstructions(hexCode);
-    if (instructions.length > NB_INST_SERIES_3) {
-      throw Error("Instructions number should not be greater than " + NB_INST_SERIES_3);
-    }
+    let instructions = this.bullGamma.parser.parseInstructions(hexCode, NB_INST_SERIES_3);
+    
     for (let instIndex = 0; instIndex < instructions.length; ++instIndex) {
       this.instructions[instIndex] = new Array(NB_HEX_VALUES_PER_INST);
       // NB: .toString() is prefered to .TO/.AD/.OD/.OF so that A100 does not become A10C
@@ -139,11 +137,6 @@ class ConnectionsTable {
     var code = "-- Code généré par le tableau de connexions\n";
     for (var instIndex = 0; instIndex < NB_INST_SERIES_3; instIndex++) {
       code += this.getInstructionCode(instIndex) + "\n";
-      // for (var hexIndex = 0; hexIndex < NB_HEX_VALUES_PER_INST; hexIndex++) {
-      //   hexValue = this.instructions[instIndex][hexIndex];
-      //   code += Number(hexValue).toString(16).toUpperCase();
-      // }
-      // code += "\n";
     }
     return code;
   }

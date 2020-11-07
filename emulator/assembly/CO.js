@@ -1,4 +1,7 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * octad selection
@@ -6,7 +9,7 @@ Instruction = require("./instruction").Instruction
 class CO extends Instruction {
   constructor(OD, OF, bullGamma) {
     if (OF > 7) {
-      throw Error("Invalid instruction 1C0" + this.getChar(OF));
+      throw new InvalidInstructionError("1c0" + this.getChar(OF));
     }
     super(1, 12, OD, OF, bullGamma);
   }
@@ -16,14 +19,14 @@ class CO extends Instruction {
       this.bullGamma.setCommutedOctad(this.OF);
       return;
     }
-    throw Error("Cannot execute invalid instruction");
+    throw new InvalidInstructionExecutionError();
   }
 
   getDescription() {
     if (this.OF < 8) {
       return "Selectionne l'octade commutée " + this.OF;
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

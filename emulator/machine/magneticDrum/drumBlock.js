@@ -30,12 +30,7 @@ class DrumBlock {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode);
-    assert(
-      hexCode.length <= NB_HEX_VALUES_PER_DRUM_BLOCK,
-      "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_BLOCK
-    );
-    hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_BLOCK, "0");
+    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_DRUM_BLOCK);
     for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
       this.words[w].setContent(hexCode.substr(w*NB_CHRS_PER_WORD, NB_CHRS_PER_WORD));
     }

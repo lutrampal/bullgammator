@@ -1,9 +1,12 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 class ES extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
     if (AD != 8 && AD != 9) {
-      throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+      throw new InvalidInstructionError("1" + Instruction.getChar(AD) + "xx");
     }
     super(1, AD, OD, OF, bullGamma);
   }
@@ -21,7 +24,7 @@ class ES extends Instruction {
         }
         break;
       default:
-        throw Error("Cannot execute invalid instruction");
+        throw new InvalidInstructionExecutionError();
     }
   }
 
@@ -29,7 +32,7 @@ class ES extends Instruction {
     if (this.AD == 8 || this.AD == 9) {
       return "Envoie des données à une machine connectée";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

@@ -1,5 +1,30 @@
 const assert = require('../tools/assert');
 
+
+class InvalidInstructionError extends Error {
+  constructor(instruction) {
+    super("Invalid instruction " + instruction + ".");
+  }
+}
+
+class InvalidInstructionExecutionError extends Error {
+  constructor() {
+    super("Cannot execute invalid instruction.");
+  }
+}
+
+class InvalidInstructionDescriptionError extends Error {
+  constructor() {
+    super("Cannot describe invalid instruction.");
+  }
+}
+
+class MethodNotImplementedError extends Error {
+  constructor(method) {
+    super("You have to implement the method '" + method + "'.");
+  }
+}
+
 /**
  * Abstract class meant to represent an Instruction, please refer to
  * http://aconit.org/histoire/Gamma-3/Articles/Gamma-Bolliet.pdf for further documentation about the specific
@@ -22,42 +47,42 @@ class Instruction {
     this.OD = OD;
     this.OF = OF;
     this.bullGamma = bullGamma;
-    this.hexString = Instruction.getChar(TO) + Instruction.getChar(AD) + Instruction.getChar(OD) + Instruction.getChar(OF);
+    this.hexString = this.getHexCode(TO, AD, OD, OF);
   }
 
   /**
    * Abstract method, execute the instruction logic
    */
   execute() {
-    throw Error('You have to implement the method execute.');
+    throw new MethodNotImplementedError("execute");
   }
 
   /**
    * Abstract method, return the execution time of this instruction
    */
   computeExeTime() {
-    throw Error('You have to implement the method computeExeTime.');
+    throw new MethodNotImplementedError("computeExeTime");
   }
 
   /**
    * Abstract method, return the textual description of this instruction
    */
   getDescription() {
-    throw Error('You have to implement the method getDescription.');
+    throw new MethodNotImplementedError("getDescription");
   }
 
   /**
    * Abstract method, return the short type name of this instruction
    */
   getShortType() {
-    throw Error('You have to implement the method getShortType.');
+    throw new MethodNotImplementedError("getShortType");
   }
 
   /**
    * Abstract method, return the long type name of this instruction
    */
   getLongType() {
-    throw Error('You have to implement the method getLongType.');
+    throw new MethodNotImplementedError("getLongType");
   }
 
   toString() {
@@ -72,6 +97,14 @@ class Instruction {
     return intValue.toString(16); // NB: toString(16) generates lower case
   }
 
+  getHexCode(TO, AD, OD, OF) {
+    return Instruction.getChar(TO) + Instruction.getChar(AD) + Instruction.getChar(OD) + Instruction.getChar(OF);
+  }
+
 }
 
 module.exports.Instruction = Instruction;
+module.exports.InvalidInstructionError = InvalidInstructionError;
+module.exports.InvalidInstructionExecutionError = InvalidInstructionExecutionError;
+module.exports.InvalidInstructionDescriptionError = InvalidInstructionDescriptionError;
+module.exports.MethodNotImplementedError = MethodNotImplementedError;

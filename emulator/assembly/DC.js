@@ -1,5 +1,7 @@
-BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
-NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
+BigDivOrMult = require("./big_div_or_mult").BigDivOrMult;
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * Complete Division
@@ -7,7 +9,7 @@ NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 class DC extends BigDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 1 || AD == 2) {
-      throw Error("Invalid instruction F" + Instruction.getChar(AD) + "xx");
+      throw new InvalidInstructionError("f" + Instruction.getChar(AD) + "xx");
     }
     super(15, AD, OD, OF, bullGamma);
   }
@@ -42,7 +44,7 @@ class DC extends BigDivOrMult {
       + " entre les positions " + this.OD + " et " + this.OF
       + ", le quotient est calculé en M2 et le reste en M1-M2 en position MD ou 12 si MD vaut 0";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

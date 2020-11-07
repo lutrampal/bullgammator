@@ -12,7 +12,7 @@ describe('ConnectionsTable', function() {
       console.log(table.toString());
     });
     describe("set/get instructions", function () {
-      it("should set the instuctions", function () {
+      it("should set the instructions", function () {
         let bullGamma = new BullGamma();
         let table = new ConnectionsTable(bullGamma);
         table.setHexValue(0, 3, 10); // TO = A
@@ -61,7 +61,7 @@ describe('ConnectionsTable', function() {
     });
 
     describe("set instructions from hex code", function () {
-      it("should set the instuctions", function () {
+      it("should set the instructions", function () {
         let bullGamma = new BullGamma();
         let table = new ConnectionsTable(bullGamma);
         table.setInstructions("-- test\nA100\nC31B\n");
@@ -103,7 +103,7 @@ describe('ConnectionsTable', function() {
           try {
             table.setInstructions("1234".repeat(65));
           } catch (e) {
-            assert.equal(e.message, "Instructions number should not be greater than 64");
+            assert.equal(e.message, "Hex entry too long. Expected length '256', got '260'.");
             return;
           }
           assert(false);

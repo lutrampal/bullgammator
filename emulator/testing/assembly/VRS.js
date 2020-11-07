@@ -43,7 +43,7 @@ describe('VRS', function() {
       try {
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "Excution of instruction 17xx not implemented"); // FIXME: implement and test
+        assert.equal(e.message, "You have to implement the method 'excute'."); // FIXME: implement and test
         return;
       }
       assert(false);

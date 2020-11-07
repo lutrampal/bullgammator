@@ -10,7 +10,7 @@ describe('SmallDivOrMult', function() {
         let instr = new SmallDivOrMult(2, 5, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method _compute().");
+        assert.equal(e.message, "You have to implement the method '_compute'.");
         return;
       }
       assert(false);
@@ -21,7 +21,7 @@ describe('SmallDivOrMult', function() {
         let instr = new SmallDivOrMult(2, 0, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method _computeValue().");
+        assert.equal(e.message, "You have to implement the method '_computeValue'.");
         return;
       }
       assert(false);

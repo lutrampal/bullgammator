@@ -10,7 +10,7 @@ describe('OperationWithPreShift', function() {
         let instr = new OperationWithPreShift(2, 5, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method _exeInstructionLogic().");
+        assert.equal(e.message, "You have to implement the method '_exeInstructionLogic'.");
         return;
       }
       assert(false);

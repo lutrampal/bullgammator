@@ -5,11 +5,11 @@ ES = require("../../assembly/ES").ES;
 
 class TestMachine extends ConnectedMachine {
   onStaticExtraction1(OD, OF) {
-    throw Error("ES1-" + OD.toString() + "," + OF.toString());
+    throw new Error("ES1-" + OD.toString() + "," + OF.toString());
   }
 
   onStaticExtraction2(OD, OF) {
-    throw Error("ES2-" + OD.toString() + "," + OF.toString());
+    throw new Error("ES2-" + OD.toString() + "," + OF.toString());
   }
 }
 

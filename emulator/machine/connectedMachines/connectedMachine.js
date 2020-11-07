@@ -13,7 +13,7 @@ class ConnectedMachine {
    */
   on48V() {
     // to be overridden
-    throw Error('You have to implement the method on48V.');
+    throw new Error('You have to implement the method on48V.');
   }
 
   /**
@@ -21,7 +21,7 @@ class ConnectedMachine {
    */
   onStaticExtraction1(OD, OF) {
     // to be overridden
-    throw Error('You have to implement the method onStaticExtraction1.');
+    throw new Error('You have to implement the method onStaticExtraction1.');
   }
 
   /**
@@ -29,7 +29,7 @@ class ConnectedMachine {
    */
   onStaticExtraction2(OD, OF) {
     // to be overridden
-    throw Error('You have to implement the method onStaticExtraction2.');
+    throw new Error('You have to implement the method onStaticExtraction2.');
   }
 }
 

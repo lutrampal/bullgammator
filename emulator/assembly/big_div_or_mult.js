@@ -1,6 +1,8 @@
-Operation = require("./operation").Operation
-Memory = require("../machine/innerComponents/memory").Memory
-NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
+Operation = require("./operation").Operation;
+Memory = require("../machine/innerComponents/memory").Memory;
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
 
 class BigDivOrMult extends Operation {
   constructor(TO, AD, OD, OF, bullGamma) {
@@ -13,7 +15,7 @@ class BigDivOrMult extends Operation {
    * @protected
    */
   _compute(m1m2, mb) {
-    throw Error('You have to implement the method compute.');
+    throw new MethodNotImplementedError("_compute");
   }
 
   /**
@@ -21,12 +23,12 @@ class BigDivOrMult extends Operation {
    * @protected
    */
   _computeValue(m1m2) {
-    throw Error('You have to implement the method computeValue.');
+    throw new MethodNotImplementedError("_computeValue");
   }
 
   execute() {
     if (this.AD == 1 || this.AD == 2) {
-      throw Error("Cannot execute invalid instruction");
+      throw new InvalidInstructionExecutionError();
     }
 
     let m1m2 = new Memory(0, this.bullGamma, NB_CHRS_PER_WORD*2);

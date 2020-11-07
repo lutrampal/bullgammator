@@ -1,4 +1,5 @@
-Operation = require("./operation").Operation
+Operation = require("./operation").Operation;
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
 
 /**
  * Abstract class for instructions with pre-shift
@@ -28,7 +29,7 @@ class OperationWithPreShift extends Operation {
    * @protected
    */
   _exeInstructionLogic() {
-    throw new Error('You have to implement the method _exeInstructionLogic().');
+    throw new MethodNotImplementedError("_exeInstructionLogic");
   }
 
 }

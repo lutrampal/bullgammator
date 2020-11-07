@@ -10,7 +10,7 @@ describe('BigDivOrMult', function() {
         let instr = new BigDivOrMult(2, 5, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method compute.");
+        assert.equal(e.message, "You have to implement the method '_compute'.");
         return;
       }
       assert(false);
@@ -21,7 +21,7 @@ describe('BigDivOrMult', function() {
         let instr = new BigDivOrMult(2, 0, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method computeValue.");
+        assert.equal(e.message, "You have to implement the method '_computeValue'.");
         return;
       }
       assert(false);

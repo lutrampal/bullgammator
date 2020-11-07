@@ -9,7 +9,7 @@ describe('InstructionsParser', function() {
     it('should trim unused chars', function () {
       let parser = (new BullGamma()).parser;
       assert.equal(
-        InstructionsParser.parseHex(TEST_CODE),
+        InstructionsParser.parseHex(TEST_CODE, 12),
         "123423aF1234"
       );
     });
@@ -17,38 +17,37 @@ describe('InstructionsParser', function() {
   describe('#parseInstructions()', function () {
     it('should return 3 instructions from hex code', function () {
       let parser = (new BullGamma()).parser;
-      let instructions = parser.parseInstructions(TEST_CODE);
+      let instructions = parser.parseInstructions(TEST_CODE, 3);
       assert.equal(instructions.length, 3);
     });
     it('should raise error, instruction size', function () {
       let parser = (new BullGamma()).parser;
-      try {
-        let instructions = parser.parseInstructions("123");
-      } catch (e) {
-        assert.equal(
-          e.message,
-          "Parsing error at instruction #1: Invalid instruction length: got 3, expected 4."
-        );
-        return;
-      }
-      assert(false);
+      let instructions = parser.parseInstructions("123", 1);
+      assert.equal(instructions[0].toString(), "1230");
     });
     it('should raise error, instruction content', function () {
       let parser = (new BullGamma()).parser;
       try {
-        let instructions = parser.parseInstructions("12RD");
+        let instructions = parser.parseInstructions("12RD", 1);
       } catch (e) {
-        assert.equal(
-          e.message,
-          "Invalid hex code"
-        );
+        assert.equal(e.message, "Invalid hex code.");
+        return;
+      }
+      assert(false);
+    });
+    it('should raise error, instruction does not exist', function () {
+      let parser = (new BullGamma()).parser;
+      try {
+        let instructions = parser.parseInstructions("5555", 1);
+      } catch (e) {
+        assert.equal(e.message, "Parsing error at instruction #1: Invalid instruction 55xx.");
         return;
       }
       assert(false);
     });
   });
   describe('#parseInstruction() all', function () {
-    it('should return 3 instructions from hex code', function () {
+    it('should test all instructions', function () {
       let parser = (new BullGamma()).parser;
 
       for (let TO of HEX_VALUES) {

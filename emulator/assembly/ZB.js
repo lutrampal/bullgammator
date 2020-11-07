@@ -1,4 +1,7 @@
-Operation = require("./operation").Operation
+Operation = require("./operation").Operation;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * Memory reset
@@ -6,7 +9,7 @@ Operation = require("./operation").Operation
 class ZB extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 0) {
-      throw Error("Invalid instruction 30xx");
+      throw new InvalidInstructionError("30xx");
     }
     super(3, AD, OD, OF, bullGamma);
   }
@@ -16,7 +19,7 @@ class ZB extends Operation {
       this.bullGamma.getMemory(this.AD).setToZero(this.OD, this.OF);
       return;
     }
-    throw Error("Cannot execute invalid instruction");
+    throw new InvalidInstructionExecutionError();
   }
 
   getDescription() {
@@ -24,7 +27,7 @@ class ZB extends Operation {
       return "Met à zéro M" + this.AD + " entre les positions "
       + this.OD + " et " + this.OF;
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

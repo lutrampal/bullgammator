@@ -1,4 +1,6 @@
-SmallDivOrMultOperation = require("./small_div_or_mult").SmallDivOrMult
+SmallDivOrMultOperation = require("./small_div_or_mult").SmallDivOrMult;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * reduced multiplication
@@ -6,7 +8,7 @@ SmallDivOrMultOperation = require("./small_div_or_mult").SmallDivOrMult
 class MR extends SmallDivOrMultOperation {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 1) {
-      throw Error("Invalid instruction C1xx");
+      throw new InvalidInstructionError("c1xx");
     }
     super(12, AD, OD, OF, bullGamma);
   }
@@ -30,7 +32,7 @@ class MR extends SmallDivOrMultOperation {
       + " entre les positions " + this.OD + " et " + this.OF
       + ", le résultat est en M1";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

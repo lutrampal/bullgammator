@@ -17,8 +17,7 @@ class Series3 extends Serie {
   constructor(id, bullGamma) {
     super(id, bullGamma);
     this.maxNbInst = NB_INST_SERIES_3;
-    this.instructions = [];
-    this.completeInstructions();
+    this.setInstructions("");
   }
 
   /**
@@ -26,22 +25,7 @@ class Series3 extends Serie {
    * @param hexCode a String that represents the new hex values of the array
    */
   setInstructions(hexCode) {
-    let instructions = this.bullGamma.parser.parseInstructions(hexCode);
-    if (instructions.length > NB_INST_SERIES_3) {
-      throw Error("Instructions number should not be greater than " + NB_INST_SERIES_3);
-    }
-    this.instructions = instructions;
-    this.completeInstructions();
-  }
-
-  /**
-   * fills up the empty instructions slots with NOP instructions
-   */
-  completeInstructions() {
-    for (let i=this.instructions.length; i<this.maxNbInst; i++) {
-      this.instructions.push(new NOP(this.bullGamma));
-    }
-    this.nbInst = this.instructions.length;
+    this.instructions = this.bullGamma.parser.parseInstructions(hexCode, NB_INST_SERIES_3);
   }
 
   /**

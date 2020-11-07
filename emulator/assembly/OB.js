@@ -1,5 +1,8 @@
-OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift
+OperationWithPreShift = require("./operation_with_pre_shift").OperationWithPreShift;
 const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * M1 to MB transfer
@@ -7,7 +10,7 @@ const MEMORY_MODE = require("../machine/constants").MEMORY_MODE;
 class OB extends OperationWithPreShift {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 0) {
-      throw Error("Invalid instruction 80xx");
+      throw new InvalidInstructionError("80xx");
     }
     super(8, AD, OD, OF, bullGamma);
   }
@@ -26,7 +29,7 @@ class OB extends OperationWithPreShift {
       }
       return;
     }
-    throw Error("Cannot execute invalid instruction");
+    throw new InvalidInstructionExecutionError();
   }
 
   getDescription() {
@@ -37,7 +40,7 @@ class OB extends OperationWithPreShift {
       return "Effectue le décalage de M1 puis copie M1 entre les positions "
       + this.OD + " et " + this.OF + " en M" + this.AD + " aux mêmes positions";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

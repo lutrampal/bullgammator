@@ -1,4 +1,5 @@
 Instruction = require("./instruction").Instruction
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
 
 /**
  * Abstract class for drum transfer instructions
@@ -9,7 +10,7 @@ class DrumTransfer extends Instruction {
   }
 
   _transfer(nbGroup, trackGroup, nbTrack, nbBlock) {
-    throw Error("You have to implement the method _transfer()");
+    throw new MethodNotImplementedError("_transfer");
   }
 
   execute() {

@@ -1,11 +1,12 @@
 const assert = require('../../tools/assert');
 
-const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
-const NB_BANAL_MEMORIES = require("../constants").NB_BANAL_MEMORIES
-const NB_HEX_VALUES_PER_OCTAD = require("../constants").NB_HEX_VALUES_PER_OCTAD
-const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD
+const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD;
+const NB_BANAL_MEMORIES = require("../constants").NB_BANAL_MEMORIES;
+const NB_HEX_VALUES_PER_OCTAD = require("../constants").NB_HEX_VALUES_PER_OCTAD;
+const NB_CHRS_PER_WORD = require("../constants").NB_CHRS_PER_WORD;
 
-Memory = require("./memory").Memory
+Memory = require("./memory").Memory;
+InstructionsParser = require("../../assembly/hexParser").InstructionsParser;
 
 /**
  * An octad is a set of 8 memories
@@ -38,8 +39,7 @@ class Octad {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-    assert(hexCode.length === NB_HEX_VALUES_PER_OCTAD, "hexCode should be of length " + NB_HEX_VALUES_PER_OCTAD);
+    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_OCTAD);
     for (let i = 0; i < NB_MEMORIES_PER_OCTAD; ++i) {
       this.getMemory(i).setContent(hexCode.substr(i*NB_CHRS_PER_WORD, NB_CHRS_PER_WORD));
     }

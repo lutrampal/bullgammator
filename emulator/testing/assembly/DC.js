@@ -22,9 +22,9 @@ describe('DC', function() {
       let m1 = bullGamma.getMemory(1);
       let m2 = bullGamma.getMemory(2);
       let m3 = bullGamma.getMemory(3);
-      m1.setContent("6848");
+      m1.setContent("000000006848");
       m2.setContent("268460000000");
-      m3.setContent("4224000");
+      m3.setContent("000004224000");
       bullGamma.md = 8;
       new DC(3, 3, 7, bullGamma).execute();
       assert.equal(m1.toString(), "000002398000", "wrong result");
@@ -34,7 +34,7 @@ describe('DC', function() {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
       let m2 = bullGamma.getMemory(2);
-      m1.setContent("6848");
+      m1.setContent("000000006848");
       m2.setContent("268460000000");
       new DC(0, 3, 8, bullGamma).execute();
       assert.equal(m2.toString(), "856033557500", "wrong result");
@@ -44,7 +44,7 @@ describe('DC', function() {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
       let m2 = bullGamma.getMemory(2);
-      m2.setContent("98765432100");
+      m2.setContent("098765432100");
       bullGamma.md = 10;
       new DC(0, 8, 1, bullGamma).execute();
       assert.equal(m1.toString(), "000987654321", "wrong result");

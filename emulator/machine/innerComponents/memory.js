@@ -101,41 +101,41 @@ class Memory extends Word {
     this.blocks[this.blocks.length- 1] = buff;
   }
 
-  /**
-   * compare the whole memory to another one between selected blocks
-   * @param other the other memory to which it should be compared
-   * @param from the starting block from which the comparison should start
-   * @param to the end block of the comparison (excluded)
-   * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
-   */
-  compareTo(other, from, to) {
-    assert.equal(from >= 0, true, "from should not be negative");
-    assert.equal(from < to, true, "from should be inferior to to");
-    assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory");
-    let nbDigitsThis = this.blocks.length;
-    while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
-      --nbDigitsThis;
-    }
-    let nbDigitsOther = to - from;
-    while (this.blocks[from + nbDigitsOther - 1] === 0 && nbDigitsOther > 0) {
-      --nbDigitsOther;
-    }
-    if (nbDigitsThis > nbDigitsOther) {
-      return [true, false];
-    }
-    if (nbDigitsThis < nbDigitsOther) {
-      return [false, false];
-    }
-    for (let i = 0; i < nbDigitsThis; ++i) {
-      if (this.blocks[nbDigitsThis - i - 1] > other.blocks[to - i - 1]) {
-        return [true, false];
-      }
-      if (this.blocks[nbDigitsThis - i - 1] < other.blocks[to - i - 1]) {
-        return [false, false];
-      }
-    }
-    return [false, true];
-  }
+  // /**
+  //  * compare the whole memory to another one between selected blocks
+  //  * @param other the other memory to which it should be compared
+  //  * @param from the starting block from which the comparison should start
+  //  * @param to the end block of the comparison (excluded)
+  //  * @return an array of two booleans, index 0 is true if this is greater than other, index 1 is true if they are equal
+  //  */
+  // compareTo(other, from, to) {
+  //   assert.equal(from >= 0, true, "from should not be negative");
+  //   assert.equal(from < to, true, "from should be inferior to to");
+  //   assert.equal(to <= this.blocks.length, true, "to should be inferior to the number of blocks per memory");
+  //   let nbDigitsThis = this.blocks.length;
+  //   while (this.blocks[nbDigitsThis - 1] === 0 && nbDigitsThis > 0) {
+  //     --nbDigitsThis;
+  //   }
+  //   let nbDigitsOther = to - from;
+  //   while (this.blocks[from + nbDigitsOther - 1] === 0 && nbDigitsOther > 0) {
+  //     --nbDigitsOther;
+  //   }
+  //   if (nbDigitsThis > nbDigitsOther) {
+  //     return [true, false];
+  //   }
+  //   if (nbDigitsThis < nbDigitsOther) {
+  //     return [false, false];
+  //   }
+  //   for (let i = 0; i < nbDigitsThis; ++i) {
+  //     if (this.blocks[nbDigitsThis - i - 1] > other.blocks[to - i - 1]) {
+  //       return [true, false];
+  //     }
+  //     if (this.blocks[nbDigitsThis - i - 1] < other.blocks[to - i - 1]) {
+  //       return [false, false];
+  //     }
+  //   }
+  //   return [false, true];
+  // }
 
   /**
    * add the given memory to this one
@@ -286,7 +286,7 @@ class Memory extends Word {
   divide(other, from, to) {
     let vmb = other.getDecimalValue(from, to);
     if (vmb === 0) {
-      throw Error("Division by 0.");
+      throw new Error("Division by 0.");
     }
     while (this.bullGamma.md > 0) {
       while (this.getDecimalValue(from + this.blocks.length - NB_CHRS_PER_WORD, this.blocks.length) < vmb

@@ -31,12 +31,7 @@ class DrumTrack {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode);
-    assert(
-      hexCode.length <= NB_HEX_VALUES_PER_DRUM_TRACK,
-      "hexCode should be of length " + NB_HEX_VALUES_PER_DRUM_TRACK
-    );
-    hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_DRUM_TRACK, "0");
+    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_DRUM_TRACK);
     for (let i = 0; i < NB_BLOCKS_PER_DRUM_TRACK; ++i) {
       this.blocks[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_DRUM_BLOCK, NB_HEX_VALUES_PER_DRUM_BLOCK));
     }

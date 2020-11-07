@@ -43,7 +43,7 @@ describe('Execution', function() {
     });
   });
   describe('#getInstructions()', function () {
-    it('should return instrutions for series 2', function () {
+    it('should return instructions for series 2', function () {
       let bullGamma = new BullGamma()
       let exec = new Execution(bullGamma);
       let instructions = exec.getInstructions(2);

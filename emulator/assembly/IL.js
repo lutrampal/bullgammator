@@ -1,5 +1,8 @@
-Operation = require("./operation").Operation
+Operation = require("./operation").Operation;
 const assert = require('../tools/assert');
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * Logical intersection instruction
@@ -7,7 +10,7 @@ const assert = require('../tools/assert');
 class IL extends Operation {
   constructor(AD, OD, OF, bullGamma) {
     if (AD != 10 && AD != 12) {
-      throw Error("Invalid instruction 7" + Instruction.getChar(AD) + "xx");
+      throw new InvalidInstructionError("7" + Instruction.getChar(AD) + "xx");
     }
     super(7, AD, OD, OF, bullGamma);
   }
@@ -29,7 +32,7 @@ class IL extends Operation {
       }
       return;
     }
-    throw Error("Cannot execute invalid instruction");
+    throw new InvalidInstructionExecutionError();
   }
 
   getDescription() {
@@ -39,7 +42,7 @@ class IL extends Operation {
     if (this.AD == 12) {
       return "Calcule un 'et' logique entre M1 et M2";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

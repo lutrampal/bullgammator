@@ -1,4 +1,7 @@
 V = require("./V").V;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * jump
@@ -6,7 +9,7 @@ V = require("./V").V;
 class SL extends V {
   constructor(AD, OD, OF, bullGamma) {
     if (AD > 4 || OF%4 > 1) {
-      throw Error("Invalid or not implemented instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
+      throw new InvalidInstructionError("0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
     }
     super(AD, OD, OF, bullGamma);
   }
@@ -26,7 +29,7 @@ class SL extends V {
       this.bullGamma.ms1 === 0
     ]]
     if (jump_cond_matrix[this.OF % 4][this.AD] === undefined) {
-      throw Error("Jump condition does not exist or is not implemented");
+      throw new InvalidInstructionExecutionError();
     }
     if (jump_cond_matrix[this.OF%4][this.AD]) {
       this.bullGamma.nl = (this.OD << 2) + (this.OF >> 2);
@@ -59,7 +62,7 @@ class SL extends V {
         + jump_cond_matrix[this.OF % 4][this.AD - 1];
       }
     }
-    throw Error("Instruction invalide ou non implémenté");
+    throw new InvalidInstructionDescriptionError();
   }
 
   // getShortType() {

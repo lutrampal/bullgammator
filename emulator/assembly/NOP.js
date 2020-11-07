@@ -1,4 +1,4 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
 
 /**
  * NO Operation

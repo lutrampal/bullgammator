@@ -29,6 +29,8 @@ class BullGamma {
    * Constructs a new instance of BullGamma
    */
   constructor() {
+    this.parser = new InstructionsParser(this);
+    
     // Memories
     this._generalMemories = new Array(NB_BANAL_MEMORIES);
     for (let i = 1; i < NB_BANAL_MEMORIES; ++i) {
@@ -63,7 +65,6 @@ class BullGamma {
     this.ns = 3; // series number
     this.rnl1 = 0;
     this.rnl2 = 0;
-    this.parser = new InstructionsParser(this);
   }
 
   /**

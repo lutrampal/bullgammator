@@ -7,7 +7,7 @@ Memory = require("../../machine/innerComponents/memory").Memory;
 
 class TestMachine extends ConnectedMachine {
   on48V() {
-    throw Error("48V");
+    throw new Error("48V");
   }
 }
 

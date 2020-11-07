@@ -1,6 +1,8 @@
-BigDivOrMult = require("./big_div_or_mult").BigDivOrMult
-Memory = require("../machine/innerComponents/memory").Memory
-NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
+BigDivOrMult = require("./big_div_or_mult").BigDivOrMult;
+Memory = require("../machine/innerComponents/memory").Memory;
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * complete multiplication
@@ -8,7 +10,7 @@ NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
 class MC extends BigDivOrMult {
   constructor(AD, OD, OF, bullGamma) {
     if (AD == 1 || AD == 2) {
-      throw Error("Invalid instruction E" + Instruction.getChar(AD) + "xx");
+      throw new InvalidInstructionError("e" + Instruction.getChar(AD) + "xx");
     }
     super(14, AD, OD, OF, bullGamma);
   }
@@ -35,7 +37,7 @@ class MC extends BigDivOrMult {
       + " entre les positions " + this.OD + " et " + this.OF
       + ", le résultat est en M1-M2";
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

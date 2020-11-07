@@ -1,6 +1,9 @@
-Instruction = require("./instruction").Instruction
-NB_OCTADS_PER_GROUP = require("../machine/constants").NB_OCTADS_PER_GROUP
-NB_MEMORIES_PER_OCTAD = require("../machine/constants").NB_MEMORIES_PER_OCTAD
+Instruction = require("./instruction").Instruction;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
+NB_OCTADS_PER_GROUP = require("../machine/constants").NB_OCTADS_PER_GROUP;
+NB_MEMORIES_PER_OCTAD = require("../machine/constants").NB_MEMORIES_PER_OCTAD;
 
 /**
  * Group to Group transfer
@@ -8,7 +11,7 @@ NB_MEMORIES_PER_OCTAD = require("../machine/constants").NB_MEMORIES_PER_OCTAD
 class GG extends Instruction {
   constructor(OD, OF, bullGamma) {
     if ((OD > 3 && OD < 8) || OF > 3) {
-      throw Error("Invalid instruction 50" + Instruction.getChar(OD) + Instruction.getChar(OF));
+      throw new InvalidInstructionError("50" + Instruction.getChar(OD) + Instruction.getChar(OF));
     }
     super(5, 0, OD, OF, bullGamma);
   }
@@ -26,7 +29,7 @@ class GG extends Instruction {
       }
       return;
     }
-    throw Error("Cannot execute invalid instruction");
+    throw new InvalidInstructionExecutionError();
   }
 
   getDescription() {
@@ -37,7 +40,7 @@ class GG extends Instruction {
       return "Copie le contenu des octades " + ((this.OD & 0x7) << 1) + " et " + (((this.OD & 0x7) << 1) | 0x1)
       + " dans les octades " + ((this.OF & 0x7) << 1) + " et " + (((this.OF & 0x7) << 1) | 0x1);
     }
-    throw Error("Cannot describe invalid instruction");
+    throw new InvalidInstructionDescriptionError();
   }
 
   getShortType() {

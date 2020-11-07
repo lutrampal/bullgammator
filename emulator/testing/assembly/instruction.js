@@ -10,7 +10,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 5, 2, 9, bullGamma);
         instr.execute();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method execute.");
+        assert.equal(e.message, "You have to implement the method 'execute'.");
         return;
       }
       assert(false);
@@ -21,7 +21,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 0, 2, 9, bullGamma);
         instr.computeExeTime();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method computeExeTime.");
+        assert.equal(e.message, "You have to implement the method 'computeExeTime'.");
         return;
       }
       assert(false);
@@ -32,7 +32,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 0, 2, 9, bullGamma);
         instr.getDescription();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method getDescription.");
+        assert.equal(e.message, "You have to implement the method 'getDescription'.");
         return;
       }
       assert(false);
@@ -43,7 +43,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 0, 2, 9, bullGamma);
         instr.getShortType();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method getShortType.");
+        assert.equal(e.message, "You have to implement the method 'getShortType'.");
         return;
       }
       assert(false);
@@ -54,7 +54,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 0, 2, 9, bullGamma);
         instr.getLongType();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method getLongType.");
+        assert.equal(e.message, "You have to implement the method 'getLongType'.");
         return;
       }
       assert(false);
@@ -65,7 +65,7 @@ describe('Instruction', function() {
         let instr = new Instruction(2, 0, 2, 9, bullGamma);
         instr.toLineString();
       } catch (e) {
-        assert.equal(e.message, "You have to implement the method getShortType.");
+        assert.equal(e.message, "You have to implement the method 'getShortType'.");
         return;
       }
       assert(false);

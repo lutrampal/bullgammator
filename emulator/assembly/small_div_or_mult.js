@@ -1,6 +1,8 @@
-Operation = require("./operation").Operation
-Memory = require("../machine/innerComponents/memory").Memory
-NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD
+Operation = require("./operation").Operation;
+Memory = require("../machine/innerComponents/memory").Memory;
+NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
 
 /**
  * Abstract class for reduced multiplication or division instructions
@@ -16,7 +18,7 @@ class SmallDivOrMult extends Operation {
    * @protected
    */
   _compute(mb) {
-    throw Error('You have to implement the method _compute().');
+    throw new MethodNotImplementedError("_compute");
   }
 
   /**
@@ -24,12 +26,12 @@ class SmallDivOrMult extends Operation {
    * @protected
    */
   _computeValue() {
-    throw Error('You have to implement the method _computeValue().');
+    throw new MethodNotImplementedError("_computeValue");
   }
 
   execute() {
     if (this.AD == 1) {
-      throw Error("Cannot execute invalid instruction");
+      throw new InvalidInstructionExecutionError();
     }
 
     this.bullGamma.md = this.OD;

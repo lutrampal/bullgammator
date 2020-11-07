@@ -1,4 +1,7 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+InvalidInstructionDescriptionError = require("./instruction").InvalidInstructionDescriptionError;
 
 /**
  * jump to another Series
@@ -6,7 +9,7 @@ Instruction = require("./instruction").Instruction
 class VCS extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
     if (AD > 3) {
-      throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+      throw new InvalidInstructionError("1" + Instruction.getChar(AD) + "xx");
     }
     super(1, AD, OD, OF, bullGamma);
   }
@@ -32,7 +35,7 @@ class VCS extends Instruction {
         // not implemented
         break;
       default:
-        throw Error("Cannot execute invalid instruction");
+        throw new InvalidInstructionExecutionError();
     }
     this.bullGamma.ns = this.OF % 4;
     this.bullGamma.nl = (this.OD << 2) + (this.OF >> 2);
@@ -52,7 +55,7 @@ class VCS extends Instruction {
       case 3:
         return action;
       default:
-        throw Error("Cannot describe invalid instruction");
+        throw new InvalidInstructionDescriptionError();
     }
   }
 

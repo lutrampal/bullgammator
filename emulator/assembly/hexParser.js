@@ -27,17 +27,9 @@ Vac = require("./Vac").Vac;
 TB = require("./TB").TB;
 BT = require("./BT").BT;
 
-function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
-  if (instruction.length !== 4) {
-    throw Error("Invalid instruction length: got " + instruction.length + ", expected 4.");
-  }
-  let operands = instruction.toLowerCase().split('');
+InvalidInstructionError = require("./instruction").InvalidInstructionError;
 
-  let TO = parseInt(operands[0], 16);
-  let AD = parseInt(operands[1], 16);
-  let OD = parseInt(operands[2], 16);
-  let OF = parseInt(operands[3], 16);
-
+function parseInstruction(TO, AD, OD, OF, bullGamma) {
   switch (TO) {
     case 0:
       if (OF%4 < 2) {
@@ -47,7 +39,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
           case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15:
             return new EL(AD, OD, OF, bullGamma);
           default:
-            throw Error("Invalid instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
+            throw new InvalidInstructionError("0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
         }
       } else {
         switch (AD) {
@@ -56,7 +48,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
           case 9: case 10: case 11: case 12: case 13: case 14: case 15:
             return new Vac(AD, OD, OF, bullGamma);
           default:
-            throw Error("Invalid instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
+            throw new InvalidInstructionError("0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
         }
       }
     case 1:
@@ -76,7 +68,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       case 15:
         return new CB(OD, OF, bullGamma);
       default:
-        throw Error("Invalid instruction 1" + Instruction.getChar(AD) + "xx");
+        throw new InvalidInstructionError("1" + Instruction.getChar(AD) + "xx");
     }
     case 2:
       if (OF & 0x1) { // OF and 0001 to select last bit
@@ -90,7 +82,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       return new KB(AD, OD, OF, bullGamma);
     case 5:
       if (AD !== 0) {
-        throw Error("Invalid instruction 5" + Instruction.getChar(AD) + "xx");
+        throw new InvalidInstructionError("5" + Instruction.getChar(AD) + "xx");
       }
       return new GG(OD, OF, bullGamma);
     case 6:
@@ -105,7 +97,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
         case 12:
           return new IL(AD, OD, OF, bullGamma);
         default:
-          throw Error("Invalid instruction 7" + Instruction.getChar(AD) + "xx");
+          throw new InvalidInstructionError("7" + Instruction.getChar(AD) + "xx");
       }
     case 8:
       return new OB(AD, OD, OF, bullGamma);
@@ -124,21 +116,27 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
     case 15:
       return new DC(AD, OD, OF, bullGamma);
     // default:
-    //   throw Error("Fell in default case when it shouldn't have happened");
+    //   throw new Error("Fell in default case when it shouldn't have happened");
   }
 }
 
 /**
  * Function that return the hex code without comments, return, tab, spaces
  * @param entry string with comments, hex code, spaces...
+ * @param size the number of hex chunks expected, completes with 0
  * @returns hex code
  * @throws error in case of incorrect entry
  */
-function parse_hex_code(entry) {
+function parse_hex_code(entry, size) {
+  assert(size, "Number of expected hex chunks must be given.");
   hexCode = entry.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
   hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
+  hexCode = hexCode.padEnd(size, "0");
   if (!/^[0-9a-fA-F]*$/.test(hexCode)){
-    throw Error("Invalid hex code");
+    throw new Error("Invalid hex code.");
+  }
+  if (hexCode.length != size) {
+    throw new Error("Hex entry too long. Expected length '" + size + "', got '" + hexCode.length + "'.");
   }
   return hexCode;
 }
@@ -146,19 +144,27 @@ function parse_hex_code(entry) {
 /**
  * Given hexadecimal code for Bull Gamma 3, returns a set of instructions for the machine.
  * @param entry the string representing the code to be parsed. code may include single line comments starting with --.
+ * @param size the number of expected instruction, completes with NOP
  * @param bullGamma the machine to which the returned instructions should be attached
  * @returns {Array} the array of parsed instructions
  */
-function parse_hex_str_to_instructions(entry, bullGamma) {
-  let hexCode = parse_hex_code(entry);
+function parse_hex_str_to_instructions(entry, size, bullGamma) {
+  assert(size, "Number of expected instructions must be given.");
+  let hexCode = parse_hex_code(entry, size * 4);
   let instructions = [];
   let i = 1;
-  hexCode.match(/.{1,4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
+  hexCode.match(/.{4}/g).forEach(function (four_hex_chunk) { // break the string into chunks of 4 chars
     try {
-      instructions.push(_parse_four_hex_chunk_to_instr(four_hex_chunk, bullGamma));
+      instructions.push(parseInstruction(
+        parseInt(four_hex_chunk[0], 16),
+        parseInt(four_hex_chunk[1], 16),
+        parseInt(four_hex_chunk[2], 16),
+        parseInt(four_hex_chunk[3], 16),
+        bullGamma
+      ));
       i++;
     } catch (error) {
-      throw Error("Parsing error at instruction #" + i + ": " + error.message);
+      throw new Error("Parsing error at instruction #" + i + ": " + error.message);
     }
   });
   return instructions;
@@ -175,19 +181,21 @@ class InstructionsParser {
   /**
    * Function that return the hex code without comments, return, tab, spaces
    * @param entry string with comments, hex code, spaces...
+   * @param size the number of hex chunks expected, completes with 0
    * @returns hex code
    * @throws error in case of incorrect entry
    */
-  static parseHex(entry) {
-    return parse_hex_code(entry);
+  static parseHex(entry, size) {
+    return parse_hex_code(entry, size);
   }
 
   /**
    * function that returns a list of instructions from the given code
    * @param entry code with comments, spaces, returns allowed
+   * @param size the number of expected instruction, completes with NOP
    */
-  parseInstructions(entry) {
-    return parse_hex_str_to_instructions(entry, this.bullGamma);
+  parseInstructions(entry, size) {
+    return parse_hex_str_to_instructions(entry, size, this.bullGamma);
   }
 
   /**
@@ -198,11 +206,11 @@ class InstructionsParser {
    * @param OF string or number
    */
   parseInstruction(TO, AD, OD, OF) {
-    TO = TO.toString(16);
-    AD = AD.toString(16);
-    OD = OD.toString(16);
-    OF = OF.toString(16);
-    return _parse_four_hex_chunk_to_instr(TO + AD + OD + OF, this.bullGamma);
+    TO = parseInt(TO.toString(16), 16);
+    AD = parseInt(AD.toString(16), 16);
+    OD = parseInt(OD.toString(16), 16);
+    OF = parseInt(OF.toString(16), 16);
+    return parseInstruction(TO, AD, OD, OF, this.bullGamma);
   }
 }
 

@@ -1,4 +1,4 @@
-Instruction = require("./instruction").Instruction
+Instruction = require("./instruction").Instruction;
 
 /**
  * Abstract class for all instructions where OD cannot be greater than OF
@@ -10,7 +10,7 @@ class Operation extends Instruction {
       of = 12;
     }
     super(TO, AD, OD, of, bullGamma);
-    this.hexString = TO.toString(16) + AD.toString(16) + OD.toString(16) + OF.toString(16);
+    this.hexString = this.getHexCode(TO, AD, OD, OF);
   }
 }
 

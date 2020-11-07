@@ -1,6 +1,7 @@
 const assert = require('../../tools/assert');
 
 Octad = require("./octad").Octad;
+InstructionsParser = require("../../assembly/hexParser").InstructionsParser;
 
 const NB_OCTADS_PER_GROUP = require("../constants").NB_OCTADS_PER_GROUP
 const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
@@ -32,14 +33,7 @@ class Group {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    // FIXME: reuse hex parser
-    hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
-    hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
-    assert(
-      hexCode.length <= NB_HEX_VALUES_PER_GROUP,
-      "hexCode should be of length " + NB_HEX_VALUES_PER_GROUP
-    );
-    hexCode = hexCode.padEnd(NB_HEX_VALUES_PER_GROUP, "0");
+    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_GROUP);
     for (let i = 0; i < NB_OCTADS_PER_GROUP; ++i) {
       this.octads[i].setContent(hexCode.substr(
         i * (NB_MEMORIES_PER_OCTAD * NB_CHRS_PER_WORD),
@@ -58,7 +52,7 @@ class Group {
         return this.octads[o].getMemory(id - o * NB_MEMORIES_PER_OCTAD);
       }
     }
-    throw Error("Not a valid id for word in group: " + id);
+    throw new Error("Not a valid id for word in group: " + id);
   }
 
   toString() {
