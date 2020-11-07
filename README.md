@@ -34,8 +34,7 @@ To install all the dependencies, run this command both from the `emulator/` and 
 From the `ui/` directory, run `ng serve -o` to start a local development web server on port 4200. It can then be accessed at `localhost:4200`
 
 ## Running the unit tests
-Tests for each instruction can be run from the `emulator/` directory with:  
-`npm test`
+Tests for each instruction can be run from the `emulator/` directory with running `npm test` or `npm run coverage`.
 
 ## Compiling the project
 To compile the project for deploy, run `ng build --prod` from `ui/` directory. The compiled project should be available in the `dist/` folder.
