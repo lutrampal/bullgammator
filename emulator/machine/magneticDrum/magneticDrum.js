@@ -1,11 +1,11 @@
 const assert = require('../../tools/assert');
+const parse_hex_code = require('../../tools/parseHex');
 
 const NB_TRACK_GROUPS = require("../constants").NB_TRACK_GROUPS;
 const NB_HEX_VALUES_PER_MAGNETIC_DRUM = require("../constants").NB_HEX_VALUES_PER_MAGNETIC_DRUM;
 const NB_HEX_VALUES_PER_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP;
 
 DrumTrackGroup = require("./drumTrackGroup").DrumTrackGroup;
-InstructionsParser = require("../../assembly/hexParser").InstructionsParser;
 
 /**
  * A magnetic drum is an ancient storage device that was connected to the Bull Gamma
@@ -32,7 +32,7 @@ class MagneticDrum {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_MAGNETIC_DRUM);
+    hexCode = parse_hex_code(hexCode, NB_HEX_VALUES_PER_MAGNETIC_DRUM);
     for (let i = 0; i < NB_TRACK_GROUPS; ++i) {
       this.trackGroups[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_TRACK_GROUP, NB_HEX_VALUES_PER_TRACK_GROUP));
     }

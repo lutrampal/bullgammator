@@ -1,8 +1,8 @@
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
 Operation = require("./operation").Operation;
 Memory = require("../machine/innerComponents/memory").Memory;
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
-MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
-InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
 
 class BigDivOrMult extends Operation {
   constructor(TO, AD, OD, OF, bullGamma) {

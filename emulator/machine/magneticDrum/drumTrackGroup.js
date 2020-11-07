@@ -1,11 +1,11 @@
 const assert = require('../../tools/assert');
+const parse_hex_code = require('../../tools/parseHex');
 
-const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("../constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
-const NB_HEX_VALUES_PER_DRUM_TRACK = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK
-const NB_HEX_VALUES_PER_DRUM_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP
+const NB_TRACKS_PER_DRUM_TRACK_GROUP = require("../constants").NB_TRACKS_PER_DRUM_TRACK_GROUP;
+const NB_HEX_VALUES_PER_DRUM_TRACK = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK;
+const NB_HEX_VALUES_PER_DRUM_TRACK_GROUP = require("../constants").NB_HEX_VALUES_PER_DRUM_TRACK_GROUP;
 
 DrumTrack = require("./drumTrack").DrumTrack;
-InstructionsParser = require("../../assembly/hexParser").InstructionsParser
 
 /**
  * A DrumTrackGroup is a set of 16 (NB_TRACKS_PER_DRUM_TRACK_GROUP) DrumTracks attached to a Drum
@@ -34,7 +34,7 @@ class DrumTrackGroup {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_DRUM_TRACK_GROUP);
+    hexCode = parse_hex_code(hexCode, NB_HEX_VALUES_PER_DRUM_TRACK_GROUP);
     for (let i = 0; i < NB_TRACKS_PER_DRUM_TRACK_GROUP; ++i) {
       this.tracks[i].setContent(hexCode.substr(i*NB_HEX_VALUES_PER_DRUM_TRACK, NB_HEX_VALUES_PER_DRUM_TRACK));
     }

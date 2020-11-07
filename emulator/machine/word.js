@@ -1,5 +1,5 @@
 const assert = require('../tools/assert');
-InstructionsParser = require("../assembly/hexParser").InstructionsParser;
+const parse_hex_code = require('../tools/parseHex');
 
 const NB_CHRS_PER_WORD = require("./constants").NB_CHRS_PER_WORD;
 
@@ -22,7 +22,7 @@ class Word {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode, this.blocks.length);
+    hexCode = parse_hex_code(hexCode, this.blocks.length);
     for (let i = hexCode.length - 1, j = 0; j < hexCode.length; i--, j++) {
       this.blocks[i] = parseInt(hexCode.charAt(j), 16);
     }

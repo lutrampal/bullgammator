@@ -1,8 +1,8 @@
+InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
+MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
 Operation = require("./operation").Operation;
 Memory = require("../machine/innerComponents/memory").Memory;
 NB_CHRS_PER_WORD = require("../machine/constants").NB_CHRS_PER_WORD;
-InvalidInstructionExecutionError = require("./instruction").InvalidInstructionExecutionError;
-MethodNotImplementedError = require("./instruction").MethodNotImplementedError;
 
 /**
  * Abstract class for reduced multiplication or division instructions

@@ -1,7 +1,7 @@
 const assert = require('../../tools/assert');
+const parse_hex_code = require('../../tools/parseHex');
 
 Octad = require("./octad").Octad;
-InstructionsParser = require("../../assembly/hexParser").InstructionsParser;
 
 const NB_OCTADS_PER_GROUP = require("../constants").NB_OCTADS_PER_GROUP
 const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD
@@ -33,7 +33,7 @@ class Group {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_GROUP);
+    hexCode = parse_hex_code(hexCode, NB_HEX_VALUES_PER_GROUP);
     for (let i = 0; i < NB_OCTADS_PER_GROUP; ++i) {
       this.octads[i].setContent(hexCode.substr(
         i * (NB_MEMORIES_PER_OCTAD * NB_CHRS_PER_WORD),

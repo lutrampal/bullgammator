@@ -1,10 +1,10 @@
 const assert = require('../../tools/assert');
-Word = require("../word").Word
+const parse_hex_code = require('../../tools/parseHex');
 
-const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK
-const NB_WORD_PER_DRUM_BLOCK = require("../constants").NB_WORD_PER_DRUM_BLOCK
+Word = require("../word").Word;
 
-InstructionsParser = require("../../assembly/hexParser").InstructionsParser
+const NB_HEX_VALUES_PER_DRUM_BLOCK = require("../constants").NB_HEX_VALUES_PER_DRUM_BLOCK;
+const NB_WORD_PER_DRUM_BLOCK = require("../constants").NB_WORD_PER_DRUM_BLOCK;
 
 /**
  * A DrumBlock is a set of NB_WORD_PER_DRUM_BLOCK that belongs to a DrumTrack
@@ -30,7 +30,7 @@ class DrumBlock {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
-    hexCode = InstructionsParser.parseHex(hexCode, NB_HEX_VALUES_PER_DRUM_BLOCK);
+    hexCode = parse_hex_code(hexCode, NB_HEX_VALUES_PER_DRUM_BLOCK);
     for (let w=0; w<NB_WORD_PER_DRUM_BLOCK; w++) {
       this.words[w].setContent(hexCode.substr(w*NB_CHRS_PER_WORD, NB_CHRS_PER_WORD));
     }
