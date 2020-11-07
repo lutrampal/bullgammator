@@ -51,15 +51,22 @@ describe('InstructionsParser', function() {
     it('should return 3 instructions from hex code', function () {
       let parser = (new BullGamma()).parser;
 
-      let instructions = []
       for (let TO of HEX_VALUES) {
-        instructions.push([]);
         for (let AD of HEX_VALUES) {
-          try {
-            let inst = parser.parseInstruction(TO, AD, 0, 0);
-            instructions[TO].push(inst);
-          } catch (error) {
-            console.log(error.message);
+          if (TO != 0) {
+            try {
+              parser.parseInstruction(TO, AD, 0, 0);
+            } catch (error) {
+              console.log(error.message);
+            }
+          } else {
+            for (let OF of HEX_VALUES) {
+              try {
+                parser.parseInstruction(TO, AD, 0, OF);
+              } catch (error) {
+                console.log(error.message);
+              }
+            }
           }
         }
       }

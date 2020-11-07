@@ -21,6 +21,9 @@ SN = require("./SN").SN;
 MR = require("./MR").MR;
 MC = require("./MC").MC;
 SL = require("./SL").SL;
+EL = require("./EL").EL;
+Vn = require("./Vn").Vn;
+Vac = require("./Vac").Vac;
 TB = require("./TB").TB;
 BT = require("./BT").BT;
 
@@ -37,7 +40,25 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
   switch (TO) {
     case 0:
-      return new SL(AD, OD, OF, bullGamma)
+      if (OF%4 < 2) {
+        switch (AD) {
+          case 0: case 1: case 2: case 3: case 4:
+            return new SL(AD, OD, OF, bullGamma);
+          case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15:
+            return new EL(AD, OD, OF, bullGamma);
+          default:
+            throw Error("Invalid instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
+        }
+      } else {
+        switch (AD) {
+          case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+            return new Vn(AD, OD, OF, bullGamma);
+          case 9: case 10: case 11: case 12: case 13: case 14: case 15:
+            return new Vac(AD, OD, OF, bullGamma);
+          default:
+            throw Error("Invalid instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
+        }
+      }
     case 1:
     switch (AD) {
       case 0: case 1: case 2: case 3:

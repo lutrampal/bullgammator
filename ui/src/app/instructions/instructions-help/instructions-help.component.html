@@ -24,14 +24,13 @@
     <hr>
     <ng-container *ngFor="let inst of instructions[operationType]">
       <div class="inst"
-        [class.addr-selected]="selectedAddr==inst.AD && !instructionError[operationType][inst.AD]"
-        [class.addr-error]="selectedAddr==inst.AD && instructionError[operationType][inst.AD]"
-        (click)="selectedAddr=inst.AD"
+        [class.addr-selected]="isSelected(inst.toString()) && !instructionError[operationType][inst.AD]"
+        [class.addr-error]="isSelected(inst.toString()) && instructionError[operationType][inst.AD]"
       >
         <div class="monospace">
           {{ getInstructionAddress(inst) }}<input type="text" maxlength="2" size="2" placeholder="00" [formControl]="control" class="monospace">
         </div>
-        <div class="">
+        <div class="" (click)="select(inst.toString())">
           {{ getDescription(inst) }}
         </div>
       </div>

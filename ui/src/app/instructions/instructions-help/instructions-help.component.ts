@@ -21,16 +21,12 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
   public control: FormControl;
   public operationType: number = 10;
   public selectedAddr: number = 0;
+  public selectedOF: number = 0;
   public instructionError: {[TO: number]: {[AD: number]: boolean}};
 
   @Input()
   set inst(inst: string) {
-    if (inst && inst.length == 4) {
-      inst = inst.toUpperCase();
-      this.operationType = parseInt(inst[0], 16);
-      this.selectedAddr = parseInt(inst[1], 16);
-      this.control.setValue(inst[2] + inst[3]);
-    }
+    this.select(inst);
   }
 
   constructor(
@@ -54,6 +50,24 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
+  select(inst: string): void {
+    if (inst && inst.length == 4) {
+      inst = inst.toUpperCase();
+      this.operationType = parseInt(inst[0], 16);
+      this.selectedAddr = parseInt(inst[1], 16);
+      this.selectedOF = parseInt(inst[3], 16);
+      this.control.setValue(inst[2] + inst[3]);
+    }
+  }
+
+  isSelected(inst: string): boolean {
+    return (
+      parseInt(inst[0], 16) == this.operationType
+      && parseInt(inst[1], 16) == this.selectedAddr
+      && parseInt(inst[3], 16) == this.selectedOF
+    );
+  }
+
   getInstructionAddress(inst): string {
     // return inst.toLineString();
     return inst.TO.toString(16).toUpperCase() + inst.AD.toString(16).toUpperCase();
@@ -72,16 +86,30 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
       this.instructionError[TO] = {};
       for (let AD of HEX_VALUES) {
         this.instructionError[TO][AD] = false;
-        try {
-          let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
-          instructions[TO].push(inst);
-        } catch (error) {
+        if (TO != 0) {
           try {
-            this.instructionError[TO][AD] = true;
-            let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
+            let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
+            inst.getDescription();
             instructions[TO].push(inst);
           } catch (error) {
-            // do nothing
+            try {
+              this.instructionError[TO][AD] = true;
+              let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
+              inst.getDescription();
+              instructions[TO].push(inst);
+            } catch (error) {
+              // do nothing
+            }
+          }
+        } else {
+          for (let _OF of [0, 1, 2, 3]) {
+            try {
+              let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF - OF%4 + _OF%4);
+              inst.getDescription();
+              instructions[TO].push(inst);
+            } catch (error) {
+                // do nothing
+            }
           }
         }
       }
