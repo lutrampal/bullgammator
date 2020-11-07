@@ -3,7 +3,7 @@ Instruction = require("./instruction").Instruction
 /**
  * NO Operation
  */
-class NOP extends V {
+class NOP extends SL {
   constructor(bullGamma) {
     super(0, 0, 0, bullGamma);
   }
@@ -16,13 +16,13 @@ class NOP extends V {
     return "Ne fait rien";
   }
 
-  getShortType() {
-    return "V";
-  }
-
-  getLongType() {
-    return "Variante";
-  }
+  // getShortType() {
+  //   return "V";
+  // }
+  //
+  // getLongType() {
+  //   return "Variante";
+  // }
 }
 
 module.exports.NOP = NOP;

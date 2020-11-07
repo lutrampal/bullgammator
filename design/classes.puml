@@ -247,7 +247,7 @@ package Model {
       _transfer(nbGroup, trackGroup, nbTrack, nbBlock)
     }
 
-    class V {
+    class SL {
       TO = 0
       execute()
       computeExeTime()
@@ -391,7 +391,7 @@ package Model {
       _computeValue()
     }
 
-    V --|> Instruction
+    SL --|> Instruction
     KB --|> Instruction
     BD --|> Instruction
     CB --|> Instruction
@@ -401,7 +401,7 @@ package Model {
     Instruction <|- VRS
     Instruction <|-- CO
     Instruction <|-- CSz
-    NOP --|> V
+    NOP --|> SL
 
     ZB --|> Operation
     IL --|> Operation

@@ -3,7 +3,7 @@ Instruction = require("./instruction").Instruction
 /**
  * jump
  */
-class V extends Instruction {
+class SL extends Instruction {
   constructor(AD, OD, OF, bullGamma) {
     if (AD > 4 || OF%4 > 1) {
       throw Error("Invalid or not implemented instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
@@ -72,4 +72,4 @@ class V extends Instruction {
 
 }
 
-module.exports.V = V;
+module.exports.SL = SL;

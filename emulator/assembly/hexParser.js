@@ -20,7 +20,7 @@ OB = require("./OB").OB;
 SN = require("./SN").SN;
 MR = require("./MR").MR;
 MC = require("./MC").MC;
-V = require("./V").V;
+SL = require("./SL").SL;
 TB = require("./TB").TB;
 BT = require("./BT").BT;
 
@@ -37,7 +37,7 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
 
   switch (TO) {
     case 0:
-      return new V(AD, OD, OF, bullGamma)
+      return new SL(AD, OD, OF, bullGamma)
     case 1:
     switch (AD) {
       case 0: case 1: case 2: case 3:
