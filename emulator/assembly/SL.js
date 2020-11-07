@@ -1,14 +1,14 @@
-Instruction = require("./instruction").Instruction
+V = require("./V").V;
 
 /**
  * jump
  */
-class SL extends Instruction {
+class SL extends V {
   constructor(AD, OD, OF, bullGamma) {
     if (AD > 4 || OF%4 > 1) {
       throw Error("Invalid or not implemented instruction 0" + Instruction.getChar(AD) + "x" + Instruction.getChar(OF));
     }
-    super(0, AD, OD, OF, bullGamma);
+    super(AD, OD, OF, bullGamma);
   }
 
   execute() {
@@ -62,13 +62,13 @@ class SL extends Instruction {
     throw Error("Instruction invalide ou non implémenté");
   }
 
-  getShortType() {
-    return "V";
-  }
-
-  getLongType() {
-    return "Variante";
-  }
+  // getShortType() {
+  //   return "V";
+  // }
+  //
+  // getLongType() {
+  //   return "Variante";
+  // }
 
 }
 
