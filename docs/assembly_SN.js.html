@@ -39,57 +39,59 @@ class SN extends OperationWithPreShift {
 
   _exeInstructionLogic() {
     let m1 = this.bullGamma.getMemory(1);
-    if (this.AD > 1) { // use of MB
-      let mb = this.bullGamma.getMemory(this.AD);
-      if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
-        if (this.bullGamma.ms1 !== 10 &amp;&amp; mb.blocks[this.OF - 1] !== 10) { // M1, MB positive
+
+    switch (this.AD) {
+      case 0:
+        let mTmp = new Memory(1, this.bullGamma);
+        mTmp.blocks[this.OD] = this.OF;
+        this.bullGamma.getMemory(1).subtract(mTmp);
+        return;
+
+      case 1:
+        m1.setToZero(this.OD, this.OF);
+
+        // change sign if complete reset in decimal mode
+        if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
+          if (this.bullGamma.ms1 === 10) {
+            this.bullGamma.ms1 = 0;
+          } else {
+            this.bullGamma.ms1 = 10;
+          }
+        }
+        return;
+
+      default: // use of MB
+        let mb = this.bullGamma.getMemory(this.AD);
+        if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
+          let m1positive = this.bullGamma.ms1 !== 10; // Whether M1 positive
+          let mBpositive = mb.blocks[this.OF - 1] !== 10; // whether MB positive
+
+          // Add or subtract positive integers depending on operand signs
+          if (m1positive) {
+            if (mBpositive) {
+              m1.subtract(mb, this.OD, this.OF);
+            } else {
+              mb.blocks[this.OF - 1] = 0;
+              m1.add(mb, this.OD, this.OF);
+              mb.blocks[this.OF - 1] = 10;
+            }
+          } else {
+            if (mBpositive) {
+              m1.add(mb, this.OD, this.OF);
+              this.bullGamma.ms1 = 10;
+            } else {
+              // -M1 + MB &lt;=> MB - M1, so MB gets copied to M1 and a buffer for M1 is used
+              let cpM1 = new Memory(1, this.bullGamma);
+              cpM1.copyBlockValues(m1, this.OD, this.OF);
+              m1.copyBlockValues(mb, this.OD, this.OF);
+              m1.blocks[this.OF - 1] = 0;
+              m1.subtract(cpM1, this.OD, this.OF);
+            }
+          }
+        } else {
           m1.subtract(mb, this.OD, this.OF);
           return;
         }
-        if (this.bullGamma.ms1 !== 10 &amp;&amp; mb.blocks[this.OF - 1] === 10) { // M1 positive, MB negative
-          mb.blocks[this.OF - 1] = 0;
-          m1.add(mb, this.OD, this.OF);
-          mb.blocks[this.OF - 1] = 10;
-          return;
-        }
-        if (this.bullGamma.ms1 === 10 &amp;&amp; mb.blocks[this.OF - 1] !== 10) { // M1 negative, MB positive
-          m1.add(mb, this.OD, this.OF);
-          this.bullGamma.ms1 = 10;
-          return;
-        }
-        if (this.bullGamma.ms1 === 10 &amp;&amp; mb.blocks[this.OF - 1] === 10) { // M1, MB negative
-          // -M1 + MB &lt;=> MB - M1, so MB gets copied to M1 and a buffer for M1 is used
-          let cpM1 = new Memory(1, this.bullGamma);
-          cpM1.copyBlockValues(m1, this.OD, this.OF);
-          m1.copyBlockValues(mb, this.OD, this.OF);
-          m1.blocks[this.OF - 1] = 0;
-          m1.subtract(cpM1, this.OD, this.OF);
-          return;
-        }
-      } else {
-        m1.subtract(mb, this.OD, this.OF);
-        return;
-      }
-    }
-
-    if (this.AD === 1) {
-      m1.setToZero(this.OD, this.OF);
-
-      // change sign if complete reset in decimal mode
-      if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
-        if (this.bullGamma.ms1 === 10) {
-          this.bullGamma.ms1 = 0;
-        } else {
-          this.bullGamma.ms1 = 10;
-        }
-      }
-      return;
-    }
-
-    if (this.AD === 0) {
-      let mTmp = new Memory(1, this.bullGamma);
-      mTmp.blocks[this.OD] = this.OF;
-      this.bullGamma.getMemory(1).subtract(mTmp);
     }
   }
 
@@ -126,13 +128,13 @@ module.exports.SN = SN;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnectionsTable.html">ConnectionsTable</a></li><li><a href="ConnexionArray.html">ConnexionArray</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_code">parse_hex_code</a></li><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnectionsTable.html">ConnectionsTable</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="Series3.html">Series3</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_code">parse_hex_code</a></li><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Nov 06 2020 17:05:52 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Nov 07 2020 17:49:52 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>const assert = require('../../tools/assert');
 
-const NB_INST_CONNEXION_ARRAY = require("../constants").NB_INST_CONNEXION_ARRAY;
+const NB_INST_SERIES_3 = require("../constants").NB_INST_SERIES_3;
 const NB_HEX_VALUES_PER_INST = require("../constants").NB_HEX_VALUES_PER_INST;
 const NB_HEX_VALUES = 16;
 
@@ -44,12 +44,12 @@ class ConnectionsTable {
   constructor(bullGamma) {
     assert(bullGamma, "bullGamma must not be null or undefined");
     this.bullGamma = bullGamma;
-    this.instructions = new Array(NB_INST_CONNEXION_ARRAY);
+    this.instructions = new Array(NB_INST_SERIES_3);
     this.reset();
   }
 
   reset() {
-    for (let instIndex = 0; instIndex &lt; NB_INST_CONNEXION_ARRAY; ++instIndex) {
+    for (let instIndex = 0; instIndex &lt; NB_INST_SERIES_3; ++instIndex) {
       this.instructions[instIndex] = new Array(NB_HEX_VALUES_PER_INST);
       for (var hexIndex = 0; hexIndex &lt; NB_HEX_VALUES_PER_INST; hexIndex++) {
         this.instructions[instIndex][hexIndex] = 0;
@@ -58,14 +58,14 @@ class ConnectionsTable {
   }
 
   /**
-   * Set the ConnexionArray's content with hex values
+   * Set the Series3's content with hex values
    * @param hexCode a String that represents the new hex values of the array
    */
   setInstructions(hexCode) {
     this.reset();
     let instructions = this.bullGamma.parser.parseInstructions(hexCode);
-    if (instructions.length > NB_INST_CONNEXION_ARRAY) {
-      throw "instructions number should not be greater than " + NB_INST_CONNEXION_ARRAY;
+    if (instructions.length > NB_INST_SERIES_3) {
+      throw Error("Instructions number should not be greater than " + NB_INST_SERIES_3);
     }
     for (let instIndex = 0; instIndex &lt; instructions.length; ++instIndex) {
       this.instructions[instIndex] = new Array(NB_HEX_VALUES_PER_INST);
@@ -80,7 +80,7 @@ class ConnectionsTable {
 
   /**
    * Sets a value for the given instruction digit
-   * @param instIndex The instruction index in the connexionArray
+   * @param instIndex The instruction index in the Series3
    * @param hexIndex The index of the hex digit in the instruction (0: OF, 1: OD, 2: AD, 3: TO)
    * @param hexValue The value of the hex digit in base 10 (from 0 to 15)
    */
@@ -88,7 +88,7 @@ class ConnectionsTable {
     assert(instIndex >= 0, "Instruction index must be >= 0");
     assert(hexIndex >= 0, "Hex digit index must be >= 0");
     assert(hexValue >= 0, "Hex digit must be >= 0");
-    assert(instIndex &lt; NB_INST_CONNEXION_ARRAY, "Instruction index " + instIndex + " does not exist (&lt;" + NB_INST_CONNEXION_ARRAY + ")");
+    assert(instIndex &lt; NB_INST_SERIES_3, "Instruction index " + instIndex + " does not exist (&lt;" + NB_INST_SERIES_3 + ")");
     assert(hexIndex &lt; NB_HEX_VALUES_PER_INST, "Hex digit index " + hexIndex + " does not exist (0: OF, 1: OD, 2: AD, 3: TO)");
     assert(hexValue &lt; NB_HEX_VALUES, "Hex value must be strictly lower that " + NB_HEX_VALUES);
     this.instructions[instIndex][hexIndex] = hexValue;
@@ -103,7 +103,7 @@ class ConnectionsTable {
    */
   _getConnections(startIndex, stopIndex, step) {
     assert(startIndex >= 0, "Incorrect index");
-    assert(stopIndex &lt;= NB_INST_CONNEXION_ARRAY, "Incorrect index")
+    assert(stopIndex &lt;= NB_INST_SERIES_3, "Incorrect index")
     var connections = new Array(NB_HEX_VALUES);
     for (var hexValue = 0; hexValue &lt; NB_HEX_VALUES; hexValue++) {
       connections[hexValue] = new Array();
@@ -165,7 +165,7 @@ class ConnectionsTable {
 
   getHexCode() {
     var code = "-- Code généré par le tableau de connexions\n";
-    for (var instIndex = 0; instIndex &lt; NB_INST_CONNEXION_ARRAY; instIndex++) {
+    for (var instIndex = 0; instIndex &lt; NB_INST_SERIES_3; instIndex++) {
       code += this.getInstructionCode(instIndex) + "\n";
       // for (var hexIndex = 0; hexIndex &lt; NB_HEX_VALUES_PER_INST; hexIndex++) {
       //   hexValue = this.instructions[instIndex][hexIndex];
@@ -196,13 +196,13 @@ module.exports.ConnectionsTable = ConnectionsTable;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnectionsTable.html">ConnectionsTable</a></li><li><a href="ConnexionArray.html">ConnexionArray</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_code">parse_hex_code</a></li><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AMD.html">AMD</a></li><li><a href="AN.html">AN</a></li><li><a href="BD.html">BD</a></li><li><a href="BO.html">BO</a></li><li><a href="BT.html">BT</a></li><li><a href="BullGamma.html">BullGamma</a></li><li><a href="CB.html">CB</a></li><li><a href="CD.html">CD</a></li><li><a href="CmpMemory.html">CmpMemory</a></li><li><a href="CN.html">CN</a></li><li><a href="CO.html">CO</a></li><li><a href="ConnectionsTable.html">ConnectionsTable</a></li><li><a href="Console.html">Console</a></li><li><a href="CSz.html">CSz</a></li><li><a href="DC.html">DC</a></li><li><a href="DR.html">DR</a></li><li><a href="DrumBlock.html">DrumBlock</a></li><li><a href="DrumTrack.html">DrumTrack</a></li><li><a href="DrumTrackGroup.html">DrumTrackGroup</a></li><li><a href="DrumTransfer.html">DrumTransfer</a></li><li><a href="GG.html">GG</a></li><li><a href="Group.html">Group</a></li><li><a href="IL.html">IL</a></li><li><a href="Instruction.html">Instruction</a></li><li><a href="InstructionsParser.html">InstructionsParser</a></li><li><a href="KB.html">KB</a></li><li><a href="MagneticDrum.html">MagneticDrum</a></li><li><a href="MC.html">MC</a></li><li><a href="Memory.html">Memory</a></li><li><a href="MR.html">MR</a></li><li><a href="NOP.html">NOP</a></li><li><a href="OB.html">OB</a></li><li><a href="Octad.html">Octad</a></li><li><a href="Operation.html">Operation</a></li><li><a href="OperationWithPreShift.html">OperationWithPreShift</a></li><li><a href="Serie.html">Serie</a></li><li><a href="Series3.html">Series3</a></li><li><a href="SmallDivOrMult.html">SmallDivOrMult</a></li><li><a href="SN.html">SN</a></li><li><a href="TB.html">TB</a></li><li><a href="V.html">V</a></li><li><a href="VCS.html">VCS</a></li><li><a href="VRS.html">VRS</a></li><li><a href="Word.html">Word</a></li><li><a href="ZB.html">ZB</a></li></ul><h3>Global</h3><ul><li><a href="global.html#parse_hex_code">parse_hex_code</a></li><li><a href="global.html#parse_hex_str_to_instructions">parse_hex_str_to_instructions</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Nov 06 2020 17:05:52 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Nov 07 2020 17:49:52 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

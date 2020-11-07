@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: KB</title>
+    <title>JSDoc: Source: machine/innerComponents/series3.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,137 +17,82 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: KB</h1>
+    <h1 class="page-title">Source: machine/innerComponents/series3.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>KB<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">Constant to memory</div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="KB"><span class="type-signature"></span>new KB<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="assembly_KB.js.html">assembly/KB.js</a>, <a href="assembly_KB.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>Serie = require("./serie").Serie;
+NOP = require("../../assembly/NOP").NOP;
+
+const NB_INST_SERIES_3 = require("../constants").NB_INST_SERIES_3;
+
+/**
+ * Class which represents the connexion array of the Bull Gamma where plots would be connected by wires to hard code
+ * programs. It contains 64 instructions and as such can be considered as a Series
+ */
+class Series3 extends Serie {
+
+  /**
+   * Constructs a new instance of ConnexioArray
+   * @param id the id for the extended Serie, should always be 3 to respect the physical architecture
+   * @param bullGamma the bull gamma to which this array is connected
+   */
+  constructor(id, bullGamma) {
+    super(id, bullGamma);
+    this.maxNbInst = NB_INST_SERIES_3;
+    this.instructions = [];
+    this.completeInstructions();
+  }
+
+  /**
+   * Set the Series3's content with hex values
+   * @param hexCode a String that represents the new hex values of the array
+   */
+  setInstructions(hexCode) {
+    let instructions = this.bullGamma.parser.parseInstructions(hexCode);
+    if (instructions.length > NB_INST_SERIES_3) {
+      throw Error("Instructions number should not be greater than " + NB_INST_SERIES_3);
+    }
+    this.instructions = instructions;
+    this.completeInstructions();
+  }
+
+  /**
+   * fills up the empty instructions slots with NOP instructions
+   */
+  completeInstructions() {
+    for (let i=this.instructions.length; i&lt;this.maxNbInst; i++) {
+      this.instructions.push(new NOP(this.bullGamma));
+    }
+    this.nbInst = this.instructions.length;
+  }
+
+  /**
+   * @param line the position of the desired instructions
+   * @returns {Instruction} the fetched instructions
+   */
+  getInstruction(line) {
+    return this.instructions[line];
+  }
+
+  /**
+   * @returns {Array|Instruction} all the instructions of the Series3
+   */
+  getInstructions() {
+    return this.instructions;
+  }
+
+}
+
+module.exports.Series3 = Series3;
+</code></pre>
+        </article>
+    </section>
 
 
 

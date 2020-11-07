@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha -- testing/**/*.js",
     "coverage": "nyc npm run test",
-    "doc": "jsdoc -c jsdoc_conf.json"
+    "doc": "jsdoc -c jsdoc_conf.json && echo \">>> Open '../docs/index.html' in a web browser.\""
   },
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DrumTrackGroup</title>
+    <title>JSDoc: Class: Series3</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DrumTrackGroup</h1>
+    <h1 class="page-title">Class: Series3</h1>
 
     
 
@@ -28,11 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DrumTrackGroup<span class="signature">(id, drum)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Series3<span class="signature">(id, bullGamma)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">A DrumTrackGroup is a set of 16 (NB_TRACKS_PER_DRUM_TRACK_GROUP) DrumTracks attached to a Drum
-Note: I was unable to find a proper translation for the word "Seizaine" in English which is equivalent to "dozen"
-or "decade" but with 16.</div>
+            <div class="class-description">Class which represents the connexion array of the Bull Gamma where plots would be connected by wires to hard code
+programs. It contains 64 instructions and as such can be considered as a Series</div>
         
     
 </header>
@@ -47,7 +46,7 @@ or "decade" but with 16.</div>
     
 
     
-    <h4 class="name" id="DrumTrackGroup"><span class="type-signature"></span>new DrumTrackGroup<span class="signature">(id, drum)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Series3"><span class="type-signature"></span>new Series3<span class="signature">(id, bullGamma)</span><span class="type-signature"></span></h4>
     
 
     
@@ -55,7 +54,7 @@ or "decade" but with 16.</div>
 
 
 <div class="description">
-    constructs a new instance of DrumTrackGroup
+    Constructs a new instance of ConnexioArray
 </div>
 
 
@@ -102,14 +101,14 @@ or "decade" but with 16.</div>
 
             
 
-            <td class="description last">the id for this DrumTrackGroup</td>
+            <td class="description last">the id for the extended Serie, should always be 3 to respect the physical architecture</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>drum</code></td>
+                <td class="name"><code>bullGamma</code></td>
             
 
             <td class="type">
@@ -120,7 +119,7 @@ or "decade" but with 16.</div>
 
             
 
-            <td class="description last">the Drum to which this track group belongs</td>
+            <td class="description last">the bull gamma to which this array is connected</td>
         </tr>
 
     
@@ -161,7 +160,7 @@ or "decade" but with 16.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_magneticDrum_drumTrackGroup.js.html">machine/magneticDrum/drumTrackGroup.js</a>, <a href="machine_magneticDrum_drumTrackGroup.js.html#line15">line 15</a>
+        <a href="machine_innerComponents_series3.js.html">machine/innerComponents/series3.js</a>, <a href="machine_innerComponents_series3.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -217,7 +216,7 @@ or "decade" but with 16.</div>
     
 
     
-    <h4 class="name" id="setContent"><span class="type-signature"></span>setContent<span class="signature">(hexCode)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="completeInstructions"><span class="type-signature"></span>completeInstructions<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -225,7 +224,354 @@ or "decade" but with 16.</div>
 
 
 <div class="description">
-    Set the Word's content with hex values
+    fills up the empty instructions slots with NOP instructions
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machine_innerComponents_series3.js.html">machine/innerComponents/series3.js</a>, <a href="machine_innerComponents_series3.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getInstruction"><span class="type-signature"></span>getInstruction<span class="signature">(line)</span><span class="type-signature"> &rarr; {<a href="Instruction.html">Instruction</a>}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>line</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the position of the desired instructions</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machine_innerComponents_series3.js.html">machine/innerComponents/series3.js</a>, <a href="machine_innerComponents_series3.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    the fetched instructions
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Instruction.html">Instruction</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getInstructions"><span class="type-signature"></span>getInstructions<span class="signature">()</span><span class="type-signature"> &rarr; {Array|<a href="Instruction.html">Instruction</a>}</span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="machine_innerComponents_series3.js.html">machine/innerComponents/series3.js</a>, <a href="machine_innerComponents_series3.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    all the instructions of the Series3
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="Instruction.html">Instruction</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setInstructions"><span class="type-signature"></span>setInstructions<span class="signature">(hexCode)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set the Series3's content with hex values
 </div>
 
 
@@ -272,7 +618,7 @@ or "decade" but with 16.</div>
 
             
 
-            <td class="description last">a String that represents the new hex values of this Word</td>
+            <td class="description last">a String that represents the new hex values of the array</td>
         </tr>
 
     
@@ -313,7 +659,7 @@ or "decade" but with 16.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="machine_magneticDrum_drumTrackGroup.js.html">machine/magneticDrum/drumTrackGroup.js</a>, <a href="machine_magneticDrum_drumTrackGroup.js.html#line36">line 36</a>
+        <a href="machine_innerComponents_series3.js.html">machine/innerComponents/series3.js</a>, <a href="machine_innerComponents_series3.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
