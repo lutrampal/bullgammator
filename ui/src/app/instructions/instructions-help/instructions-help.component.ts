@@ -41,6 +41,7 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
     ).subscribe(value => {
       if (this.control.valid) {
         this.instructions = this.getInstructions(parseInt(value[0], 16), parseInt(value[1], 16));
+        this.selectedOF = parseInt(value[1], 16);
       }
     });
   }
