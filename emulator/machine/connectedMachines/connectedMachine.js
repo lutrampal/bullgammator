@@ -13,7 +13,7 @@ class ConnectedMachine {
    */
   on48V() {
     // to be overridden
-    throw Error("Received 48V - Nothing implemented");
+    throw Error('You have to implement the method on48V.');
   }
 
   /**
@@ -21,13 +21,15 @@ class ConnectedMachine {
    */
   onStaticExtraction1(OD, OF) {
     // to be overridden
+    throw Error('You have to implement the method onStaticExtraction1.');
   }
 
   /**
-   * Function triggered by the instruction ES1
+   * Function triggered by the instruction ES2
    */
   onStaticExtraction2(OD, OF) {
     // to be overridden
+    throw Error('You have to implement the method onStaticExtraction2.');
   }
 }
 

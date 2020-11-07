@@ -10,9 +10,9 @@ class CodeLibrary {
    * Returns the list of the programs names
    * @returns string[]
    */
-   getProgramsNames() {
-     return Object.getOwnPropertyNames(index);
-   }
+  getProgramsNames() {
+    return Object.getOwnPropertyNames(index);
+  }
 
   /**
    * Returns a part of a program
@@ -24,7 +24,7 @@ class CodeLibrary {
     if (index[name] && index[name][attribute]) {
       return index[name][attribute].replace(/--%n%/g, "\n").replace(/--%t%/g, "\t");
     }
-    return ""
+    return "";
   }
 
   /**

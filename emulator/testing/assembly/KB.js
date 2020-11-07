@@ -5,6 +5,12 @@ assert = require('assert');
 KB = require("../../assembly/KB").KB;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
+class TestMachine extends ConnectedMachine {
+  on48V() {
+    throw Error("48V");
+  }
+}
+
 describe('KB', function() {
   describe('#execute()', function() {
     it('[binary] should set blocks to the correct value', function() {
@@ -41,12 +47,36 @@ describe('KB', function() {
         assert.equal(mem4.blocks[11], 0);
         assert.equal(mem4.blocks[0], 1);
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new KB(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+    it('should call 48V', function () {
+      let bullGamma =  new BullGamma();
+      let machine = new TestMachine();
+      bullGamma.connectMachine(machine);
+      let instr = new KB(0, 5, 7, bullGamma);
+      try {
+        instr.execute();
+      } catch (e) {
+        assert.equal(e.message, "48V");
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new KB(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new KB(0, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+      console.debug(instr.toString());
+      console.debug(instr.toLineString());
+    });
   });
 });

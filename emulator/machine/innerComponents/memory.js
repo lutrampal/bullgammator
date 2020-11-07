@@ -286,7 +286,7 @@ class Memory extends Word {
   divide(other, from, to) {
     let vmb = other.getDecimalValue(from, to);
     if (vmb === 0) {
-      throw new Error("Divide by 0");
+      throw Error("Division by 0.");
     }
     while (this.bullGamma.md > 0) {
       while (this.getDecimalValue(from + this.blocks.length - NB_CHRS_PER_WORD, this.blocks.length) < vmb

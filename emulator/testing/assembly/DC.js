@@ -5,6 +5,17 @@ DC = require("../../assembly/DC").DC;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('DC', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let dc = new DC(1, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('should divide M2 with MB', function () {
       let bullGamma = new BullGamma();
@@ -63,12 +74,41 @@ describe('DC', function() {
       assert(m1.toString(), "000000000002", "wrong value");
       assert(m2.toString(), "2F364B800000", "wrong value");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new DC(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+    it('execute should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let dc = new DC(4, 2, 9, bullGamma);
+        dc.AD = 2;
+        dc.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new DC(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let dc = new DC(4, 2, 9, bullGamma);
+        dc.AD = 2;
+        dc.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma = new BullGamma();
+      let instr = new DC(0, 2, 9, bullGamma);
+      console.debug(instr.getDescription());
+    });
   });
 });

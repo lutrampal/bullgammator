@@ -5,6 +5,17 @@ MR = require("../../assembly/MR").MR;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('MR', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new MR(1, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('should multiply M1 and MB', function () {
       let bullGamma = new BullGamma();
@@ -81,12 +92,41 @@ describe('MR', function() {
       new MR(0, 4, 0xA, bullGamma).execute();
       assert(m1.toString() === "00000009F47A", "wrong value");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new MR(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new MR(4, 2, 9, bullGamma);
+        instr.AD = 1;
+        instr.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new MR(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new MR(4, 2, 9, bullGamma);
+        instr.AD = 1;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma = new BullGamma();
+      let instr = new MR(0, 2, 9, bullGamma);
+      console.debug(instr.getDescription());
     });
   });
 });

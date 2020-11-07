@@ -17,8 +17,8 @@ export class EditorService {
     this.connectionsTable = new ConnectionsTable(this.bull.bullgamma);
   }
 
-  editConnexionArray(hexCode: string): void {
-    this.editor.editConnexionArray(hexCode);
+  editSeries3(hexCode: string): void {
+    this.editor.editSeries3(hexCode);
   }
 
   editDrum(hexCode: string): void {

@@ -6,6 +6,17 @@ OB = require("../../assembly/OB").OB;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('BO', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new OB(0, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function() {
     it('should transfer the value of M1 to MB with a pre-shift if they are not aligned', function() {
       let bullGamma =  new BullGamma();
@@ -76,12 +87,43 @@ describe('BO', function() {
       ob.execute();
       assert.equal(bullGamma.getMemory(4).blocks[of - 1], val, "sign was transferred when it shouldn't have been");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new OB(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new OB(4, 2, 9, bullGamma);
+        instr.AD = 0;
+        instr.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new OB(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new OB(4, 2, 9, bullGamma);
+        instr.AD = 0;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new OB(1, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
   });
 });

@@ -59,7 +59,7 @@ class V extends Instruction {
         + jump_cond_matrix[this.OF % 4][this.AD - 1];
       }
     }
-    return "Instruction invalide ou non implémenté";
+    throw Error("Instruction invalide ou non implémenté");
   }
 
   getShortType() {

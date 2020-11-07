@@ -4,6 +4,17 @@ assert = require('assert');
 IL = require("../../assembly/IL").IL;
 
 describe('IL M2', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new IL(5, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('should not affect M1', function () {
       let bullGamma = new BullGamma();
@@ -38,13 +49,37 @@ describe('IL M2', function() {
         assert(m1.blocks[i] == resvals[i], "block " + i + " is incorrect");
       }
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new IL(10, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new IL(10, 2, 9, bullGamma);
+        instr.AD = 6;
+        instr.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new IL(10, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new IL(10, 2, 9, bullGamma);
+        instr.AD = 6;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
   });
 });
 describe('IL OF', function() {
@@ -76,6 +111,15 @@ describe('IL OF', function() {
       for (let i = 0; i < NB_CHRS_PER_WORD; ++i) {
         assert(m1.blocks[i] == resvals[i], "block " + i + " is incorrect");
       }
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new IL(12, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
     });
   });
 });

@@ -88,12 +88,28 @@ describe('BO', function() {
       assert.equal(bullGamma.getMemory(1).blocks[of - 1], 10, "M1[OF - 1] was set to zero as if the value was a " +
         "negative number.");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new BO(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new BO(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new BO(0, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new BO(1, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
   });
 });

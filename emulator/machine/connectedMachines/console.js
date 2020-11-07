@@ -19,7 +19,7 @@ class Console extends ConnectedMachine {
     let i = NB_MEMORIES_PER_HALF_OCTAD;
     for (let ex of this.bullGamma.getExtractors()) {
       this.lines.push(
-        "Sortie "+ (i - NB_MEMORIES_PER_HALF_OCTAD) + ": " + ex.toString()
+        "Sortie "+ (i - NB_MEMORIES_PER_HALF_OCTAD) + " : " + ex.toString()
       );
       i++;
     }
@@ -38,7 +38,7 @@ class Console extends ConnectedMachine {
       mantissa += parseInt(value.charAt(i), 16) / (4 * (16**(i-2)));
     }
 
-    return sign * (mantissa * (2**exponent))
+    return sign * (mantissa * (2**exponent));
   }
 
   convertToInt(value) {

@@ -28,9 +28,9 @@ package Machine {
       getInstructions()
     }
 
-    class ConnexionArray {
+    class Series3 {
       ...
-      ConnexionArray(...)
+      Series3(...)
       getInstructions()
     }
 
@@ -107,7 +107,7 @@ package Machine {
   }
 
     Serie o--> "1 group" Group
-    Serie <|-- ConnexionArray
+    Serie <|-- Series3
 
     DrumBlock "8 blocks" --* "track" DrumTrack
     Word "16 words" <--* DrumBlock
@@ -120,7 +120,7 @@ package Machine {
     BullGamma - "selectedOctad" Octad
     Serie "4 series" --*  BullGamma
     Group "4 groups" --*  BullGamma
-    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
+    Series3 "Series3" -- "bullGamma" BullGamma
     Group *--> "2 octads" Octad
 
 }

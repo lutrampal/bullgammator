@@ -1,7 +1,7 @@
 BullGamma = require("../../machine/bullGamma").BullGamma;
 ConnectionsTable = require("../../machine/connectionsTable/connectionsTable").ConnectionsTable;
 assert = require('assert');
-const NB_INST_CONNEXION_ARRAY = require("../../machine/constants").NB_INST_CONNEXION_ARRAY;
+const NB_INST_SERIES_3 = require("../../machine/constants").NB_INST_SERIES_3;
 const NB_HEX_VALUES_PER_INST = require("../../machine/constants").NB_HEX_VALUES_PER_INST;
 
 describe('ConnectionsTable', function() {
@@ -21,7 +21,7 @@ describe('ConnectionsTable', function() {
         inst = bullGamma.getSerie(3).getInstruction(0);
         assert.equal(inst.toString(), "a100", "returned hex value doesn't match the expected one");
         assert.equal(table.getHexCode().split("\n")[1], "a100", "returned hex value doesn't match the expected one");
-        assert.equal(table.getHexCode().split("\n").length, NB_INST_CONNEXION_ARRAY + 2, "incorrect number of lines");
+        assert.equal(table.getHexCode().split("\n").length, NB_INST_SERIES_3 + 2, "incorrect number of lines");
 
         table.setHexValue(1, 3, 12); // TO = A
         table.setHexValue(1, 2, 3); // AD = 1
@@ -34,7 +34,7 @@ describe('ConnectionsTable', function() {
         assert.equal(inst.toString(), "c31b", "returned hex value doesn't match the expected one");
         assert.equal(table.getHexCode().split("\n")[1], "a100", "returned hex value doesn't match the expected one");
         assert.equal(table.getHexCode().split("\n")[2], "c31b", "returned hex value doesn't match the expected one");
-        assert.equal(table.getHexCode().split("\n").length, NB_INST_CONNEXION_ARRAY + 2, "incorrect number of lines");
+        assert.equal(table.getHexCode().split("\n").length, NB_INST_SERIES_3 + 2, "incorrect number of lines");
 
         corner = table.getConnectionsTopLeft();
         assert.equal(corner[1][0][0], 0, "return corner connections for value 1 incorrect");
@@ -73,7 +73,7 @@ describe('ConnectionsTable', function() {
         assert.equal(inst.toString(), "c31b", "returned hex value doesn't match the expected one");
         assert.equal(table.getHexCode().split("\n")[1], "a100", "returned hex value doesn't match the expected one");
         assert.equal(table.getHexCode().split("\n")[2], "c31b", "returned hex value doesn't match the expected one");
-        assert.equal(table.getHexCode().split("\n").length, NB_INST_CONNEXION_ARRAY + 2, "incorrect number of lines");
+        assert.equal(table.getHexCode().split("\n").length, NB_INST_SERIES_3 + 2, "incorrect number of lines");
 
         corner = table.getConnectionsTopLeft();
         assert.equal(corner[1][0][0], 0, "return corner connections for value 1 incorrect");
@@ -96,6 +96,17 @@ describe('ConnectionsTable', function() {
 
         table.reset();
         assert.equal(table.getConnectionsTopLeft()[0].length, 16 * NB_HEX_VALUES_PER_INST, "connections should all be 0");
+      });
+      it('should exceed the maximum number of instructions', function () {
+          let bullGamma = new BullGamma();
+          let table = new ConnectionsTable(bullGamma);
+          try {
+            table.setInstructions("1234".repeat(65));
+          } catch (e) {
+            assert.equal(e.message, "Instructions number should not be greater than 64");
+            return;
+          }
+          assert(false);
       });
     });
   });

@@ -102,8 +102,8 @@ function _parse_four_hex_chunk_to_instr(instruction, bullGamma) {
       return new MC(AD, OD, OF, bullGamma);
     case 15:
       return new DC(AD, OD, OF, bullGamma);
-    default:
-      throw Error("Fell in default case when it shouldn't have happened");
+    // default:
+    //   throw Error("Fell in default case when it shouldn't have happened");
   }
 }
 

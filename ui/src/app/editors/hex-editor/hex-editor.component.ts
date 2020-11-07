@@ -77,7 +77,7 @@ export class HexEditorComponent implements OnInit, OnDestroy {
   validateSeries3Hex(): void {
     try {
       let hexCode = this.series3HexCtrl.get("hex_entry").value;
-      this.edit.editConnexionArray(hexCode);
+      this.edit.editSeries3(hexCode);
       this.series3_emit.emit(hexCode);
       this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
       this.snackBar.open(

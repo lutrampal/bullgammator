@@ -5,7 +5,7 @@ Memory = require("./innerComponents/memory").Memory;
 Group = require("./innerComponents/group").Group;
 Octad = require("./innerComponents/octad").Octad;
 CmpMemory = require("./innerComponents/cmpMemory").CmpMemory;
-ConnexionArray = require("./innerComponents/connexionArray").ConnexionArray;
+Series3 = require("./innerComponents/series3").Series3;
 Serie = require("./innerComponents/serie").Serie;
 MagneticDrum = require("./magneticDrum/magneticDrum").MagneticDrum;
 
@@ -37,7 +37,7 @@ class BullGamma {
     // M0 == M1
     this._generalMemories[0] = this._generalMemories[1];
 
-    this.connexionArray = new ConnexionArray(NB_GENERAL_SERIES, this)
+    this.series3 = new Series3(NB_GENERAL_SERIES, this)
     this.ioGroup = new Group(NB_GENERAL_SERIES, this)
 
     // Series and groups
@@ -47,7 +47,7 @@ class BullGamma {
       this.groups[i] = new Group(i, this);
       this.series[i] = new Serie(i, this, this.groups[i]);
     }
-    this.series[NB_GENERAL_SERIES] = this.connexionArray;
+    this.series[NB_GENERAL_SERIES] = this.series3;
     this.groups[NB_GENERAL_SERIES] = this.ioGroup;
 
     this.currentOctad = this.groups[0].octads[0];
@@ -117,7 +117,7 @@ class BullGamma {
     if (id < NB_BANAL_MEMORIES) {
       return this._generalMemories[id];
     } else {
-      if (octadId !== undefined) {
+      if (octadId !== undefined && octadId !== null) {
         return this.getOctad(octadId).getMemory([id - NB_BANAL_MEMORIES]);
       } else {
         return this.currentOctad.getMemory([id - NB_BANAL_MEMORIES]);

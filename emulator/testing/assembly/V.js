@@ -5,6 +5,17 @@ V = require("../../assembly/V").V;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('V', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new V(8, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('unconditional jump', function () {
       let bullGamma = new BullGamma();
@@ -75,12 +86,65 @@ describe('V', function() {
       v.execute();
       assert.equal(bullGamma.nl, 47, 'incorrect CP value');
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new V(4, 5, 4, bullGamma);
-        console.debug(instr.getDescription());
-      });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new V(0, 0, 1, bullGamma);
+        instr.AD = 7;
+        instr.execute();
+      } catch (e) {
+        assert.equal(e.message, "Jump condition does not exist or is not implemented");
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new V(0, 5, 4, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new V(0, 5, 1, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new V(4, 5, 8, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new V(4, 5, 5, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new V(2, 5, 13, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new V(2, 0, 0, bullGamma);
+        instr.OF = 3;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
     });
   });
 });

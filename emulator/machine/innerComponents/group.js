@@ -32,6 +32,7 @@ class Group {
    * @param hexCode a String that represents the new hex values of this Word
    */
   setContent(hexCode) {
+    // FIXME: reuse hex parser
     hexCode = hexCode.replace(/--[^\n\r]*(\n\r?|$)/g, ''); // remove comments
     hexCode = hexCode.replace(/[\s\n\r\t]/g, ''); // remove white space and line breaks
     assert(
@@ -57,7 +58,7 @@ class Group {
         return this.octads[o].getMemory(id - o * NB_MEMORIES_PER_OCTAD);
       }
     }
-    throw "not a valid id for word in group: " + id;
+    throw Error("Not a valid id for word in group: " + id);
   }
 
   toString() {

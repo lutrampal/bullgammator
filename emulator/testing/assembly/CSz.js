@@ -12,12 +12,14 @@ describe('CSz', function() {
       csz.execute();
       assert.equal(bullGamma.magneticDrum.commutedTrackGroup.id, 6, "wrong ID of commuted group");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new CSz(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new CSz(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
   });
 });

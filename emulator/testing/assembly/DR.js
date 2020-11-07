@@ -5,6 +5,17 @@ DR = require("../../assembly/DR").DR;
 Memory = require("../../machine/innerComponents/memory").Memory;
 
 describe('DR', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new DR(1, 2, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('should divide M1 with MB', function () {
       let bullGamma = new BullGamma();
@@ -28,6 +39,16 @@ describe('DR', function() {
       assert.equal(bullGamma.md, 0, "MD doesn't equal 0 at the end of the operation");
       assert.equal(bullGamma.ms1, 0, "wrong sign");
     });
+    it('should raise division by 0 error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        new DR(2, 4, 7, bullGamma).execute();
+      } catch (e) {
+        assert.equal(e.message, "Division by 0.");
+        return;
+      }
+      assert(false);
+    });
     it('when AD = 0, should divide M1 with OF', function () {
       let bullGamma = new BullGamma();
       let m1 = bullGamma.getMemory(1);
@@ -38,8 +59,6 @@ describe('DR', function() {
       assert.equal(bullGamma.getMemory(1).getDecimalValue(0, 3), 107, "wrong result");
       assert.equal(bullGamma.getMemory(1).getDecimalValue(3, 12), 3, "wrong result");
     });
-  });
-  describe('#execute()', function() {
     it('should set memory to zero', function() {
       let bullGamma =  new BullGamma();
       let mem4 = bullGamma.getMemory(4);
@@ -58,11 +77,40 @@ describe('DR', function() {
         assert.equal(mem4.blocks[i], 1);
       }
     });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new DR(4, 2, 9, bullGamma);
+        instr.AD = 1;
+        instr.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
   });
   describe('#getDescription()', function () {
     it("should print the instruction's description", function () {
       let bullGamma =  new BullGamma();
       let instr = new DR(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new DR(4, 2, 9, bullGamma);
+        instr.AD = 1;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma = new BullGamma();
+      let instr = new DR(0, 2, 9, bullGamma);
       console.debug(instr.getDescription());
     });
   });

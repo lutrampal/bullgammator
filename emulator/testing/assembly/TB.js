@@ -20,6 +20,15 @@ describe('TB', function() {
         let bullGamma =  new BullGamma();
         let instr = new TB(4, 5, 7, bullGamma);
         console.debug(instr.getDescription());
+        console.debug(instr.getShortType());
+        console.debug(instr.getLongType());
+      });
+      it("should print the instruction's description", function () {
+        let bullGamma =  new BullGamma();
+        let instr = new TB(3, 5, 7, bullGamma);
+        console.debug(instr.getDescription());
+        console.debug(instr.getShortType());
+        console.debug(instr.getLongType());
       });
     });
   });

@@ -1,6 +1,6 @@
 const assert = require('../../tools/assert');
 
-const NB_INST_CONNEXION_ARRAY = require("../constants").NB_INST_CONNEXION_ARRAY
+const NB_INST_SERIES_3 = require("../constants").NB_INST_SERIES_3
 const NB_INST_PER_SERIE = require("../constants").NB_INST_PER_SERIE
 const NB_INST_PER_MEM = require("../constants").NB_INST_PER_MEM
 const NB_MEMORIES_PER_OCTAD = require("../constants").NB_MEMORIES_PER_OCTAD

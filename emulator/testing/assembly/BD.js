@@ -15,12 +15,14 @@ describe('BD', function() {
       bd.execute();
       assert.equal(bullGamma.md, 15);
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new BD(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new BD(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
   });
 });

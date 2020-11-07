@@ -20,7 +20,7 @@ package IG {
 		@Output series3 = null
 		@Output drum = null
 		editDrum(hexCode)
-		editConnexionArray(hexCode)
+		editSeries3(hexCode)
 	}
 	Editors *-- HexEditor
 
@@ -72,7 +72,7 @@ package Interface_IG-Model {
 	class EditorService {
 		bull: BullgammatorService
 		editDrum(hexCode)
-		editConnexionArray(hexCode)
+		editSeries3(hexCode)
 	}
 	HexEditor o-- EditorService
 

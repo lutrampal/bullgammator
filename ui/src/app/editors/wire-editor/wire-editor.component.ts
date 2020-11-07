@@ -22,7 +22,7 @@ export class WireEditorComponent implements OnInit {
   private currentValue: number = 0;
 
   private rowHeight: number = 27;
-  private linesNumber: number = 32; // NB_INST_CONNEXION_ARRAY / 2
+  private linesNumber: number = 32; // NB_INST_SERIES_3 / 2
   private offsetX: number = 14;
   private offsetY: number = 20;
 

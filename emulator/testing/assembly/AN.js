@@ -142,12 +142,19 @@ describe('AN', function() {
       new AN(0, 10, 1, bullGamma).execute();
       assert.equal(m1.toString(), "10AAAAAAAAAA", "wrong value");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new AN(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new AN(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new AN(0, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
     });
   });
 });

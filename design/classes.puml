@@ -34,8 +34,8 @@ package Model {
       setInstructions(hexCode)
     }
 
-    class ConnexionArray {
-      ConnexionArray(id, bullGamma)
+    class Series3 {
+      Series3(id, bullGamma)
       getInstruction(line): Array<Instruction>
       getInstructions(): Instruction
       setInstructions(hexCode)
@@ -128,7 +128,7 @@ package Model {
     }
 
     Serie o--> "1 group" Group
-    Serie <|-- ConnexionArray
+    Serie <|-- Series3
 
     DrumBlock "8 blocks" --* "track" DrumTrack
     Word "16 words" <--* DrumBlock
@@ -140,17 +140,17 @@ package Model {
     BullGamma - "currentOctad" Octad
     Serie "4 series" --* "bullGamma" BullGamma
     Group "4 groups" --* "bullGamma" BullGamma
-    ConnexionArray "connexionArray" -- "bullGamma" BullGamma
+    Series3 "Series3" -- "bullGamma" BullGamma
     Group *--> "2 octads" Octad
   }
 
   package "Control" {
       class Editor {
-          editConnexionArray(hexCode)
+          editSeries3(hexCode)
           editDrum(hexCode)
       }
 
-      ConnexionArray "edit" <--down--o Editor
+      Series3 "edit" <--down--o Editor
       MagneticDrum "edit" <--down--o Editor
 
       class Execution {

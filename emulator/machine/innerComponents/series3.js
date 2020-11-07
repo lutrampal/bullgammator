@@ -1,13 +1,13 @@
 Serie = require("./serie").Serie;
 NOP = require("../../assembly/NOP").NOP;
 
-const NB_INST_CONNEXION_ARRAY = require("../constants").NB_INST_CONNEXION_ARRAY;
+const NB_INST_SERIES_3 = require("../constants").NB_INST_SERIES_3;
 
 /**
  * Class which represents the connexion array of the Bull Gamma where plots would be connected by wires to hard code
  * programs. It contains 64 instructions and as such can be considered as a Series
  */
-class ConnexionArray extends Serie {
+class Series3 extends Serie {
 
   /**
    * Constructs a new instance of ConnexioArray
@@ -16,19 +16,19 @@ class ConnexionArray extends Serie {
    */
   constructor(id, bullGamma) {
     super(id, bullGamma);
-    this.maxNbInst = NB_INST_CONNEXION_ARRAY;
+    this.maxNbInst = NB_INST_SERIES_3;
     this.instructions = [];
     this.completeInstructions();
   }
 
   /**
-   * Set the ConnexionArray's content with hex values
+   * Set the Series3's content with hex values
    * @param hexCode a String that represents the new hex values of the array
    */
   setInstructions(hexCode) {
     let instructions = this.bullGamma.parser.parseInstructions(hexCode);
-    if (instructions.length > NB_INST_CONNEXION_ARRAY) {
-      throw "instructions number should not be greater than " + NB_INST_CONNEXION_ARRAY;
+    if (instructions.length > NB_INST_SERIES_3) {
+      throw Error("Instructions number should not be greater than " + NB_INST_SERIES_3);
     }
     this.instructions = instructions;
     this.completeInstructions();
@@ -53,7 +53,7 @@ class ConnexionArray extends Serie {
   }
 
   /**
-   * @returns {Array|Instruction} all the instructions of the ConnexionArray
+   * @returns {Array|Instruction} all the instructions of the Series3
    */
   getInstructions() {
     return this.instructions;
@@ -61,4 +61,4 @@ class ConnexionArray extends Serie {
 
 }
 
-module.exports.ConnexionArray = ConnexionArray
+module.exports.Series3 = Series3;

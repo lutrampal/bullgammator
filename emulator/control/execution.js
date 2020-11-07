@@ -1,8 +1,10 @@
+const assert = require('../tools/assert');
 Console = require("../machine/connectedMachines/console").Console;
 
 class Execution {
 
   constructor(bullGamma) {
+    assert(bullGamma, "A BullGamma instance must be provided.");
     this.bullGamma = bullGamma;
     this.console = new Console();
     this.bullGamma.connectMachine(this.console);

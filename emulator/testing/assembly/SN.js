@@ -151,12 +151,38 @@ describe('SN', function() {
       new SN(0, 11, 0xf, bullGamma).execute();
       assert.equal(m1.toString(), "055555555556", "wrong value");
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new SN(4, 5, 7, bullGamma);
-        console.debug(instr.getDescription());
-      });
+    it('[Binary mode] when AD = 1, should reset M1', function () {
+      let bullGamma = new BullGamma();
+      let m1 = bullGamma.getMemory(1);
+      bullGamma.setMemoryMode(MEMORY_MODE.BINARY);
+      let od = 0, of = 8;
+      for (let i = od; i < of; ++i) {
+        m1.blocks[i] = 9;
+      }
+      bullGamma.ms1 = 10;
+      new SN(1, 0, 8, bullGamma).execute();
+      let total = 0;
+      for (let i = 0; i < 12; ++i) {
+        total += m1.blocks[i]*10**i;
+      }
+      assert.equal(total, 0, "wrong result");
+      assert.equal(bullGamma.ms1, 10, "wrong sign");
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new SN(4, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new SN(0, 5, 7, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
     });
   });
 });

@@ -9,6 +9,17 @@ const NB_MEMORIES_PER_OCTAD = require("../../machine/constants").NB_MEMORIES_PER
 const NB_TRACKS_PER_TRACK_GROUP = require("../../machine/constants").NB_TRACKS_PER_DRUM_TRACK_GROUP
 
 describe('GG', function() {
+  describe('#constructor()', function () {
+    it('constructor should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new GG(5, 9, bullGamma);
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
   describe('#execute()', function () {
     it('should copy a group to another', function () {
       let bullGamma = new BullGamma();
@@ -39,12 +50,43 @@ describe('GG', function() {
         "contents should be equal after transfer"
       );
     });
-    describe('#getDescription()', function () {
-      it("should print the instruction's description", function () {
-        let bullGamma =  new BullGamma();
-        let instr = new GG(2, 3, bullGamma);
-        console.debug(instr.getDescription());
-      })
-    })
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new GG(1, 0, bullGamma);
+        instr.OD = 5;
+        instr.execute();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
+  });
+  describe('#getDescription()', function () {
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new GG(2, 3, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it("should print the instruction's description", function () {
+      let bullGamma =  new BullGamma();
+      let instr = new GG(8, 2, bullGamma);
+      console.debug(instr.getDescription());
+      console.debug(instr.getShortType());
+      console.debug(instr.getLongType());
+    });
+    it('should raise error', function () {
+      let bullGamma = new BullGamma();
+      try {
+        let instr = new GG(1, 0, bullGamma);
+        instr.OD = 5;
+        instr.getDescription();
+      } catch (e) {
+        return;
+      }
+      assert(false);
+    });
   });
 });

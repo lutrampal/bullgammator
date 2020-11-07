@@ -14,30 +14,30 @@ class AN extends OperationWithPreShift {
     if (this.AD > 1) { // use of MB
       let mb = this.bullGamma.getMemory(this.AD)
       if (this.bullGamma.getMemoryMode() === MEMORY_MODE.DECIMAL) {
-        // handle sign in decimal mode
-        if (this.bullGamma.ms1 !== 10 && mb.blocks[this.OF - 1] !== 10) { // M1, MB positive
-          m1.add(mb, this.OD, this.OF);
-          return;
-        }
-        if (this.bullGamma.ms1 !== 10 && mb.blocks[this.OF - 1] === 10) { // M1 positive, MB negative
-          mb.blocks[this.OF - 1] = 0;
-          m1.subtract(mb, this.OD, this.OF);
-          mb.blocks[this.OF - 1] = 10;
-          return;
-        }
-        if (this.bullGamma.ms1 === 10 && mb.blocks[this.OF - 1] !== 10) { // M1 negative, MB positive
-          // -M1 + MB <=> MB - M1, so MB gets copied to M1 and a buffer for M1 is used
-          let cpM1 = new Memory(1, this.bullGamma);
-          cpM1.copyBlockValues(m1, this.OD, this.OF);
-          m1.copyBlockValues(mb, this.OD, this.OF);
-          m1.subtract(cpM1, this.OD, this.OF);
-          return;
-        }
-        if (this.bullGamma.ms1 === 10 && mb.blocks[this.OF - 1] === 10) { // M1, MB negative
-          mb.blocks[this.OF - 1] = 0;
-          m1.add(mb, this.OD, this.OF);
-          mb.blocks[this.OF - 1] = 10;
-          return;
+        let m1positive = this.bullGamma.ms1 !== 10; // Whether M1 positive
+        let mBpositive = mb.blocks[this.OF - 1] !== 10; // whether MB positive
+
+        // Add or subtract positive integers depending on operand signs
+        if (m1positive) {
+          if (mBpositive) {
+            m1.add(mb, this.OD, this.OF);
+          } else {
+            mb.blocks[this.OF - 1] = 0;
+            m1.subtract(mb, this.OD, this.OF);
+            mb.blocks[this.OF - 1] = 10;
+          }
+        } else {
+          if (mBpositive) {
+            // -M1 + MB <=> MB - M1, so MB gets copied to M1 and a buffer for M1 is used
+            let cpM1 = new Memory(1, this.bullGamma);
+            cpM1.copyBlockValues(m1, this.OD, this.OF);
+            m1.copyBlockValues(mb, this.OD, this.OF);
+            m1.subtract(cpM1, this.OD, this.OF);
+          } else {
+            mb.blocks[this.OF - 1] = 0;
+            m1.add(mb, this.OD, this.OF);
+            mb.blocks[this.OF - 1] = 10;
+          }
         }
       } else {
         // no signhandling in binary mode

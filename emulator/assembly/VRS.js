@@ -28,7 +28,6 @@ class VRS extends Instruction {
       case 7:
         // complex behavior
         throw Error("Excution of instruction 17xx not implemented");
-        break;
       default:
         throw Error("Cannot execute invalid instruction");
     }

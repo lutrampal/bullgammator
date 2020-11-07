@@ -22,7 +22,7 @@ class Instruction {
     this.OD = OD;
     this.OF = OF;
     this.bullGamma = bullGamma;
-    this.hexString = TO.toString(16) + AD.toString(16) + OD.toString(16) + OF.toString(16);
+    this.hexString = Instruction.getChar(TO) + Instruction.getChar(AD) + Instruction.getChar(OD) + Instruction.getChar(OF);
   }
 
   /**
@@ -69,7 +69,7 @@ class Instruction {
   }
 
   static getChar(intValue) {
-    return intValue.toString(16).toUpperCase();
+    return intValue.toString(16); // NB: toString(16) generates lower case
   }
 
 }

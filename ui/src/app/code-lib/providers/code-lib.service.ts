@@ -29,7 +29,7 @@ export class CodeLibService {
   }
 
   loadProgram(name: string): void {
-    this.edit.editConnexionArray(
+    this.edit.editSeries3(
       this.lib.getProgram(name, "series3")
     );
     this.edit.editDrum(
