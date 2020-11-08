@@ -53,7 +53,7 @@ def get_tags(filename):
 
 
 SAMPLES = "{\n\t" + ",\n\t".join([
-    "\"" + filename.replace(".txt", "") + "\": {\n\t\t" + ",\n\t\t".join([
+    "\"" + re.sub(r"\.[a-z]{3,4}$", "", filename) + "\": {\n\t\t" + ",\n\t\t".join([
             "\"" + tag +"\": \"" + data + "\"" for tag, data in get_tags(filename)
     ]) + "\n\t}" for filename in os.listdir(DIRNAME)
 ]) + "\n}"
