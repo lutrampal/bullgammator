@@ -8,7 +8,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'ui';
+  title = 'ui';
   series3: string;
   inst: string;
   drum: string;

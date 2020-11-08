@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Editor, ConnectionsTable } from 'bullgammator'
-import { BullgammatorService } from '../../providers/bullgammator.service'
+import { Editor, ConnectionsTable } from 'bullgammator';
+import { BullgammatorService } from '../../providers/bullgammator.service';
 
 
 @Injectable()

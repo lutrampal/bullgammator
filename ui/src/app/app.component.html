@@ -66,8 +66,8 @@
             </mat-expansion-panel-header>
 
             <app-code-lib
-              (series3_emit)="series3=$event"
-              (drum_emit)="drum=$event"
+              (series3Emit)="series3=$event"
+              (drumEmit)="drum=$event"
             ></app-code-lib>
           </mat-expansion-panel>
 
@@ -83,8 +83,8 @@
 
             <app-wire-editor
               [series3]="series3"
-              (series3_emit)="series3=$event"
-              (inst_emit)="updateInstruction($event)"
+              (series3Emit)="series3=$event"
+              (instEmit)="updateInstruction($event)"
             ></app-wire-editor>
           </mat-expansion-panel>
 
@@ -100,7 +100,7 @@
 
             <app-hex-editor
               [series3]="series3"
-              (series3_emit)="series3=$event"
+              (series3Emit)="series3=$event"
               [drum]="drum"
             ></app-hex-editor>
           </mat-expansion-panel>
@@ -115,7 +115,7 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <app-debug
-              (inst_emit)="updateInstruction($event)"
+              (instEmit)="updateInstruction($event)"
             ></app-debug>
           </mat-expansion-panel>
 

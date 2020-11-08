@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 
-import { BullgammatorService } from '../../providers/bullgammator.service'
+import { BullgammatorService } from '../../providers/bullgammator.service';
 import { Instruction } from 'bullgammator';
 
 const HEX_VALUES = Array.from(Array(16).keys());
@@ -19,9 +19,9 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
 
   public instructions: Instruction[][];
   public control: FormControl;
-  public operationType: number = 10;
-  public selectedAddr: number = 0;
-  public selectedOF: number = 0;
+  public operationType = 10;
+  public selectedAddr = 0;
+  public selectedOF = 0;
   public instructionError: {[TO: number]: {[AD: number]: boolean}};
 
   @Input()
@@ -52,7 +52,7 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
   }
 
   select(inst: string): void {
-    if (inst && inst.length == 4) {
+    if (inst && inst.length === 4) {
       inst = inst.toUpperCase();
       this.operationType = parseInt(inst[0], 16);
       this.selectedAddr = parseInt(inst[1], 16);
@@ -63,9 +63,9 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
 
   isSelected(inst: string): boolean {
     return (
-      parseInt(inst[0], 16) == this.operationType
-      && parseInt(inst[1], 16) == this.selectedAddr
-      && parseInt(inst[3], 16) == this.selectedOF
+      parseInt(inst[0], 16) === this.operationType
+      && parseInt(inst[1], 16) === this.selectedAddr
+      && parseInt(inst[3], 16) === this.selectedOF
     );
   }
 
@@ -75,27 +75,27 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
   }
 
   getDescription(inst): string {
-    return inst.getShortType() + " - " + inst.getLongType() + " -- " + inst.getDescription();
+    return inst.getShortType() + ' - ' + inst.getLongType() + ' -- ' + inst.getDescription();
   }
 
   getInstructions(OD, OF): Instruction[][] {
-    let instructions = []
+    const instructions = [];
     this.instructionError = {};
 
-    for (let TO of HEX_VALUES) {
+    for (const TO of HEX_VALUES) {
       instructions.push([]);
       this.instructionError[TO] = {};
-      for (let AD of HEX_VALUES) {
+      for (const AD of HEX_VALUES) {
         this.instructionError[TO][AD] = false;
-        if (TO != 0) {
+        if (TO !== 0) {
           try {
-            let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
+            const inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF);
             inst.getDescription();
             instructions[TO].push(inst);
           } catch (error) {
             try {
               this.instructionError[TO][AD] = true;
-              let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
+              const inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, 0, 0);
               inst.getDescription();
               instructions[TO].push(inst);
             } catch (error) {
@@ -103,9 +103,9 @@ export class InstructionsHelpComponent implements OnInit, OnDestroy {
             }
           }
         } else {
-          for (let _OF of [0, 1, 2, 3]) {
+          for (const _OF of [0, 1, 2, 3]) {
             try {
-              let inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF - OF%4 + _OF%4);
+              const inst = this.bull.bullgamma.parser.parseInstruction(TO, AD, OD, OF - OF % 4 + _OF % 4);
               inst.getDescription();
               instructions[TO].push(inst);
             } catch (error) {

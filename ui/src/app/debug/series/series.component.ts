@@ -12,17 +12,17 @@ import { Instruction } from 'bullgammator';
 export class SeriesComponent implements OnInit {
 
   @Output()
-  breakpts_emit = new EventEmitter<FormControl[][]>();
+  breakptsEmit = new EventEmitter<FormControl[][]>();
 
   @Output()
-  inst_emit = new EventEmitter<string>()
+  instEmit = new EventEmitter<string>();
 
   seriesId: number;
   breakpoints: FormControl[][] = [];
   instructions: Instruction[][];
 
-  currentLine: number = 0;
-  currentSeries: number = 3;
+  currentLine = 0;
+  currentSeries = 3;
 
   constructor(
     public series: SeriesService
@@ -33,9 +33,9 @@ export class SeriesComponent implements OnInit {
     this.instructions = new Array(this.series.getSeriesNumber() - 1);
     this.updateAllInstructions();
 
-    for (let seriesIndex of this.series.getSeriesList()) {
+    for (const seriesIndex of this.series.getSeriesList()) {
       this.breakpoints.push([]);
-      for (var i = 0; i < this.getNbInst(seriesIndex); i++) {
+      for (let i = 0; i < this.getNbInst(seriesIndex); i++) {
         this.breakpoints[seriesIndex].push(new FormControl(false, []));
       }
     }
@@ -49,8 +49,8 @@ export class SeriesComponent implements OnInit {
   }
 
   updateAllInstructions(): void {
-    for (let seriesIndex of this.series.getSeriesList()) {
-      if (seriesIndex != this.series.getSeriesNumber() - 1) {
+    for (const seriesIndex of this.series.getSeriesList()) {
+      if (seriesIndex !== this.series.getSeriesNumber() - 1) {
         this.updateInstructions(seriesIndex);
       }
     }
@@ -63,22 +63,22 @@ export class SeriesComponent implements OnInit {
   getInstructions(seriesIndex, columnIndex): Instruction[] {
     // update the regular series
     let instructions: Instruction[];
-    let line = this.series.getLine();
-    let series = this.series.getSeries();
-    if (this.currentLine != line || this.currentSeries != series) {
+    const line = this.series.getLine();
+    const series = this.series.getSeries();
+    if (this.currentLine !== line || this.currentSeries !== series) {
       this.updateInstructions(this.seriesId);
       this.currentLine = line;
       this.currentSeries = series;
     }
     // get the complete list of instructions
-    if (seriesIndex == this.series.getSeriesNumber() - 1) {
+    if (seriesIndex === this.series.getSeriesNumber() - 1) {
       // connections table is fetched directly
       instructions = this.series.getInstructions(seriesIndex);
     } else {
       instructions = this.instructions[seriesIndex];
     }
     // slice the list
-    if (columnIndex == 0) {
+    if (columnIndex === 0) {
       instructions = instructions.slice(
         0, this.getHalfNbInst(seriesIndex)
       );
@@ -101,8 +101,8 @@ export class SeriesComponent implements OnInit {
   }
 
   isProgramLine(seriesIndex: number, columnIndex: number, lineIndex: number): boolean {
-    let instIndex = this.getLineNumber(seriesIndex, columnIndex, lineIndex);
-    return (instIndex == this.series.getLine()) && (seriesIndex == this.series.getSeries());
+    const instIndex = this.getLineNumber(seriesIndex, columnIndex, lineIndex);
+    return (instIndex === this.series.getLine()) && (seriesIndex === this.series.getSeries());
   }
 
   getNbInst(seriesIndex: number): number {
@@ -114,22 +114,22 @@ export class SeriesComponent implements OnInit {
   }
 
   getControl(seriesIndex: number, columnIndex: number, lineIndex: number): FormControl {
-    let instIndex = this.getLineNumber(seriesIndex, columnIndex, lineIndex);
+    const instIndex = this.getLineNumber(seriesIndex, columnIndex, lineIndex);
     return this.breakpoints[seriesIndex][instIndex];
   }
 
   emitBreakpoints(): void {
-    this.breakpts_emit.emit(this.breakpoints);
+    this.breakptsEmit.emit(this.breakpoints);
   }
 
   getDescription(): string {
-    return "Le panneau des serie montre le code qui sera exécuté. On peut fixer des points d’arrêts en cochant les " +
-      "cases avant chaque instruction. Le calculateur retourne à l’instruction 0 aprèseries la 63ème ligne comme le " +
-      "véritable calculateur. Le passage à une autre seriesérie nécessite une instruction."
+    return 'Le panneau des serie montre le code qui sera exécuté. On peut fixer des points d\'arrêts en cochant les ' +
+      'cases avant chaque instruction. Le calculateur retourne à l\'instruction 0 aprèseries la 63ème ligne comme le ' +
+      'véritable calculateur. Le passage à une autre seriesérie nécessite une instruction.';
   }
 
   openInstruction(inst): void {
-    this.inst_emit.emit(inst.toString());
+    this.instEmit.emit(inst.toString());
   }
 
   getLineNumber(seriesIndex: number, columnIndex: number, lineIndex: number): number {
@@ -137,7 +137,7 @@ export class SeriesComponent implements OnInit {
   }
 
   getInstructionText(inst): string {
-    return inst.toString() + " -- " + inst.getShortType();
+    return inst.toString() + ' -- ' + inst.getShortType();
   }
 
 }

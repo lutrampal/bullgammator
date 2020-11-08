@@ -12,7 +12,7 @@ export class DebugComponent implements OnInit {
   update: boolean;
 
   @Output()
-  inst_emit = new EventEmitter<string>();
+  instEmit = new EventEmitter<string>();
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class DebugComponent implements OnInit {
   }
 
   openInstruction(inst: string): void {
-    this.inst_emit.emit(inst);
+    this.instEmit.emit(inst);
   }
 
 }

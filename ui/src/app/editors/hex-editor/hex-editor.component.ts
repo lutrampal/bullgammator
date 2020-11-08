@@ -24,18 +24,18 @@ export class HexEditorComponent implements OnInit, OnDestroy {
   @Input()
   set series3(series3: string) {
     if (series3) {
-      this.series3HexCtrl.get("hex_entry").setValue(series3);
+      this.series3HexCtrl.get('hex_entry').setValue(series3);
     }
   }
   @Input()
   set drum(drum: string) {
-    if (drum || drum === "") {
-      this.magDrumHexCtrl.get("hex_entry").setValue(drum);
+    if (drum || drum === '') {
+      this.magDrumHexCtrl.get('hex_entry').setValue(drum);
     }
   }
 
   @Output()
-  series3_emit = new EventEmitter<string>();
+  series3Emit = new EventEmitter<string>();
 
   constructor(
     private snackBar: MatSnackBar,
@@ -48,14 +48,14 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.series3HexCtrl = this.fb.group({
-      hex_entry: ["", [Validators.required, this.hex_validator]]
-    })
+      hex_entry: ['', [Validators.required, this.hex_validator]]
+    });
     this.series3HexWatcher = this.series3HexCtrl.valueChanges.subscribe(() => {
       this.series3HexError = null;
     });
     this.magDrumHexCtrl = this.fb.group({
-      hex_entry: ["", [Validators.required, this.hex_validator]]
-    })
+      hex_entry: ['', [Validators.required, this.hex_validator]]
+    });
     this.magDrumHexWatcher = this.magDrumHexCtrl.valueChanges.subscribe(() => {
       this.magDrumHexError = null;
     });
@@ -76,16 +76,16 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   validateSeries3Hex(): void {
     try {
-      let hexCode = this.series3HexCtrl.get("hex_entry").value;
+      const hexCode = this.series3HexCtrl.get('hex_entry').value;
       this.edit.editSeries3(hexCode);
-      this.series3_emit.emit(hexCode);
-      this.exec.writeConsoleLine("Série 3 chargée depuis l'éditeur");
+      this.series3Emit.emit(hexCode);
+      this.exec.writeConsoleLine('Série 3 chargée depuis l\'éditeur');
       this.snackBar.open(
-        "Série 3 et 'Tableau de connnexions' mis à jour.",
-        "OK", {duration: 6000}
+        'Série 3 et \'Tableau de connnexions\' mis à jour.',
+        'OK', {duration: 6000}
       );
     }
-    catch(error) {
+    catch (error) {
       console.error(error);
       this.series3HexError = error;
     }
@@ -93,14 +93,14 @@ export class HexEditorComponent implements OnInit, OnDestroy {
 
   validateDrumHex(): void {
       try {
-        this.edit.editDrum(this.magDrumHexCtrl.get("hex_entry").value);
-        this.exec.writeConsoleLine("Tambour chargé depuis l'éditeur");
+        this.edit.editDrum(this.magDrumHexCtrl.get('hex_entry').value);
+        this.exec.writeConsoleLine('Tambour chargé depuis l\'éditeur');
         this.snackBar.open(
-          "Tambour mise à jour.",
-          "OK", {duration: 5000}
+          'Tambour mise à jour.',
+          'OK', {duration: 5000}
         );
       }
-      catch(error) {
+      catch (error) {
         console.error(error);
         this.magDrumHexError = error;
       }

@@ -33,14 +33,14 @@ export class MbComponent implements OnInit {
   constructor(
     public m: MemoriesService
   ) {
-    for (var mb=2; mb<this.m.constants.NB_BANAL_MEMORIES; mb++) {
+    for (let mb = 2; mb < this.m.constants.NB_BANAL_MEMORIES; mb++) {
       this.memories.push({ id: mb, label: 'M' + mb.toString() });
     }
     this.edit = false;
   }
 
   ngOnInit(): void {
-    for (let mb of this.memories) {
+    for (const mb of this.memories) {
       this.controls[mb.id] = new FormControl('', [this.m.banalMemoryValidator]);
     }
     this.nlCtrl = new FormControl('', [this.m.nlValidator]);
@@ -59,7 +59,7 @@ export class MbComponent implements OnInit {
     return this.m.getMemory(id, octad);
   }
   setBanalMemories(): void {
-    for (let mb of this.memories) {
+    for (const mb of this.memories) {
       this.m.setMemory(this.controls[mb.id].value, mb.id, 0);
     }
   }
@@ -79,19 +79,19 @@ export class MbComponent implements OnInit {
   }
 
   reset(): void {
-    for (let mb of this.memories) {
-      this.m.setMemory("000000000000", mb.id, 0);
+    for (const mb of this.memories) {
+      this.m.setMemory('000000000000', mb.id, 0);
     }
-    this.m.setMemory("000000000000", 1, 0);
-    this.m.setNL("C0");
-    this.m.setMS1("0");
-    this.m.setMD("0");
-    this.m.setMCMP("<");
-    this.m.setRNL1("00");
-    this.m.setRNL2("00");
-    this.m.setOctad("0");
-    this.m.setTrackGr("0");
-    this.m.setMode("Décimal");
+    this.m.setMemory('000000000000', 1, 0);
+    this.m.setNL('C0');
+    this.m.setMS1('0');
+    this.m.setMD('0');
+    this.m.setMCMP('<');
+    this.m.setRNL1('00');
+    this.m.setRNL2('00');
+    this.m.setOctad('0');
+    this.m.setTrackGr('0');
+    this.m.setMode('Décimal');
   }
 
   getM0(): string {
@@ -135,7 +135,7 @@ export class MbComponent implements OnInit {
   }
 
   valid(): boolean {
-    for (let mb of this.memories) {
+    for (const mb of this.memories) {
       if (this.controls[mb.id].invalid) {
         return false;
       }
@@ -152,7 +152,7 @@ export class MbComponent implements OnInit {
 
   editMemories(): void {
     this.edit = true;
-    for (let mb of this.memories) {
+    for (const mb of this.memories) {
       this.controls[mb.id].setValue(this.getMemory(mb.id, 0));
     }
     this.nlCtrl.setValue(this.getNL());
@@ -168,9 +168,9 @@ export class MbComponent implements OnInit {
   }
 
   getDescription(): string {
-    return "Le panneau “Contrôle” présente le contenu des mémoires internes à la machine. Il est possible de les " +
-      "éditer et des les réinitialiser manuellement. Ce qui n’aurait bien entendu pas été faisable sur le véritable " +
-      "calculateur."
+    return 'Le panneau \'Contrôle\' présente le contenu des mémoires internes à la machine. Il est possible de les ' +
+      'éditer et des les réinitialiser manuellement. Ce qui n’aurait bien entendu pas été faisable sur le véritable ' +
+      'calculateur.';
   }
 
 }

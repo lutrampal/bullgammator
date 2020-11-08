@@ -2,16 +2,16 @@
   Le tambour est organisé en 64 pistes adressables par bloc de 16 mots de 12 chiffres hexadécimaux. Les blocs sont copiés depuis ou vers les mémoires rapides par des instructions de transfert
 </app-help>
 
-<mat-tab-group [(selectedIndex)]="gr_index">
+<mat-tab-group [(selectedIndex)]="grIndex">
   <div *ngFor="let tg of bull.bullgamma.magneticDrum.trackGroups; index as i">
     <mat-tab label="Seizaine {{ i }}">
-      <mat-tab-group *ngIf="gr_index == i" [(selectedIndex)]="tr_index">
+      <mat-tab-group *ngIf="grIndex == i" [(selectedIndex)]="trIndex">
         <div *ngFor="let t of tg.tracks; index as j">
           <mat-tab label="Piste {{ i * bull.constants.NB_TRACKS_PER_DRUM_TRACK_GROUP + j }}">
-            <mat-tab-group *ngIf="tr_index == j" [(selectedIndex)]="bl_index">
+            <mat-tab-group *ngIf="trIndex == j" [(selectedIndex)]="blIndex">
               <div *ngFor="let b of t.blocks; index as k">
                 <mat-tab label="Bloc {{ k }}">
-                  <div *ngIf="bl_index == k" class="main monospace" [innerHTML]="displayBlock(i, j, k)">
+                  <div *ngIf="blIndex == k" class="main monospace" [innerHTML]="displayBlock(i, j, k)">
                   </div>
                 </mat-tab>
               </div>

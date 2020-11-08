@@ -14,16 +14,16 @@ export class CodeLibComponent implements OnInit {
   message: any;
 
   @Output()
-  series3_emit = new EventEmitter<string>();
+  series3Emit = new EventEmitter<string>();
   @Output()
-  drum_emit = new EventEmitter<string>();
+  drumEmit = new EventEmitter<string>();
 
   constructor(
     private snackBar: MatSnackBar,
     private lib: CodeLibService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   getProgramsNames(): string[] {
@@ -33,13 +33,13 @@ export class CodeLibComponent implements OnInit {
   loadProgram(name: string): void {
     try {
       this.lib.loadProgram(name);
-      this.series3_emit.emit(this.lib.getProgram(name, "series3"));
-      this.drum_emit.emit(this.lib.getProgram(name, "drum") || "");
-      this.message = "";
+      this.series3Emit.emit(this.lib.getProgram(name, 'series3'));
+      this.drumEmit.emit(this.lib.getProgram(name, 'drum') || '');
+      this.message = '';
       this.snackBar.open(
-        "Programme '" + this.displayName(name) + "' chargé. \
-        Contrôlez son exécution dans l'onglet 'Supervision'.",
-        "OK", {duration: 8000}
+        'Programme \'' + this.displayName(name) + '\' chargé. \
+        Contrôlez son exécution dans l\'onglet \'Supervision\'.',
+        'OK', {duration: 8000}
       );
     } catch (error) {
       this.message = error;
@@ -51,7 +51,7 @@ export class CodeLibComponent implements OnInit {
   }
 
   description(name: string): string {
-    return this.lib.getProgram(name, "description");
+    return this.lib.getProgram(name, 'description');
   }
 
 }
